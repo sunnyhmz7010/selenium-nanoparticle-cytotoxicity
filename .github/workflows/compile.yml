@@ -29,19 +29,35 @@ jobs:
           compiler: xelatex
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
-      # 3. 规范化命名与整理 (核心步骤)
-      - name: Prepare Artifacts
+      # 3. 生成带时间戳的文件名，并存入环境变量
+      - name: Prepare Files and Names
         run: |
-          mkdir -p output
-          # 获取当前日期，格式如 20260505
-          DATE=$(date +'%Y%m%d')
-          # 规范命名：项目名_语言_日期.pdf
-          cp main_zh.pdf "output/Manuscript_ZH_$DATE.pdf"
-          cp main_en.pdf "output/Manuscript_EN_$DATE.pdf"
+          export TZ='Asia/Shanghai'
+          # 生成精确时间戳
+          TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+          
+          # 定义中英文文件名（不带后缀，用于 Artifact 名字）
+          ZH_NAME="Manuscript_ZH_$TIMESTAMP"
+          EN_NAME="Manuscript_EN_$TIMESTAMP"
+          
+          # 实际生成文件
+          cp main_zh.pdf "$ZH_NAME.pdf"
+          cp main_en.pdf "$EN_NAME.pdf"
+          
+          # 【核心】将名字存入环境变量，供后续步骤使用
+          echo "ZH_FILENAME=$ZH_NAME" >> $GITHUB_ENV
+          echo "EN_FILENAME=$EN_NAME" >> $GITHUB_ENV
 
-      # 4. 上传双版 PDF
-      - name: Upload Professional PDFs
+      # 4. 上传中文版（独立条目）
+      - name: Upload Chinese PDF
         uses: actions/upload-artifact@v4
         with:
-          name: Final-Manuscripts
-          path: output/*.pdf
+          name: ${{ env.ZH_FILENAME }}  # 显示名 = 文件名
+          path: ${{ env.ZH_FILENAME }}.pdf
+
+      # 5. 上传英文版（独立条目）
+      - name: Upload English PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.EN_FILENAME }}  # 显示名 = 文件名
+          path: ${{ env.EN_FILENAME }}.pdf
