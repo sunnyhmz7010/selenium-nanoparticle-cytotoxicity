@@ -1,21 +1,47 @@
-name: Build LaTeX Document
-on: [push]
+name: Build Academic Manuscripts (ZH & EN)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  build_latex:
+  build_manuscripts:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
+      # 1. 编译中文版 (使用 xelatex)
+      - name: Build Chinese Version
+        uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex # 对应你的文件名
-          # 如果写中文，通常需要改为 xelatex
-          compiler: xelatex 
+          root_file: main_zh.tex
+          compiler: xelatex
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
-      - name: Upload PDF
-        uses: actions/upload-artifact@v3
+      # 2. 编译英文版 (ACS 投稿通常建议 pdflatex，也可统一用 xelatex)
+      - name: Build English Version
+        uses: xu-cheng/latex-action@v3
         with:
-          name: Thesis-PDF
-          path: main.pdf
+          root_file: main_en.tex
+          compiler: xelatex
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+
+      # 3. 规范化命名与整理 (核心步骤)
+      - name: Prepare Artifacts
+        run: |
+          mkdir -p output
+          # 获取当前日期，格式如 20260505
+          DATE=$(date +'%Y%m%d')
+          # 规范命名：项目名_语言_日期.pdf
+          cp main_zh.pdf "output/Manuscript_ZH_$DATE.pdf"
+          cp main_en.pdf "output/Manuscript_EN_$DATE.pdf"
+
+      # 4. 上传双版 PDF
+      - name: Upload Professional PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: Final-Manuscripts
+          path: output/*.pdf
