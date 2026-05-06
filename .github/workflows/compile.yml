@@ -1,15 +1,22 @@
-name: Build Academic Manuscripts (Manual)
+name: Build and Auto-Push to Output
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch: # 手动点击触发
+
+# 核心：必须赋予 Actions 写入仓库的权限
+permissions:
+  contents: write
 
 jobs:
-  build_manuscripts:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 获取完整历史以确保能 push
 
+      # 1. 编译中文版
       - name: Build Chinese Version
         uses: xu-cheng/latex-action@v3
         with:
@@ -17,6 +24,7 @@ jobs:
           compiler: xelatex
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
+      # 2. 编译英文版
       - name: Build English Version
         uses: xu-cheng/latex-action@v3
         with:
@@ -24,28 +32,27 @@ jobs:
           compiler: xelatex
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
-      - name: Prepare Files and Names
+      # 3. 整理文件并推送到仓库
+      - name: Commit and Push PDFs
         run: |
+          # 设置时区
           export TZ='Asia/Shanghai'
           TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
           
-          ZH_NAME="Manuscript_ZH_$TIMESTAMP"
-          EN_NAME="Manuscript_EN_$TIMESTAMP"
+          # 创建 output 文件夹（如果不存在）
+          mkdir -p output
           
-          cp main_zh.pdf "$ZH_NAME.pdf"
-          cp main_en.pdf "$EN_NAME.pdf"
+          # 拷贝文件并命名
+          cp main_zh.pdf "output/Manuscript_ZH_$TIMESTAMP.pdf"
+          cp main_en.pdf "output/Manuscript_EN_$TIMESTAMP.pdf"
           
-          echo "ZH_FILENAME=$ZH_NAME" >> $GITHUB_ENV
-          echo "EN_FILENAME=$EN_NAME" >> $GITHUB_ENV
-
-      - name: Upload Chinese PDF
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.ZH_FILENAME }}
-          path: ${{ env.ZH_FILENAME }}.pdf
-
-      - name: Upload English PDF
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.EN_FILENAME }}
-          path: ${{ env.EN_FILENAME }}.pdf
+          # 配置 Git 机器人信息
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 提交更改
+          git add output/*.pdf
+          git commit -m "Auto-build: PDFs updated at $TIMESTAMP"
+          
+          # 推送回 main 分支
+          git push origin main
