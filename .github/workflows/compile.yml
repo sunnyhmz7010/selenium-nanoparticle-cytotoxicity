@@ -1,47 +1,54 @@
-name: Build and Auto-Push to Output
+name: Export Markdown to Word
 
 on:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  build_and_deploy:
+  convert-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Build Chinese Version
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: main_zh.tex
-          compiler: xelatex
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
-
-      - name: Build English Version
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: main_en.tex
-          compiler: xelatex
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
-
-      - name: Commit and Push PDFs
+      - name: Set Variables
+        id: vars
         run: |
           export TZ='Asia/Shanghai'
-          TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+          PREFIX="第12章-AI辅助下的算法设计与实现"
+          STATIC_NAME="第12章，AI辅助下的算法设计与实现.docx"
+          TIMESTAMP=$(date +'%Y%m%d_%H%M')
           
-          mkdir -p output
-          cp main_zh.pdf "output/Manuscript_ZH_$TIMESTAMP.pdf"
-          cp main_en.pdf "output/Manuscript_EN_$TIMESTAMP.pdf"
+          echo "word_name=${PREFIX}_${TIMESTAMP}.docx" >> $GITHUB_OUTPUT
+          echo "static_name=${STATIC_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Convert to Word
+        run: |
+          pandoc Markdown.md \
+            --from gfm \
+            --to docx \
+            -o "${{ steps.vars.outputs.word_name }}"
           
+          cp "${{ steps.vars.outputs.word_name }}" "${{ steps.vars.outputs.static_name }}"
+
+      - name: Commit and Push to Main
+        run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add output/*.pdf
-          git commit -m "Auto-build: PDFs updated at $TIMESTAMP"
+          git checkout main
+          mkdir -p output
           
-          git push origin HEAD:output --force
+          mv "${{ steps.vars.outputs.word_name }}" output/
+          mv "${{ steps.vars.outputs.static_name }}" output/
+          
+          git add output/
+          git commit -m "chore: 导出文档及更新固定版本 [skip ci]"
+          git push origin main
