@@ -1,0 +1,15 @@
+\section{结果与讨论}
+
+\subsection{模型性能评价}
+如图 \ref{fig:roc} 所示，我们训练的模型在独立测试集上表现优异。
+具体的评估指标如表 \ref{tbl:metrics} 所示。
+
+% \begin{figure}[ht]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{images/roc_curve.png}
+%   \caption{模型预测的 ROC 曲线}
+%   \label{fig:roc}
+% \end{figure}
+
+\subsection{特征重要性分析}
+通过 SHAP 分析发现，[粒径大小] 对毒性预测的贡献度最高。这与现有的生物学观察一致...
