@@ -19,15 +19,15 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main_zh.tex
-          compiler: xelatex
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+          compiler: latexmk
+          args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
 
       - name: Build English Version
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main_en.tex
-          compiler: xelatex
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+          compiler: latexmk
+          args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
 
       - name: Commit and Push PDFs
         run: |
