@@ -50,16 +50,16 @@
   \centering
   \caption{硒纳米颗粒数据集上基础特征与增强特征的模型性能}
   \label{tab:senp_main_results}
-  \begin{tabular}{lcccc}
+  \begin{tabular}{lccc}
     \hline
-    模型 & 特征集 & 3折 CV MAE (\%) & $R^2$ & 训练集 MAE (\%) \\
+    模型 & 特征集 & 3折 CV MAE (\%) & $R^2$ \\
     \hline
-    随机森林 & 基础 & 11.04 & 0.701 & 6.76 \\
-    随机森林 & 增强 & 7.63 & 0.915 & 3.87 \\
-    XGBoost & 基础 & 9.87 & 0.751 & 5.91 \\
-    XGBoost & 增强 & 7.20 & 0.957 & 2.99 \\
-    TabTransformer & 基础 & 24.13 & 0.003 & 16.95 \\
-    TabTransformer & 增强 & 25.50 & 0.057 & 16.46 \\
+    随机森林 & 基础 & 11.04 & 0.701 \\
+    随机森林 & 增强 & 7.63 & 0.915 \\
+    XGBoost & 基础 & 9.87 & 0.751 \\
+    XGBoost & 增强 & 7.20 & 0.957 \\
+    TabTransformer & 基础 & 24.13 & 0.003 \\
+    TabTransformer & 增强 & 25.50 & 0.057 \\
     \hline
   \end{tabular}
 \end{table}
@@ -67,7 +67,7 @@
 \subsection{增强特征的贡献与最优子集筛选}
 为了识别真正有效的增强信息，我们对五个候选增强特征进行了自动化筛选，候选特征包括 IC50\_uM、元素 Se 含量（wt\%）、长期稳定性（周）、结合能 Se3d（eV）与晶型编码。穷举 31 种非空组合并以三折交叉验证 MAE 为目标后，最优子集为
 \[
-\{\mathrm{IC50\_uM},\ \mathrm{Elemental\_Se\_wt},\ \mathrm{Stability\_weeks},\ \mathrm{Binding\_Energy\_Se3d}\}.
+\{\mathrm{IC50\_uM},\ \mathrm{元素\ Se\ 含量},\ \mathrm{长期稳定性},\ \mathrm{结合能\ Se3d}\}.
 \]
 该组合的三折 CV MAE 为 7.60\%，与使用全部增强特征时的 7.63\% 基本一致，说明晶型编码在当前数据集中的独立贡献有限，而 IC50、Se 含量、稳定性与结合能提供了主要增益。
 
