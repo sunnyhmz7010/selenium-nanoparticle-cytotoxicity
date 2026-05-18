@@ -62,18 +62,40 @@
 
 \paragraph{可视化特征效应与交互。}
 
-！！！以下内容修改
-\subsubsection{数据集特征统计描述}
+特征重要性分析能够确定对模型预测贡献较大的变量，但仅凭重要性排序难以说明特征与细胞存活率之间的关系形态，例如这种关系是近似线性、单调变化还是存在更复杂的非线性响应。参考 Masarkar 等人 \cite{masarkar2024} 的处理思路，本研究先对纳米硒数据集的特征分布进行统计描述，再结合模型训练结果考察单个特征效应与双特征交互关系。对于单特征效应，可通过部分依赖图（partial dependence plot, PDP）和个体条件期望图（individual conditional expectation, ICE）观察模型预测值随某一特征变化的整体趋势及样本间异质性；对于两个特征的联合影响，可进一步采用二维 PDP 等高线图展示其组合变化对预测细胞存活率或毒性类别的影响。
 
-\paragraph{样本概况}
-本研究数据集共包含 383 条有效记录（剔除粒径、Zeta 电位等关键理化性质及细胞存活率缺失记录后），来源于 47 篇已发表文献，时间跨度为 2008--2019 年。其中 2018 年贡献样本量最多（157 条，占 41.0\%），其次为 2019 年（96 条，占 25.1\%）和 2012 年（44 条，占 11.5\%）。所有纳米硒颗粒的形貌均为球形，物种来源以人类细胞为主（371 条，占 96.9\%）。
+在进行特征效应可视化之前，首先需要明确样本组成和变量分布。本研究数据集共包含 383 条有效记录（剔除粒径、Zeta 电位等关键理化性质缺失以及细胞存活率缺失的记录后），来源于 47 篇已发表文献，时间跨度为 2008--2019 年。其中 2018 年贡献样本量最多（157 条，占 41.0\%），其次为 2019 年（96 条，占 25.1\%）和 2012 年（44 条，占 11.5\%）。所有纳米硒颗粒的形貌均为球形，物种来源以人类细胞为主（371 条，占 96.9\%）。
 
-\paragraph{连续型特征分布}
-除表~\ref{tab:statistics} 所列的基本统计量外，我们进一步考察了各特征的分布形态。粒径的分布明显右偏（偏度 3.92），绝大多数颗粒集中在 30 nm 附近，只有极少数样本超过 200 nm，这与纳米硒常规粒径范围十分符合。水合粒径右偏程度较轻（偏度 1.69），其均值（105 nm）明显大于核心粒径均值（65 nm），这表明水化层以及可能存在的弱聚集效应。Zeta 电位分布接近对称（偏度-0.08），范围从 $-60$ mV 到 $+36$ mV，其中负电位占主导，反映出多数表面修饰（如聚糖、PVP）带负电。
+图~\ref{fig:senp-year-distribution} 显示了样本来源年份的集中程度，表~\ref{tab:statistics} 汇总了主要连续型特征的描述性统计量，并为后续可视化解释提供了基础。粒径的分布明显右偏（偏度 3.92），绝大多数颗粒集中在 30 nm 附近，只有极少数样本超过 200 nm，这与纳米硒常规粒径范围十分符合。水合粒径右偏程度较轻（偏度 1.69），其均值（105 nm）明显大于核心粒径均值（65 nm），这表明水化层以及可能存在的弱聚集效应。Zeta 电位分布接近对称（偏度 -0.08），范围从 $-60$ mV 到 $+36$ mV，其中负电位占主导，反映出多数表面修饰（如聚糖、PVP）带负电。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      ybar,
+      width=0.78\linewidth,
+      height=5.2cm,
+      ymin=0,
+      ylabel={样本量},
+      symbolic x coords={其他,2012,2018,2019},
+      xtick=data,
+      nodes near coords,
+      nodes near coords align={vertical},
+      bar width=18pt,
+      enlarge x limits=0.25,
+      tick label style={font=\small},
+      label style={font=\small}
+    ]
+      \addplot coordinates {(其他,86) (2012,44) (2018,157) (2019,96)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{纳米硒数据集中文献来源年份的样本量分布。}
+  \label{fig:senp-year-distribution}
+\end{figure}
 
 浓度分布极端右偏（偏度 8.28），四分位距仅为 $0.52$--$10$ $\mu$g/mL，但最大值高达 $490$ $\mu$g/mL，提示少数实验采用极高剂量，可能对模型产生杠杆效应。暴露时间呈轻微左偏（-0.42），中位数 72 h，说明多数实验采用 24 h 或 72 h 的暴露方案。细胞存活率分布近似均匀（偏度 -0.17），均值与中位数均接近 50\%，意味着数据集正负样本较为平衡，有利于分类模型训练。
 
-为直观展示上述分布，我们绘制了图1（连续型特征的箱线图）和图2（主要类别型特征的频率分布）。
+为直观展示上述分布，我们进一步基于描述性统计绘制了连续型特征的可用样本量和偏度对照图（图~\ref{fig:senp-continuous-summary}）。该图不对分位数之外的个体观测分布进行外推，而是直接使用表~\ref{tab:statistics} 中的 $n$ 和偏度刻画数据覆盖度与分布偏斜程度。
 
 \begin{table}[htbp]
   \centering
@@ -93,31 +115,117 @@
   \end{tabular}
 \end{table}
 
-\paragraph{类别型特征分布}
-从目前所考察的类别型特征分布来看，数据集涉及 42 种细胞系，结肠癌细胞 HCT 116 出现频率最高（98 次，25.6\%），其次为肝癌细胞 HepG2（41 次，10.7\%）、黑色素瘤细胞 A375（23 次，6.0\%）和乳腺癌细胞 MCF-7（23 次，6.0\%），前 10 种细胞系合计覆盖 71.0\% 的样本。
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      ybar,
+      width=0.92\linewidth,
+      height=6.1cm,
+      ymin=0,
+      ylabel={可用样本量 $n$},
+      symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
+      xtick=data,
+      x tick label style={rotate=35, anchor=east, font=\small},
+      nodes near coords,
+      nodes near coords align={vertical},
+      bar width=12pt,
+      enlarge x limits=0.08,
+      tick label style={font=\small},
+      label style={font=\small}
+    ]
+      \addplot coordinates {(粒径,339) (水合粒径,279) (Zeta电位,144) (暴露时间,363) (浓度,363) (细胞存活率,371)};
+    \end{axis}
+  \end{tikzpicture}
+
+  \vspace{0.8em}
+
+  \begin{tikzpicture}
+    \begin{axis}[
+      ybar,
+      width=0.92\linewidth,
+      height=6.1cm,
+      ylabel={偏度},
+      symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
+      xtick=data,
+      x tick label style={rotate=35, anchor=east, font=\small},
+      nodes near coords,
+      nodes near coords align={vertical},
+      bar width=12pt,
+      enlarge x limits=0.08,
+      tick label style={font=\small},
+      label style={font=\small}
+    ]
+      \addplot coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{主要连续型特征的可用样本量与偏度分布。}
+  \label{fig:senp-continuous-summary}
+\end{figure}
+
+类别型特征的频率分布同样用于辅助判断模型可能学习到的主要数据模式（图~\ref{fig:senp-categorical-frequency}）。从目前所考察的类别型特征分布来看，数据集涉及 42 种细胞系，结肠癌细胞 HCT 116 出现频率最高（98 次，25.6\%），其次为肝癌细胞 HepG2（41 次，10.7\%）、黑色素瘤细胞 A375（23 次，6.0\%）和乳腺癌细胞 MCF-7（23 次，6.0\%），前 10 种细胞系合计覆盖 71.0\% 的样本。
 组织来源以结肠（28.7\%）、肝脏（16.7\%）和脑组织（8.9\%）为主。
 
 表面修饰类型共 43 种，其中聚糖修饰（PTR）占比最高（127 次，33.2\%），其后依次为聚糖蛋白复合物 PR（18 次，4.7\%）和 PAMAM+RGD+siRNA 复合修饰（15 次，3.9\%）。
 合成方法以化学还原法为主（352 次，占 91.9\%），毒性检测方法中最常见的是 MTT 法（206 次，53.8\%）。
 
-\subsubsection{特征设置与筛选}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xbar,
+      width=0.88\linewidth,
+      height=6.2cm,
+      xmin=0,
+      xlabel={样本量},
+      symbolic y coords={其他细胞系,MCF-7,A375,HepG2,HCT 116},
+      ytick=data,
+      nodes near coords,
+      nodes near coords align={horizontal},
+      bar width=12pt,
+      enlarge y limits=0.18,
+      tick label style={font=\small},
+      label style={font=\small}
+    ]
+      \addplot coordinates {(198,其他细胞系) (23,MCF-7) (23,A375) (41,HepG2) (98,HCT 116)};
+    \end{axis}
+  \end{tikzpicture}
 
-基础特征包含以下几类信息：暴露条件（浓度、时间）、颗粒理化属性（粒径、Zeta 电位、尺寸比、表面电荷）、生物体系属性（细胞类型）以及实验条件（检测方法、修饰基团）。
+  \vspace{0.8em}
+
+  \begin{tikzpicture}
+    \begin{axis}[
+      xbar,
+      width=0.88\linewidth,
+      height=5.1cm,
+      xmin=0,
+      xlabel={样本量},
+      symbolic y coords={其他修饰,PAMAM+RGD+siRNA,PR,PTR},
+      ytick=data,
+      nodes near coords,
+      nodes near coords align={horizontal},
+      bar width=13pt,
+      enlarge y limits=0.22,
+      tick label style={font=\small},
+      label style={font=\small}
+    ]
+      \addplot coordinates {(223,其他修饰) (15,PAMAM+RGD+siRNA) (18,PR) (127,PTR)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{主要细胞系与表面修饰类型的频率分布。}
+  \label{fig:senp-categorical-frequency}
+\end{figure}
+
+在此基础上，模型输入特征被组织为基础特征和增强特征两组。基础特征包含以下几类信息：暴露条件（浓度、时间）、颗粒理化属性（粒径、Zeta 电位、尺寸比、表面电荷）、生物体系属性（细胞类型）以及实验条件（检测方法、修饰基团）。
 针对硒纳米颗粒专用建模，在基础特征之外进一步引入 5 项增强特征，即 IC50、元素 Se 含量、长期稳定性、结合能 Se3d 和晶型编码。
 
 为评估新增材料化学属性对模型性能的提升作用，保持基础特征不变，对上述 5 项增强特征的全部非空组合进行穷举搜索，共 31 种组合，并以三折交叉验证 MAE 作为筛选指标，用于确定最优增强特征子集。
 
-\subsubsection{模型架构}
-本研究围绕表格型纳米毒性数据比较了树模型、注意力增强树模型与深度表格模型三类方法。在基准数据集上，纳入随机森林、XGBoost、ABRF、LARF、TabTransformer 和蒸馏 TabTransformer 六种模型，以系统评估不同架构对异质纳米颗粒数据的适应性；在硒纳米颗粒专用数据集上，重点比较基础特征与增强特征条件下各模型的性能差异。
+本研究围绕表格型纳米毒性数据比较了树模型、注意力增强树模型与深度表格模型三类方法。在基准数据集上，纳入随机森林、XGBoost、ABRF、LARF、TabTransformer 和蒸馏 TabTransformer 六种模型，以系统评估不同架构对异质纳米颗粒数据的适应性；在硒纳米颗粒专用数据集上，重点比较基础特征与增强特征条件下各模型的性能差异。随机森林作为核心基线模型，用于评估中小样本场景下的稳健性与可解释性；XGBoost 用于测试梯度提升树在增强特征条件下的高精度建模能力；ABRF 与 LARF 用于考察注意力机制引入后是否能够提升树模型表现；TabTransformer 与蒸馏 TabTransformer 则作为深度表格模型代表，用于与传统树模型进行对照。
 
-随机森林作为核心基线模型，用于评估中小样本场景下的稳健性与可解释性；XGBoost 用于测试梯度提升树在增强特征条件下的高精度建模能力；ABRF 与 LARF 用于考察注意力机制引入后是否能够提升树模型表现；TabTransformer 与蒸馏 TabTransformer 则作为深度表格模型代表，用于与传统树模型进行对照。
-
-\subsubsection{训练与验证策略}
 对于大规模多类型纳米颗粒基准数据集，采用 7:3 训练测试划分，以测试集性能作为主要比较依据。回归任务使用 $R^2$、MAE 和 RMSE 进行评价，分类任务使用 Accuracy、F1 和 AUC 进行评价。
 
 对于硒纳米颗粒专用数据集，采用三折交叉验证，以 CV MAE 和全量 $R^2$ 作为主要回归评价指标，并用于比较基础特征与增强特征两种设置下不同模型的表现。增强特征筛选阶段同样采用三折交叉验证 MAE 作为统一指标，以保证不同特征组合之间的结果可比性。
-
-\section{机器学习模型}
 
 为系统评估不同架构在纳米毒性预测任务上的适用性，我们尝试了多种模型，涵盖传统树模型、梯度提升树、注意力增强树模型以及深度表格模型。
 经过初步性能比较，最终选择随机森林、XGBoost、ABRF、LARF、TabTransformer 以及蒸馏 TabTransformer 六种模型作为主要分析对象。
@@ -144,11 +252,11 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 由于在大规模多类型纳米颗粒上对所列六种模型做了十分完备、有层次的比较，因此本文考察了不同架构对异质纳米颗粒数据的适应性。
 具体而言，在硒纳米颗粒专用数据集上，因样本量很小（383 条），故重点比较随机森林、XGBoost 和 TabTransformer，并系统分析基础特征及增强特征两种设置下的性能差异，而 ABRF、LARF 和蒸馏 TabTransformer 仅在基准数据集上作了评价，以兼顾计算成本及分析简洁性。
 
-\section{评价指标说明}
-
 本文对模型性能采用回归、分类两类指标进行评价：回归任务中采用决定系数（\(R^2\)）、平均绝对误差（MAE）和均方根误差（RMSE）。
 具体而言，\(R^2\) 是对模型所拟合的目标变量方差的解释比例的自然度量，理论上不超过 1（当模型表现差于均值基线时可能为负值），越接近 1 表明拟合效果越好。
 MAE 是预测值与真实值绝对误差的算术平均，其单位与目标变量一致（\%），因此也是预测典型偏差的直接度量。RMSE 对较大误差更敏感，很自然地适用于考察预测的稳定性。
 
 分类任务以 85\% 细胞存活率为阈值，将样本合理划分为“高存活”和“低存活”两类，继而用准确率（Accuracy）、F1 分数和 ROC 曲线下面积（AUC）作为主要指标。
 准确率即正确分类的比例，F1 分数是精确率、召回率的调和平均，对类别不平衡问题有极好的适应性，而 AUC 直接、客观地衡量了模型区分正负类的能力，0.5 为随机，1.0 为完美。
+
+因此，本研究的可视化分析并不只用于展示变量分布，而是与特征筛选和模型评价相结合：先通过统计图和表格检查样本覆盖范围、异常高剂量和类别集中度，再根据模型表现选择需要解释的关键特征，最后利用 PDP、ICE 和双特征等高线图分析浓度、粒径、Zeta 电位、暴露时间、检测方法及材料化学增强特征等变量对细胞毒性预测的单独效应和交互效应。
