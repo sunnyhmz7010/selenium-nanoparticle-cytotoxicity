@@ -11,6 +11,24 @@
 该数据集原始共包含 4111 条实验记录，经清洗后保留 4102 个有效样本用于后续训练测试划分与模型比较。
 
   \item \textbf{自建数据集}：
+针对纳米硒这一特定研究对象，本研究从 44 篇已发表文献\cite{chen_selenium_2008, li_reversal_2011, zheng_sialic_2011, liu_selenium_2012, wu_surface_2012, chen_surface_2012,
+  yu_positive_2012, chen_peg-nanolized_2012, pi_pathway_2013, wu_induction_2013, feng_differential_2014,
+  huang_selective_2013, li_functionalized_2013, zhang_enhancement_2013, jiang_gracilaria_2014, yu_ph-responsive_2014,
+  zeng_construction_2015, liu_sequentially_2016, liu_facile_2016, yu_x-ray-responsive_2016, fu_rgd_2016,
+  fang_targeting_2017, chen_efficient_2018, fang_dualtargeted_2018, huang_autophagy_2018, liu_highly_2018,
+  wang_regulating_2016, hu_selenium_2019, zeng_potentiation_2019, huang_dual-targeting_2019, huang_highly_2019,
+  wang_regulating_2016-1, zhang_systematic_2019, zheng_thermosensitive_2019, huang_chiralitydriven_2020,
+  yang_lentinan-functionalized_2020, liu_rapid_2021, an_functionalized_2021, song_translational_2021,
+  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}中系统提取实验数据，构建了纳米硒细胞毒性预测专项数据集。
+我们采用大模型粗提取+人工精校验证的方法提取出44篇论文\cite{chen_selenium_2008, li_reversal_2011, zheng_sialic_2011, liu_selenium_2012, wu_surface_2012, chen_surface_2012,
+  yu_positive_2012, chen_peg-nanolized_2012, pi_pathway_2013, wu_induction_2013, feng_differential_2014,
+  huang_selective_2013, li_functionalized_2013, zhang_enhancement_2013, jiang_gracilaria_2014, yu_ph-responsive_2014,
+  zeng_construction_2015, liu_sequentially_2016, liu_facile_2016, yu_x-ray-responsive_2016, fu_rgd_2016,
+  fang_targeting_2017, chen_efficient_2018, fang_dualtargeted_2018, huang_autophagy_2018, liu_highly_2018,
+  wang_regulating_2016, hu_selenium_2019, zeng_potentiation_2019, huang_dual-targeting_2019, huang_highly_2019,
+  wang_regulating_2016-1, zhang_systematic_2019, zheng_thermosensitive_2019, huang_chiralitydriven_2020,
+  yang_lentinan-functionalized_2020, liu_rapid_2021, an_functionalized_2021, song_translational_2021,
+  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}中的特征参数，具体而言，我们利用提示词工程按照Masarkar等人\cite{masarkar2024} 的特征属性对44篇论文进行粗提取，对于正文部分未给出但图表中存在的数据我们采用人工提取的方法，最后全部由人工将数据集和原论文进行对应验证
 针对纳米硒这一特定研究对象，本研究从 47 篇已发表文献中系统提取实验数据，构建了纳米硒细胞毒性预测专项数据集。
 数据集中共包含 383 个有效样本，每个样本对应 37 个特征参数，涵盖纳米硒的理化性质、实验条件以及生物效应等信息，能够较为全面地反映纳米硒与细胞毒性之间的关联关系。
 该数据集为后续改进模型的训练、验证与性能评估提供了核心数据支撑。
