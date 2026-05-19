@@ -57,6 +57,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat = 1.18}
 \newfloat{scheme}{htbp}{los}
 \floatname{scheme}{Scheme}
 \floatname{chart}{Chart}
@@ -116,14 +118,15 @@ after the abstract.
 \section*{Abbreviations}
 
 Some journals require a list of abbreviations: these normally should be given
-immediately after the keyswords (if required).
+immediately after the keywords (if required).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Start the main part of the manuscript here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{sections_zh/01-intro}
-\input{sections_zh/02-results}
-\input{sections_zh/03-experimental}
+\input{sections_zh/01-introduction}
+\input{sections_zh/02-methods}
+\input{sections_zh/03-results}
+\input{sections_zh/04-conclusion}
 
 \section*{Acknowledgements}
 
@@ -145,7 +148,7 @@ The following files are available free of charge.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If you are using classical BibTeX rather than biblatex,
-%% remove the \printbibliography and uncomment the \bibliograpy one
+%% remove the \printbibliography and uncomment the \bibliography one
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \printbibliography
 %\bibliography{acs-template.bib}
