@@ -2,7 +2,15 @@
 
 本文围绕纳米硒细胞毒性预测任务，建立了由基准数据集模型比较、硒纳米颗粒专用建模和增强特征自动筛选组成的研究流程。研究结果表明，在大规模异质纳米颗粒表格数据上，深度表格模型与树模型均具有竞争力，但在样本规模有限且材料类型固定的硒纳米颗粒场景下，树模型表现更稳定、更适合当前任务。
 
-在硒纳米颗粒专用数据集中，383 条有效记录来源于 44 篇文献，时间跨度为 2008--2019 年。基础特征能够提供初步预测能力，但引入 IC50、元素 Se 含量、长期稳定性、结合能 Se3d 和晶型编码等增强特征后，模型性能得到显著提升。其中，XGBoost 在增强特征设置下取得最佳回归结果，可作为论文主结果模型；随机森林则在精度、稳健性和可解释性之间保持了较好的平衡，更适合作为后续平台部署与工程实现的候选方案。
+在硒纳米颗粒专用数据集中，383 条有效记录来源于 44 篇文献\cite{chen_selenium_2008, li_reversal_2011, zheng_sialic_2011, liu_selenium_2012, wu_surface_2012, chen_surface_2012,
+  yu_positive_2012, chen_peg-nanolized_2012, pi_pathway_2013, wu_induction_2013, feng_differential_2014,
+  huang_selective_2013, li_functionalized_2013, zhang_enhancement_2013, jiang_gracilaria_2014, yu_ph-responsive_2014,
+  zeng_construction_2015, liu_sequentially_2016, liu_facile_2016, yu_x-ray-responsive_2016, fu_rgd_2016,
+  fang_targeting_2017, chen_efficient_2018, fang_dualtargeted_2018, huang_autophagy_2018, liu_highly_2018,
+  wang_regulating_2016, hu_selenium_2019, zeng_potentiation_2019, huang_dual-targeting_2019, huang_highly_2019,
+  wang_regulating_2016-1, zhang_systematic_2019, zheng_thermosensitive_2019, huang_chiralitydriven_2020,
+  yang_lentinan-functionalized_2020, liu_rapid_2021, an_functionalized_2021, song_translational_2021,
+  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}，时间跨度为 2008--2019 年。基础特征能够提供初步预测能力，但引入 IC50、元素 Se 含量、长期稳定性、结合能 Se3d 和晶型编码等增强特征后，模型性能得到显著提升。其中，XGBoost 在增强特征设置下取得最佳回归结果，可作为论文主结果模型；随机森林则在精度、稳健性和可解释性之间保持了较好的平衡，更适合作为后续平台部署与工程实现的候选方案。
 
 特征筛选结果进一步说明，最优特征子集并不需要依赖全部增强变量，仅使用 IC50、元素 Se 含量、长期稳定性和结合能 Se3d 即可达到接近全特征集的预测精度。这一结论为后续数据采集与实验设计提供了更明确的优先级，也说明面向单一材料体系的毒性预测建模，应优先关注能够反映材料本征化学属性的关键变量。
 
