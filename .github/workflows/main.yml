@@ -41,14 +41,12 @@ jobs:
           cp main_zh.pdf "publish/Manuscript_ZH_$TIMESTAMP.pdf"
           cp main_en.pdf "publish/Manuscript_EN_$TIMESTAMP.pdf"
 
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
           cd publish
           git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b output
           git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add *.pdf
           git commit -m "Auto-build: PDFs updated at $TIMESTAMP"
-
           git push origin output --force
