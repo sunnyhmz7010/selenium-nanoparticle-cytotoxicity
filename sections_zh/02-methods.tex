@@ -129,29 +129,19 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}
-    \def\radius{1.85}
-    \fill[blue!55] (0,0) -- (0:\radius) arc (0:147.6:\radius) -- cycle;
-    \fill[teal!55] (0,0) -- (147.6:\radius) arc (147.6:237.8:\radius) -- cycle;
-    \fill[orange!70] (0,0) -- (237.8:\radius) arc (237.8:279.2:\radius) -- cycle;
-    \fill[gray!45] (0,0) -- (279.2:\radius) arc (279.2:360:\radius) -- cycle;
-    \draw[white, line width=0.6pt] (0,0) circle (\radius);
-    \foreach \angle in {0,147.6,237.8,279.2} {
-      \draw[white, line width=0.6pt] (0,0) -- (\angle:\radius);
-    }
-    \node[font=\small] at (73.8:1.15) {2018};
-    \node[font=\small] at (192.7:1.15) {2019};
-    \node[font=\small] at (258.5:1.15) {2012};
-    \node[font=\small] at (319.6:1.15) {其他};
-    \begin{scope}[shift={(3.0,0.9)}]
-      \draw[fill=blue!55, draw=none] (0,0) rectangle (0.24,0.24);
-      \node[anchor=west, font=\small] at (0.34,0.12) {2018：157（41.0\%）};
-      \draw[fill=teal!55, draw=none] (0,-0.42) rectangle (0.24,-0.18);
-      \node[anchor=west, font=\small] at (0.34,-0.30) {2019：96（25.1\%）};
-      \draw[fill=orange!70, draw=none] (0,-0.84) rectangle (0.24,-0.60);
-      \node[anchor=west, font=\small] at (0.34,-0.72) {2012：44（11.5\%）};
-      \draw[fill=gray!45, draw=none] (0,-1.26) rectangle (0.24,-1.02);
-      \node[anchor=west, font=\small] at (0.34,-1.14) {其他年份：86（22.5\%）};
-    \end{scope}
+    \begin{axis}[
+      acs xbar,
+      width=0.78\linewidth,
+      height=4.9cm,
+      xmax=175,
+      xlabel={样本量},
+      symbolic y coords={其他年份,2012,2019,2018},
+      ytick=data,
+      y tick label style={font=\small},
+      title={文献来源年份}
+    ]
+      \addplot+[fill=acsblue, draw=none] coordinates {(86,其他年份) (44,2012) (96,2019) (157,2018)};
+    \end{axis}
   \end{tikzpicture}
   \caption{纳米硒数据集中文献来源年份的样本量分布。}
   \label{fig:senp-year-distribution}
@@ -181,48 +171,45 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 
 \begin{figure}[htbp]
   \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      ybar,
-      width=0.92\linewidth,
-      height=6.1cm,
-      ymin=0,
-      ylabel={可用样本量 $n$},
-      symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
-      xtick=data,
-      x tick label style={rotate=35, anchor=east, font=\small},
-      nodes near coords,
-      nodes near coords align={vertical},
-      bar width=12pt,
-      enlarge x limits=0.08,
-      tick label style={font=\small},
-      label style={font=\small}
-    ]
-      \addplot coordinates {(粒径,339) (水合粒径,279) (Zeta电位,144) (暴露时间,363) (浓度,363) (细胞存活率,371)};
-    \end{axis}
-  \end{tikzpicture}
-
-  \vspace{0.8em}
-
-  \begin{tikzpicture}
-    \begin{axis}[
-      ybar,
-      width=0.92\linewidth,
-      height=6.1cm,
-      ylabel={偏度},
-      symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
-      xtick=data,
-      x tick label style={rotate=35, anchor=east, font=\small},
-      nodes near coords,
-      nodes near coords align={vertical},
-      bar width=12pt,
-      enlarge x limits=0.08,
-      tick label style={font=\small},
-      label style={font=\small}
-    ]
-      \addplot coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
-    \end{axis}
-  \end{tikzpicture}
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs ybar,
+        width=\linewidth,
+        height=5.8cm,
+        ymin=0,
+        ymax=405,
+        ylabel={可用样本量 $n$},
+        symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
+        xtick=data,
+        x tick label style={rotate=45, anchor=east, font=\scriptsize},
+        title={\textbf{(A)} 数据覆盖度}
+      ]
+        \addplot+[fill=acsblue, draw=none] coordinates {(粒径,339) (水合粒径,279) (Zeta电位,144) (暴露时间,363) (浓度,363) (细胞存活率,371)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs ybar,
+        width=\linewidth,
+        height=5.8cm,
+        ymin=-1,
+        ymax=9.2,
+        ylabel={偏度},
+        symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
+        xtick=data,
+        x tick label style={rotate=45, anchor=east, font=\scriptsize},
+        title={\textbf{(B)} 分布偏斜}
+      ]
+        \addplot+[fill=acsred, draw=none] coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
   \caption{主要连续型特征的可用样本量与偏度分布。}
   \label{fig:senp-continuous-summary}
 \end{figure}
@@ -235,51 +222,44 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 
 \begin{figure}[htbp]
   \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      xbar,
-      width=0.88\linewidth,
-      height=6.2cm,
-      xmin=0,
-      xlabel={样本量},
-      symbolic y coords={其他细胞系,MCF-7,A375,HepG2,HCT 116},
-      ytick=data,
-      nodes near coords,
-      nodes near coords align={horizontal},
-      bar width=12pt,
-      enlarge y limits=0.18,
-      tick label style={font=\small},
-      label style={font=\small}
-    ]
-      \addplot coordinates {(198,其他细胞系) (23,MCF-7) (23,A375) (41,HepG2) (98,HCT 116)};
-    \end{axis}
-  \end{tikzpicture}
-
-  \vspace{0.8em}
-
-  \begin{tikzpicture}
-    \def\radius{1.65}
-    \fill[green!55] (0,0) -- (0:\radius) arc (0:119.4:\radius) -- cycle;
-    \fill[cyan!55] (0,0) -- (119.4:\radius) arc (119.4:136.3:\radius) -- cycle;
-    \fill[purple!45] (0,0) -- (136.3:\radius) arc (136.3:150.4:\radius) -- cycle;
-    \fill[gray!40] (0,0) -- (150.4:\radius) arc (150.4:360:\radius) -- cycle;
-    \draw[white, line width=0.6pt] (0,0) circle (\radius);
-    \foreach \angle in {0,119.4,136.3,150.4} {
-      \draw[white, line width=0.6pt] (0,0) -- (\angle:\radius);
-    }
-    \node[font=\small] at (59.7:0.95) {PTR};
-    \node[font=\small] at (255.2:0.95) {其他};
-    \begin{scope}[shift={(2.8,0.9)}]
-      \draw[fill=green!55, draw=none] (0,0) rectangle (0.24,0.24);
-      \node[anchor=west, font=\small] at (0.34,0.12) {PTR：127（33.2\%）};
-      \draw[fill=cyan!55, draw=none] (0,-0.42) rectangle (0.24,-0.18);
-      \node[anchor=west, font=\small] at (0.34,-0.30) {PR：18（4.7\%）};
-      \draw[fill=purple!45, draw=none] (0,-0.84) rectangle (0.24,-0.60);
-      \node[anchor=west, font=\small] at (0.34,-0.72) {PAMAM+RGD+siRNA：15（3.9\%）};
-      \draw[fill=gray!40, draw=none] (0,-1.26) rectangle (0.24,-1.02);
-      \node[anchor=west, font=\small] at (0.34,-1.14) {其他修饰：223（58.2\%）};
-    \end{scope}
-  \end{tikzpicture}
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs xbar,
+        width=\linewidth,
+        height=5.8cm,
+        xmax=215,
+        xlabel={样本量},
+        symbolic y coords={其他细胞系,MCF-7,A375,HepG2,HCT 116},
+        ytick=data,
+        y tick label style={font=\scriptsize},
+        title={\textbf{(A)} 主要细胞系}
+      ]
+        \addplot+[fill=acsblue, draw=none] coordinates {(198,其他细胞系) (23,MCF-7) (23,A375) (41,HepG2) (98,HCT 116)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.49\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs xbar,
+        width=\linewidth,
+        height=5.8cm,
+        xmax=240,
+        xlabel={样本量},
+        symbolic y coords={其他修饰,PAMAM+RGD+siRNA,PR,PTR},
+        ytick=data,
+        y tick label style={font=\tiny},
+        nodes near coords style={font=\tiny, xshift=0.8pt},
+        title={\textbf{(B)} 表面修饰类型}
+      ]
+        \addplot+[fill=acsorange, draw=none] coordinates {(223,其他修饰) (15,PAMAM+RGD+siRNA) (18,PR) (127,PTR)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
   \caption{主要细胞系与表面修饰类型的频率分布。}
   \label{fig:senp-categorical-frequency}
 \end{figure}
