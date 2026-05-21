@@ -57,8 +57,54 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{xcolor}
 \usepackage{pgfplots}
 \pgfplotsset{compat = 1.18}
+\definecolor{acsblue}{RGB}{72,116,176}
+\definecolor{acsred}{RGB}{196,78,82}
+\definecolor{acsorange}{RGB}{221,132,82}
+\definecolor{acsgray}{RGB}{88,89,91}
+\definecolor{acsplotbg}{RGB}{239,241,247}
+\pgfplotsset{
+  acs axis/.style={
+    axis background/.style={fill=acsplotbg},
+    axis line style={draw=acsgray, line width=0.45pt},
+    tick style={draw=acsgray, line width=0.4pt},
+    tick label style={font=\footnotesize},
+    label style={font=\small},
+    title style={font=\small\bfseries},
+    grid=both,
+    major grid style={draw=white, line width=0.55pt},
+    minor grid style={draw=white, line width=0.3pt},
+    minor tick num=1,
+    scaled ticks=false,
+    legend style={draw=none, fill=none, font=\footnotesize},
+    every axis plot/.append style={line width=0.85pt}
+  },
+  acs xbar/.style={
+    acs axis,
+    xbar,
+    xmin=0,
+    width=0.88\linewidth,
+    height=6.1cm,
+    bar width=8pt,
+    enlarge y limits=0.16,
+    nodes near coords,
+    nodes near coords align={horizontal},
+    nodes near coords style={font=\scriptsize, xshift=1.2pt}
+  },
+  acs ybar/.style={
+    acs axis,
+    ybar,
+    width=0.92\linewidth,
+    height=6.1cm,
+    bar width=11pt,
+    enlarge x limits=0.08,
+    nodes near coords,
+    nodes near coords align={vertical},
+    nodes near coords style={font=\scriptsize, yshift=1pt}
+  }
+}
 \newfloat{scheme}{htbp}{los}
 \floatname{scheme}{Scheme}
 \floatname{chart}{Chart}
