@@ -1,2 +1,1 @@
-- Respond to all code reviews, chat messages, and PR summaries in Simplified Chinese.
-- When generating a PR title, you **must** use Simplified Chinese. Write a concise and clear Chinese summary of the changes.
+Respond to all code reviews, chat messages, and PR summaries in Simplified Chinese.
