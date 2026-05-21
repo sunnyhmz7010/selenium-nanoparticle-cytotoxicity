@@ -33,134 +33,69 @@
 该数据集为后续改进模型的训练、验证与性能评估提供了核心数据支撑。
 \end{enumerate}
 
-为进一步说明自建数据集的文献来源结构，本研究按题名和研究目的将 43 篇纳米硒相关文献划分为四类：材料构建/表面修饰、机制毒理/安全性、递送/联合治疗、诊疗/免疫及其他应用。该分类仅用于展示文献覆盖范围和主题分布，不改变后续建模中对原始实验记录的提取规则。图~\ref{fig:senp-literature-cloud} 展示文献发表年份与主题分类的点云分布，表~\ref{tab:senp_literature_list} 列出 43 篇来源文献及其分类。
+为进一步说明自建数据集的文献来源结构，本研究按题名和研究目的将 43 篇纳米硒相关文献划分为四类：材料构建/表面修饰、机制毒理/安全性、递送/联合治疗、诊疗/免疫及其他应用。该分类仅用于展示文献覆盖范围和主题分布，不改变后续建模中对原始实验记录的提取规则。图~\ref{fig:senp-literature-cloud} 展示文献发表年份与主题分类的点云分布。
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}{0.58\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs axis,
-        width=\linewidth,
-        height=6.2cm,
-        xmin=2007.5,
-        xmax=2022.8,
-        ymin=0.55,
-        ymax=4.45,
-        xlabel={发表年份},
-        ylabel={文献主题分类},
-        xtick={2008,2010,2012,2014,2016,2018,2020,2022},
-        ytick={1,2,3,4},
-        yticklabels={材料构建/表面修饰,机制毒理/安全性,递送/联合治疗,诊疗/免疫及其他应用},
-        y tick label style={font=\tiny},
-        legend pos=north west,
-        legend columns=1,
-        title={\textbf{(A)} 43 篇文献点云}
-      ]
-        \addplot+[only marks, mark=*, mark size=2pt, acsblue] coordinates {
-          (2008,0.95) (2011,1.05) (2012,0.90) (2012.15,1.08) (2012.30,0.98)
-          (2014,1.05) (2013.20,0.92) (2019,1.10)
-        };
-        \addlegendentry{材料构建/表面修饰}
-        \addplot+[only marks, mark=square*, mark size=1.9pt, acsred] coordinates {
-          (2011.15,2.05) (2013,1.95) (2013.15,2.08) (2013.30,1.90) (2018,2.02) (2019.15,1.95)
-        };
-        \addlegendentry{机制毒理/安全性}
-        \addplot+[only marks, mark=triangle*, mark size=2.2pt, acsorange] coordinates {
-          (2012.45,2.95) (2012.60,3.08) (2013.45,2.90) (2014.15,3.05) (2014.30,2.95)
-          (2015,3.08) (2016,2.90) (2016.20,3.05) (2017,2.95) (2018.15,3.10)
-          (2019.30,2.90) (2020,3.05) (2021,2.95) (2021.20,3.10)
-        };
-        \addlegendentry{递送/联合治疗}
-        \addplot+[only marks, mark=diamond*, mark size=2.1pt, acsgray] coordinates {
-          (2016.35,4.05) (2016.50,3.90) (2018.30,4.10) (2018.45,3.95) (2016.65,4.15)
-          (2019.45,4.05) (2019.60,3.90) (2019.75,4.15) (2020.15,3.95) (2021.35,4.05)
-          (2021.50,3.90) (2022,4.10) (2022.15,3.95) (2022.30,4.15) (2022.45,4.00)
-        };
-        \addlegendentry{诊疗/免疫及其他应用}
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.38\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs xbar,
-        width=\linewidth,
-        height=6.2cm,
-        xmax=16,
-        xlabel={文献数量},
-        symbolic y coords={机制毒理/安全性,材料构建/表面修饰,递送/联合治疗,诊疗/免疫及其他应用},
-        ytick=data,
-        y tick label style={font=\tiny},
-        title={\textbf{(B)} 分类数量}
-      ]
-        \addplot+[fill=acsblue, draw=none] coordinates {(6,机制毒理/安全性) (8,材料构建/表面修饰) (14,递送/联合治疗) (15,诊疗/免疫及其他应用)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \caption{自建纳米硒数据集 43 篇来源文献的发表年份点云与主题分类分布。点云中横向轻微错位仅用于减少同年文献重叠。}
+  \begin{tikzpicture}
+    \begin{axis}[
+      acs axis,
+      width=0.82\linewidth,
+      height=6.5cm,
+      xmin=2007.5,
+      xmax=2022.8,
+      ymin=0.55,
+      ymax=4.45,
+      xlabel={发表年份},
+      xtick={2008,2010,2012,2014,2016,2018,2020,2022},
+      ytick={1,2,3,4},
+      yticklabels={材料/表面,机制/安全,递送/联合,诊疗/免疫/其他},
+      y tick label style={font=\scriptsize},
+      title={\textbf{(A)} 43 篇文献点云}
+    ]
+      \addplot+[only marks, mark=*, mark size=1.9pt, acsblue] coordinates {
+        (2008,0.78) (2011,1.10) (2011.88,0.92) (2012.12,1.24)
+        (2012.36,0.80) (2013.16,1.08) (2014,0.92) (2019,1.20)
+      };
+      \addplot+[only marks, mark=square*, mark size=1.8pt, acsred] coordinates {
+        (2011.15,1.80) (2012.86,2.08) (2013.05,1.86)
+        (2013.30,2.22) (2018,1.92) (2019.15,2.12)
+      };
+      \addplot+[only marks, mark=triangle*, mark size=2.1pt, acsorange] coordinates {
+        (2012.44,2.76) (2012.68,3.18) (2013.42,2.90) (2014.04,3.24)
+        (2014.32,2.78) (2015,3.12) (2015.96,2.86) (2016.22,3.22)
+        (2017,2.94) (2018.16,3.16) (2019.30,2.84) (2020,3.12)
+        (2021,2.90) (2021.24,3.20)
+      };
+      \addplot+[only marks, mark=diamond*, mark size=2pt, acsgray] coordinates {
+        (2016.34,3.78) (2016.54,4.06) (2016.74,4.30) (2018.30,3.88)
+        (2018.50,4.18) (2019.44,3.78) (2019.64,4.08) (2019.84,4.30)
+        (2020.14,3.92) (2021.34,4.20) (2021.54,3.84) (2022,4.10)
+        (2022.18,3.78) (2022.36,4.30) (2022.54,3.96)
+      };
+    \end{axis}
+  \end{tikzpicture}
+
+  \vspace{0.8em}
+
+  \begin{tikzpicture}
+    \begin{axis}[
+      acs xbar,
+      width=0.62\linewidth,
+      height=4.6cm,
+      xmax=16,
+      xlabel={文献数量},
+      symbolic y coords={机制/安全,材料/表面,递送/联合,诊疗/免疫/其他},
+      ytick=data,
+      y tick label style={font=\scriptsize},
+      title={\textbf{(B)} 分类数量}
+    ]
+      \addplot+[fill=acsblue, draw=none] coordinates {(6,机制/安全) (8,材料/表面) (14,递送/联合) (15,诊疗/免疫/其他)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{自建纳米硒数据集 43 篇来源文献的发表年份点云与主题分类分布。每个点代表一篇来源文献；横向和纵向轻微错位仅用于减少同年同类文献重叠。分类简称依次对应材料构建/表面修饰、机制毒理/安全性、递送/联合治疗、诊疗/免疫及其他应用。}
   \label{fig:senp-literature-cloud}
 \end{figure}
-
-\begin{longtable}{c c p{0.25\linewidth} p{0.42\linewidth}}
-  \caption{自建纳米硒数据集 43 篇来源文献清单与主题分类。}
-  \label{tab:senp_literature_list}\\
-  \hline
-  编号 & 年份 & 主题分类 & 文献 \\
-  \hline
-  \endfirsthead
-  \hline
-  编号 & 年份 & 主题分类 & 文献 \\
-  \hline
-  \endhead
-  1 & 2008 & 材料构建/表面修饰 & Chen 等~\cite{chen_selenium_2008} \\
-  2 & 2011 & 机制毒理/安全性 & Li 等~\cite{li_reversal_2011} \\
-  3 & 2011 & 材料构建/表面修饰 & Zheng 等~\cite{zheng_sialic_2011} \\
-  4 & 2012 & 递送/联合治疗 & Liu 等~\cite{liu_selenium_2012} \\
-  5 & 2012 & 材料构建/表面修饰 & Wu 等~\cite{wu_surface_2012} \\
-  6 & 2012 & 材料构建/表面修饰 & Chen 等~\cite{chen_surface_2012} \\
-  7 & 2012 & 材料构建/表面修饰 & Yu 等~\cite{yu_positive_2012} \\
-  8 & 2012 & 递送/联合治疗 & Chen 等~\cite{chen_peg-nanolized_2012} \\
-  9 & 2013 & 机制毒理/安全性 & Pi 等~\cite{pi_pathway_2013} \\
-  10 & 2013 & 机制毒理/安全性 & Wu 等~\cite{wu_induction_2013} \\
-  11 & 2014 & 材料构建/表面修饰 & Feng 等~\cite{feng_differential_2014} \\
-  12 & 2013 & 递送/联合治疗 & Huang 等~\cite{huang_selective_2013} \\
-  13 & 2013 & 机制毒理/安全性 & Li 等~\cite{li_functionalized_2013} \\
-  14 & 2013 & 材料构建/表面修饰 & Zhang 等~\cite{zhang_enhancement_2013} \\
-  15 & 2014 & 递送/联合治疗 & Jiang 等~\cite{jiang_gracilaria_2014} \\
-  16 & 2014 & 递送/联合治疗 & Yu 等~\cite{yu_ph-responsive_2014} \\
-  17 & 2015 & 递送/联合治疗 & Zeng 等~\cite{zeng_construction_2015} \\
-  18 & 2016 & 递送/联合治疗 & Liu 等~\cite{liu_sequentially_2016} \\
-  19 & 2016 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_facile_2016} \\
-  20 & 2016 & 诊疗/免疫及其他应用 & Yu 等~\cite{yu_x-ray-responsive_2016} \\
-  21 & 2016 & 递送/联合治疗 & Fu 等~\cite{fu_rgd_2016} \\
-  22 & 2017 & 递送/联合治疗 & Fang 等~\cite{fang_targeting_2017} \\
-  23 & 2018 & 递送/联合治疗 & Chen 等~\cite{chen_efficient_2018} \\
-  24 & 2018 & 诊疗/免疫及其他应用 & Fang 等~\cite{fang_dualtargeted_2018} \\
-  25 & 2018 & 机制毒理/安全性 & Huang 等~\cite{huang_autophagy_2018} \\
-  26 & 2018 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_highly_2018} \\
-  27 & 2016 & 诊疗/免疫及其他应用 & Wang 等~\cite{wang_regulating_2016} \\
-  28 & 2019 & 诊疗/免疫及其他应用 & Hu 等~\cite{hu_selenium_2019} \\
-  29 & 2019 & 材料构建/表面修饰 & Zeng 等~\cite{zeng_potentiation_2019} \\
-  30 & 2019 & 递送/联合治疗 & Huang 等~\cite{huang_dual-targeting_2019} \\
-  31 & 2019 & 诊疗/免疫及其他应用 & Huang 等~\cite{huang_highly_2019} \\
-  32 & 2019 & 机制毒理/安全性 & Zhang 等~\cite{zhang_systematic_2019} \\
-  33 & 2019 & 诊疗/免疫及其他应用 & Zheng 等~\cite{zheng_thermosensitive_2019} \\
-  34 & 2020 & 诊疗/免疫及其他应用 & Huang 等~\cite{huang_chiralitydriven_2020} \\
-  35 & 2020 & 递送/联合治疗 & Yang 等~\cite{yang_lentinan-functionalized_2020} \\
-  36 & 2021 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_rapid_2021} \\
-  37 & 2021 & 递送/联合治疗 & An 等~\cite{an_functionalized_2021} \\
-  38 & 2021 & 诊疗/免疫及其他应用 & Song 等~\cite{song_translational_2021} \\
-  39 & 2022 & 诊疗/免疫及其他应用 & Yang 等~\cite{yang_atherosclerotic_2022} \\
-  40 & 2021 & 递送/联合治疗 & Yang 等~\cite{yang_functionalized_2021} \\
-  41 & 2022 & 诊疗/免疫及其他应用 & Liang 等~\cite{liang_translational_2022} \\
-  42 & 2022 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_specific_2022} \\
-  43 & 2022 & 诊疗/免疫及其他应用 & Du 等~\cite{du_highly_2022} \\
-  \hline
-\end{longtable}
 
 \paragraph{数据预处理。}
 对于通用数据集，我们沿用了 Masarkar 等人 \cite{masarkar2024} 的预处理方案：
