@@ -33,6 +33,135 @@
 该数据集为后续改进模型的训练、验证与性能评估提供了核心数据支撑。
 \end{enumerate}
 
+为进一步说明自建数据集的文献来源结构，本研究按题名和研究目的将 43 篇纳米硒相关文献划分为四类：材料构建/表面修饰、机制毒理/安全性、递送/联合治疗、诊疗/免疫及其他应用。该分类仅用于展示文献覆盖范围和主题分布，不改变后续建模中对原始实验记录的提取规则。图~\ref{fig:senp-literature-cloud} 展示文献发表年份与主题分类的点云分布，表~\ref{tab:senp_literature_list} 列出 43 篇来源文献及其分类。
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.58\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs axis,
+        width=\linewidth,
+        height=6.2cm,
+        xmin=2007.5,
+        xmax=2022.8,
+        ymin=0.55,
+        ymax=4.45,
+        xlabel={发表年份},
+        ylabel={文献主题分类},
+        xtick={2008,2010,2012,2014,2016,2018,2020,2022},
+        ytick={1,2,3,4},
+        yticklabels={材料构建/表面修饰,机制毒理/安全性,递送/联合治疗,诊疗/免疫及其他应用},
+        y tick label style={font=\tiny},
+        legend pos=north west,
+        legend columns=1,
+        title={\textbf{(A)} 43 篇文献点云}
+      ]
+        \addplot+[only marks, mark=*, mark size=2pt, acsblue] coordinates {
+          (2008,0.95) (2011,1.05) (2012,0.90) (2012.15,1.08) (2012.30,0.98)
+          (2014,1.05) (2013.20,0.92) (2019,1.10)
+        };
+        \addlegendentry{材料构建/表面修饰}
+        \addplot+[only marks, mark=square*, mark size=1.9pt, acsred] coordinates {
+          (2011.15,2.05) (2013,1.95) (2013.15,2.08) (2013.30,1.90) (2018,2.02) (2019.15,1.95)
+        };
+        \addlegendentry{机制毒理/安全性}
+        \addplot+[only marks, mark=triangle*, mark size=2.2pt, acsorange] coordinates {
+          (2012.45,2.95) (2012.60,3.08) (2013.45,2.90) (2014.15,3.05) (2014.30,2.95)
+          (2015,3.08) (2016,2.90) (2016.20,3.05) (2017,2.95) (2018.15,3.10)
+          (2019.30,2.90) (2020,3.05) (2021,2.95) (2021.20,3.10)
+        };
+        \addlegendentry{递送/联合治疗}
+        \addplot+[only marks, mark=diamond*, mark size=2.1pt, acsgray] coordinates {
+          (2016.35,4.05) (2016.50,3.90) (2018.30,4.10) (2018.45,3.95) (2016.65,4.15)
+          (2019.45,4.05) (2019.60,3.90) (2019.75,4.15) (2020.15,3.95) (2021.35,4.05)
+          (2021.50,3.90) (2022,4.10) (2022.15,3.95) (2022.30,4.15) (2022.45,4.00)
+        };
+        \addlegendentry{诊疗/免疫及其他应用}
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.38\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs xbar,
+        width=\linewidth,
+        height=6.2cm,
+        xmax=16,
+        xlabel={文献数量},
+        symbolic y coords={机制毒理/安全性,材料构建/表面修饰,递送/联合治疗,诊疗/免疫及其他应用},
+        ytick=data,
+        y tick label style={font=\tiny},
+        title={\textbf{(B)} 分类数量}
+      ]
+        \addplot+[fill=acsblue, draw=none] coordinates {(6,机制毒理/安全性) (8,材料构建/表面修饰) (14,递送/联合治疗) (15,诊疗/免疫及其他应用)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \caption{自建纳米硒数据集 43 篇来源文献的发表年份点云与主题分类分布。点云中横向轻微错位仅用于减少同年文献重叠。}
+  \label{fig:senp-literature-cloud}
+\end{figure}
+
+\begin{longtable}{c c p{0.25\linewidth} p{0.42\linewidth}}
+  \caption{自建纳米硒数据集 43 篇来源文献清单与主题分类。}
+  \label{tab:senp_literature_list}\\
+  \hline
+  编号 & 年份 & 主题分类 & 文献 \\
+  \hline
+  \endfirsthead
+  \hline
+  编号 & 年份 & 主题分类 & 文献 \\
+  \hline
+  \endhead
+  1 & 2008 & 材料构建/表面修饰 & Chen 等~\cite{chen_selenium_2008} \\
+  2 & 2011 & 机制毒理/安全性 & Li 等~\cite{li_reversal_2011} \\
+  3 & 2011 & 材料构建/表面修饰 & Zheng 等~\cite{zheng_sialic_2011} \\
+  4 & 2012 & 递送/联合治疗 & Liu 等~\cite{liu_selenium_2012} \\
+  5 & 2012 & 材料构建/表面修饰 & Wu 等~\cite{wu_surface_2012} \\
+  6 & 2012 & 材料构建/表面修饰 & Chen 等~\cite{chen_surface_2012} \\
+  7 & 2012 & 材料构建/表面修饰 & Yu 等~\cite{yu_positive_2012} \\
+  8 & 2012 & 递送/联合治疗 & Chen 等~\cite{chen_peg-nanolized_2012} \\
+  9 & 2013 & 机制毒理/安全性 & Pi 等~\cite{pi_pathway_2013} \\
+  10 & 2013 & 机制毒理/安全性 & Wu 等~\cite{wu_induction_2013} \\
+  11 & 2014 & 材料构建/表面修饰 & Feng 等~\cite{feng_differential_2014} \\
+  12 & 2013 & 递送/联合治疗 & Huang 等~\cite{huang_selective_2013} \\
+  13 & 2013 & 机制毒理/安全性 & Li 等~\cite{li_functionalized_2013} \\
+  14 & 2013 & 材料构建/表面修饰 & Zhang 等~\cite{zhang_enhancement_2013} \\
+  15 & 2014 & 递送/联合治疗 & Jiang 等~\cite{jiang_gracilaria_2014} \\
+  16 & 2014 & 递送/联合治疗 & Yu 等~\cite{yu_ph-responsive_2014} \\
+  17 & 2015 & 递送/联合治疗 & Zeng 等~\cite{zeng_construction_2015} \\
+  18 & 2016 & 递送/联合治疗 & Liu 等~\cite{liu_sequentially_2016} \\
+  19 & 2016 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_facile_2016} \\
+  20 & 2016 & 诊疗/免疫及其他应用 & Yu 等~\cite{yu_x-ray-responsive_2016} \\
+  21 & 2016 & 递送/联合治疗 & Fu 等~\cite{fu_rgd_2016} \\
+  22 & 2017 & 递送/联合治疗 & Fang 等~\cite{fang_targeting_2017} \\
+  23 & 2018 & 递送/联合治疗 & Chen 等~\cite{chen_efficient_2018} \\
+  24 & 2018 & 诊疗/免疫及其他应用 & Fang 等~\cite{fang_dualtargeted_2018} \\
+  25 & 2018 & 机制毒理/安全性 & Huang 等~\cite{huang_autophagy_2018} \\
+  26 & 2018 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_highly_2018} \\
+  27 & 2016 & 诊疗/免疫及其他应用 & Wang 等~\cite{wang_regulating_2016} \\
+  28 & 2019 & 诊疗/免疫及其他应用 & Hu 等~\cite{hu_selenium_2019} \\
+  29 & 2019 & 材料构建/表面修饰 & Zeng 等~\cite{zeng_potentiation_2019} \\
+  30 & 2019 & 递送/联合治疗 & Huang 等~\cite{huang_dual-targeting_2019} \\
+  31 & 2019 & 诊疗/免疫及其他应用 & Huang 等~\cite{huang_highly_2019} \\
+  32 & 2019 & 机制毒理/安全性 & Zhang 等~\cite{zhang_systematic_2019} \\
+  33 & 2019 & 诊疗/免疫及其他应用 & Zheng 等~\cite{zheng_thermosensitive_2019} \\
+  34 & 2020 & 诊疗/免疫及其他应用 & Huang 等~\cite{huang_chiralitydriven_2020} \\
+  35 & 2020 & 递送/联合治疗 & Yang 等~\cite{yang_lentinan-functionalized_2020} \\
+  36 & 2021 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_rapid_2021} \\
+  37 & 2021 & 递送/联合治疗 & An 等~\cite{an_functionalized_2021} \\
+  38 & 2021 & 诊疗/免疫及其他应用 & Song 等~\cite{song_translational_2021} \\
+  39 & 2022 & 诊疗/免疫及其他应用 & Yang 等~\cite{yang_atherosclerotic_2022} \\
+  40 & 2021 & 递送/联合治疗 & Yang 等~\cite{yang_functionalized_2021} \\
+  41 & 2022 & 诊疗/免疫及其他应用 & Liang 等~\cite{liang_translational_2022} \\
+  42 & 2022 & 诊疗/免疫及其他应用 & Liu 等~\cite{liu_specific_2022} \\
+  43 & 2022 & 诊疗/免疫及其他应用 & Du 等~\cite{du_highly_2022} \\
+  \hline
+\end{longtable}
+
 \paragraph{数据预处理。}
 对于通用数据集，我们沿用了 Masarkar 等人 \cite{masarkar2024} 的预处理方案：
 首先，我们删除了数据集中包含大量缺失值的特征属性（如多分散指数 PDI 和长径比），以及与预测无关的文献信息（如文章 ID、发表年份和 DOI 编号），将特征数量从初始的 30 个精简至 15 个。
@@ -122,7 +251,7 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 \paragraph{可视化特征效应与交互。}
 特征重要性分析能够确定对模型预测贡献较大的变量，但仅凭重要性排序难以说明特征与细胞存活率之间的关系形态，例如这种关系是近似线性、单调变化还是存在更复杂的非线性响应。参考 Masarkar 等人 \cite{masarkar2024} 的处理思路，本研究先对纳米硒数据集的样本组成、连续型变量和类别型变量进行可视化描述，以明确模型训练前的数据覆盖范围与潜在偏倚；在完成模型训练后，再结合特征重要性进一步考察单个特征效应与双特征交互关系。对于单特征效应，可通过部分依赖图（partial dependence plot, PDP）和个体条件期望图（individual conditional expectation, ICE）观察模型预测值随某一特征变化的整体趋势及样本间异质性；对于两个特征的联合影响，可进一步采用二维 PDP 等高线图展示其组合变化对预测细胞存活率或毒性类别的影响。
 
-在进行特征效应可视化之前，首先需要明确样本组成和变量分布。本研究数据集共包含 383 条有效记录（剔除粒径、Zeta 电位等关键理化性质缺失以及细胞存活率缺失的记录后），来源于 43 篇已发表文献，时间跨度为 2008--2019 年。其中 2018 年贡献样本量最多（157 条，占 41.0\%），其次为 2019 年（96 条，占 25.1\%）和 2012 年（44 条，占 11.5\%）。所有纳米硒颗粒的形貌均为球形，物种来源以人类细胞为主（371 条，占 96.9\%）。
+在进行特征效应可视化之前，首先需要明确样本组成和变量分布。本研究数据集共包含 383 条有效记录（剔除粒径、Zeta 电位等关键理化性质缺失以及细胞存活率缺失的记录后），来源于 43 篇已发表文献，文献发表年份覆盖 2008--2022 年。清洗后的有效记录主要集中于 2018 年（157 条，占 41.0\%），其次为 2019 年（96 条，占 25.1\%）和 2012 年（44 条，占 11.5\%）。所有纳米硒颗粒的形貌均为球形，物种来源以人类细胞为主（371 条，占 96.9\%）。
 
 图~\ref{fig:senp-year-distribution} 显示了样本来源年份的集中程度，表~\ref{tab:senp_feature_statistics} 汇总了主要连续型特征的描述性统计量，并为后续可视化解释提供了基础。粒径的分布明显右偏（偏度 3.92），绝大多数颗粒集中在 30 nm 附近，只有极少数样本超过 200 nm，这与纳米硒常规粒径范围十分符合。水合粒径右偏程度较轻（偏度 1.69），其均值（105 nm）明显大于核心粒径均值（65 nm），这表明水化层以及可能存在的弱聚集效应。Zeta 电位分布接近对称（偏度 -0.08），范围从 $-60$ mV 到 $+36$ mV，其中负电位占主导，反映出多数表面修饰（如聚糖、PVP）带负电。
 
