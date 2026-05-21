@@ -128,21 +128,45 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 
 \begin{figure}[htbp]
   \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      acs xbar,
-      width=0.78\linewidth,
-      height=4.9cm,
-      xmax=175,
-      xlabel={样本量},
-      symbolic y coords={其他年份,2012,2019,2018},
-      ytick=data,
-      y tick label style={font=\small},
-      title={文献来源年份}
-    ]
-      \addplot+[fill=acsblue, draw=none] coordinates {(86,其他年份) (44,2012) (96,2019) (157,2018)};
-    \end{axis}
-  \end{tikzpicture}
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs xbar,
+        width=\linewidth,
+        height=5.1cm,
+        xmax=175,
+        xlabel={样本量},
+        symbolic y coords={2012,其他年份,2019,2018},
+        ytick=data,
+        y tick label style={font=\scriptsize},
+        title={\textbf{(A)} 来源年份频率}
+      ]
+        \addplot+[fill=acsblue, draw=none] coordinates {(44,2012) (86,其他年份) (96,2019) (157,2018)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs axis,
+        width=\linewidth,
+        height=5.1cm,
+        ymin=0,
+        ymax=105,
+        ylabel={累计占比（\%）},
+        symbolic x coords={2018,2019,其他,2012},
+        xtick=data,
+        x tick label style={rotate=35, anchor=east, font=\scriptsize},
+        ymajorgrids=true,
+        title={\textbf{(B)} 累计贡献}
+      ]
+        \addplot+[acsred, mark=square*, mark size=1.7pt] coordinates {(2018,41.0) (2019,66.1) (其他,88.6) (2012,100.0)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
   \caption{纳米硒数据集中文献来源年份的样本量分布。}
   \label{fig:senp-year-distribution}
 \end{figure}
@@ -195,7 +219,7 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
     \centering
     \begin{tikzpicture}
       \begin{axis}[
-        acs ybar,
+        acs axis,
         width=\linewidth,
         height=5.8cm,
         ymin=-1,
@@ -206,7 +230,46 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
         x tick label style={rotate=45, anchor=east, font=\scriptsize},
         title={\textbf{(B)} 分布偏斜}
       ]
-        \addplot+[fill=acsred, draw=none] coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
+        \addplot+[acsred, mark=square*, mark size=1.6pt] coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
+        \addplot+[black!55, dashed, mark=none] coordinates {(粒径,0) (细胞存活率,0)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+
+  \vspace{0.9em}
+
+  \begin{minipage}{0.62\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs axis,
+        width=\linewidth,
+        height=5.2cm,
+        xmin=110,
+        xmax=390,
+        ymin=-1,
+        ymax=9.2,
+        xlabel={可用样本量 $n$},
+        ylabel={偏度},
+        title={\textbf{(C)} 覆盖度--偏度诊断}
+      ]
+        \addplot+[
+          only marks,
+          mark=*,
+          mark size=1.9pt,
+          acsorange,
+          nodes near coords,
+          nodes near coords style={font=\tiny, anchor=west, xshift=1.5pt},
+          point meta=explicit symbolic
+        ] coordinates {
+          (339,3.92) [粒径]
+          (279,1.69) [水合粒径]
+          (144,-0.08) [Zeta电位]
+          (363,-0.42) [暴露时间]
+          (363,8.28) [浓度]
+          (371,-0.17) [细胞存活率]
+        };
+        \addplot+[black!55, dashed, mark=none] coordinates {(110,0) (390,0)};
       \end{axis}
     \end{tikzpicture}
   \end{minipage}
@@ -245,18 +308,20 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
     \centering
     \begin{tikzpicture}
       \begin{axis}[
-        acs xbar,
+        acs axis,
         width=\linewidth,
         height=5.8cm,
-        xmax=240,
-        xlabel={样本量},
-        symbolic y coords={其他修饰,PAMAM+RGD+siRNA,PR,PTR},
-        ytick=data,
-        y tick label style={font=\tiny},
-        nodes near coords style={font=\tiny, xshift=0.8pt},
+        ymin=0,
+        ymax=65,
+        ylabel={样本占比（\%）},
+        symbolic x coords={PTR,PR,PAMAM+RGD+siRNA,其他},
+        xtick=data,
+        x tick label style={rotate=35, anchor=east, font=\tiny},
+        nodes near coords,
+        nodes near coords style={font=\tiny, yshift=1pt},
         title={\textbf{(B)} 表面修饰类型}
       ]
-        \addplot+[fill=acsorange, draw=none] coordinates {(223,其他修饰) (15,PAMAM+RGD+siRNA) (18,PR) (127,PTR)};
+        \addplot+[acsorange, mark=square*, mark size=1.8pt] coordinates {(PTR,33.2) (PR,4.7) (PAMAM+RGD+siRNA,3.9) (其他,58.2)};
       \end{axis}
     \end{tikzpicture}
   \end{minipage}
