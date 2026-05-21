@@ -126,24 +126,48 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 
 图~\ref{fig:senp-year-distribution} 显示了样本来源年份的集中程度，表~\ref{tab:senp_feature_statistics} 汇总了主要连续型特征的描述性统计量，并为后续可视化解释提供了基础。粒径的分布明显右偏（偏度 3.92），绝大多数颗粒集中在 30 nm 附近，只有极少数样本超过 200 nm，这与纳米硒常规粒径范围十分符合。水合粒径右偏程度较轻（偏度 1.69），其均值（105 nm）明显大于核心粒径均值（65 nm），这表明水化层以及可能存在的弱聚集效应。Zeta 电位分布接近对称（偏度 -0.08），范围从 $-60$ mV 到 $+36$ mV，其中负电位占主导，反映出多数表面修饰（如聚糖、PVP）带负电。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      acs xbar,
-      width=0.78\linewidth,
-      height=4.9cm,
-      xmax=175,
-      xlabel={样本量},
-      symbolic y coords={其他年份,2012,2019,2018},
-      ytick=data,
-      y tick label style={font=\small},
-      title={文献来源年份}
-    ]
-      \addplot+[fill=acsblue, draw=none] coordinates {(86,其他年份) (44,2012) (96,2019) (157,2018)};
-    \end{axis}
-  \end{tikzpicture}
-  \caption{纳米硒数据集中文献来源年份的样本量分布。}
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs xbar,
+        width=\linewidth,
+        height=5.1cm,
+        xmax=175,
+        xlabel={样本量},
+        symbolic y coords={2012,其他年份,2019,2018},
+        ytick=data,
+        y tick label style={font=\scriptsize},
+        title={\textbf{(A)} 来源年份频率}
+      ]
+        \addplot+[fill=acsblue, draw=none] coordinates {(44,2012) (86,其他年份) (96,2019) (157,2018)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs axis,
+        width=\linewidth,
+        height=5.1cm,
+        ymin=0,
+        ymax=105,
+        ylabel={累计占比（\%）},
+        symbolic x coords={2018,2019,其他年份,2012},
+        xtick=data,
+        x tick label style={rotate=35, anchor=east, font=\scriptsize},
+        ymajorgrids=true,
+        title={\textbf{(B)} 累计贡献}
+      ]
+        \addplot+[acsred, mark=square*, mark size=1.7pt] coordinates {(2018,41.0) (2019,66.1) (其他年份,88.6) (2012,100.0)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \caption{纳米硒数据集中文献来源年份的样本量分布与累计贡献。}
   \label{fig:senp-year-distribution}
 \end{figure}
 
@@ -151,7 +175,7 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 
 为直观展示上述分布，我们进一步基于描述性统计绘制了连续型特征的可用样本量和偏度对照图（图~\ref{fig:senp-continuous-summary}）。该图不对分位数之外的个体观测分布进行外推，而是直接使用表~\ref{tab:senp_feature_statistics} 中的 $n$ 和偏度刻画数据覆盖度与分布偏斜程度。
 
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \caption{数据集连续型特征的描述性统计（各特征可用样本量见 $n$ 列）}
   \label{tab:senp_feature_statistics}
@@ -169,7 +193,7 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
   \end{tabular}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \begin{minipage}{0.49\linewidth}
     \centering
@@ -195,7 +219,7 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
     \centering
     \begin{tikzpicture}
       \begin{axis}[
-        acs ybar,
+        acs axis,
         width=\linewidth,
         height=5.8cm,
         ymin=-1,
@@ -206,7 +230,46 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
         x tick label style={rotate=45, anchor=east, font=\scriptsize},
         title={\textbf{(B)} 分布偏斜}
       ]
-        \addplot+[fill=acsred, draw=none] coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
+        \addplot+[only marks, acsred, mark=square*, mark size=1.8pt] coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
+        \addplot+[black!55, dashed, mark=none] coordinates {(粒径,0) (细胞存活率,0)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+
+  \vspace{0.9em}
+
+  \begin{minipage}{0.62\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        acs axis,
+        width=\linewidth,
+        height=5.2cm,
+        xmin=110,
+        xmax=390,
+        ymin=-1,
+        ymax=9.2,
+        xlabel={可用样本量 $n$},
+        ylabel={偏度},
+        title={\textbf{(C)} 覆盖度--偏度诊断}
+      ]
+        \addplot+[
+          only marks,
+          mark=*,
+          mark size=1.9pt,
+          acsorange,
+          nodes near coords,
+          nodes near coords style={font=\tiny, anchor=west, xshift=1.5pt},
+          point meta=explicit symbolic
+        ] coordinates {
+          (339,3.92) [粒径]
+          (279,1.69) [水合粒径]
+          (144,-0.08) [Zeta电位]
+          (363,-0.42) [暴露时间]
+          (363,8.28) [浓度]
+          (371,-0.17) [细胞存活率]
+        };
+        \addplot+[black!55, dashed, mark=none] coordinates {(110,0) (390,0)};
       \end{axis}
     \end{tikzpicture}
   \end{minipage}
@@ -220,7 +283,7 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
 表面修饰类型共 43 种，其中聚糖修饰（PTR）占比最高（127 次，33.2\%），其后依次为聚糖蛋白复合物 PR（18 次，4.7\%）和 PAMAM+RGD+siRNA 复合修饰（15 次，3.9\%）。
 合成方法以化学还原法为主（352 次，占 91.9\%），毒性检测方法中最常见的是 MTT 法（206 次，53.8\%）。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \begin{minipage}{0.49\linewidth}
     \centering
@@ -245,18 +308,20 @@ Transformer 擅长捕捉类别特征之间的高阶交互关系，因此在包�
     \centering
     \begin{tikzpicture}
       \begin{axis}[
-        acs xbar,
+        acs axis,
         width=\linewidth,
         height=5.8cm,
-        xmax=240,
-        xlabel={样本量},
-        symbolic y coords={其他修饰,PAMAM+RGD+siRNA,PR,PTR},
-        ytick=data,
-        y tick label style={font=\tiny},
-        nodes near coords style={font=\tiny, xshift=0.8pt},
+        ymin=0,
+        ymax=65,
+        ylabel={样本占比（\%）},
+        symbolic x coords={PTR,PR,PAMAM+RGD+siRNA,其他修饰},
+        xtick=data,
+        x tick label style={rotate=35, anchor=east, font=\tiny},
+        nodes near coords,
+        nodes near coords style={font=\tiny, yshift=1pt},
         title={\textbf{(B)} 表面修饰类型}
       ]
-        \addplot+[fill=acsorange, draw=none] coordinates {(223,其他修饰) (15,PAMAM+RGD+siRNA) (18,PR) (127,PTR)};
+        \addplot+[only marks, acsorange, mark=square*, mark size=2pt] coordinates {(PTR,33.2) (PR,4.7) (PAMAM+RGD+siRNA,3.9) (其他修饰,58.2)};
       \end{axis}
     \end{tikzpicture}
   \end{minipage}
