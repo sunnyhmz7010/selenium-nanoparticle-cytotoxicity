@@ -10,7 +10,7 @@
   wang_regulating_2016, hu_selenium_2019, zeng_potentiation_2019, huang_dual-targeting_2019, huang_highly_2019,
   zhang_systematic_2019, zheng_thermosensitive_2019, huang_chiralitydriven_2020,
   yang_lentinan-functionalized_2020, liu_rapid_2021, an_functionalized_2021, song_translational_2021,
-  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}，时间跨度为 2008--2019 年。基础特征能够提供初步预测能力，而引入元素 Se 含量、长期稳定性、结合能 Se3d、晶型编码及 IC50 等增强变量后，模型拟合能力进一步改善。其中，XGBoost 在含增强变量设置下取得最高回归结果；但由于该设置包含与毒理终点天然相关的 IC50，该结果更适合作为辅助分析和机理增强参考。随机森林则在精度、稳健性和可解释性之间保持了较好的平衡，更适合作为后续外部验证与工程实现中的比较基线。
+  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}，时间跨度为 2008--2022 年。基础特征能够提供初步预测能力，而引入元素 Se 含量、长期稳定性、结合能 Se3d、晶型编码及 IC50 等增强变量后，模型拟合能力进一步改善。其中，XGBoost 在含增强变量设置下取得最高回归结果；但由于该设置包含与毒理终点天然相关的 IC50，该结果更适合作为辅助分析和机理增强参考。随机森林则在精度、稳健性和可解释性之间保持了较好的平衡，更适合作为后续外部验证与工程实现中的比较基线。
 
 特征筛选结果进一步说明，表现较优的增强变量组合并不需要依赖全部候选项，仅使用 IC50、元素 Se 含量、长期稳定性和结合能 Se3d 即可达到接近全特征集的预测精度。与此同时，这一结果也提示应将 IC50 与材料本征化学特征区分解释：前者更接近毒理响应相关辅助信息，后者则更能体现单一材料体系中可迁移、可积累的特征工程价值。因此，面向后续数据采集与实验设计，仍应优先关注能够反映材料本征化学属性的关键变量。
 
