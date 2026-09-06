@@ -31,7 +31,7 @@ jobs:
       - name: Package sources
         run: |
           mkdir stage
-          cp Manuscript_EN.tex acs-template.bib references.bib stage/
+          cp Manuscript_EN.tex references.bib stage/
           cat > stage/README.txt <<'EOF'
           English manuscript, single-file version.
 
@@ -40,8 +40,7 @@ jobs:
 
           Files:
               Manuscript_EN.tex   complete manuscript (all sections inlined)
-              acs-template.bib    references (literature + SeNP dataset)
-              references.bib      references (ML models)
+              references.bib      unified bibliography (literature + ML models)
           EOF
           cd stage
           zip -r ../Manuscript_EN_single.zip .
