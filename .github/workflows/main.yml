@@ -29,7 +29,7 @@ jobs:
           compiler: latexmk
           args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
 
-      - name: Commit and Push PDFs
+      - name: Commit and Push PDFs and Sources
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -37,9 +37,35 @@ jobs:
           export TZ='Asia/Shanghai'
           TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
 
-          mkdir -p publish
+          # 将 sections_* 展开合并为单文件稿，连同 bib 放入 sources/ 一并推送
+          python3 - <<'PYEOF'
+          import pathlib, re
+          for lang in ['zh', 'en']:
+              main = pathlib.Path('main_%s.tex' % lang).read_text(encoding='utf-8')
+              pat = re.compile(r'\\input\{(sections_%s/[^}]+)\}' % lang)
+              count = len(pat.findall(main))
+              def repl(m):
+                  return pathlib.Path(m.group(1) + '.tex').read_text(encoding='utf-8')
+              out = pat.sub(repl, main)
+              pathlib.Path('Manuscript_%s.tex' % lang.upper()).write_text(out, encoding='utf-8')
+              print('%s: expanded %d inputs -> Manuscript_%s.tex' % (lang, count, lang.upper()))
+          PYEOF
+
+          mkdir -p publish/sources
           cp main_zh.pdf "publish/Manuscript_ZH_$TIMESTAMP.pdf"
           cp main_en.pdf "publish/Manuscript_EN_$TIMESTAMP.pdf"
+          cp Manuscript_ZH.tex Manuscript_EN.tex references.bib publish/sources/
+          cat > publish/sources/README.txt <<'EOF'
+          Single-file manuscript sources (sections inlined).
+
+          Chinese version (requires XeLaTeX + ctex):
+              latexmk -xelatex Manuscript_ZH.tex
+
+          English version:
+              latexmk -xelatex Manuscript_EN.tex
+
+          references.bib is the unified bibliography for both versions.
+          EOF
 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -48,7 +74,7 @@ jobs:
           git init
           git checkout -b output
           git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git add *.pdf
-          git commit -m "Auto-build: PDFs updated at $TIMESTAMP"
+          git add .
+          git commit -m "Auto-build: PDFs and sources updated at $TIMESTAMP"
 
           git push origin output --force
