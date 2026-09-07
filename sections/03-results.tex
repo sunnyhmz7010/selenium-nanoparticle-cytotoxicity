@@ -1,4 +1,4 @@
-\section{结果与讨论}
+\section{Results and discussion}
 
 \paragraph{多类型纳米颗粒基准数据集上的模型比较。}
 为获得可靠的性能基线，我们首先在大规模多类型纳米颗粒毒性数据集上比较六类模型的表现，包括随机森林\cite{breiman2001random}、XGBoost\cite{chen2016xgboost}、ABRF\cite{gromov2022attention}、LARF\cite{gromov2022larf}、TabTransformer\cite{huang2020tabtransformer} 以及蒸馏 TabTransformer\cite{hinton2015distilling}。该基准数据集来源于 Masarkar 等人建立的公开纳米颗粒毒性数据资源 \cite{masarkar2024}，覆盖金属、金属氧化物、聚合物、碳基与无机纳米颗粒，清洗后共包含 4102 个有效样本，按照 7:3 划分为训练集 3281 条与测试集 821 条。输入特征包括浓度、暴露时间、材料类别、粒径、Zeta 电位、细胞类型与检测方法等。
