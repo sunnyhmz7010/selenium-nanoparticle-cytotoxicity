@@ -49,14 +49,6 @@ jobs:
           mkdir -p publish
           cp manuscript.pdf "publish/${TIMESTAMP}_$TITLE.pdf"
           cp main.tex references.bib publish/
-          cat > publish/README.txt <<'EOF'
-          Single-file manuscript source (sections inlined), ready for Overleaf.
-
-          Build:
-              latexmk -xelatex main.tex
-
-          references.bib is the bibliography.
-          EOF
 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
