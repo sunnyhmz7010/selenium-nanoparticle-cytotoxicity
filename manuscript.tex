@@ -58,12 +58,16 @@
 \usepackage{float}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% pgfplots support and ACS plot styles.
-%% Required by the figures in sections/02-methods.tex (axis
+%% CJK support and pgfplots/ACS plot styles.
+%% ctex: required only while the body text is still Chinese (without
+%% it, Chinese characters are silently dropped from the PDF). Remove
+%% this line after the sections are translated to English.
+%% pgfplots: required by the figures in sections/02-methods.tex (axis
 %% environments, acs axis/acs xbar/acs ybar styles and the acs*
 %% colors). Ported verbatim from the legacy preamble so the figures
 %% render exactly as before.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{pgfplots}
 \pgfplotsset{compat = 1.18}
