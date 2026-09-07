@@ -56,17 +56,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}
 \usepackage{float}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% CJK support and pgfplots/ACS plot styles.
-%% ctex: required only while the body text is still Chinese (without
-%% it, Chinese characters are silently dropped from the PDF). Remove
-%% this line after the sections are translated to English.
-%% pgfplots: required by the figures in sections/02-methods.tex (axis
-%% environments, acs axis/acs xbar/acs ybar styles and the acs*
-%% colors). Ported verbatim from the legacy preamble so the figures
-%% render exactly as before.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- CJK support (ctex, remove after translating sections to English) and pgfplots/ACS plot styles, ported from legacy preamble ---
 \usepackage{ctex}
 \usepackage{xcolor}
 \usepackage{pgfplots}
@@ -117,7 +107,6 @@
   }
 }
 %% --- End of pgfplots/ACS plot styles block ---
-
 \newfloat{scheme}{htbp}{los}
 \floatname{scheme}{Scheme}
 \floatname{chart}{Chart}
