@@ -18,7 +18,7 @@ jobs:
       - name: Build Manuscript
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: manuscript.tex
+          root_file: paper/manuscript.tex
           compiler: latexmk
           args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
 
@@ -35,20 +35,21 @@ jobs:
           # 标题中的半角冒号在 Windows 文件名中非法，替换为 " - "
           TITLE=$(python3 - <<'PYEOF'
           import pathlib, re
-          main = pathlib.Path('manuscript.tex').read_text(encoding='utf-8')
+          main_path = pathlib.Path('paper/manuscript.tex')
+          main = main_path.read_text(encoding='utf-8')
           pat = re.compile(r'\\input\{(sections/[^}]+)\}')
           count = len(pat.findall(main))
           def repl(m):
-              return pathlib.Path(m.group(1) + '.tex').read_text(encoding='utf-8')
-          pathlib.Path('main.tex').write_text(pat.sub(repl, main), encoding='utf-8')
+              return pathlib.Path('paper', m.group(1) + '.tex').read_text(encoding='utf-8')
+          pathlib.Path('paper/main.tex').write_text(pat.sub(repl, main), encoding='utf-8')
           m = re.search(r'\\title\{(.+?)\}', main, re.S)
           print(re.sub(r'\s*:\s*', ' - ', m.group(1).strip()) if m else 'Manuscript')
           PYEOF
           )
 
           mkdir -p publish
-          cp manuscript.pdf "publish/${TIMESTAMP}_$TITLE.pdf"
-          cp main.tex references.bib publish/
+          cp paper/manuscript.pdf "publish/${TIMESTAMP}_$TITLE.pdf"
+          cp paper/main.tex paper/references.bib publish/
 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SeNP toxicity results</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="dashboard" id="app" aria-live="polite">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">Se</div>
+      <div>
+        <h1>SeNP toxicity</h1>
+        <p id="validation">loading</p>
+      </div>
+    </header>
+    <section class="metric-grid" aria-label="dataset summary">
+      <article class="metric-card"><span>curated rows</span><strong id="curated-rows">—</strong></article>
+      <article class="metric-card"><span>MTT rows</span><strong id="analysis-rows">—</strong></article>
+      <article class="metric-card"><span>publication groups</span><strong id="groups">—</strong></article>
+      <article class="metric-card"><span>best MAE</span><strong id="best-mae">—</strong></article>
+    </section>
+    <section class="panel panel-wide">
+      <div class="panel-head"><h2>model comparison</h2><span class="unit">MAE · RMSE · R²</span></div>
+      <div class="table-wrap"><table id="metrics-table"><thead><tr><th>feature set</th><th>model</th><th>MAE</th><th>RMSE</th><th>R²</th><th>groups</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="chart-grid">
+      <article class="panel"><div class="panel-head"><h2>error profile</h2><span class="unit">MAE</span></div><div class="chart" id="metric-chart"></div></article>
+      <article class="panel"><div class="panel-head"><h2>feature coverage</h2><span class="unit">available %</span></div><div class="chart" id="coverage-chart"></div></article>
+    </section>
+    <section class="panel panel-wide"><div class="panel-head"><h2>OOF predictions</h2><span class="unit">observed vs predicted</span></div><div class="scatter-wrap"><svg id="scatter" role="img" aria-label="observed versus predicted scatter plot"></svg></div></section>
+    <p class="error" id="error" hidden>dashboard data unavailable</p>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
