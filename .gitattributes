@@ -1,0 +1,2 @@
+# 论文源文件保留基线 commit 的原始换行字节，避免跨平台 checkout 改写论文内容。
+paper/** -text
