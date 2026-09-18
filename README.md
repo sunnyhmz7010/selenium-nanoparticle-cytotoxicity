@@ -36,6 +36,7 @@
 python -m venv .venv
 python -m pip install -r requirements.txt
 python scripts/run_experiments.py
+python scripts/reproduce_report.py
 python scripts/build_manifest.py
 python -m http.server 8000 --directory web
 ```
@@ -53,6 +54,12 @@ python -m http.server 8000 --directory web
 分析数据当前包含 205 条 MTT 回归记录，来自 383 条筛选后的 SeNP 归档记录；publication group 数量由 DOI/Article_ID 回退规则确定。模型结果采用外层 5 折、内层 3 折的分组嵌套交叉验证，指标由外层 pooled OOF 预测计算。
 
 论文中出现的 `R²=0.957` 等报告值属于论文原文语境，不能直接当作本仓库当前重建结果。本仓库不虚构分子量、修饰物分类、新合成材料或不存在的前瞻实验结果。
+
+### 历史报告复现
+
+`scripts/reproduce_report.py` 按历史日志可确认的清洗、单位换算、三折 KFold 和树模型参数重新计算报告指标。当前归档 Excel 的 SHA-256 为 `6e0c832f335993cdf3f08809dd311050a6ca82be35327a3ed364a1b663272e5d`，历史规则得到 434 条记录；报告记录的是 310 条，且目标值分布也不同，因此验收状态为 `partial`。
+
+实际计算结果保存在 `results/report_reproduction/`，模型保存在 `models/report_reproduction/`，纳入和排除记录保存在 `data/reproduction/`。`acceptance.json` 分开记录计算值、报告目标值和差值。报告对应的 TabTransformer 训练代码及依赖版本未归档，因此不使用其他神经网络替代。
 
 ## 🧱 技术栈
 

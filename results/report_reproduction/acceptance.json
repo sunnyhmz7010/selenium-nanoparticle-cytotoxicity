@@ -1,0 +1,79 @@
+{
+  "status": "partial",
+  "models": [
+    {
+      "model": "random_forest",
+      "feature_set": "baseline",
+      "target_mae": 11.044676,
+      "target_r2": 0.700973,
+      "computed_mae": 12.533332191153,
+      "computed_r2": 0.762295810958742,
+      "mae_delta": 1.4886561911529999,
+      "r2_delta": 0.061322810958742036,
+      "status": "different"
+    },
+    {
+      "model": "random_forest",
+      "feature_set": "enhanced",
+      "target_mae": 7.627901,
+      "target_r2": 0.91468,
+      "computed_mae": 10.765296703946218,
+      "computed_r2": 0.8789559286536874,
+      "mae_delta": 3.1373957039462184,
+      "r2_delta": -0.035724071346312614,
+      "status": "different"
+    },
+    {
+      "model": "xgboost",
+      "feature_set": "baseline",
+      "target_mae": 9.868701,
+      "target_r2": 0.750721,
+      "computed_mae": 11.404955369473115,
+      "computed_r2": 0.8561051919615866,
+      "mae_delta": 1.5362543694731148,
+      "r2_delta": 0.10538419196158666,
+      "status": "different"
+    },
+    {
+      "model": "xgboost",
+      "feature_set": "enhanced",
+      "target_mae": 7.196281,
+      "target_r2": 0.956696,
+      "computed_mae": 8.595366278909024,
+      "computed_r2": 0.9657391671161857,
+      "mae_delta": 1.3990852789090242,
+      "r2_delta": 0.00904316711618569,
+      "status": "different"
+    },
+    {
+      "model": "tabtransformer",
+      "feature_set": "baseline",
+      "target_mae": 24.130409,
+      "target_r2": 0.002994,
+      "computed_mae": null,
+      "computed_r2": null,
+      "mae_delta": null,
+      "r2_delta": null,
+      "status": "missing"
+    },
+    {
+      "model": "tabtransformer",
+      "feature_set": "enhanced",
+      "target_mae": 25.495027,
+      "target_r2": 0.056558,
+      "computed_mae": null,
+      "computed_r2": null,
+      "mae_delta": null,
+      "r2_delta": null,
+      "status": "missing"
+    }
+  ],
+  "data_status": "different",
+  "unavailable_models": {
+    "tabtransformer": "报告对应训练代码和依赖版本未保存，不能以其他网络替代"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

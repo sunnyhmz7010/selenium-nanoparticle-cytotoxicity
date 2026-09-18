@@ -1,7 +1,27 @@
 const DATA_URL = "data/dashboard.json";
-const fmt = (value, digits = 2) => Number.isFinite(Number(value)) ? Number(value).toFixed(digits) : "—";
+const fmt = (value, digits = 2) => value != null && Number.isFinite(Number(value)) ? Number(value).toFixed(digits) : "—";
 const featureLabel = (name) => ({ baseline: "baseline", chemistry_no_ic50: "chemistry", ic50_assisted: "IC50 assisted" }[name] || name);
 const modelLabel = (name) => ({ random_forest: "Random forest", xgboost: "XGBoost" }[name] || name);
+
+function renderReproduction(data) {
+  const reproduction = data.report_reproduction;
+  if (!reproduction) return;
+  const audit = reproduction.audit || {};
+  const rows = reproduction.models || [];
+  document.querySelector("#reproduction-status").textContent = reproduction.status === "exact" ? "一致" : "未对齐";
+  document.querySelector("#reproduction-rows").textContent = audit.included_rows ?? "—";
+  document.querySelector("#report-rows").textContent = audit.report_target_rows ?? "—";
+  const computed = rows.filter((row) => row.computed_mae != null).map((row) => Number(row.computed_mae)).filter(Number.isFinite);
+  document.querySelector("#reproduction-best-mae").textContent = computed.length ? fmt(Math.min(...computed)) : "—";
+  const tbody = document.querySelector("#reproduction-table tbody");
+  tbody.replaceChildren(...rows.map((row) => {
+    const tr = document.createElement("tr");
+    [modelLabel(row.model), featureLabel(row.feature_set), fmt(row.computed_mae), fmt(row.target_mae), fmt(row.computed_r2, 3), fmt(row.target_r2, 3), row.status].forEach((value) => {
+      const td = document.createElement("td"); td.textContent = value; tr.append(td);
+    });
+    return tr;
+  }));
+}
 
 function renderBars(selector, rows) {
   const target = document.querySelector(selector); target.replaceChildren();
@@ -44,5 +64,5 @@ function renderScatter(data) {
   rows.forEach((row) => { const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle"); dot.setAttribute("class", "point"); dot.setAttribute("cx", x(Number(row.observed))); dot.setAttribute("cy", y(Number(row.prediction))); dot.setAttribute("r", "2.6"); svg.append(dot); });
 }
 
-async function loadDashboard() { try { const response = await fetch(DATA_URL, { cache: "no-store" }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); renderMetrics(data); renderCoverage(data.coverage || []); renderScatter(data); } catch (error) { console.error(error); document.querySelector("#error").hidden = false; } }
+async function loadDashboard() { try { const response = await fetch(DATA_URL, { cache: "no-store" }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); renderReproduction(data); renderMetrics(data); renderCoverage(data.coverage || []); renderScatter(data); } catch (error) { console.error(error); document.querySelector("#error").hidden = false; } }
 loadDashboard();

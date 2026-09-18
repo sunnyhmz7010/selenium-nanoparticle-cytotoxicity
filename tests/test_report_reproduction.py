@@ -8,6 +8,7 @@ from src.report_reproduction import (
     assign_folds,
     candidate_feature_combinations,
     compare_with_report,
+    engineer_historical_features,
     evaluate_predictions,
     make_dashboard_payload,
     prepare_report_frame,
@@ -18,7 +19,7 @@ def _source_frame() -> pd.DataFrame:
     return pd.DataFrame(
         {
             "No": [1, 2, 3, 4],
-            "Material": ["SeNPs", "Na2SeO3", "SeNPs", "SeNPs"],
+            "Material": ["SeNPs", "Gold", "SeNPs", "SeNPs"],
             "Test": ["MTT", "MTT", "Western Blot", "MTT"],
             "Cell_Viability (%)": [50, 60, 70, None],
             "Time (hr)": [24, 24, 24, 24],
@@ -47,6 +48,16 @@ def test_assign_folds_is_stable_and_contains_three_folds():
 
     assert first.tolist() == second.tolist()
     assert set(first) == {0, 1, 2}
+
+
+def test_historical_material_filter_keeps_selenite_because_script_only_checks_se_text():
+    source = _source_frame().iloc[[0]].copy()
+    source["Material"] = "Na2SeO3"
+
+    included, excluded = prepare_report_frame(source)
+
+    assert len(included) == 1
+    assert excluded.empty
 
 
 def test_metrics_are_recomputed_from_predictions():
@@ -112,3 +123,26 @@ def test_dashboard_payload_labels_report_values_as_targets():
     assert payload["report_reproduction"]["status"] == "partial"
     assert payload["report_reproduction"]["values_are_computed"] is True
     assert payload["report_reproduction"]["report_values_are_targets_only"] is True
+
+
+def test_historical_feature_engineering_uses_documented_defaults():
+    included, _ = prepare_report_frame(_source_frame())
+    included["Diameter (nm)"] = 20.0
+    included["Size_in_Water (nm)"] = None
+    included["Zeta_in_Water (mV)"] = None
+    included["IC50 (µM)"] = 5.0
+    included["Elemental Composition (wt%)"] = "Se 82.5%"
+    included["Long-term Stability (weeks)"] = None
+    included["Binding Energy Se3d (eV)"] = None
+    included["Crystallinity / Fringe Spacing (Å)"] = None
+    included["Surface_Charge"] = None
+    included["Cell_Type"] = "A549"
+    included["Coat/Functional Group"] = None
+
+    engineered = engineer_historical_features(included)
+
+    assert engineered.loc[0, "Size_in_Water_nm"] == 30.0
+    assert engineered.loc[0, "Zeta_mV"] == -15.0
+    assert engineered.loc[0, "Elemental_Se_wt"] == 82.5
+    assert engineered.loc[0, "Stability_weeks"] == 13.0
+    assert engineered.loc[0, "Binding_Energy_Se3d"] == 55.0

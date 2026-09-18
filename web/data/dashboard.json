@@ -13439,5 +13439,97 @@
       "prediction": "52.07204055786133",
       "selected_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks"
     }
-  ]
+  ],
+  "report_reproduction": {
+    "status": "partial",
+    "values_are_computed": true,
+    "report_values_are_targets_only": true,
+    "audit": {
+      "input_path": "C:/Users/Sunny/AppData/Roaming/app.codeg/chat-sessions/2026-09-14/9bd9621912db43468e1b0f5de23d2154/selenium-nanoparticle-cytotoxicity/.worktrees/report-exact-reproduction/data/senp/纳米硒毒性预测验证集数据集.xlsx",
+      "input_sha256": "6e0c832f335993cdf3f08809dd311050a6ca82be35327a3ed364a1b663272e5d",
+      "sheet_name": "工作表1",
+      "source_rows": 623,
+      "included_rows": 434,
+      "excluded_rows": 189,
+      "report_target_rows": 310,
+      "row_count_matches_report": false,
+      "observed_target_min": 3.22,
+      "observed_target_max": 112.97,
+      "observed_target_mean": 69.63827188940093,
+      "observed_target_sd": 25.587819011479727,
+      "report_target_min": 3.2,
+      "report_target_max": 103.0,
+      "report_target_mean": 57.3,
+      "report_target_sd": 21.4,
+      "source_alignment": "different"
+    },
+    "models": [
+      {
+        "model": "random_forest",
+        "feature_set": "baseline",
+        "target_mae": 11.044676,
+        "target_r2": 0.700973,
+        "computed_mae": 12.533332191153,
+        "computed_r2": 0.762295810958742,
+        "mae_delta": 1.4886561911529999,
+        "r2_delta": 0.061322810958742036,
+        "status": "different"
+      },
+      {
+        "model": "random_forest",
+        "feature_set": "enhanced",
+        "target_mae": 7.627901,
+        "target_r2": 0.91468,
+        "computed_mae": 10.765296703946218,
+        "computed_r2": 0.8789559286536874,
+        "mae_delta": 3.1373957039462184,
+        "r2_delta": -0.035724071346312614,
+        "status": "different"
+      },
+      {
+        "model": "xgboost",
+        "feature_set": "baseline",
+        "target_mae": 9.868701,
+        "target_r2": 0.750721,
+        "computed_mae": 11.404955369473115,
+        "computed_r2": 0.8561051919615866,
+        "mae_delta": 1.5362543694731148,
+        "r2_delta": 0.10538419196158666,
+        "status": "different"
+      },
+      {
+        "model": "xgboost",
+        "feature_set": "enhanced",
+        "target_mae": 7.196281,
+        "target_r2": 0.956696,
+        "computed_mae": 8.595366278909024,
+        "computed_r2": 0.9657391671161857,
+        "mae_delta": 1.3990852789090242,
+        "r2_delta": 0.00904316711618569,
+        "status": "different"
+      },
+      {
+        "model": "tabtransformer",
+        "feature_set": "baseline",
+        "target_mae": 24.130409,
+        "target_r2": 0.002994,
+        "computed_mae": null,
+        "computed_r2": null,
+        "mae_delta": null,
+        "r2_delta": null,
+        "status": "missing"
+      },
+      {
+        "model": "tabtransformer",
+        "feature_set": "enhanced",
+        "target_mae": 25.495027,
+        "target_r2": 0.056558,
+        "computed_mae": null,
+        "computed_r2": null,
+        "mae_delta": null,
+        "r2_delta": null,
+        "status": "missing"
+      }
+    ]
+  }
 }

@@ -1,0 +1,19 @@
+{
+  "input_path": "C:/Users/Sunny/AppData/Roaming/app.codeg/chat-sessions/2026-09-14/9bd9621912db43468e1b0f5de23d2154/selenium-nanoparticle-cytotoxicity/.worktrees/report-exact-reproduction/data/senp/纳米硒毒性预测验证集数据集.xlsx",
+  "input_sha256": "6e0c832f335993cdf3f08809dd311050a6ca82be35327a3ed364a1b663272e5d",
+  "sheet_name": "工作表1",
+  "source_rows": 623,
+  "included_rows": 434,
+  "excluded_rows": 189,
+  "report_target_rows": 310,
+  "row_count_matches_report": false,
+  "observed_target_min": 3.22,
+  "observed_target_max": 112.97,
+  "observed_target_mean": 69.63827188940093,
+  "observed_target_sd": 25.587819011479727,
+  "report_target_min": 3.2,
+  "report_target_max": 103.0,
+  "report_target_mean": 57.3,
+  "report_target_sd": 21.4,
+  "source_alignment": "different"
+}
