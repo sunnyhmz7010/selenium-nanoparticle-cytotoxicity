@@ -21,7 +21,7 @@
 - 以 DOI 为主、Article_ID 为回退执行 publication-grouped nested CV。
 - 将插补、类别编码、候选特征选择和参数选择限制在训练折内。
 - 保存 OOF 预测、逐折指标、模型 pipeline、特征覆盖率和 SHA256 清单。
-- 用静态网页查看数据规模、模型误差、特征覆盖率和 OOF 散点图。
+- 用静态网页查看历史报告复现对照和 434 条数据的严格分组验证结果。
 
 ## ⚡ 快速开始
 
@@ -46,13 +46,13 @@ python -m http.server 8000 --directory web
 
 ## 📖 使用说明
 
-主实验入口是 `scripts/run_experiments.py`，默认读取 `data/senp/senp_validation_dataset_final.csv`，生成 `results/` 中的 CSV/JSON 和 `models/` 中的 joblib pipeline。网页使用 `web/data/dashboard.json`；运行 manifest 脚本会把最新的 `results/dashboard.json` 同步到网页目录。
+主实验入口是 `scripts/run_experiments.py`，默认读取 `data/senp/senp_validation_dataset_final.csv`，生成 `results/` 中的 CSV/JSON 和 `models/` 中的 joblib pipeline。该入口产生的 205 条 MTT 结果保留为历史归档。网页只使用 434 条严格验证口径；`scripts/build_manifest.py` 从 `results/report_reproduction/acceptance.json`、`data/reproduction/audit.json` 和 `results/improved_434/summary.json` 重新生成 `web/data/dashboard.json`。
 
 `baseline` 和 `chemistry_no_ic50` 是可用于主分析的配置。`ic50_assisted` 明确标记为 response-correlated 辅助基准，不应被解释为前瞻性预测模型。
 
 ## 🧠 功能细节
 
-分析数据当前包含 205 条 MTT 回归记录，来自 383 条筛选后的 SeNP 归档记录；publication group 数量由 DOI/Article_ID 回退规则确定。模型结果采用外层 5 折、内层 3 折的分组嵌套交叉验证，指标由外层 pooled OOF 预测计算。
+历史主实验包含 205 条 MTT 回归记录，相关结果仅保存在 `results/` 供追溯，不进入网页。当前网页与改进实验统一采用 434 条记录、24 个文献组；publication group 由 DOI/Article_ID 回退规则确定。模型结果采用外层 5 折、内层 3 折的分组嵌套交叉验证，指标由外层 pooled OOF 预测计算。
 
 论文中出现的 `R²=0.957` 等报告值属于论文原文语境，不能直接当作本仓库当前重建结果。本仓库不虚构分子量、修饰物分类、新合成材料或不存在的前瞻实验结果。
 

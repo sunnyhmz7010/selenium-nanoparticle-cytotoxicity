@@ -4,7 +4,6 @@ import argparse
 import csv
 import hashlib
 import json
-import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -67,16 +66,34 @@ def write_baseline() -> Path:
 
 
 def sync_dashboard() -> None:
-    source = ROOT / "results" / "dashboard.json"
+    acceptance_path = ROOT / "results/report_reproduction/acceptance.json"
+    audit_path = ROOT / "data/reproduction/audit.json"
+    improved_path = ROOT / "results/improved_434/summary.json"
     target = ROOT / "web" / "data" / "dashboard.json"
-    if source.exists():
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source, target)
+    required = (acceptance_path, audit_path, improved_path)
+    missing = [path.relative_to(ROOT).as_posix() for path in required if not path.exists()]
+    if missing:
+        raise FileNotFoundError(f"缺少网页结果文件: {', '.join(missing)}")
+
+    acceptance = json.loads(acceptance_path.read_text(encoding="utf-8"))
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    improved = json.loads(improved_path.read_text(encoding="utf-8"))
+    payload = {
+        "report_reproduction": {
+            **acceptance,
+            "audit": audit,
+            "values_are_computed": True,
+            "report_values_are_targets_only": True,
+        },
+        "improved_434": improved,
+    }
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Write repository baseline and SHA256 artifact manifest.")
-    parser.add_argument("--no-dashboard-sync", action="store_true", help="Do not copy results/dashboard.json into web/data/")
+    parser.add_argument("--no-dashboard-sync", action="store_true", help="不重新生成 web/data/dashboard.json")
     args = parser.parse_args()
     if not args.no_dashboard_sync:
         sync_dashboard()

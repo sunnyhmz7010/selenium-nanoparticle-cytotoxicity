@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import json
 from pathlib import Path
 
 
@@ -55,4 +56,27 @@ def test_dashboard_renders_improved_434_metrics_and_effect_intervals():
     assert "improved_434" in script
     assert "group_bootstrap_ci_low" in script
     assert "group_bootstrap_ci_high" in script
+
+
+def test_web_dashboard_uses_only_report_and_434_result_contract():
+    payload = json.loads(Path("web/data/dashboard.json").read_text(encoding="utf-8"))
+    script = Path("web/app.js").read_text(encoding="utf-8")
+    html = Path("web/index.html").read_text(encoding="utf-8")
+
+    assert set(payload) == {"report_reproduction", "improved_434"}
+    assert payload["improved_434"]["data"]["rows"] == 434
+    assert payload["improved_434"]["data"]["publication_groups"] == 24
+    assert "analysis_mtt_rows" not in json.dumps(payload)
+    assert "renderMetrics(data)" not in script
+    assert "renderCoverage(data.coverage" not in script
+    assert "renderScatter(data)" not in script
+    assert 'id="analysis-rows"' not in html
+
+
+def test_manifest_dashboard_sync_builds_the_strict_web_payload():
+    script = Path("scripts/build_manifest.py").read_text(encoding="utf-8")
+
+    assert "results/dashboard.json" not in script
+    assert "results/improved_434/summary.json" in script
+    assert "results/report_reproduction/acceptance.json" in script
 

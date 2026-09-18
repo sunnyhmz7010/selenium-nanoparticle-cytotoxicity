@@ -18,10 +18,10 @@ from src.report_reproduction import (  # noqa: E402
     compare_with_report,
     engineer_historical_features,
     load_report_source,
-    make_dashboard_payload,
     run_tree_model,
     search_feature_combinations,
 )
+from scripts.build_manifest import sync_dashboard  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -100,10 +100,7 @@ def main() -> int:
     }
     write_json(result_dir / "acceptance.json", comparison)
 
-    dashboard_path = ROOT / "web" / "data" / "dashboard.json"
-    dashboard = json.loads(dashboard_path.read_text(encoding="utf-8")) if dashboard_path.exists() else {}
-    dashboard.update(make_dashboard_payload(audit, comparison))
-    write_json(dashboard_path, dashboard)
+    sync_dashboard()
     print(json.dumps({"audit": audit, "acceptance": comparison}, ensure_ascii=False, indent=2))
     return 0
 
