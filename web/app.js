@@ -23,6 +23,28 @@ function renderReproduction(data) {
   }));
 }
 
+function renderImproved(data) {
+  const improved = data.improved_434;
+  if (!improved) return;
+  const metrics = improved.metrics || [];
+  const effects = new Map((improved.improvements || []).map((row) => [`${row.model}:${row.feature_set}`, row]));
+  document.querySelector("#improved-rows").textContent = improved.data?.rows ?? "—";
+  document.querySelector("#improved-groups").textContent = improved.data?.publication_groups ?? "—";
+  const bestMae = metrics.reduce((best, row) => !best || Number(row.mae) < Number(best.mae) ? row : best, null);
+  const bestR2 = metrics.reduce((best, row) => !best || Number(row.r2) > Number(best.r2) ? row : best, null);
+  document.querySelector("#improved-best-mae").textContent = bestMae ? fmt(bestMae.mae) : "—";
+  document.querySelector("#improved-best-r2").textContent = bestR2 ? fmt(bestR2.r2, 3) : "—";
+  const tbody = document.querySelector("#improved-table tbody");
+  tbody.replaceChildren(...metrics.map((row) => {
+    const effect = effects.get(`${row.model}:${row.feature_set}`);
+    const interval = effect ? `[${fmt(effect.group_bootstrap_ci_low)}, ${fmt(effect.group_bootstrap_ci_high)}]` : "—";
+    const values = [modelLabel(row.model), featureLabel(row.feature_set), fmt(row.mae), fmt(row.rmse), fmt(row.r2, 3), effect ? fmt(effect.pooled_mae_delta) : "—", interval];
+    const tr = document.createElement("tr");
+    values.forEach((value) => { const td = document.createElement("td"); td.textContent = value; tr.append(td); });
+    return tr;
+  }));
+}
+
 function renderBars(selector, rows) {
   const target = document.querySelector(selector); target.replaceChildren();
   rows.forEach((row) => {
@@ -64,5 +86,5 @@ function renderScatter(data) {
   rows.forEach((row) => { const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle"); dot.setAttribute("class", "point"); dot.setAttribute("cx", x(Number(row.observed))); dot.setAttribute("cy", y(Number(row.prediction))); dot.setAttribute("r", "2.6"); svg.append(dot); });
 }
 
-async function loadDashboard() { try { const response = await fetch(DATA_URL, { cache: "no-store" }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); renderReproduction(data); renderMetrics(data); renderCoverage(data.coverage || []); renderScatter(data); } catch (error) { console.error(error); document.querySelector("#error").hidden = false; } }
+async function loadDashboard() { try { const response = await fetch(DATA_URL, { cache: "no-store" }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); renderReproduction(data); renderImproved(data); renderMetrics(data); renderCoverage(data.coverage || []); renderScatter(data); } catch (error) { console.error(error); document.querySelector("#error").hidden = false; } }
 loadDashboard();

@@ -33,3 +33,26 @@ def test_dashboard_declares_an_inline_favicon_to_avoid_a_missing_asset_request()
 
     assert 'rel="icon" href="data:,' in html
 
+
+def test_improved_434_entrypoint_is_runnable_from_repository_root():
+    result = subprocess.run(
+        [sys.executable, "scripts/run_improved_434.py", "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0
+    assert "434" in result.stdout
+
+
+def test_dashboard_renders_improved_434_metrics_and_effect_intervals():
+    html = Path("web/index.html").read_text(encoding="utf-8")
+    script = Path("web/app.js").read_text(encoding="utf-8")
+
+    assert 'id="improved-table"' in html
+    assert 'id="improved-best-mae"' in html
+    assert "improved_434" in script
+    assert "group_bootstrap_ci_low" in script
+    assert "group_bootstrap_ci_high" in script
+

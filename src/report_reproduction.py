@@ -35,6 +35,23 @@ CANDIDATE_FEATURES = [
 ]
 BASE_NUMERIC = ["Log_Concentration", "Time_Log", "Diameter_nm", "Zeta_mV", "Size_Ratio"]
 BASE_CATEGORICAL = ["Charge_Code", "Cell_Code", "Coat_Code", "Test_Code"]
+IMPROVED_NUMERIC_COLUMNS = [
+    "Year",
+    "Diameter (nm)",
+    "Size_in_Water (nm)",
+    "Size_in_Medium (nm)",
+    "Zeta_in_Water (mV)",
+    "Zeta_in_Medium (mV)",
+    "No_of_Cells (cells/well)",
+    "Time (hr)",
+    "Concentration (ug/ml)",
+    "Cell_Viability (%)",
+    "IC50 (µM)",
+    "Binding Energy Se3d (eV)",
+    "Long-term Stability (weeks)",
+    "Crystallinity / Fringe Spacing (Å)",
+    "Size Ratio",
+]
 
 
 def file_sha256(path: Path) -> str:
@@ -138,6 +155,26 @@ def engineer_historical_features(frame: pd.DataFrame) -> pd.DataFrame:
     out["Log_Concentration"] = np.log1p(out["Concentration_uM"])
     out["Time_Log"] = np.log1p(out["Time_hr"])
     out["Size_Ratio"] = (out["Size_in_Water_nm"] / out["Diameter_nm"].replace(0, np.nan)).fillna(1.5)
+    return out
+
+
+def prepare_improved_analysis(frame: pd.DataFrame) -> pd.DataFrame:
+    """Build the leakage-safe analysis frame while preserving all historical 434 rows."""
+
+    from .data import add_derived_features
+
+    out = frame.copy()
+    for column in IMPROVED_NUMERIC_COLUMNS:
+        if column in out:
+            out[column] = pd.to_numeric(out[column], errors="coerce")
+    for column in ["Coat/Functional Group", "Synthesis_Method", "Surface_Charge", "Cell_Type", "Cell_Tissue"]:
+        if column in out:
+            out[column] = out[column].where(out[column].isna(), out[column].astype(str))
+    out = add_derived_features(out).reset_index(drop=True)
+    doi = out["DOI"].astype("string").str.strip()
+    article = out["Article_ID"].astype("string").str.strip().fillna("unknown")
+    valid_doi = doi.str.match(r"^10\.\d{4,9}/\S+$", case=False, na=False)
+    out["group_id"] = np.where(valid_doi, "doi:" + doi.fillna(""), "article:" + article)
     return out
 
 

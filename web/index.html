@@ -26,6 +26,16 @@
       <div class="panel-head"><h2>报告结果复现</h2><span class="unit">计算值 / 报告值</span></div>
       <div class="table-wrap"><table id="reproduction-table"><thead><tr><th>模型</th><th>特征</th><th>计算 MAE</th><th>报告 MAE</th><th>计算 R²</th><th>报告 R²</th><th>状态</th></tr></thead><tbody></tbody></table></div>
     </section>
+    <section class="metric-grid" aria-label="improved validation">
+      <article class="metric-card"><span>严格验证样本</span><strong id="improved-rows">—</strong></article>
+      <article class="metric-card"><span>文献组</span><strong id="improved-groups">—</strong></article>
+      <article class="metric-card"><span>最佳 OOF MAE</span><strong id="improved-best-mae">—</strong></article>
+      <article class="metric-card"><span>最佳 OOF R²</span><strong id="improved-best-r2">—</strong></article>
+    </section>
+    <section class="panel panel-wide">
+      <div class="panel-head"><h2>改进模型</h2><span class="unit">分组嵌套交叉验证</span></div>
+      <div class="table-wrap"><table id="improved-table"><thead><tr><th>模型</th><th>特征</th><th>MAE</th><th>RMSE</th><th>R²</th><th>MAE变化</th><th>95%区间</th></tr></thead><tbody></tbody></table></div>
+    </section>
     <section class="metric-grid" aria-label="dataset summary">
       <article class="metric-card"><span>curated rows</span><strong id="curated-rows">—</strong></article>
       <article class="metric-card"><span>MTT rows</span><strong id="analysis-rows">—</strong></article>
