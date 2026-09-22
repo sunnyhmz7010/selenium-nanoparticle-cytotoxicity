@@ -1,0 +1,5 @@
+model,strategy,paired_rows,publication_groups,pooled_mae_delta,group_bootstrap_ci_low,group_bootstrap_ci_high,improved
+random_forest,general_zero_shot,434,24,3.9983814771804553,-2.5918666632716456,5.016705937085105,False
+xgboost,general_zero_shot,434,24,2.69068913666334,-2.1481160268194115,3.7760693578474775,False
+random_forest,general_to_senp,434,24,0.5767078124290241,-2.7629567641738886,1.413576196196794,False
+xgboost,general_to_senp,434,24,-0.6690472670524352,-1.4174841075756925,1.3167991100098142,False
