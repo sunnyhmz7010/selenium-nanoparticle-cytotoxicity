@@ -1,0 +1,58 @@
+{
+  "random_forest": {
+    "path": "models/general_benchmark/random_forest.joblib",
+    "model": "random_forest",
+    "features": [
+      "Coat/Functional Group",
+      "Synthesis_Method",
+      "Surface_Charge",
+      "Cell_Type",
+      "Cell_Tissue",
+      "Year",
+      "size_final",
+      "zeta_final",
+      "abs_zeta",
+      "Time (hr)",
+      "Concentration (ug/ml)",
+      "log_size",
+      "log_time",
+      "log_concentration",
+      "No_of_Cells (cells/well)",
+      "zeta_missing",
+      "cell_count_missing",
+      "coat_missing",
+      "surface_charge_missing"
+    ],
+    "total_trees": 500,
+    "validation": "full_data_fit_after_publication_grouped_outer_cv",
+    "fit_mode": "full_data"
+  },
+  "xgboost": {
+    "path": "models/general_benchmark/xgboost.joblib",
+    "model": "xgboost",
+    "features": [
+      "Coat/Functional Group",
+      "Synthesis_Method",
+      "Surface_Charge",
+      "Cell_Type",
+      "Cell_Tissue",
+      "Year",
+      "size_final",
+      "zeta_final",
+      "abs_zeta",
+      "Time (hr)",
+      "Concentration (ug/ml)",
+      "log_size",
+      "log_time",
+      "log_concentration",
+      "No_of_Cells (cells/well)",
+      "zeta_missing",
+      "cell_count_missing",
+      "coat_missing",
+      "surface_charge_missing"
+    ],
+    "total_trees": 500,
+    "validation": "full_data_fit_after_publication_grouped_outer_cv",
+    "fit_mode": "full_data"
+  }
+}

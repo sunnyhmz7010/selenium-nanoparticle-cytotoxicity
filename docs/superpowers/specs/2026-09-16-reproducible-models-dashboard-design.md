@@ -14,7 +14,7 @@
 
 ## Architecture
 
-`src/` 提供数据清洗、特征构造、分组嵌套交叉验证和结果导出；`scripts/` 提供可直接运行的入口；`models/` 保存验证后训练的 pipeline；`results/` 保存机器可读指标、OOF 预测和覆盖率；`web/` 是零构建依赖的静态页面，读取 `results/dashboard.json` 和图表 CSV。论文源文件集中在 `paper/`，数据与模型通过 manifest 和 SHA256 清单追踪。
+`src/` 提供数据清洗、特征构造、分组嵌套交叉验证和结果导出；`scripts/` 提供可直接运行的入口；`models/` 保存验证后训练的 pipeline；`results/` 保存机器可读指标、OOF 预测和覆盖率；`web/` 是零构建依赖的静态页面，读取由 `scripts/build_manifest.py` 生成的 `web/data/dashboard.json`。论文源文件集中在 `paper/`，数据与模型通过 manifest 和 SHA256 清单追踪。
 
 ## Data Contracts
 
@@ -28,7 +28,7 @@
 
 ## Dashboard Design
 
-网页首屏只展示数据规模、外层分组数、主模型 MAE/RMSE/R² 和验证状态。核心图表包括模型对比柱状图、外层分组指标、增强特征覆盖率和 OOF 预测散点图。页面使用少量高对比颜色、紧凑网格和明确单位；所有图表均由结果 JSON/CSV 驱动，不把实验结论硬编码在页面中。
+网页展示报告复现、General backbone 独立基准、SeNP 严格验证、剂量-时间交互消融和 General→SeNP 迁移对照。页面使用少量高对比颜色、紧凑网格和明确单位；所有结果表和指标均由 `web/data/dashboard.json` 驱动，不把实验数值硬编码在页面中。
 
 ## Validation
 

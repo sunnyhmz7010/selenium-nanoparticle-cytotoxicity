@@ -26,6 +26,17 @@
       <div class="panel-head"><h2>报告结果复现</h2><span class="unit">计算值 / 报告值</span></div>
       <div class="table-wrap"><table id="reproduction-table"><thead><tr><th>模型</th><th>特征</th><th>计算 MAE</th><th>报告 MAE</th><th>计算 R²</th><th>报告 R²</th><th>状态</th></tr></thead><tbody></tbody></table></div>
     </section>
+    <section class="metric-grid" aria-label="general benchmark">
+      <article class="metric-card"><span>通用数据</span><strong id="general-rows">—</strong></article>
+      <article class="metric-card"><span>文献组</span><strong id="general-groups">—</strong></article>
+      <article class="metric-card"><span>最佳 General MAE</span><strong id="general-best-mae">—</strong></article>
+      <article class="metric-card"><span>最佳 General R²</span><strong id="general-best-r2">—</strong></article>
+    </section>
+    <section class="panel panel-wide">
+      <div class="panel-head"><h2>General backbone 基准</h2><span class="unit">文献组外层验证</span></div>
+      <p class="panel-note" id="general-summary">—</p>
+      <div class="table-wrap"><table id="general-table"><thead><tr><th>模型</th><th>MAE</th><th>RMSE</th><th>R²</th><th>MAE 95%区间</th><th>RMSE 95%区间</th></tr></thead><tbody></tbody></table></div>
+    </section>
     <section class="metric-grid" aria-label="improved validation">
       <article class="metric-card"><span>严格验证样本</span><strong id="improved-rows">—</strong></article>
       <article class="metric-card"><span>文献组</span><strong id="improved-groups">—</strong></article>

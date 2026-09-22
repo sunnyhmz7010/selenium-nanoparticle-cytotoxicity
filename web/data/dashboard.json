@@ -547,5 +547,87 @@
         "improved": false
       }
     ]
+  },
+  "general_benchmark": {
+    "validation": "publication_grouped_outer_cv",
+    "design": {
+      "outer_splits": 5,
+      "total_trees": 500,
+      "features": [
+        "Coat/Functional Group",
+        "Synthesis_Method",
+        "Surface_Charge",
+        "Cell_Type",
+        "Cell_Tissue",
+        "Year",
+        "size_final",
+        "zeta_final",
+        "abs_zeta",
+        "Time (hr)",
+        "Concentration (ug/ml)",
+        "log_size",
+        "log_time",
+        "log_concentration",
+        "No_of_Cells (cells/well)",
+        "zeta_missing",
+        "cell_count_missing",
+        "coat_missing",
+        "surface_charge_missing"
+      ],
+      "models": [
+        "random_forest",
+        "xgboost"
+      ]
+    },
+    "data": {
+      "rows": 3889,
+      "publication_groups": 144,
+      "largest_group_rows": 144,
+      "input_sha256": "5cbf141f5d55b9c2b411e1e988ec14dc0255fe6e57b0ce87b2eb1884ce0a333f"
+    },
+    "metrics": [
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "random_forest",
+        "n_oof": 3889,
+        "publication_groups": 144,
+        "mae": 21.70833858115517,
+        "rmse": 28.45669898186853,
+        "r2": 0.1499285536304258,
+        "mae_ci_low": 20.322940907495408,
+        "mae_ci_high": 24.200998742845325,
+        "rmse_ci_low": 27.225103802147586,
+        "rmse_ci_high": 33.21760079739942,
+        "fold_mae_sd": 2.422172218891747,
+        "fold_rmse_sd": 2.160852459522533,
+        "fold_r2_sd": 0.12950804719816514,
+        "selected_features": "Coat/Functional Group | Synthesis_Method | Surface_Charge | Cell_Type | Cell_Tissue | Year | size_final | zeta_final | abs_zeta | Time (hr) | Concentration (ug/ml) | log_size | log_time | log_concentration | No_of_Cells (cells/well) | zeta_missing | cell_count_missing | coat_missing | surface_charge_missing"
+      },
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "xgboost",
+        "n_oof": 3889,
+        "publication_groups": 144,
+        "mae": 22.540355997306488,
+        "rmse": 29.721477944735046,
+        "r2": 0.07268519836214304,
+        "mae_ci_low": 20.514311205803388,
+        "mae_ci_high": 24.338357086974856,
+        "rmse_ci_low": 27.272883599838984,
+        "rmse_ci_high": 33.08663291865939,
+        "fold_mae_sd": 2.3049320396705304,
+        "fold_rmse_sd": 2.7394710518966203,
+        "fold_r2_sd": 0.11825706828318305,
+        "selected_features": "Coat/Functional Group | Synthesis_Method | Surface_Charge | Cell_Type | Cell_Tissue | Year | size_final | zeta_final | abs_zeta | Time (hr) | Concentration (ug/ml) | log_size | log_time | log_concentration | No_of_Cells (cells/well) | zeta_missing | cell_count_missing | coat_missing | surface_charge_missing"
+      }
+    ],
+    "artifacts": {
+      "metrics": "results/general_benchmark/metrics.csv",
+      "fold_metrics": "results/general_benchmark/fold_metrics.csv",
+      "oof_predictions": "results/general_benchmark/oof_predictions.csv",
+      "group_assignments": "results/general_benchmark/group_assignments.csv",
+      "fit_metadata": "results/general_benchmark/fit_metadata.json",
+      "model_metadata": "models/general_benchmark/metadata.json"
+    }
   }
 }

@@ -3,6 +3,7 @@ const fmt = (value, digits = 2) => value != null && Number.isFinite(Number(value
 const featureLabel = (name) => ({ baseline: "baseline", chemistry_no_ic50: "chemistry", ic50_assisted: "IC50 assisted", dose_time_interaction: "dose × time" }[name] || name);
 const modelLabel = (name) => ({ random_forest: "Random forest", xgboost: "XGBoost" }[name] || name);
 const strategyLabel = (name) => ({ senp_only: "SeNP-only", general_zero_shot: "General zero-shot", general_to_senp: "General → SeNP" }[name] || name);
+const rangeLabel = (low, high) => Number.isFinite(Number(low)) && Number.isFinite(Number(high)) ? `[${fmt(low)}, ${fmt(high)}]` : "—";
 const intervalLabel = (row) => {
   if (!row) return "—";
   const low = Number(row.group_bootstrap_ci_low);
@@ -26,6 +27,26 @@ function renderReproduction(data) {
     [modelLabel(row.model), featureLabel(row.feature_set), fmt(row.computed_mae), fmt(row.target_mae), fmt(row.computed_r2, 3), fmt(row.target_r2, 3), row.status].forEach((value) => {
       const td = document.createElement("td"); td.textContent = value; tr.append(td);
     });
+    return tr;
+  }));
+}
+
+function renderGeneral(data) {
+  const general = data.general_benchmark;
+  if (!general) return;
+  const metrics = general.metrics || [];
+  document.querySelector("#general-rows").textContent = general.data?.rows ?? "—";
+  document.querySelector("#general-groups").textContent = general.data?.publication_groups ?? "—";
+  const bestMae = metrics.filter((row) => Number.isFinite(Number(row.mae))).reduce((best, row) => !best || Number(row.mae) < Number(best.mae) ? row : best, null);
+  const bestR2 = metrics.filter((row) => Number.isFinite(Number(row.r2))).reduce((best, row) => !best || Number(row.r2) > Number(best.r2) ? row : best, null);
+  document.querySelector("#general-best-mae").textContent = bestMae ? fmt(bestMae.mae) : "—";
+  document.querySelector("#general-best-r2").textContent = bestR2 ? fmt(bestR2.r2, 3) : "—";
+  document.querySelector("#general-summary").textContent = `${general.data?.rows ?? "—"} 条通用数据 · ${general.data?.publication_groups ?? "—"} 个文献组 · ${general.design?.outer_splits ?? "—"} 折外层分组验证`;
+  const tbody = document.querySelector("#general-table tbody");
+  tbody.replaceChildren(...metrics.map((row) => {
+    const values = [modelLabel(row.model), fmt(row.mae), fmt(row.rmse), fmt(row.r2, 3), rangeLabel(row.mae_ci_low, row.mae_ci_high), rangeLabel(row.rmse_ci_low, row.rmse_ci_high)];
+    const tr = document.createElement("tr");
+    values.forEach((value) => { const td = document.createElement("td"); td.textContent = value; tr.append(td); });
     return tr;
   }));
 }
@@ -93,5 +114,5 @@ function renderTransfer(data) {
   }));
 }
 
-async function loadDashboard() { try { const response = await fetch(DATA_URL, { cache: "no-store" }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); renderReproduction(data); renderImproved(data); renderDoseTime(data); renderTransfer(data); } catch (error) { console.error(error); document.querySelector("#error").hidden = false; } }
+async function loadDashboard() { try { const response = await fetch(DATA_URL, { cache: "no-store" }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); renderReproduction(data); renderGeneral(data); renderImproved(data); renderDoseTime(data); renderTransfer(data); } catch (error) { console.error(error); document.querySelector("#error").hidden = false; } }
 loadDashboard();

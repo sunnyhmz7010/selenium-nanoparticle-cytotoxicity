@@ -47,6 +47,18 @@ def test_improved_434_entrypoint_is_runnable_from_repository_root():
     assert "434" in result.stdout
 
 
+def test_general_benchmark_entrypoint_is_runnable_from_repository_root():
+    result = subprocess.run(
+        [sys.executable, "scripts/run_general_benchmark.py", "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0
+    assert "General" in result.stdout
+
+
 def test_dashboard_renders_improved_434_metrics_and_effect_intervals():
     html = Path("web/index.html").read_text(encoding="utf-8")
     script = Path("web/app.js").read_text(encoding="utf-8")
@@ -68,15 +80,20 @@ def test_web_dashboard_exposes_all_result_contracts():
         "improved_434",
         "dose_time_interaction",
         "transfer_comparison",
+        "general_benchmark",
     }
     assert payload["improved_434"]["data"]["rows"] == 434
     assert payload["improved_434"]["data"]["publication_groups"] == 24
     assert payload["dose_time_interaction"]["data"]["rows"] == 434
     assert payload["transfer_comparison"]["data"]["senp_rows"] == 434
+    assert payload["general_benchmark"]["data"]["rows"] == 3889
+    assert payload["general_benchmark"]["data"]["publication_groups"] == 144
     assert "dose_time_interaction" in script
     assert "transfer_comparison" in script
+    assert "general_benchmark" in script
     assert 'id="dose-time-table"' in html
     assert 'id="transfer-table"' in html
+    assert 'id="general-table"' in html
     assert "analysis_mtt_rows" not in json.dumps(payload)
     assert "renderMetrics(data)" not in script
     assert "renderCoverage(data.coverage" not in script
@@ -91,6 +108,7 @@ def test_manifest_dashboard_sync_builds_the_strict_web_payload():
     assert "results/improved_434/summary.json" in script
     assert "results/dose_time_interaction/summary.json" in script
     assert "results/transfer_comparison/summary.json" in script
+    assert "results/general_benchmark/summary.json" in script
     assert "results/report_reproduction/acceptance.json" in script
 
 

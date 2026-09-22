@@ -21,7 +21,7 @@
 - 以 DOI 为主、Article_ID 为回退执行 publication-grouped nested CV。
 - 将插补、类别编码、候选特征选择和参数选择限制在训练折内。
 - 保存 OOF 预测、逐折指标、模型 pipeline、特征覆盖率和 SHA256 清单。
-- 用静态网页查看历史报告复现、434 条数据的严格分组验证、剂量-时间交互消融和 General→SeNP 迁移对照。
+- 用静态网页查看历史报告复现、General backbone 基准、434 条数据的严格分组验证、剂量-时间交互消融和 General→SeNP 迁移对照。
 
 ## ⚡ 快速开始
 
@@ -40,6 +40,7 @@ python scripts/reproduce_report.py
 python scripts/run_improved_434.py
 python scripts/run_dose_time_interaction.py
 python scripts/run_transfer_comparison.py
+python scripts/run_general_benchmark.py
 python scripts/build_manifest.py
 python -m http.server 8000 --directory web
 ```
@@ -67,6 +68,8 @@ python -m http.server 8000 --directory web
 `scripts/run_improved_434.py` 在同一434条数据上执行按文献分组的5×3嵌套交叉验证。预处理、特征选择和参数选择均限制在训练折内；结果保存在 `results/improved_434/`，六个最终模型保存在 `models/improved_434/`。当前最佳严格验证结果为IC50辅助XGBoost（OOF MAE 18.35，R² 0.172），但相对基础XGBoost的按文献组bootstrap MAE差值95%区间跨过0，因此不能认定为稳定改进。化学增强且不含IC50的配置没有降低MAE。
 
 `scripts/run_dose_time_interaction.py` 在相同的434条数据和publication-grouped nested CV设置下，比较基础特征与显式 `log_concentration × log_time` 交互项。该消融结果单独保存到 `results/dose_time_interaction/`，并在网页中作为独立区域展示；当前交互项未显示稳定改善。
+
+`scripts/run_general_benchmark.py` 在清洗后的3889条通用数据和144个publication groups上执行独立5折外层分组验证，使用与迁移实验一致的500棵树预算。结果保存在 `results/general_benchmark/`，最终 backbone 保存到 `models/general_benchmark/`；该结果用于描述General任务本身，不能替代SeNP严格验证。
 
 `scripts/run_transfer_comparison.py` 在434条SeNP记录和24个文献组上比较SeNP-only、General zero-shot和General→SeNP。通用数据集清洗后保留3889条记录；每个外层折使用固定500棵树，迁移策略由250棵通用预训练树和250棵SeNP训练折树组成。迁移结果保存在 `results/transfer_comparison/`：XGBoost 的 MAE 从SeNP-only的20.75降至20.08，但按文献组bootstrap的95%区间为 `[-1.42, 1.32]`，RF迁移则升至20.30，因此当前没有稳定迁移收益证据。
 

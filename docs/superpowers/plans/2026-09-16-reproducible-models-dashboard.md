@@ -88,13 +88,13 @@
 - Create: `results/fold_metrics.csv`
 - Create: `results/oof_predictions.csv`
 - Create: `results/feature_coverage.csv`
-- Create: `results/dashboard.json`
+- Create: `web/data/dashboard.json`
 - Create: `models/*.joblib`
 - Create: `models/model_metadata.json`
 - Create: `scripts/build_manifest.py`
 
 **Interfaces:**
-- `dashboard.json` contains dataset counts, model metrics, coverage rows and relative artifact paths.
+- `web/data/dashboard.json` contains dataset counts, model metrics, ablation/transfer comparisons and relative artifact paths.
 
 - [ ] **Step 1: Generate feature availability counts before imputation and record the denominator for each feature set.**
 - [ ] **Step 2: Export OOF predictions with DOI group, fold, observed value and prediction.**
@@ -112,7 +112,7 @@
 - Create: `web/README.md`
 
 **Interfaces:**
-- `index.html` loads `data/dashboard.json` and renders the current generated results.
+- `index.html` loads `data/dashboard.json` and renders report reproduction, the General benchmark, strict SeNP validation, dose-time ablation and transfer comparison results.
 - The page has no backend dependency and runs from a local static server.
 
 - [ ] **Step 1: Add the compact dashboard layout with metric cards, model comparison chart, coverage chart and OOF scatter plot.**
