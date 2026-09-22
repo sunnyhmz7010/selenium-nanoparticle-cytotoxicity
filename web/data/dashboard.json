@@ -269,5 +269,283 @@
       "improvement_analysis": "results/improved_434/improvement_analysis.csv",
       "model_metadata": "models/improved_434/metadata.json"
     }
+  },
+  "dose_time_interaction": {
+    "validation": "publication_grouped_nested_cv",
+    "comparison": "baseline_vs_explicit_log_dose_time_interaction",
+    "data": {
+      "rows": 434,
+      "publication_groups": 24,
+      "input_sha256": "6e0c832f335993cdf3f08809dd311050a6ca82be35327a3ed364a1b663272e5d"
+    },
+    "metrics": [
+      {
+        "validation": "publication_grouped_nested_cv",
+        "feature_set": "baseline",
+        "model": "random_forest",
+        "n_oof": 434,
+        "n_groups": 24,
+        "mae": 19.1133397121,
+        "rmse": 24.1248530062,
+        "r2": 0.1090267926,
+        "mae_ci_low": 17.7570133517,
+        "mae_ci_high": 20.5018802651,
+        "rmse_ci_low": 22.667010515,
+        "rmse_ci_high": 25.5784201635,
+        "fold_mae_sd": 3.2227734447,
+        "fold_rmse_sd": 4.1006877811,
+        "fold_r2_sd": 0.257035327,
+        "selected_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing"
+      },
+      {
+        "validation": "publication_grouped_nested_cv",
+        "feature_set": "baseline",
+        "model": "xgboost",
+        "n_oof": 434,
+        "n_groups": 24,
+        "mae": 19.4929538393,
+        "rmse": 23.9691536406,
+        "r2": 0.1204901834,
+        "mae_ci_low": 18.1584323193,
+        "mae_ci_high": 20.8247195308,
+        "rmse_ci_low": 22.5037365179,
+        "rmse_ci_high": 25.4189374322,
+        "fold_mae_sd": 2.730057917,
+        "fold_rmse_sd": 3.6237750821,
+        "fold_r2_sd": 0.2385183067,
+        "selected_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing"
+      },
+      {
+        "validation": "publication_grouped_nested_cv",
+        "feature_set": "dose_time_interaction",
+        "model": "random_forest",
+        "n_oof": 434,
+        "n_groups": 24,
+        "mae": 19.5053558314,
+        "rmse": 24.5483499435,
+        "r2": 0.0774712616,
+        "mae_ci_low": 18.1738273948,
+        "mae_ci_high": 20.8923162547,
+        "rmse_ci_low": 23.0604296363,
+        "rmse_ci_high": 26.0082106796,
+        "fold_mae_sd": 3.7798479254,
+        "fold_rmse_sd": 4.5764894556,
+        "fold_r2_sd": 0.333521984,
+        "selected_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+dose_time_interaction"
+      },
+      {
+        "validation": "publication_grouped_nested_cv",
+        "feature_set": "dose_time_interaction",
+        "model": "xgboost",
+        "n_oof": 434,
+        "n_groups": 24,
+        "mae": 20.0976445914,
+        "rmse": 24.7197992172,
+        "r2": 0.0645401104,
+        "mae_ci_low": 18.6867849743,
+        "mae_ci_high": 21.4749154375,
+        "rmse_ci_low": 23.2934696728,
+        "rmse_ci_high": 26.1479070415,
+        "fold_mae_sd": 3.6683713304,
+        "fold_rmse_sd": 4.5620926627,
+        "fold_r2_sd": 0.3559660785,
+        "selected_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+dose_time_interaction"
+      }
+    ],
+    "improvements": [
+      {
+        "model": "random_forest",
+        "baseline_feature_set": "baseline",
+        "variant_feature_set": "dose_time_interaction",
+        "paired_rows": 434,
+        "publication_groups": 24,
+        "pooled_mae_delta": 0.3920161194,
+        "group_mean_mae_delta": 0.4148651844,
+        "group_bootstrap_ci_low": -0.0722026935,
+        "group_bootstrap_ci_high": 1.1024117565,
+        "improved": false
+      },
+      {
+        "model": "xgboost",
+        "baseline_feature_set": "baseline",
+        "variant_feature_set": "dose_time_interaction",
+        "paired_rows": 434,
+        "publication_groups": 24,
+        "pooled_mae_delta": 0.6046907522,
+        "group_mean_mae_delta": 0.3882774042,
+        "group_bootstrap_ci_low": -0.1988132944,
+        "group_bootstrap_ci_high": 1.0156909074,
+        "improved": false
+      }
+    ],
+    "artifacts": {
+      "metrics": "results/dose_time_interaction/metrics.csv",
+      "oof_predictions": "results/dose_time_interaction/oof_predictions.csv",
+      "improvement_analysis": "results/dose_time_interaction/improvement_analysis.csv"
+    }
+  },
+  "transfer_comparison": {
+    "design": {
+      "validation": "publication_grouped_outer_cv",
+      "outer_splits": 5,
+      "total_trees": 500,
+      "pretrained_trees": 250,
+      "finetune_trees": 250,
+      "features": [
+        "Coat/Functional Group",
+        "Synthesis_Method",
+        "Surface_Charge",
+        "Cell_Type",
+        "Cell_Tissue",
+        "Year",
+        "size_final",
+        "zeta_final",
+        "abs_zeta",
+        "Time (hr)",
+        "Concentration (ug/ml)",
+        "log_size",
+        "log_time",
+        "log_concentration",
+        "No_of_Cells (cells/well)",
+        "zeta_missing",
+        "cell_count_missing",
+        "coat_missing",
+        "surface_charge_missing"
+      ],
+      "strategies": [
+        "senp_only",
+        "general_zero_shot",
+        "general_to_senp"
+      ]
+    },
+    "data": {
+      "senp_rows": 434,
+      "senp_publication_groups": 24,
+      "general_rows": 3889,
+      "senp_input_sha256": "6e0c832f335993cdf3f08809dd311050a6ca82be35327a3ed364a1b663272e5d",
+      "general_input_sha256": "5cbf141f5d55b9c2b411e1e988ec14dc0255fe6e57b0ce87b2eb1884ce0a333f"
+    },
+    "metrics": [
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "random_forest",
+        "strategy": "general_to_senp",
+        "n_oof": 434,
+        "publication_groups": 24,
+        "mae": 20.29954484100311,
+        "rmse": 25.77110592697863,
+        "r2": -0.01672008927122226,
+        "fold_mae_sd": 5.009906561940086,
+        "fold_rmse_sd": 6.456980577281915,
+        "fold_r2_sd": 0.5034453856656447
+      },
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "random_forest",
+        "strategy": "general_zero_shot",
+        "n_oof": 434,
+        "publication_groups": 24,
+        "mae": 23.721218505754543,
+        "rmse": 30.960570404668722,
+        "r2": -0.4674158289058299,
+        "fold_mae_sd": 6.7285060712354845,
+        "fold_rmse_sd": 7.7484260840947465,
+        "fold_r2_sd": 0.6513183305621052
+      },
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "random_forest",
+        "strategy": "senp_only",
+        "n_oof": 434,
+        "publication_groups": 24,
+        "mae": 19.722837028574087,
+        "rmse": 24.982673127385137,
+        "r2": 0.04453869315834025,
+        "fold_mae_sd": 3.742260395432083,
+        "fold_rmse_sd": 4.875591072702516,
+        "fold_r2_sd": 0.3916525809066866
+      },
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "xgboost",
+        "strategy": "general_to_senp",
+        "n_oof": 434,
+        "publication_groups": 24,
+        "mae": 20.08347255056355,
+        "rmse": 25.487095078162277,
+        "r2": 0.005565985454417999,
+        "fold_mae_sd": 4.710617056218439,
+        "fold_rmse_sd": 5.153527987239641,
+        "fold_r2_sd": 0.4540653685387192
+      },
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "xgboost",
+        "strategy": "general_zero_shot",
+        "n_oof": 434,
+        "publication_groups": 24,
+        "mae": 23.443208954279324,
+        "rmse": 29.539753480277824,
+        "r2": -0.3358233360803129,
+        "fold_mae_sd": 4.882803552142733,
+        "fold_rmse_sd": 5.539637180909437,
+        "fold_r2_sd": 0.4096726236577571
+      },
+      {
+        "validation": "publication_grouped_outer_cv",
+        "model": "xgboost",
+        "strategy": "senp_only",
+        "n_oof": 434,
+        "publication_groups": 24,
+        "mae": 20.752519817615983,
+        "rmse": 26.086295427628837,
+        "r2": -0.041741845276432876,
+        "fold_mae_sd": 4.007180792947494,
+        "fold_rmse_sd": 4.351517436106334,
+        "fold_r2_sd": 0.41985616209878296
+      }
+    ],
+    "improvements": [
+      {
+        "model": "random_forest",
+        "strategy": "general_zero_shot",
+        "paired_rows": 434,
+        "publication_groups": 24,
+        "pooled_mae_delta": 3.9983814771804553,
+        "group_bootstrap_ci_low": -2.5918666632716456,
+        "group_bootstrap_ci_high": 5.016705937085105,
+        "improved": false
+      },
+      {
+        "model": "xgboost",
+        "strategy": "general_zero_shot",
+        "paired_rows": 434,
+        "publication_groups": 24,
+        "pooled_mae_delta": 2.69068913666334,
+        "group_bootstrap_ci_low": -2.1481160268194115,
+        "group_bootstrap_ci_high": 3.7760693578474775,
+        "improved": false
+      },
+      {
+        "model": "random_forest",
+        "strategy": "general_to_senp",
+        "paired_rows": 434,
+        "publication_groups": 24,
+        "pooled_mae_delta": 0.5767078124290241,
+        "group_bootstrap_ci_low": -2.7629567641738886,
+        "group_bootstrap_ci_high": 1.413576196196794,
+        "improved": false
+      },
+      {
+        "model": "xgboost",
+        "strategy": "general_to_senp",
+        "paired_rows": 434,
+        "publication_groups": 24,
+        "pooled_mae_delta": -0.6690472670524352,
+        "group_bootstrap_ci_low": -1.4174841075756925,
+        "group_bootstrap_ci_high": 1.3167991100098142,
+        "improved": false
+      }
+    ]
   }
 }

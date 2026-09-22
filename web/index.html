@@ -36,6 +36,22 @@
       <div class="panel-head"><h2>改进模型</h2><span class="unit">分组嵌套交叉验证</span></div>
       <div class="table-wrap"><table id="improved-table"><thead><tr><th>模型</th><th>特征</th><th>MAE</th><th>RMSE</th><th>R²</th><th>MAE变化</th><th>95%区间</th></tr></thead><tbody></tbody></table></div>
     </section>
+    <section class="panel panel-wide">
+      <div class="panel-head"><h2>剂量-时间交互消融</h2><span class="unit">严格分组嵌套交叉验证</span></div>
+      <p class="panel-note" id="dose-time-summary">—</p>
+      <div class="table-wrap"><table id="dose-time-table"><thead><tr><th>模型</th><th>特征</th><th>MAE</th><th>RMSE</th><th>R²</th><th>相对基线 MAE</th><th>95%区间</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="metric-grid" aria-label="transfer validation">
+      <article class="metric-card"><span>通用数据</span><strong id="transfer-general-rows">—</strong></article>
+      <article class="metric-card"><span>SeNP 数据</span><strong id="transfer-senp-rows">—</strong></article>
+      <article class="metric-card"><span>最佳迁移 MAE</span><strong id="transfer-best-mae">—</strong></article>
+      <article class="metric-card"><span>迁移结论</span><strong id="transfer-verdict">—</strong></article>
+    </section>
+    <section class="panel panel-wide">
+      <div class="panel-head"><h2>General → SeNP 迁移对照</h2><span class="unit">文献组外推验证</span></div>
+      <p class="panel-note" id="transfer-summary">—</p>
+      <div class="table-wrap"><table id="transfer-table"><thead><tr><th>模型</th><th>策略</th><th>MAE</th><th>RMSE</th><th>R²</th><th>相对 SeNP-only MAE</th><th>95%区间</th></tr></thead><tbody></tbody></table></div>
+    </section>
     <p class="error" id="error" hidden>dashboard data unavailable</p>
   </main>
   <script src="app.js" defer></script>

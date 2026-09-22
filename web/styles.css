@@ -10,7 +10,7 @@ h1, h2, p { margin: 0; } h1 { font-size: 20px; line-height: 1.2; } .topbar p { m
 .metric-card { padding: 16px; min-height: 96px; display: flex; flex-direction: column; justify-content: space-between; }
 .metric-card span, .unit { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
 .metric-card strong { font-size: 26px; font-weight: 650; line-height: 1; }
-.panel { padding: 16px; } .panel-wide { margin-bottom: 12px; }
+.panel { padding: 16px; } .panel-wide { margin-bottom: 12px; } .panel-note { margin: -4px 0 14px; color: var(--muted); font-size: 12px; }
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 h2 { font-size: 14px; font-weight: 680; text-transform: lowercase; }
 .table-wrap { overflow-x: auto; } table { width: 100%; border-collapse: collapse; font-size: 12px; }

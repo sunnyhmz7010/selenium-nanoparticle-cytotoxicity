@@ -69,8 +69,10 @@ def sync_dashboard() -> None:
     acceptance_path = ROOT / "results/report_reproduction/acceptance.json"
     audit_path = ROOT / "data/reproduction/audit.json"
     improved_path = ROOT / "results/improved_434/summary.json"
+    dose_time_path = ROOT / "results/dose_time_interaction/summary.json"
+    transfer_path = ROOT / "results/transfer_comparison/summary.json"
     target = ROOT / "web" / "data" / "dashboard.json"
-    required = (acceptance_path, audit_path, improved_path)
+    required = (acceptance_path, audit_path, improved_path, dose_time_path, transfer_path)
     missing = [path.relative_to(ROOT).as_posix() for path in required if not path.exists()]
     if missing:
         raise FileNotFoundError(f"缺少网页结果文件: {', '.join(missing)}")
@@ -78,6 +80,8 @@ def sync_dashboard() -> None:
     acceptance = json.loads(acceptance_path.read_text(encoding="utf-8"))
     audit = json.loads(audit_path.read_text(encoding="utf-8"))
     improved = json.loads(improved_path.read_text(encoding="utf-8"))
+    dose_time = json.loads(dose_time_path.read_text(encoding="utf-8"))
+    transfer = json.loads(transfer_path.read_text(encoding="utf-8"))
     payload = {
         "report_reproduction": {
             **acceptance,
@@ -86,6 +90,8 @@ def sync_dashboard() -> None:
             "report_values_are_targets_only": True,
         },
         "improved_434": improved,
+        "dose_time_interaction": dose_time,
+        "transfer_comparison": transfer,
     }
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -105,4 +111,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
