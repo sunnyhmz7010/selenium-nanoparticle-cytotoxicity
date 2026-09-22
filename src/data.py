@@ -24,6 +24,7 @@ BASELINE_FEATURES = [
     "Time (hr)",
     "Concentration (ug/ml)",
     "log_size",
+    "log_time",
     "log_concentration",
     "No_of_Cells (cells/well)",
     "zeta_missing",
@@ -102,7 +103,9 @@ def add_derived_features(frame: pd.DataFrame) -> pd.DataFrame:
     out["zeta_final"] = out["Zeta_in_Water (mV)"].fillna(out["Zeta_in_Medium (mV)"])
     out["abs_zeta"] = out["zeta_final"].abs()
     out["log_size"] = np.log1p(out["size_final"])
+    out["log_time"] = np.log1p(out["Time (hr)"])
     out["log_concentration"] = np.log1p(out["Concentration (ug/ml)"])
+    out["dose_time_interaction"] = out["log_concentration"] * out["log_time"]
     out["IC50_uM"] = out["IC50 (µM)"]
     out["Stability_weeks"] = out["Long-term Stability (weeks)"]
     out["Binding_Energy_Se3d"] = out["Binding Energy Se3d (eV)"]

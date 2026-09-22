@@ -48,4 +48,16 @@ def test_derived_features_can_be_built_before_endpoint_filtering():
 
     assert "size_final" in frame.columns
     assert "log_concentration" in frame.columns
+    assert "log_time" in frame.columns
+    assert "dose_time_interaction" in frame.columns
     assert len(frame) == 383
+
+
+def test_exposure_features_use_log_time_and_log_dose_interaction():
+    frame = add_derived_features(load_senp_dataset(DATA_PATH))
+    observed = frame["Time (hr)"].notna() & frame["Concentration (ug/ml)"].notna()
+
+    assert "log_time" in feature_groups()["baseline"]
+    assert frame.loc[observed, "log_time"].ge(0).all()
+    expected = frame.loc[observed, "log_time"] * frame.loc[observed, "log_concentration"]
+    assert frame.loc[observed, "dose_time_interaction"].equals(expected)

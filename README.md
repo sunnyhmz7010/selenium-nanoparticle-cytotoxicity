@@ -38,6 +38,7 @@ python -m pip install -r requirements.txt
 python scripts/run_experiments.py
 python scripts/reproduce_report.py
 python scripts/run_improved_434.py
+python scripts/run_dose_time_interaction.py
 python scripts/build_manifest.py
 python -m http.server 8000 --directory web
 ```
@@ -63,6 +64,8 @@ python -m http.server 8000 --directory web
 实际计算结果保存在 `results/report_reproduction/`，模型保存在 `models/report_reproduction/`，纳入和排除记录保存在 `data/reproduction/`。`acceptance.json` 分开记录计算值、报告目标值和差值。报告对应的 TabTransformer 训练代码及依赖版本未归档，因此不使用其他神经网络替代。
 
 `scripts/run_improved_434.py` 在同一434条数据上执行按文献分组的5×3嵌套交叉验证。预处理、特征选择和参数选择均限制在训练折内；结果保存在 `results/improved_434/`，六个最终模型保存在 `models/improved_434/`。当前最佳严格验证结果为IC50辅助XGBoost（OOF MAE 18.87，R² 0.142），但相对基础XGBoost的按文献组bootstrap MAE差值95%区间跨过0，因此不能认定为稳定改进。化学增强且不含IC50的配置没有降低MAE。
+
+`scripts/run_dose_time_interaction.py` 在相同的434条数据和publication-grouped nested CV设置下，比较基础特征与显式 `log_concentration × log_time` 交互项。该消融结果单独保存到 `results/dose_time_interaction/`，不并入网页主结果；当前交互项未显示稳定改善。
 
 全部36项论文修改建议的完成状态、实验结果、预期判断和未完成原因见 [`docs/improvement-recommendations-status.md`](docs/improvement-recommendations-status.md)。
 
@@ -117,4 +120,3 @@ python scripts/build_manifest.py
 <div align="center">
   <sub>Built with ❤️ by Sunny</sub>
 </div>
-

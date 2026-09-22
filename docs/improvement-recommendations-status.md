@@ -12,7 +12,7 @@
 | 4 | Phase II：实现General-to-SeNP迁移 | 部分完成 | 保留迁移策略历史产物，分开标记SeNP-only与迁移概念 | 尚无同分折、同参数预算下的严格迁移增益 | 未达到 | 历史代码没有明确保存迁移的是权重、表示还是预测结果 | 论文不宜笼统声称transfer learning有效 |
 | 5 | Phase III：建立低信息材料表示 | 部分完成 | 使用修饰信息、最终粒径和Zeta；缺失处理限制在训练折 | 修饰信息缺失7.37%；最终粒径缺失0.23%；Zeta缺失42.40%；三者完整225/434（51.84%） | 部分达到 | 粒径覆盖充分，但Zeta缺失较高，且缺少MW和统一修饰类别 | 可继续预测，不宜对Zeta机理作强解释 |
 | 6 | 修饰物使用Modifier Category和Molecular Weight，而非具体名称 | 未完成 | 当前只能使用`Coat/Functional Group`作为替代信息 | Modifier Category和Molecular Weight字段均完全不存在；修饰名称本身缺失7.37% | 尚无法验证 | 两个核心变量为整列缺失，统计插补不能创造真实类别和分子量 | 需回查文献并建立类别映射和MW表 |
-| 7 | Exposure使用log浓度、log时间及dose×time交互 | 部分完成 | 已使用log浓度和log时间；浓度、时间在434条中均无缺失 | 基础严格模型RF：MAE 19.33、R² 0.083；尚未完成显式dose×time交互消融 | 部分达到 | 基础暴露表示完整，但交互项尚未加入 | 该任务可直接用现有数据继续完成 |
+| 7 | Exposure使用log浓度、log时间及dose×time交互 | 部分完成 | 新增`log_time=log1p(Time)`和`dose_time_interaction=log_concentration×log_time`；在434条、24个文献组上完成5折外层/3折内层嵌套验证 | 基础RF：MAE 19.11、RMSE 24.12、R² 0.109；基础XGBoost：MAE 19.49、RMSE 23.97、R² 0.120；加入交互后RF：19.51、24.55、0.077，XGBoost：20.10、24.72、0.065 | 部分达到 | `log_time`已实现并纳入基础配置；交互项使点估计误差上升，尚无稳定增益 | 交互结果见`results/dose_time_interaction/`；不应把该消融写成性能提升 |
 | 8 | Biological Context结构化为物种、组织、正常/肿瘤和细胞类型 | 部分完成 | 使用Cell Type、Cell Tissue、Human/Animal和细胞系/原代字段 | 上述现有字段均为0%缺失；413条人源、21条动物，425条细胞系、9条原代 | 部分达到 | 字段覆盖完整，但Human/Animal较粗，且没有独立正常/肿瘤标签 | Cell Tissue中还混有部分疾病类型，需要人工标准化 |
 | 9 | Phase V：融合材料、暴露、生物环境及通用表示建立主模型 | 部分完成 | 建立RF和XGBoost基础模型，包含材料、暴露和细胞环境字段 | RF：MAE 19.33、RMSE 24.48、R² 0.083；XGBoost：19.72、24.42、0.087 | 部分达到 | 已完成统一表格模型，但未实现四分支融合，也未接入经验证的General表示 | 当前RF基础模型的MAE最低于无IC50主模型 |
 | 10 | Phase VI：比较Minimal Model与材料化学增强模型 | 已完成 | 在相同434条、相同外层文献折下比较基础与化学增强配置 | RF MAE 19.33→19.53；XGBoost 19.72→20.15 | 未达到 | 实验设计完成，但增强特征没有提高严格泛化性能 | 这是有效的阴性结果 |
@@ -37,7 +37,7 @@
 | 29 | Phase XIV：开展结构—性质—毒性分析 | 未开展 | 未伪造缺失结构属性 | 无M1/M2/M3对照结果 | 尚无法验证 | Modifier Category、MW及新材料毒性结果不完整 | 可在字段补齐后重新设计 |
 | 30 | 使用SHAP解释Modifier、MW、粒径和Zeta作用 | 未开展 | 当前只保存模型与选择日志 | 无SHAP结果 | 尚无法验证 | MW和Modifier Category完全缺失，Zeta缺失42.40% | 可先对现有字段做探索性SHAP，但不能回答完整建议 |
 | 31 | 比较SeNP-only与General→SeNP | 未完成严格对照 | 保留相关历史材料，但未在当前24个文献折上统一比较 | 无可信迁移增益值 | 未达到 | 缺少明确迁移接口及同预算对照 | 需要新增迁移模型实现，不只是延长训练时间 |
-| 32 | 比较Without与With dose-time interaction | 未开展 | 基础模型已包含log浓度和log时间 | 无交互消融结果 | 未达到 | 显式交互项尚未实现 | 现有434条浓度和时间均完整，可直接继续计算 |
+| 32 | 比较Without与With dose-time interaction | 已完成 | 运行独立入口`scripts/run_dose_time_interaction.py`，保持同一数据、文献分组、5×3嵌套CV和模型参数预算 | RF MAE变化+0.392，文献组bootstrap 95%区间[-0.072，1.102]；XGBoost MAE变化+0.605，区间[-0.199，1.016]；两个区间均跨0 | 达到 | 交互项没有显示稳定改善，结果应作为阴性消融报告 | 产物位于`results/dose_time_interaction/` |
 | 33 | 比较Random CV与Publication-grouped CV | 已完成 | 保留历史随机三折结果，并生成严格文献分组结果 | 历史增强XGBoost MAE 8.60、全量R² 0.966；严格IC50辅助XGBoost OOF MAE 18.87、R² 0.142 | 达到 | 分组后性能明显下降，证明随机拆分存在明显乐观性 | 两者数据切分和R²口径不同，不能只比较单一数值 |
 | 34 | 将Historical Validation与Prospective Validation分开 | 部分完成 | 历史结果已有独立目录、模型和网页区域 | 历史验证完成，前瞻指标为空 | 部分达到 | 结构已分开，但没有前瞻实验数据 | 后续不得把历史OOF结果填入前瞻栏目 |
 | 35 | Few-shot：每条24点曲线用4点校准并预测剩余20点 | 未开展 | 未使用历史数据伪造few-shot实验 | 无结果 | 尚无法验证 | 必须先获得完整24点新材料曲线 | 应在zero-shot结果之后单独报告 |
@@ -79,4 +79,3 @@
 | Cell Type/Tissue/Human-Animal/Cell Line-Primary | 0/434 | 0% | 可继续建模，但语义粒度仍需标准化 |
 
 不建议删除所有含缺失值的记录：要求修饰信息、最终粒径和Zeta同时完整时只剩225条，即损失48.16%的数据。当前严格实验采用训练折内插补和缺失标志，能够保留434条并避免验证集参与插补值计算。
-

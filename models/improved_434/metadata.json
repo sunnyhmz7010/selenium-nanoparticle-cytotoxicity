@@ -18,6 +18,7 @@
       "Time (hr)",
       "Concentration (ug/ml)",
       "log_size",
+      "log_time",
       "log_concentration",
       "No_of_Cells (cells/well)",
       "zeta_missing",
@@ -30,28 +31,28 @@
       "max_depth": null,
       "min_samples_leaf": 4
     },
-    "inner_mae": 18.885736588909726,
+    "inner_mae": 19.011072000524695,
     "selection_rows": [
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.082782058408206,
-        "inner_mae_sd": 2.6023483863519847
+        "inner_mae": 19.05789859353545,
+        "inner_mae_sd": 1.399444475860596
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 18.979455237861313,
-        "inner_mae_sd": 2.6028674967091647
+        "inner_mae": 19.02735314147701,
+        "inner_mae_sd": 1.5531541827064972
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.885736588909726,
-        "inner_mae_sd": 2.4382261729694905
+        "inner_mae": 19.011072000524695,
+        "inner_mae_sd": 1.1773984830984239
       }
     ]
   },
@@ -74,6 +75,7 @@
       "Time (hr)",
       "Concentration (ug/ml)",
       "log_size",
+      "log_time",
       "log_concentration",
       "No_of_Cells (cells/well)",
       "zeta_missing",
@@ -83,31 +85,31 @@
     ],
     "params": {
       "n_estimators": 250,
-      "max_depth": 3,
+      "max_depth": 2,
       "learning_rate": 0.05
     },
-    "inner_mae": 19.45199604256339,
+    "inner_mae": 19.44513646233706,
     "selection_rows": [
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.005177347146688,
-        "inner_mae_sd": 2.1784571916399877
+        "inner_mae": 19.675474091211957,
+        "inner_mae_sd": 1.4443611644551988
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.098155491264993,
-        "inner_mae_sd": 2.555825933313633
+        "inner_mae": 19.44513646233706,
+        "inner_mae_sd": 1.5463925736902753
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.45199604256339,
-        "inner_mae_sd": 2.72403945956157
+        "inner_mae": 19.497598195376828,
+        "inner_mae_sd": 2.0096046636671057
       }
     ]
   },
@@ -130,149 +132,147 @@
       "Time (hr)",
       "Concentration (ug/ml)",
       "log_size",
+      "log_time",
       "log_concentration",
       "No_of_Cells (cells/well)",
       "zeta_missing",
       "cell_count_missing",
       "coat_missing",
       "surface_charge_missing",
-      "Elemental_Se_wt",
-      "Stability_weeks",
-      "Binding_Energy_Se3d",
-      "Crystal_Code"
+      "Stability_weeks"
     ],
     "params": {
       "n_estimators": 250,
       "max_depth": null,
       "min_samples_leaf": 4
     },
-    "inner_mae": 18.858509639675066,
+    "inner_mae": 18.958093584570033,
     "selection_rows": [
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.082782058408206,
-        "inner_mae_sd": 2.6023483863519847
+        "inner_mae": 19.05789859353545,
+        "inner_mae_sd": 1.399444475860596
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 18.979455237861313,
-        "inner_mae_sd": 2.6028674967091647
+        "inner_mae": 19.02735314147701,
+        "inner_mae_sd": 1.5531541827064972
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.885736588909726,
-        "inner_mae_sd": 2.4382261729694905
+        "inner_mae": 19.011072000524695,
+        "inner_mae_sd": 1.1773984830984239
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.07819366471664,
-        "inner_mae_sd": 2.610811198311515
+        "inner_mae": 19.21734567196661,
+        "inner_mae_sd": 1.5111963111587017
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.130010886580603,
-        "inner_mae_sd": 2.5998679287310225
+        "inner_mae": 19.2631476949164,
+        "inner_mae_sd": 1.500437450372563
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.89341069042504,
-        "inner_mae_sd": 2.1578642842410805
+        "inner_mae": 19.09801290134438,
+        "inner_mae_sd": 1.259435876359848
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.00083677632393,
-        "inner_mae_sd": 2.6328338618076743
+        "inner_mae": 19.058117371479696,
+        "inner_mae_sd": 1.5331711198175948
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.031029609564396,
-        "inner_mae_sd": 2.6083790947752576
+        "inner_mae": 19.096535542671067,
+        "inner_mae_sd": 1.4677544145495836
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.910270815446825,
-        "inner_mae_sd": 2.2340700173306365
+        "inner_mae": 18.958093584570033,
+        "inner_mae_sd": 1.1947414300847827
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.062558108193922,
-        "inner_mae_sd": 2.610943752581476
+        "inner_mae": 19.112319264554344,
+        "inner_mae_sd": 1.3453660834068053
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.030627383735325,
-        "inner_mae_sd": 2.5325236649093226
+        "inner_mae": 19.16626589844515,
+        "inner_mae_sd": 1.4196874876414352
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 19.04542648233523,
-        "inner_mae_sd": 2.2259205789564738
+        "inner_mae": 18.96599437734771,
+        "inner_mae_sd": 1.1940714837261146
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.010331838134224,
-        "inner_mae_sd": 2.658220399537356
+        "inner_mae": 19.14160534011965,
+        "inner_mae_sd": 1.3192943286948233
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.035501040822158,
-        "inner_mae_sd": 2.5910467809797573
+        "inner_mae": 19.223400691780512,
+        "inner_mae_sd": 1.3836034082186988
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.899002640688867,
-        "inner_mae_sd": 2.3065907108087553
+        "inner_mae": 19.022530819521137,
+        "inner_mae_sd": 1.2524964151639342
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.08510533382614,
-        "inner_mae_sd": 2.6665067725151097
+        "inner_mae": 19.140210520863857,
+        "inner_mae_sd": 1.6182495358705253
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.052292832180125,
-        "inner_mae_sd": 2.610602819015515
+        "inner_mae": 19.083752606850396,
+        "inner_mae_sd": 1.6077169558960078
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.858509639675066,
-        "inner_mae_sd": 2.1316884540182945
+        "inner_mae": 19.041479855706047,
+        "inner_mae_sd": 1.3471792617202534
       }
     ]
   },
@@ -295,145 +295,147 @@
       "Time (hr)",
       "Concentration (ug/ml)",
       "log_size",
+      "log_time",
       "log_concentration",
       "No_of_Cells (cells/well)",
       "zeta_missing",
       "cell_count_missing",
       "coat_missing",
-      "surface_charge_missing"
+      "surface_charge_missing",
+      "Stability_weeks"
     ],
     "params": {
       "n_estimators": 250,
-      "max_depth": 3,
+      "max_depth": 2,
       "learning_rate": 0.05
     },
-    "inner_mae": 19.45199604256339,
+    "inner_mae": 19.203788392560238,
     "selection_rows": [
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.005177347146688,
-        "inner_mae_sd": 2.1784571916399877
+        "inner_mae": 19.675474091211957,
+        "inner_mae_sd": 1.4443611644551988
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.098155491264993,
-        "inner_mae_sd": 2.555825933313633
+        "inner_mae": 19.44513646233706,
+        "inner_mae_sd": 1.5463925736902753
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.45199604256339,
-        "inner_mae_sd": 2.72403945956157
+        "inner_mae": 19.497598195376828,
+        "inner_mae_sd": 2.0096046636671057
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.21105669918767,
-        "inner_mae_sd": 1.864972311047492
+        "inner_mae": 19.65317545347104,
+        "inner_mae_sd": 1.567940259304905
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.24632317329397,
-        "inner_mae_sd": 2.2939667816134617
+        "inner_mae": 19.466036023674643,
+        "inner_mae_sd": 1.6931634653762209
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.84771086882327,
-        "inner_mae_sd": 2.4207652780510727
+        "inner_mae": 19.774444403498567,
+        "inner_mae_sd": 1.7974604246296777
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.017341191626755,
-        "inner_mae_sd": 1.764815529379801
+        "inner_mae": 19.39873393362296,
+        "inner_mae_sd": 1.502649750550554
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.028424542691365,
-        "inner_mae_sd": 2.279169676759525
+        "inner_mae": 19.203788392560238,
+        "inner_mae_sd": 1.5480456691342876
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.62300407412835,
-        "inner_mae_sd": 2.3783499029742745
+        "inner_mae": 19.707257557149134,
+        "inner_mae_sd": 1.6151735601790538
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.176835479414787,
-        "inner_mae_sd": 1.9830754987637789
+        "inner_mae": 19.53493855682461,
+        "inner_mae_sd": 1.6496137851271069
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.1915792951864,
-        "inner_mae_sd": 2.4729726095014337
+        "inner_mae": 19.32163777810069,
+        "inner_mae_sd": 1.6895043834962462
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.69917632463,
-        "inner_mae_sd": 2.504690051773949
+        "inner_mae": 19.871543116760744,
+        "inner_mae_sd": 1.7298348528560339
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.11899962907063,
-        "inner_mae_sd": 1.7610869829257496
+        "inner_mae": 19.46981684111331,
+        "inner_mae_sd": 1.520765505889382
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.094362952957056,
-        "inner_mae_sd": 2.253237050063146
+        "inner_mae": 19.29345037004318,
+        "inner_mae_sd": 1.5399091498199147
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.56398261134317,
-        "inner_mae_sd": 2.3882707119607827
+        "inner_mae": 19.700312169017767,
+        "inner_mae_sd": 1.4860794561848276
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.146897883014507,
-        "inner_mae_sd": 1.8794916227948923
+        "inner_mae": 19.855961998677646,
+        "inner_mae_sd": 1.5351822913256212
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.122818133177585,
-        "inner_mae_sd": 2.3872288897731657
+        "inner_mae": 19.626437071311823,
+        "inner_mae_sd": 1.585062369642215
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.921828161358984,
-        "inner_mae_sd": 2.455997807918459
+        "inner_mae": 19.860129878739595,
+        "inner_mae_sd": 1.7129695378501162
       }
     ]
   },
@@ -456,6 +458,7 @@
       "Time (hr)",
       "Concentration (ug/ml)",
       "log_size",
+      "log_time",
       "log_concentration",
       "No_of_Cells (cells/well)",
       "zeta_missing",
@@ -465,182 +468,183 @@
       "Elemental_Se_wt",
       "Stability_weeks",
       "Binding_Energy_Se3d",
-      "Crystal_Code"
+      "Crystal_Code",
+      "IC50_uM"
     ],
     "params": {
       "n_estimators": 250,
       "max_depth": null,
       "min_samples_leaf": 4
     },
-    "inner_mae": 18.858509639675066,
+    "inner_mae": 18.86955365318768,
     "selection_rows": [
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.082782058408206,
-        "inner_mae_sd": 2.6023483863519847
+        "inner_mae": 19.05789859353545,
+        "inner_mae_sd": 1.399444475860596
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 18.979455237861313,
-        "inner_mae_sd": 2.6028674967091647
+        "inner_mae": 19.02735314147701,
+        "inner_mae_sd": 1.5531541827064972
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.885736588909726,
-        "inner_mae_sd": 2.4382261729694905
+        "inner_mae": 19.011072000524695,
+        "inner_mae_sd": 1.1773984830984239
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.583092487735552,
-        "inner_mae_sd": 2.8132067051530982
+        "inner_mae": 19.293915802252506,
+        "inner_mae_sd": 2.596424158489773
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.625095035186593,
-        "inner_mae_sd": 2.866249312332809
+        "inner_mae": 19.217244273122066,
+        "inner_mae_sd": 2.5289865322244447
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 19.08600967638697,
-        "inner_mae_sd": 2.058218815375049
+        "inner_mae": 18.96188120749853,
+        "inner_mae_sd": 1.8921155261282898
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.07819366471664,
-        "inner_mae_sd": 2.610811198311515
+        "inner_mae": 19.21734567196661,
+        "inner_mae_sd": 1.5111963111587017
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.130010886580603,
-        "inner_mae_sd": 2.5998679287310225
+        "inner_mae": 19.2631476949164,
+        "inner_mae_sd": 1.500437450372563
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.89341069042504,
-        "inner_mae_sd": 2.1578642842410805
+        "inner_mae": 19.09801290134438,
+        "inner_mae_sd": 1.259435876359848
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.00083677632393,
-        "inner_mae_sd": 2.6328338618076743
+        "inner_mae": 19.058117371479696,
+        "inner_mae_sd": 1.5331711198175948
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.031029609564396,
-        "inner_mae_sd": 2.6083790947752576
+        "inner_mae": 19.096535542671067,
+        "inner_mae_sd": 1.4677544145495836
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.910270815446825,
-        "inner_mae_sd": 2.2340700173306365
+        "inner_mae": 18.958093584570033,
+        "inner_mae_sd": 1.1947414300847827
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.062558108193922,
-        "inner_mae_sd": 2.610943752581476
+        "inner_mae": 19.112319264554344,
+        "inner_mae_sd": 1.3453660834068053
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.030627383735325,
-        "inner_mae_sd": 2.5325236649093226
+        "inner_mae": 19.16626589844515,
+        "inner_mae_sd": 1.4196874876414352
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 19.04542648233523,
-        "inner_mae_sd": 2.2259205789564738
+        "inner_mae": 18.96599437734771,
+        "inner_mae_sd": 1.1940714837261146
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.010331838134224,
-        "inner_mae_sd": 2.658220399537356
+        "inner_mae": 19.14160534011965,
+        "inner_mae_sd": 1.3192943286948233
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.035501040822158,
-        "inner_mae_sd": 2.5910467809797573
+        "inner_mae": 19.223400691780512,
+        "inner_mae_sd": 1.3836034082186988
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.899002640688867,
-        "inner_mae_sd": 2.3065907108087553
+        "inner_mae": 19.022530819521137,
+        "inner_mae_sd": 1.2524964151639342
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.08510533382614,
-        "inner_mae_sd": 2.6665067725151097
+        "inner_mae": 19.140210520863857,
+        "inner_mae_sd": 1.6182495358705253
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.052292832180125,
-        "inner_mae_sd": 2.610602819015515
+        "inner_mae": 19.083752606850396,
+        "inner_mae_sd": 1.6077169558960078
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.858509639675066,
-        "inner_mae_sd": 2.1316884540182945
+        "inner_mae": 19.041479855706047,
+        "inner_mae_sd": 1.3471792617202534
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 2}",
-        "inner_mae": 19.575826572703907,
-        "inner_mae_sd": 2.864252271209791
+        "inner_mae": 19.143488374641976,
+        "inner_mae_sd": 2.3872235174078464
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': 10, 'min_samples_leaf': 2}",
-        "inner_mae": 19.54594592535614,
-        "inner_mae_sd": 2.8137833414285476
+        "inner_mae": 19.085046742680547,
+        "inner_mae_sd": 2.3673940408945677
       },
       {
         "model": "random_forest",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': None, 'min_samples_leaf': 4}",
-        "inner_mae": 18.907484380021042,
-        "inner_mae_sd": 1.7874615340905187
+        "inner_mae": 18.86955365318768,
+        "inner_mae_sd": 1.885009864918666
       }
     ]
   },
@@ -663,12 +667,17 @@
       "Time (hr)",
       "Concentration (ug/ml)",
       "log_size",
+      "log_time",
       "log_concentration",
       "No_of_Cells (cells/well)",
       "zeta_missing",
       "cell_count_missing",
       "coat_missing",
       "surface_charge_missing",
+      "Elemental_Se_wt",
+      "Stability_weeks",
+      "Binding_Energy_Se3d",
+      "Crystal_Code",
       "IC50_uM"
     ],
     "params": {
@@ -676,175 +685,175 @@
       "max_depth": 2,
       "learning_rate": 0.05
     },
-    "inner_mae": 18.49257481497062,
+    "inner_mae": 17.74331528708213,
     "selection_rows": [
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.005177347146688,
-        "inner_mae_sd": 2.1784571916399877
+        "inner_mae": 19.675474091211957,
+        "inner_mae_sd": 1.4443611644551988
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.098155491264993,
-        "inner_mae_sd": 2.555825933313633
+        "inner_mae": 19.44513646233706,
+        "inner_mae_sd": 1.5463925736902753
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.45199604256339,
-        "inner_mae_sd": 2.72403945956157
+        "inner_mae": 19.497598195376828,
+        "inner_mae_sd": 2.0096046636671057
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 18.49257481497062,
-        "inner_mae_sd": 1.575210410196652
+        "inner_mae": 17.76158467106436,
+        "inner_mae_sd": 1.5889149766210167
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 18.708527771970473,
-        "inner_mae_sd": 2.253709701666065
+        "inner_mae": 17.811391980174857,
+        "inner_mae_sd": 1.84648144893527
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 20.116013252913575,
-        "inner_mae_sd": 3.3121962501619926
+        "inner_mae": 18.97837628753462,
+        "inner_mae_sd": 2.1221614448088193
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.21105669918767,
-        "inner_mae_sd": 1.864972311047492
+        "inner_mae": 19.65317545347104,
+        "inner_mae_sd": 1.567940259304905
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.24632317329397,
-        "inner_mae_sd": 2.2939667816134617
+        "inner_mae": 19.466036023674643,
+        "inner_mae_sd": 1.6931634653762209
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.84771086882327,
-        "inner_mae_sd": 2.4207652780510727
+        "inner_mae": 19.774444403498567,
+        "inner_mae_sd": 1.7974604246296777
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.017341191626755,
-        "inner_mae_sd": 1.764815529379801
+        "inner_mae": 19.39873393362296,
+        "inner_mae_sd": 1.502649750550554
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.028424542691365,
-        "inner_mae_sd": 2.279169676759525
+        "inner_mae": 19.203788392560238,
+        "inner_mae_sd": 1.5480456691342876
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Stability_weeks",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.62300407412835,
-        "inner_mae_sd": 2.3783499029742745
+        "inner_mae": 19.707257557149134,
+        "inner_mae_sd": 1.6151735601790538
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.176835479414787,
-        "inner_mae_sd": 1.9830754987637789
+        "inner_mae": 19.53493855682461,
+        "inner_mae_sd": 1.6496137851271069
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.1915792951864,
-        "inner_mae_sd": 2.4729726095014337
+        "inner_mae": 19.32163777810069,
+        "inner_mae_sd": 1.6895043834962462
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Binding_Energy_Se3d",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.69917632463,
-        "inner_mae_sd": 2.504690051773949
+        "inner_mae": 19.871543116760744,
+        "inner_mae_sd": 1.7298348528560339
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.11899962907063,
-        "inner_mae_sd": 1.7610869829257496
+        "inner_mae": 19.46981684111331,
+        "inner_mae_sd": 1.520765505889382
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.094362952957056,
-        "inner_mae_sd": 2.253237050063146
+        "inner_mae": 19.29345037004318,
+        "inner_mae_sd": 1.5399091498199147
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.56398261134317,
-        "inner_mae_sd": 2.3882707119607827
+        "inner_mae": 19.700312169017767,
+        "inner_mae_sd": 1.4860794561848276
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.146897883014507,
-        "inner_mae_sd": 1.8794916227948923
+        "inner_mae": 19.855961998677646,
+        "inner_mae_sd": 1.5351822913256212
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 20.122818133177585,
-        "inner_mae_sd": 2.3872288897731657
+        "inner_mae": 19.626437071311823,
+        "inner_mae_sd": 1.585062369642215
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 19.921828161358984,
-        "inner_mae_sd": 2.455997807918459
+        "inner_mae": 19.860129878739595,
+        "inner_mae_sd": 1.7129695378501162
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
         "params": "{'n_estimators': 150, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 18.84503495962988,
-        "inner_mae_sd": 2.1409177698245023
+        "inner_mae": 17.74331528708213,
+        "inner_mae_sd": 1.488028261525663
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': 2, 'learning_rate': 0.05}",
-        "inner_mae": 19.172340117632356,
-        "inner_mae_sd": 2.7712988457433525
+        "inner_mae": 17.924718772978313,
+        "inner_mae_sd": 2.048923007178397
       },
       {
         "model": "xgboost",
-        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
+        "candidate_features": "Coat/Functional Group+Synthesis_Method+Surface_Charge+Cell_Type+Cell_Tissue+Year+size_final+zeta_final+abs_zeta+Time (hr)+Concentration (ug/ml)+log_size+log_time+log_concentration+No_of_Cells (cells/well)+zeta_missing+cell_count_missing+coat_missing+surface_charge_missing+Elemental_Se_wt+Stability_weeks+Binding_Energy_Se3d+Crystal_Code+IC50_uM",
         "params": "{'n_estimators': 250, 'max_depth': 3, 'learning_rate': 0.05}",
-        "inner_mae": 20.152561665925948,
-        "inner_mae_sd": 3.658078561565462
+        "inner_mae": 18.592557980182985,
+        "inner_mae_sd": 2.5294523839456766
       }
     ]
   }

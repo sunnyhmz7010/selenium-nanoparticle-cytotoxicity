@@ -1,17 +1,7 @@
 \section{结论}
 
-本文围绕纳米硒细胞毒性预测任务，构建了由基准数据集模型比较、硒纳米颗粒专用建模以及增强特征自动筛选组成的研究流程。研究结果表明，在大规模异质纳米颗粒表格数据上，深度表格模型与树模型均能够完成有效预测；而在样本规模有限且材料类型相对固定的硒纳米颗粒数据场景下，树模型表现出更高的稳定性和适用性。
+本文建立了一个可复现的纳米硒细胞毒性建模流程，包含数据审计、按文献分组的嵌套交叉验证、无泄漏预处理和结果产物归档。严格重建使用 434 条记录和 24 个文献组；无 IC50 的随机森林基础模型 OOF MAE 为 19.11\%、RMSE 为 24.12\%、$R^2=0.109$，XGBoost 分别为 19.49\%、23.97\% 和 0.120。
 
-在硒纳米颗粒专用数据集中，383 条有效记录来源于 43 篇文献\cite{chen_selenium_2008, li_reversal_2011, zheng_sialic_2011, liu_selenium_2012, wu_surface_2012, chen_surface_2012,
-  yu_positive_2012, chen_peg-nanolized_2012, pi_pathway_2013, wu_induction_2013, feng_differential_2014,
-  huang_selective_2013, li_functionalized_2013, zhang_enhancement_2013, jiang_gracilaria_2014, yu_ph-responsive_2014,
-  zeng_construction_2015, liu_sequentially_2016, liu_facile_2016, yu_x-ray-responsive_2016, fu_rgd_2016,
-  fang_targeting_2017, chen_efficient_2018, fang_dualtargeted_2018, huang_autophagy_2018, liu_highly_2018,
-  wang_regulating_2016, hu_selenium_2019, zeng_potentiation_2019, huang_dual-targeting_2019, huang_highly_2019,
-  zhang_systematic_2019, zheng_thermosensitive_2019, huang_chiralitydriven_2020,
-  yang_lentinan-functionalized_2020, liu_rapid_2021, an_functionalized_2021, song_translational_2021,
-  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}，时间跨度为 2008--2022 年。基础特征能够提供初步预测能力，而引入元素 Se 含量、长期稳定性、结合能 Se3d、晶型编码及 IC50 等增强变量后，模型拟合能力进一步改善。其中，XGBoost 在含增强变量设置下取得最高回归结果；但由于该设置包含与毒理终点天然相关的 IC50，该结果更适合作为辅助分析和机理增强参考。随机森林则在精度、稳健性和可解释性之间保持了较好的平衡，更适合作为后续外部验证与工程实现中的比较基线。
+加入元素 Se 含量、稳定性、结合能 Se3d 和晶型指标没有带来稳定的误差降低；显式 log 剂量--log 时间交互项的点估计也变差，按文献组 bootstrap 区间跨越 0。这些阴性结果说明，当前归档数据不足以支持化学增强或交互项改善文献外泛化的结论。
 
-特征筛选结果进一步说明，表现较优的增强变量组合并不需要依赖全部候选项，仅使用 IC50、元素 Se 含量、长期稳定性和结合能 Se3d 即可达到接近全特征集的预测精度。与此同时，这一结果也提示应将 IC50 与材料本征化学特征区分解释：前者更接近毒理响应相关辅助信息，后者则更能体现单一材料体系中可迁移、可积累的特征工程价值。因此，面向后续数据采集与实验设计，仍应优先关注能够反映材料本征化学属性的关键变量。
-
-总体而言，本研究为纳米硒毒性预测平台建设提供了较为清晰的数据整理、模型比较和特征筛选路径。后续工作仍需结合新增实验数据和外部验证样本，进一步检验不依赖响应相关辅助变量时模型在独立批次和更复杂应用场景中的泛化能力。
+IC50 辅助 XGBoost 的严格指标在数值上最好（MAE 18.35\%、RMSE 23.25\%、$R^2=0.172$），但 IC50 与响应终点相关，且配对改进区间跨越 0。因此它只能作为敏感性参考，不能作为前瞻部署模型。外部验证仍需在湿实验前冻结预测、补齐材料表征，并收集不把实验 IC50 作为输入的独立剂量--反应数据；当前仓库还缺少修饰分类、分子量、配方标识和前瞻实验字段。

@@ -1,0 +1,3 @@
+model,baseline_feature_set,variant_feature_set,paired_rows,publication_groups,pooled_mae_delta,group_mean_mae_delta,group_bootstrap_ci_low,group_bootstrap_ci_high,improved
+random_forest,baseline,dose_time_interaction,434,24,0.3920161193587954,0.4148651843961469,-0.07220269345581384,1.1024117564580405,False
+xgboost,baseline,dose_time_interaction,434,24,0.6046907521612634,0.3882774041598845,-0.1988132943766592,1.0156909074344096,False
