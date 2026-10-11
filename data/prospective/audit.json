@@ -1,0 +1,64 @@
+{
+  "source": "experimental_huvec_original.xlsx",
+  "source_sha256": "74a2daceb5c99134532d64596ebb0a58b6fd2d3a771a8060da2f76ba8259714d",
+  "csv": "experimental_huvec_dose_time.csv",
+  "csv_sha256": "c7cb5dba4db2bb2b337d3f514d873f98b392f05e7144efc51f49edacfe5a5b67",
+  "source_headers": [
+    "药物类型",
+    "粒径（nm）",
+    "zeta电位（mv）",
+    "细胞类型",
+    "药物浓度（μm）",
+    "处理时间（h）",
+    "存活率（%）"
+  ],
+  "csv_fields": [
+    "nanoparticle",
+    "size_nm",
+    "zeta_mV",
+    "cell_type",
+    "concentration_reported",
+    "time_h",
+    "viability_percent"
+  ],
+  "rows": 351,
+  "materials": [
+    "CS-SeNPs",
+    "Glucose-SeNPs",
+    "LET-SeNPs",
+    "PAH-SeNPs",
+    "PEG-SeNPs",
+    "PEI-SeNPs",
+    "PVP-SeNPs",
+    "Sucrose-SeNPs",
+    "TW80-SeNPs"
+  ],
+  "concentrations_reported": [
+    "0",
+    "0.25",
+    "0.5",
+    "1",
+    "2",
+    "4",
+    "8",
+    "16",
+    "32",
+    "64",
+    "128",
+    "256",
+    "512"
+  ],
+  "times_h": [
+    24,
+    48,
+    72
+  ],
+  "empty_sheets": [
+    "Sheet2",
+    "Sheet3"
+  ],
+  "missing_cells": 0,
+  "duplicate_condition_keys": 0,
+  "concentration_unit_status": "原表为μm，含义与计量基准待确认；未换算为μM或μg/mL",
+  "replicate_status": "每条件一个报告值；原始重复孔数量和汇总方式未提供"
+}
