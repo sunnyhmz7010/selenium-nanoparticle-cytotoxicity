@@ -36,11 +36,22 @@ python scripts/run_dose_time_interaction.py
 
 `src/` 是这些入口及保存模型的代码依赖，必须保留。`requirements.txt` 保留运行依赖，移除已删除测试使用的 pytest，并补列读取 XLSX 所需的 openpyxl。版本范围不是原模型训练环境的精确锁定，跨版本加载 joblib 模型需要核验兼容性。
 
-## 新增351条实验数据的归档缺口
+## 新增351条实验数据归档
 
-本次整理时，先前提供的 `实验数据.xlsx` 已无法从原路径读取，也未在百度同步目录中找到同名工作簿。因此本次没有创建或上传其 CSV，不能用之前的汇总结果反向拼造原始记录。
+已从用户重新提供的 `C:\Users\Sunny\下载\实验数据.xlsx` 归档：
 
-`improvement-recommendations-status.md` 和 `paper-revision-guidance.md` 中的新实验结论仍属于先前分析记录，不代表仓库已有对应原始表、绘图文件或可复现的分析脚本。需重新提供原始文件后才能完成这一部分归档。浓度单位也需核对原始表头，不能未经核实标记为 µg/mL。
+- `data/prospective/experimental_huvec_original.xlsx`：原始文件逐字节副本。
+- `data/prospective/experimental_huvec_dose_time.csv`：Sheet1的351条记录，原始数值文本保留，不插补、不换算、不裁剪存活率。
+- `data/prospective/audit.json`：原始表头、字段映射、原始文件与CSV的SHA256、覆盖和完整性检查。
+- `scripts/archive_huvec_data.py`：标准库转换入口，运行 `python scripts/archive_huvec_data.py` 可重新生成CSV和审计文件。
+
+核验结果：9种材料、HUVEC、24/48/72 h、13个浓度，27组材料-时间组合均完整；无空值和重复条件，Sheet2、Sheet3为空。
+
+浓度原表头为“药物浓度（μm）”，不是已确认的μg/mL。CSV采用中性字段 `concentration_reported`，待确认单位含义及其是否按元素硒计量后再作换算。既有浓度和表观IC50数值应按原始浓度尺度解读。
+
+每条件只有一个报告值，未提供重复孔或汇总方式；不能据此断言实验未做重复，也不能计算重复实验误差条。此前两份指导/状态文档中的“无重复”应按“未提供重复数据”理解。
+
+本次完成的是原始数据及转换流程归档。既有汇总分析不等于已归档绘图文件或模型外部预测结果；相关分析产物仍需单独生成。
 
 ## 清理范围
 

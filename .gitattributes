@@ -1,2 +1,6 @@
 # 论文源文件保留基线 commit 的原始换行字节，避免跨平台 checkout 改写论文内容。
 paper/** -text
+# 数据审计使用文件字节哈希，跨平台检出时统一保持LF。
+data/prospective/*.csv text eol=lf
+data/prospective/*.json text eol=lf
+data/prospective/*.xlsx binary
