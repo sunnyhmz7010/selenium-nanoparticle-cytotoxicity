@@ -16,7 +16,6 @@ if str(ROOT) not in sys.path:
 from src.data import feature_groups  # noqa: E402
 from src.evaluation import fit_final_pipeline, run_nested_grouped_cv, write_evaluation_bundle  # noqa: E402
 from src.report_reproduction import load_report_source, prepare_improved_analysis  # noqa: E402
-from scripts.build_manifest import sync_dashboard  # noqa: E402
 
 
 INPUT_PATH = ROOT / "data" / "senp" / "纳米硒毒性预测验证集数据集.xlsx"
@@ -166,7 +165,6 @@ def main(argv: list[str] | None = None) -> int:
         },
     }
     (RESULTS_DIR / "summary.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    sync_dashboard()
     print(json.dumps({"rows": len(analysis), "groups": int(analysis["group_id"].nunique()), "metrics": records(metrics), "improvements": records(improvements)}, ensure_ascii=False, indent=2))
     return 0
 
