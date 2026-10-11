@@ -21,7 +21,6 @@ from src.report_reproduction import (  # noqa: E402
     run_tree_model,
     search_feature_combinations,
 )
-from scripts.build_manifest import sync_dashboard  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -100,7 +99,6 @@ def main() -> int:
     }
     write_json(result_dir / "acceptance.json", comparison)
 
-    sync_dashboard()
     print(json.dumps({"audit": audit, "acceptance": comparison}, ensure_ascii=False, indent=2))
     return 0
 
