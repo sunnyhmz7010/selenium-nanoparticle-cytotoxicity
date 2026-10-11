@@ -1,0 +1,102 @@
+\section{RESULTS AND DISCUSSION}
+
+\paragraph{Model Benchmarking on the Multi-Type Nanoparticle Dataset.}
+To establish a rigorous empirical baseline, we first evaluated six model architectures on a large-scale multi-type nanoparticle toxicity dataset, comprising Random Forest \cite{breiman2001random}, XGBoost \cite{chen2016xgboost}, ABRF \cite{gromov2022attention}, LARF \cite{gromov2022larf}, TabTransformer \cite{huang2020tabtransformer}, and distilled TabTransformer \cite{hinton2015distilling}. This benchmark repository, curated by Masarkar et al. \cite{masarkar2024}, encompasses metals, metal oxides, polymers, carbon-based, and inorganic nanomaterials. Following data curation, 4,102 validated entries were retained and partitioned into a training set of 3,281 records and a test set of 821 records according to a 7:3 ratio. Input features encompass exposure concentration, incubation time, nanomaterial category, primary particle size, zeta potential, cell lineage, and assay format.
+
+Regression results are summarized in Table~\ref{tab:benchmark_regression}. TabTransformer yielded the highest coefficient of determination ($R^2 = 0.768$), with an MAE of 10.30\% and an RMSE of 14.97\%. XGBoost and Random Forest achieved comparable results, with $R^2$ values of 0.752 and 0.749, respectively. The attention-augmented ensembles, ABRF and LARF, failed to surpass conventional tree-based architectures, whereas the distilled TabTransformer suffered a marked drop in predictive performance.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison of regression performance on the multi-type nanoparticle benchmark dataset}
+  \label{tab:benchmark_regression}
+  \begin{tabular}{lccc}
+    \hline
+    Model & $R^2$ & MAE (\%) & RMSE (\%) \\
+    \hline
+    TabTransformer & 0.768 & 10.30 & 14.97 \\
+    XGBoost & 0.752 & 11.13 & 15.56 \\
+    Random Forest & 0.749 & 10.81 & 15.71 \\
+    ABRF & 0.719 & 11.87 & 16.55 \\
+    LARF & 0.716 & 11.94 & 16.63 \\
+    Distilled TabTransformer & 0.506 & 16.85 & 22.31 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Regarding binary classification, tree-based models exhibited superior robustness: XGBoost attained the highest AUC of 0.945, whereas Random Forest achieved the highest Accuracy and F1-score, reaching 84.9\% and 0.840, respectively. This benchmark evaluation demonstrates that on large-scale heterogeneous tabular datasets, both deep tabular architectures and tree-based ensembles are competitive; however, tree ensembles exhibit superior calibration, enhanced boundary stability, and lower computational overhead in classification tasks.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison of classification performance on the multi-type nanoparticle benchmark dataset}
+  \label{tab:benchmark_classification}
+  \begin{tabular}{lcccc}
+    \hline
+    Model & Accuracy & F1 & AUC \\
+    \hline
+    Random Forest & 0.849 & 0.840 & 0.943 \\
+    XGBoost & 0.849 & 0.836 & 0.945 \\
+    TabTransformer & 0.845 & 0.835 & 0.939 \\
+    ABRF & 0.828 & 0.817 & 0.921 \\
+    LARF & 0.819 & 0.809 & 0.914 \\
+    Distilled TabTransformer & 0.722 & 0.707 & 0.801 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\paragraph{Model Comparison on the Dedicated Selenium Nanoparticle Dataset.}
+The strict repository analysis used 434 analyzable records from 24 publication groups. Baseline descriptors comprised nominal concentration and time together with their log transforms, particle size, zeta potential, size ratio, surface charge, cell lineage, surface functional groups, and assay metadata. Chemistry-enhanced configurations additionally considered elemental Se content, long-term stability, Se 3d binding energy, and crystalline phase; the IC50-assisted configuration added IC50 as a response-correlated auxiliary variable. All metrics below were calculated from pooled outer-fold predictions in a five-fold outer and three-fold inner publication-grouped nested cross-validation.
+
+The empirical outcomes are compiled in Table~\ref{tab:senp_main_results}. The baseline Random Forest achieved an OOF MAE of 19.11\%, RMSE of 24.12\%, and $R^2=0.109$; the corresponding XGBoost values were 19.49\%, 23.97\%, and 0.120. Adding chemistry descriptors without IC50 did not improve the strict error: Random Forest reached 19.29\% MAE and $R^2=0.099$, while XGBoost reached 19.52\% MAE and $R^2=0.128$. The IC50-assisted XGBoost result was numerically best (18.35\% MAE, 23.25\% RMSE, $R^2=0.172$), but its paired publication-group bootstrap interval for the MAE difference crossed zero. These values therefore provide an auxiliary sensitivity reference rather than evidence of a stable prospective gain.
+
+Because the IC50-assisted configuration includes a response-correlated variable, its numerical advantage cannot be interpreted as a prospective gain from material chemistry. The strict implementation uses leakage-safe tabular preprocessing and tree ensembles; attention-fusion claims from the historical manuscript are not used as evidence for the current repository results.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Strict publication-grouped nested-CV performance on the selenium nanoparticle dataset}
+  \label{tab:senp_main_results}
+  \begin{tabular}{llccc}
+    \hline
+    Model & Feature Set & OOF MAE (\%) & RMSE (\%) & $R^2$ \\
+    \hline
+    Random Forest & Baseline & 19.11 & 24.12 & 0.109 \\
+    XGBoost & Baseline & 19.49 & 23.97 & 0.120 \\
+    Random Forest & Chemistry, no IC50 & 19.29 & 24.25 & 0.099 \\
+    XGBoost & Chemistry, no IC50 & 19.52 & 23.87 & 0.128 \\
+    Random Forest & IC50-assisted & 18.97 & 24.13 & 0.109 \\
+    XGBoost & IC50-assisted & 18.35 & 23.25 & 0.172 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\paragraph{Dose--Time Interaction Ablation.}
+The explicit $\log(1+\mathrm{concentration})\times\log(1+\mathrm{time})$ term was evaluated in an independent ablation using the same 434 records, 24 publication groups, fold assignments, and parameter budget. Relative to the baseline, the Random Forest MAE increased by 0.392 percentage points (publication-group bootstrap 95\% interval $[-0.072,1.102]$), and the XGBoost MAE increased by 0.605 percentage points (95\% interval $[-0.199,1.016]$). Neither interval supports a stable improvement. The interaction result is therefore reported as a negative ablation rather than as a feature-engineering gain.
+
+\paragraph{General-to-SeNP Transfer Comparison.}
+The fixed-budget transfer experiment used 3,889 general nanoparticle records for pretraining and the same 434 SeNP records across 24 publication groups for outer evaluation. The SeNP-only RF achieved an OOF MAE of 19.72\%, whereas direct General zero-shot prediction reached 23.72\% and General-to-SeNP transfer reached 20.30\%. For XGBoost, the corresponding MAEs were 20.75\%, 23.44\%, and 20.08\%. The XGBoost transfer point estimate was 0.67 percentage points lower than SeNP-only, but its publication-group bootstrap 95\% interval was $[-1.42,1.32]$; the RF transfer difference was +0.58 percentage points with interval $[-2.76,1.41]$. Both intervals include zero, so the current fixed tree-transfer interface does not establish a stable General-to-SeNP benefit.
+
+\paragraph{Feature Effects.}
+The current strict repository does not yet provide SHAP analyses for Modifier Category, molecular weight, particle size, and zeta potential. Modifier Category and molecular weight are absent from the archived data, while zeta potential is missing in 42.40\% of the 434 records. Accordingly, the strict results support predictive comparison and missingness-aware validation, but do not justify mechanistic claims about the contribution of individual material descriptors.
+
+\paragraph{Guidance of Key Descriptors for Selenium Nanomaterial Selection.}
+%% 此小节若需保留，请补充正文内容；若为误写，请删除本行及上一行标题。
+
+\paragraph{Combinatorial Feature Analysis.}
+The historical 31-combination search remains archived for traceability, but its random three-fold results are not used as the strict generalization estimate. In the current nested analysis, candidate selection is performed inside the training folds. The chemistry-only configurations did not show a stable MAE reduction, and the IC50-assisted configuration remains response-correlated; neither result should be interpreted as evidence that the missing intrinsic descriptors have been validated.
+
+\paragraph{Implications of Model Outcomes for Practical SeNP Design and Screening.}
+%% 此小节若需保留，请补充正文内容；若为误写，请删除本行及上一行标题。
+
+\paragraph{Optimal Model Selection for Regression and Classification Tasks.}
+Under the strict grouped validation, the IC50-assisted XGBoost model had the best numerical regression metrics (MAE 18.35\%, RMSE 23.25\%, $R^2=0.172$), but its paired uncertainty interval crossed zero. The no-IC50 Random Forest baseline (MAE 19.11\%, RMSE 24.12\%, $R^2=0.109$) remains the clearest deployment-oriented reference, while the chemistry-only configuration did not improve it. The historical benchmark classification results and the strict SeNP regression results are therefore kept as separate evidence streams.
+
+\paragraph{Comparison with Prior Art.}
+Relative to the generalized nanoparticle toxicity models established by Masarkar et al. \cite{masarkar2024}, this investigation presents several concrete advancements:
+\begin{itemize}
+  \item \textbf{Dedicated modeling for a single material system (SeNPs)}: We curated a domain-specific dataset and integrated material-chemistry descriptors—including elemental Se content, colloidal stability, and Se 3d binding energy—while systematically evaluating configurations with and without IC50. This reveals that intrinsic chemical properties hold indispensable modeling value in single-material regimes, whereas high-scoring IC50-inclusive configurations serve as auxiliary benchmarks rather than direct equivalents to generalized models relying exclusively on a priori descriptors.
+  \item \textbf{Systematic benchmarking of deep tabular networks versus tree ensembles}: We identified that TabTransformer suffers from severe underfitting in sample-constrained scenarios (383 records), whereas tree ensembles (notably XGBoost) exhibit robust generalization. This provides an empirical methodological guideline for modeling low-to-medium-scale nanotoxicity repositories.
+  \item \textbf{Identification of the optimal enhanced feature subset via exhaustive combinatorial search}: By eliminating redundant variables such as crystalline phase encoding, we prevented overfitting while enhancing model parsimony and mechanistic interpretability.
+\end{itemize}
+Compared to recent attention-augmented tree frameworks (e.g., ABRF, LARF), our findings indicate that attention mechanisms do not yield tangible performance gains on moderate-scale tabular datasets, yet incur substantial computational overhead. Consequently, for mixed-type nanotoxicity tabular data of this scale, conventional gradient-boosted decision trees (XGBoost) remain the most cost-effective and dependable architectural choice.
+
+\paragraph{Concluding Remarks.}
+The strict reconstruction shows that publication grouping materially lowers apparent performance relative to historical random splits. Adding chemistry descriptors or an explicit dose--time interaction did not produce a stable improvement on the current 434-record archive. The IC50-assisted XGBoost configuration is useful as a response-correlated sensitivity reference, but it is not a prospective model. External validation therefore requires frozen predictions made before testing new SeNPs, complete material characterization, and independent dose--response measurements without using experimental IC50 as an input.

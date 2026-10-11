@@ -8,7 +8,7 @@
 
 ## 论文与数据
 
-- `paper/`：中英文 LaTeX 正文、参考文献和样式包。正文仍需按照 `paper-revision-guidance.md` 修改；清理目录不等于已完成论文修改。
+- 根目录 `paper/v1/`：保留的初稿；`paper/v2/`：从初稿复制的独立工作版本，尚未修改正文；`paper/revision/`：老师原始意见和V2修改记录。两版均含中英文分节、参考文献和样式包。正文仍需按照 `paper-revision-guidance.md` 修改；版本初始化不等于已完成论文修改。
 - `data/benchmark/d0en01240h1.xlsx`：通用数据原始工作簿。原中文命名副本与其 SHA256 相同，已去重。
 - `data/senp/纳米硒毒性预测验证集数据集.xlsx`：434条严格分析所用原始工作簿。
 - `data/reproduction/`：历史复现中的纳入、排除记录及审计信息。
