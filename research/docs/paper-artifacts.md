@@ -1,5 +1,9 @@
 # 论文材料与复现入口
 
+仓库根目录分为 `paper/`（论文）和 `research/`（研究材料）。本文下列 `data/`、`models/`、`results/`、`scripts/`、`src/` 路径均相对于 `research/`；其他研究文档及结果元数据中的同类路径也采用这一基准。论文目录仍位于仓库根目录的 `paper/`。
+
+目录区别：`src/` 是处理数据、训练和评价模型的代码；`scripts/` 是调用这些代码的运行入口；`models/` 是训练后保存的模型，可加载用于预测；`results/` 是已计算的预测值、评价指标和日志；`data/` 是输入数据；`docs/` 是研究说明和论文修改指导。
+
 本目录清理以提交 `10f2039` 为基线。旧文件保留在 Git 历史中，当前目录只保留论文相关材料及其计算依赖。
 
 ## 论文与数据
@@ -23,9 +27,10 @@
 
 ## 复现
 
-在仓库根目录、Python 3.11 或更高版本环境中执行：
+在仓库根目录、Python 3.11 或更高版本环境中执行（先进入研究材料目录）：
 
 ```sh
+cd research
 python -m pip install -r requirements.txt
 python scripts/reproduce_report.py
 python scripts/run_improved_434.py
