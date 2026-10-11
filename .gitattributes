@@ -1,5 +1,7 @@
 # 论文源文件保留基线 commit 的原始换行字节，避免跨平台 checkout 改写论文内容。
 paper/** -text
+# 修改记录采用统一LF，初稿和原始意见继续保留原始字节。
+paper/revision/*.md text eol=lf
 # 数据审计使用文件字节哈希，跨平台检出时统一保持LF。
 research/data/prospective/*.csv text eol=lf
 research/data/prospective/*.json text eol=lf

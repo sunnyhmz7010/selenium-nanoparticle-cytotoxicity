@@ -16,9 +16,9 @@
 
 ## 修改依据
 
-- [研究实施状态](../../research/docs/improvement-recommendations-status.md)
-- [论文修改指导](../../research/docs/paper-revision-guidance.md)
-- [研究材料及复现入口](../../research/docs/paper-artifacts.md)
+- [研究实施状态](improvement-recommendations-status.md)
+- [论文修改指导](paper-revision-guidance.md)
+- [研究材料及复现入口](paper-artifacts.md)
 
 这些文档是后续改稿依据，不代表 V2 已完成修改。
 
