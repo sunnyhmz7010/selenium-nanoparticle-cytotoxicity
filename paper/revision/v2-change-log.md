@@ -8,6 +8,8 @@
 - 发布采用 `output` 分支的正常提交和推送，保留已有 PDF 和提交历史；并发构建排队执行。最新稿源仍提供 `main.tex`，构建步骤摘要提供发布分支链接。
 - 操作方式和 Overleaf 编译要求见 [论文材料与复现入口](paper-artifacts.md)。
 - 本地验证：原入口经 latexmk 自动调用 XeLaTeX、Biber 完整构建；发布包中的 `main.tex` 在独立临时目录同样编译成功，均为12页且逐页提取文本一致，参考文献和图片字节一致，最终 LaTeX 日志无警告。补充忽略 latexmk 生成的 `.xdv` 中间文件。
+- 云端验证：恢复提交 `b2b5b5b6f7e78968b1b834c221020be0793888de` 已推送至 `main`；[Actions 运行 38267367899](https://github.com/sunnyhmz7010/selenium-nanoparticle-cytotoxicity/actions/runs/38267367899) 成功，编译、打包和推送均通过。实际发布 PDF 为12页，含中文标题、参考文献和图片，未发现未解析引用。
+- 发布核验：`output` 新提交 `5260f296aa041902a15ceb3c814c8a5df1d273fa` 的父提交仍为原 `85d8ec28536334f44dce966672f8d237b3185c4c`；2026-09-08 历史 PDF 的 blob 哈希保持 `8f85bc6c326f20e339ff11594705a381d09d5fb1`。新 `main.tex`、中文参考文献和图片的 blob 哈希与本地打包文件一致；新 PDF 文件名为 `20261012_230509_纳米硒细胞毒性预测的严格分组评估 与 HUVEC 剂量—时间实验.pdf`。
 
 ## 2026-10-12：中文全文修订
 
