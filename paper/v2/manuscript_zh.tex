@@ -1,0 +1,59 @@
+% 中文 V2 独立入口；使用 XeLaTeX 和 Biber 编译。
+\documentclass[a4paper,11pt]{article}
+\usepackage[UTF8,fontset=fandol,heading=true]{ctex}
+\usepackage[margin=23mm]{geometry}
+\usepackage{setspace}
+\setstretch{1.25}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{xcolor}
+\usepackage[style=chem-acs,backend=biber,doi=true]{biblatex}
+\addbibresource{references_zh.bib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{authblk}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\setlength{\emergencystretch}{2em}
+\captionsetup{font=small,labelfont=bf}
+% 图占据单独浮动页时从正文顶端排起，避免上方大块留白。
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+\ctexset{section={format=\Large\bfseries},subsection={format=\large\bfseries}}
+\newcommand{\authorinput}[1]{\textcolor{red!65!black}{\textbf{［待核实：#1］}}}
+\newcommand{\IC}{\ensuremath{\mathrm{IC}_{50}}}
+
+% 沿用原稿的作者姓名、顺序和单位，不推定本轮小组分工对应的作者贡献。
+\author[1]{Xinge Xia}
+\author[1]{Fan Wu}
+\author[2]{Xianyou Duan}
+\author[1]{Hongyi Chen}
+\author[1]{Bingwen Feng*}
+\affil[1]{College of Cyber Security, Jinan University, Guangzhou, China}
+\affil[2]{College of Chemistry and Materials Science, Jinan University, Guangzhou, China}
+\renewcommand{\Authfont}{\normalsize}
+\renewcommand{\Affilfont}{\small}
+\title{纳米硒细胞毒性预测的严格分组评估\\[0.3em]与 HUVEC 剂量—时间实验}
+\date{中文 V2 修订稿\quad 2026 年 10 月 12 日\\\small * 通讯作者：bingwfeng@gmail.com}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\input{sections_zh/00-abstract}
+\end{abstract}
+\noindent\textbf{关键词：}纳米硒；细胞毒性；文献分组验证；材料特征；剂量—时间响应
+
+\input{sections_zh/01-introduction}
+\input{sections_zh/02-methods}
+\input{sections_zh/03-results}
+\input{sections_zh/03-discussion}
+\input{sections_zh/04-conclusion}
+\FloatBarrier
+\printbibliography[title={参考文献}]
+\clearpage
+\input{sections_zh/05-supporting-information}
+\end{document}

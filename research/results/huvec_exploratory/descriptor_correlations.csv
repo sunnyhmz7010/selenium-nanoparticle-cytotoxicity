@@ -1,0 +1,7 @@
+time_h,concentration_reported,descriptor,n_materials,spearman_rho
+24,512,size_nm,9,0.2
+24,512,zeta_mV,9,0.05
+48,512,size_nm,9,0.38333333333333336
+48,512,zeta_mV,9,-0.18333333333333332
+72,512,size_nm,9,0.26666666666666666
+72,512,zeta_mV,9,-0.05

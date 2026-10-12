@@ -1,0 +1,203 @@
+{
+  "source_csv": "data/prospective/experimental_huvec_dose_time.csv",
+  "source_csv_sha256": "c7cb5dba4db2bb2b337d3f514d873f98b392f05e7144efc51f49edacfe5a5b67",
+  "source_xlsx_sha256": "74a2daceb5c99134532d64596ebb0a58b6fd2d3a771a8060da2f76ba8259714d",
+  "rows": 351,
+  "materials": [
+    "CS-SeNPs",
+    "Glucose-SeNPs",
+    "LET-SeNPs",
+    "PAH-SeNPs",
+    "PEG-SeNPs",
+    "PEI-SeNPs",
+    "PVP-SeNPs",
+    "Sucrose-SeNPs",
+    "TW80-SeNPs"
+  ],
+  "times_h": [
+    24,
+    48,
+    72
+  ],
+  "concentrations_reported": [
+    0,
+    0.25,
+    0.5,
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "cell_type": "HUVEC",
+  "curves": 27,
+  "points_per_curve": 13,
+  "concentration_unit_status": "原表为μm，含义与计量基准待确认；未换算为μM或μg/mL",
+  "replicate_status": "每条件一个报告值；原始重复孔数量和汇总方式未提供",
+  "viability_min": 6.12694912584659,
+  "viability_max": 121.614013137316,
+  "values_above_100": 60,
+  "zero_concentration_all_100": true,
+  "ic50_interpolated_curves": 19,
+  "ic50_not_reached_curves": 8,
+  "ic50_ambiguous_curves": 0,
+  "ic50_finite_range_reported_scale": [
+    11.634868613778542,
+    448.55944623402735
+  ],
+  "curves_with_local_viability_increases": 27,
+  "mean_decrease_24h_to_72h_percentage_points": 33.421580082831554,
+  "high_dose_time_summary": [
+    {
+      "time_h": 24,
+      "concentration_reported": 512,
+      "n_materials": 9,
+      "mean_viability_percent": 59.80503362886257
+    },
+    {
+      "time_h": 48,
+      "concentration_reported": 512,
+      "n_materials": 9,
+      "mean_viability_percent": 39.0707833664983
+    },
+    {
+      "time_h": 72,
+      "concentration_reported": 512,
+      "n_materials": 9,
+      "mean_viability_percent": 26.383453546031014
+    }
+  ],
+  "high_dose_materials": [
+    {
+      "nanoparticle": "PAH-SeNPs",
+      "size_nm": 190.72,
+      "zeta_mV": 51.7,
+      "viability_24h_percent": 19.212962962963,
+      "viability_48h_percent": 11.8247298919568,
+      "viability_72h_percent": 7.26098598204442,
+      "decrease_24h_to_72h_percentage_points": 11.95197698091858
+    },
+    {
+      "nanoparticle": "LET-SeNPs",
+      "size_nm": 107.56,
+      "zeta_mV": -27.52,
+      "viability_24h_percent": 40.6745225518082,
+      "viability_48h_percent": 29.7329376854599,
+      "viability_72h_percent": 16.4894609214699,
+      "decrease_24h_to_72h_percentage_points": 24.185061630338303
+    },
+    {
+      "nanoparticle": "Glucose-SeNPs",
+      "size_nm": 115.82,
+      "zeta_mV": -23.83,
+      "viability_24h_percent": 58.248412346773,
+      "viability_48h_percent": 46.1584561908186,
+      "viability_72h_percent": 19.9798836123285,
+      "decrease_24h_to_72h_percentage_points": 38.2685287344445
+    },
+    {
+      "nanoparticle": "TW80-SeNPs",
+      "size_nm": 78.03,
+      "zeta_mV": -21.9,
+      "viability_24h_percent": 66.2573209899868,
+      "viability_48h_percent": 36.9295774647887,
+      "viability_72h_percent": 21.482219497241,
+      "decrease_24h_to_72h_percentage_points": 44.77510149274579
+    },
+    {
+      "nanoparticle": "PVP-SeNPs",
+      "size_nm": 143.76,
+      "zeta_mV": -31.79,
+      "viability_24h_percent": 66.1592764173836,
+      "viability_48h_percent": 40.7753451401478,
+      "viability_72h_percent": 24.5198463508323,
+      "decrease_24h_to_72h_percentage_points": 41.6394300665513
+    },
+    {
+      "nanoparticle": "CS-SeNPs",
+      "size_nm": 114.72,
+      "zeta_mV": 33.36,
+      "viability_24h_percent": 66.016713091922,
+      "viability_48h_percent": 39.4357016481982,
+      "viability_72h_percent": 31.2535307295218,
+      "decrease_24h_to_72h_percentage_points": 34.7631823624002
+    },
+    {
+      "nanoparticle": "PEG-SeNPs",
+      "size_nm": 111.96,
+      "zeta_mV": -37.07,
+      "viability_24h_percent": 58.3236514522822,
+      "viability_48h_percent": 39.956369982548,
+      "viability_72h_percent": 33.4925953950924,
+      "decrease_24h_to_72h_percentage_points": 24.831056057189798
+    },
+    {
+      "nanoparticle": "PEI-SeNPs",
+      "size_nm": 214.58,
+      "zeta_mV": 24.77,
+      "viability_24h_percent": 78.7415337557352,
+      "viability_48h_percent": 46.1001317523057,
+      "viability_72h_percent": 37.6686476905432,
+      "decrease_24h_to_72h_percentage_points": 41.072886065192
+    },
+    {
+      "nanoparticle": "Sucrose-SeNPs",
+      "size_nm": 184.6,
+      "zeta_mV": 12.97,
+      "viability_24h_percent": 84.6109090909091,
+      "viability_48h_percent": 60.723800542261,
+      "viability_72h_percent": 45.3039117352056,
+      "decrease_24h_to_72h_percentage_points": 39.3069973557035
+    }
+  ],
+  "correlations": [
+    {
+      "time_h": 24,
+      "concentration_reported": 512,
+      "descriptor": "size_nm",
+      "n_materials": 9,
+      "spearman_rho": 0.2
+    },
+    {
+      "time_h": 24,
+      "concentration_reported": 512,
+      "descriptor": "zeta_mV",
+      "n_materials": 9,
+      "spearman_rho": 0.05
+    },
+    {
+      "time_h": 48,
+      "concentration_reported": 512,
+      "descriptor": "size_nm",
+      "n_materials": 9,
+      "spearman_rho": 0.38333333333333336
+    },
+    {
+      "time_h": 48,
+      "concentration_reported": 512,
+      "descriptor": "zeta_mV",
+      "n_materials": 9,
+      "spearman_rho": -0.18333333333333332
+    },
+    {
+      "time_h": 72,
+      "concentration_reported": 512,
+      "descriptor": "size_nm",
+      "n_materials": 9,
+      "spearman_rho": 0.26666666666666666
+    },
+    {
+      "time_h": 72,
+      "concentration_reported": 512,
+      "descriptor": "zeta_mV",
+      "n_materials": 9,
+      "spearman_rho": -0.05
+    }
+  ],
+  "ic50_method": "相邻正浓度点在 log10 浓度尺度插值；多次穿越不强行估值；未达到 50% 标记 >512；不拟合置信区间"
+}

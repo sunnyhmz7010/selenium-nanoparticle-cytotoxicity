@@ -1,402 +1,74 @@
 \section{方法}
 
-\paragraph{数据收集。}
-研究共采用两个相互独立的数据集对模型进行训练与验证，以充分评估模型架构的可靠性，实现针对纳米硒的细胞毒性预测。
+\subsection{研究设计与数据来源}
 
-\begin{enumerate}
-  \item \textbf{通用数据集}：
-该数据集来源于 Masarkar 等人 \cite{masarkar2024} 开展的纳米颗粒细胞毒性元分析研究。
-数据集汇总了已发表文献中关于金属、金属氧化物、聚合物以及碳基纳米颗粒四大类别的细胞毒性实验数据，是当前纳米材料机器学习毒性预测领域具有代表性的公开数据资源之一。
-由于本研究的模型改进工作是在其原有框架基础上展开，因此采用该数据集对基线模型进行复现，以保证模型优化过程具备良好的可比性与有效性。
-该数据集原始共包含 4111 条实验记录，经清洗后保留 4102 个有效样本用于后续训练测试划分与模型比较。
+研究包含三部分数据，各自承担不同的评价任务（表~\ref{tab:data_scope}）。通用纳米材料数据采用 Gul 等论文的公开补充工作簿\cite{gul2021association}，读取细胞存活率工作表，仅纳入存活率、浓度和暴露时间均可解析的记录，得到 3889 条记录、144 个文献组。该数据用于独立基准与迁移预训练，当前清洗数据中没有检出 Se 材料记录，归档分组标识与历史 SeNPs 的 24 个分组也没有交集。
 
-  \item \textbf{自建数据集}：
-针对纳米硒这一特定研究对象，本研究从 43 篇已发表文献\cite{chen_selenium_2008, li_reversal_2011, zheng_sialic_2011, liu_selenium_2012, wu_surface_2012, chen_surface_2012,
-  yu_positive_2012, chen_peg-nanolized_2012, pi_pathway_2013, wu_induction_2013, feng_differential_2014,
-  huang_selective_2013, li_functionalized_2013, zhang_enhancement_2013, jiang_gracilaria_2014, yu_ph-responsive_2014,
-  zeng_construction_2015, liu_sequentially_2016, liu_facile_2016, yu_x-ray-responsive_2016, fu_rgd_2016,
-  fang_targeting_2017, chen_efficient_2018, fang_dualtargeted_2018, huang_autophagy_2018, liu_highly_2018,
-  wang_regulating_2016, hu_selenium_2019, zeng_potentiation_2019, huang_dual-targeting_2019, huang_highly_2019,
-  zhang_systematic_2019, zheng_thermosensitive_2019, huang_chiralitydriven_2020,
-  yang_lentinan-functionalized_2020, liu_rapid_2021, an_functionalized_2021, song_translational_2021,
-  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}中系统提取实验数据，构建了纳米硒细胞毒性预测专项数据集。
-我们采用大模型粗提取、人工精校验证的方法提取出 43 篇论文\cite{chen_selenium_2008, li_reversal_2011, zheng_sialic_2011, liu_selenium_2012, wu_surface_2012, chen_surface_2012,
-  yu_positive_2012, chen_peg-nanolized_2012, pi_pathway_2013, wu_induction_2013, feng_differential_2014,
-  huang_selective_2013, li_functionalized_2013, zhang_enhancement_2013, jiang_gracilaria_2014, yu_ph-responsive_2014,
-  zeng_construction_2015, liu_sequentially_2016, liu_facile_2016, yu_x-ray-responsive_2016, fu_rgd_2016,
-  fang_targeting_2017, chen_efficient_2018, fang_dualtargeted_2018, huang_autophagy_2018, liu_highly_2018,
-  wang_regulating_2016, hu_selenium_2019, zeng_potentiation_2019, huang_dual-targeting_2019, huang_highly_2019,
-  zhang_systematic_2019, zheng_thermosensitive_2019, huang_chiralitydriven_2020,
-  yang_lentinan-functionalized_2020, liu_rapid_2021, an_functionalized_2021, song_translational_2021,
-  yang_atherosclerotic_2022, yang_functionalized_2021, liang_translational_2022, liu_specific_2022, du_highly_2022}中的特征参数，具体而言，我们利用提示词工程使用AI大模型按照 Masarkar 等人\cite{masarkar2024} 的特征属性对 43 篇论文进行粗提取，对于正文部分未给出但图表中存在的数据我们采用人工提取的方法，最后全部由人工将数据集和原论文进行对应验证。
-数据集中共包含 383 个有效样本，每个样本对应 37 个特征参数，涵盖纳米硒的理化性质、实验条件以及生物效应等信息，能够较为全面地反映纳米硒与细胞毒性之间的关联关系。
-该数据集为历史论文分析提供了核心数据支撑；严格按文献分组的仓库重建使用另一份归档验证工作簿中的 434 条记录，两个样本数量不能混用。
-\end{enumerate}
+历史 SeNPs 数据来自研究组归档的验证工作簿，按现有纳入规则从 623 条原始记录中保留 434 条，排除非研究材料记录、非细胞存活率检测记录及缺少必需建模字段的记录。同一篇研究的数据优先使用符合 DOI 格式的标识分组，其他记录回退到原始文章编号，共形成 24 个文献组，最大组包含 54 条记录。该分析保留理化性质缺失的记录，缺失值在训练折内处理。旧稿的 383 条历史整理数据属于另一分析口径，本研究的主结果均以这 434 条记录及其折外预测为准。
 
-为进一步说明自建数据集的文献来源结构，本研究按题名和研究目的将 43 篇纳米硒相关文献划分为四类：材料构建/表面修饰、机制毒理/安全性、递送/联合治疗、诊疗/免疫及其他应用。该分类仅用于展示文献覆盖范围和主题分布，不改变后续建模中对原始实验记录的提取规则。图~\ref{fig:senp-literature-cloud} 展示文献发表年份与主题分类的点云分布。
+新增数据为独立实验工作簿中的 351 条 HUVEC 报告值，原始文件、原始数值文本和字段映射分别归档。该数据仅用于实验曲线和描述性比较，不参与上述模型训练、特征筛选或调参，也不将由新增曲线计算的 \IC 反向输入历史模型。
 
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      acs axis,
-      width=0.82\linewidth,
-      height=6.5cm,
-      xmin=2007.5,
-      xmax=2022.8,
-      ymin=0.55,
-      ymax=4.45,
-      xlabel={发表年份},
-      xtick={2008,2010,2012,2014,2016,2018,2020,2022},
-      ytick={1,2,3,4},
-      yticklabels={材料/表面,机制/安全,递送/联合,诊疗/免疫/其他},
-      y tick label style={font=\scriptsize},
-      title={\textbf{(A)} 43 篇文献点云}
-    ]
-      \addplot+[only marks, mark=*, mark size=1.9pt, acsblue] coordinates {
-        (2008,0.78) (2011,1.10) (2011.88,0.92) (2012.12,1.24)
-        (2012.36,0.80) (2013.16,1.08) (2014,0.92) (2019,1.20)
-      };
-      \addplot+[only marks, mark=square*, mark size=1.8pt, acsred] coordinates {
-        (2011.15,1.80) (2012.86,2.08) (2013.05,1.86)
-        (2013.30,2.22) (2018,1.92) (2019.15,2.12)
-      };
-      \addplot+[only marks, mark=triangle*, mark size=2.1pt, acsorange] coordinates {
-        (2012.44,2.76) (2012.68,3.18) (2013.42,2.90) (2014.04,3.24)
-        (2014.32,2.78) (2015,3.12) (2015.96,2.86) (2016.22,3.22)
-        (2017,2.94) (2018.16,3.16) (2019.30,2.84) (2020,3.12)
-        (2021,2.90) (2021.24,3.20)
-      };
-      \addplot+[only marks, mark=diamond*, mark size=2pt, acsgray] coordinates {
-        (2016.34,3.78) (2016.54,4.06) (2016.74,4.30) (2018.30,3.88)
-        (2018.50,4.18) (2019.44,3.78) (2019.64,4.08) (2019.84,4.30)
-        (2020.14,3.92) (2021.34,4.20) (2021.54,3.84) (2022,4.10)
-        (2022.18,3.78) (2022.36,4.30) (2022.54,3.96)
-      };
-    \end{axis}
-  \end{tikzpicture}
-
-  \vspace{0.8em}
-
-  \begin{tikzpicture}
-    \begin{axis}[
-      acs xbar,
-      width=0.62\linewidth,
-      height=4.6cm,
-      xmax=16,
-      xlabel={文献数量},
-      symbolic y coords={机制/安全,材料/表面,递送/联合,诊疗/免疫/其他},
-      ytick=data,
-      y tick label style={font=\scriptsize},
-      title={\textbf{(B)} 分类数量}
-    ]
-      \addplot+[fill=acsblue, draw=none] coordinates {(6,机制/安全) (8,材料/表面) (14,递送/联合) (15,诊疗/免疫/其他)};
-    \end{axis}
-  \end{tikzpicture}
-  \caption{自建纳米硒数据集 43 篇来源文献的发表年份点云与主题分类分布。}
-  \label{fig:senp-literature-cloud}
-\end{figure}
-
-\paragraph{数据预处理。}
-对于通用数据集，我们沿用了 Masarkar 等人 \cite{masarkar2024} 的预处理方案：
-首先，我们删除了数据集中包含大量缺失值的特征属性（如多分散指数 PDI 和长径比），以及与预测无关的文献信息（如文章 ID、发表年份和 DOI 编号），将特征数量从初始的 30 个精简至 15 个。
-其次，对于某些在物理化学性质（如尺寸、Zeta 电位、表面电荷和 PDI）上存在严重信息缺失的纳米颗粒（例如量子点 QD 和羟基磷灰石 HAP），我们剔除了其对应的所有数据点。
-
-随后，我们将剩余的数据集按照材料类型统一划分为四大类纳米颗粒：金属（M）、金属氧化物（MO）、聚合物（P）和碳基（C）纳米颗粒。
-在处理具体的物理化学特征时，为了整合不同测试条件下的数据，我们采用了以下优先级策略：
-
-\begin{enumerate}
-  \item \textbf{尺寸（Size）特征}：
-优先采用无任何介质条件下的尺寸；若该值缺失但提供了水中和培养基中的尺寸，则采用水中的尺寸；若原数据仅提供了一种条件（无介质、水中或培养基中）下的尺寸，则直接使用该已知值。
-
-  \item \textbf{Zeta 电位特征}：
-采用类似策略，优先采用水中的 Zeta 电位；若仅提供了一种条件下的 Zeta 电位，则直接使用该值。
-\end{enumerate}
-
-在执行上述整合、审查目标变量缺失并严格过滤异常值后，最终清洗后的数据集保留了 4102 个有效数据点和 15 个特征属性。
-最后，为了使数据完全适合模型训练，我们使用“min-max”缩放器（MinMaxScaler）对编译后的数据集进行了归一化处理，并对所有的类别属性进行了标签编码（Label encoding）。
-
-对于自建的纳米硒专项数据集，预处理步骤进行了改进。
-本研究自建的纳米硒毒性数据集共包含 383 个样本与 37 个特征。
-数据集覆盖了纳米硒研究中常见的实验条件区间，包括不同的暴露剂量、粒径范围、形态类型与表面修饰策略，可反映纳米硒与其理化性质的关系在多个维度上的变化。
-
-自建数据集数据预处理包括以下步骤：
-
-\begin{enumerate}
-  \item \textbf{缺失值处理}：由于粒径、Zeta 电位、暴露时间、浓度、细胞存活率诸字段都有若干缺失值，故首先直接剔除含缺失值的记录。此外，“检测方法”字段中若干条目“Characterization”“Western”“Cellular Uptake”属于非毒性检测目的条目，故一并删除。最终共剔除 262 条记录，保留 383 个符合要求的有效样本。
-  \textbf{上述剔除仅针对所列关键字段；派生特征（如粒径比）和非关键分类变量（如表面电荷）的缺失值在剔除之后单独处理，不在此列。}
-
-  \item \textbf{多报告值的优先级选择}：参照 Masarkar 等人 \cite{masarkar2024} 提出的方法：同一纳米颗粒在文献中报告多种尺寸时，按无介质中的粒径 > 水相粒径 > 培养基中的粒径的顺序选取，而 Zeta 电位宜取水相测量值，若无该数据则取文献中所给的唯一测量值。
-
-  \item \textbf{单位统一与换算}：把各浓度单位都统一换算为 $\mu$g/mL，凡以 $\mu$M 为单位的浓度都根据硒的分子量（78.96 g/mol）换算为 $\mu$g/mL，同时把暴露时间统一转换为小时（h）。
-
-  \item \textbf{数值特征变换}：由于浓度、时间两变量都呈偏态分布，对二者做对数变换：
-        \[
-          \text{Log\_Conc} = \ln(1 + \text{Concentration\_μg/mL}), \quad
-          \text{Log\_Time} = \ln(1 + \text{Time\_h})
-        \]
-        同时引入“粒径比”= 水合粒径 / 核心粒径来表征颗粒在水相中的聚集倾向，所有缺失值均按 1.5 填充。
-
-  \item \textbf{分类变量编码}：对表面电荷（正/负/中性）、细胞类型、修饰基团、检测方法、晶型（结晶/无定形）等类别特征，采用标签编码转换为数值，其中表面电荷缺失值填充为“未知”。
-
-  \item \textbf{相关性检查}：对数值特征计算 Pearson 相关系数，未发现 $r > 0.8$ 的高相关度特征对，表明特征冗余度很低。
-\end{enumerate}
-
-\paragraph{模型与评价。}
-
-在此基础上，模型输入特征被组织为基础特征和增强特征两组。基础特征包含以下几类信息：暴露条件（浓度、时间）、颗粒理化属性（粒径、Zeta 电位、尺寸比、表面电荷）、生物体系属性（细胞类型）以及实验条件（检测方法、修饰基团）。可复现实验同时保留浓度和时间的原始值及其 $log(1+x)$ 变换，并单独检验 $log(1+浓度)\times\log(1+时间)$ 交互项。
-针对硒纳米颗粒专用建模，在基础特征之外进一步引入 5 项增强变量，即 IC50、元素 Se 含量、长期稳定性、结合能 Se3d 和晶型编码。其中，元素 Se 含量、长期稳定性、结合能 Se3d 与晶型编码主要用于表征材料本征化学属性；IC50 则与毒理响应终点具有较强关联，因此本文将其视为辅助变量，用于比较含/不含该变量时模型表现的差异，而不将其简单等同于可在真实预测前稳定获得的先验理化特征。
-
-为评估新增增强信息对模型性能的提升作用，历史分析曾在保持基础特征不变的情况下对上述 5 项增强变量进行 31 种非空组合搜索。当前严格分析则在按文献分组的嵌套交叉验证训练折内完成候选特征选择。需要指出的是，若最优组合包含 IC50，则其结果更适合作为辅助分析依据，而不宜直接等同于真实部署情境下的预测能力提升。
-
-本研究围绕表格型纳米毒性数据比较了树模型、注意力增强树模型与深度表格模型三类方法。在基准数据集上，纳入随机森林、XGBoost、ABRF、LARF、TabTransformer 和蒸馏 TabTransformer 六种模型，以系统评估不同架构对异质纳米颗粒数据的适应性；在硒纳米颗粒专用数据集上，重点比较基础特征与增强特征条件下各模型的性能差异。随机森林作为核心基线模型，用于评估中小样本场景下的稳健性与可解释性；XGBoost 用于测试梯度提升树在增强特征条件下的高精度建模能力；ABRF 与 LARF 用于考察注意力机制引入后是否能够提升树模型表现；TabTransformer 与蒸馏 TabTransformer 则作为深度表格模型代表，用于与传统树模型进行对照。
-
-本文对模型性能采用回归、分类两类指标进行评价。回归任务中采用决定系数（\(R^2\)）、平均绝对误差（MAE）和均方根误差（RMSE）。\(R^2\) 是对模型所拟合的目标变量方差的解释比例的自然度量，理论上不超过 1（当模型表现差于均值基线时可能为负值），越接近 1 表明拟合效果越好。MAE 是预测值与真实值绝对误差的算术平均，其单位与目标变量一致（\%），因此也是预测典型偏差的直接度量。RMSE 对较大误差更敏感，适用于考察预测的稳定性。
-
-分类任务以 85\% 细胞存活率为阈值，将样本划分为“高存活”和“低存活”两类，继而用准确率（Accuracy）、F1 分数和 ROC 曲线下面积（AUC）作为主要指标。准确率即正确分类的比例，F1 分数是精确率、召回率的调和平均，对类别不平衡问题具有适应性，而 AUC 衡量模型区分正负类的能力，0.5 为随机猜测，1.0 表示完全区分。
-
-对于大规模多类型纳米颗粒基准数据集，采用 7:3 训练测试划分，以测试集性能作为主要比较依据。回归任务使用 $R^2$、MAE 和 RMSE 进行评价，分类任务使用 Accuracy、F1 和 AUC 进行评价。
-
-对于硒纳米颗粒专用数据集，严格比较采用按文献分组的 5 折外层、3 折内层嵌套交叉验证。有效 DOI 作为文献组标识，缺失或无效 DOI 时回退到 Article ID。缺失值插补、类别编码、特征选择和参数选择均限制在训练折内，并由外层 OOF 预测计算 MAE、RMSE 和 $R^2$；模型间配对差异使用按文献组 bootstrap 区间汇总。显式剂量--时间交互项沿用相同分折和参数预算。
-
-为在相同分组约束下检验 General 到 SeNP 的迁移，我们对通用纳米材料数据集按相同目标、暴露和特征契约清洗，得到 3889 条预训练记录。每个外层折预先比较三种策略：SeNP-only、通用模型直接 zero-shot 预测，以及 General 到 SeNP 迁移。三种策略均固定 500 棵树的总预算；RF 迁移使用通用数据训练 250 棵树，再在 SeNP 训练折上 warm-start 增加 250 棵树；XGBoost 迁移则把通用数据训练的 250 轮 booster 延续到 SeNP 训练折的 250 轮。留出的 SeNP 文献组从未参与预处理、预训练或微调。迁移差异按样本配对，并以文献组 bootstrap 区间汇总。
-
-为系统评估不同架构在纳米毒性预测任务上的适用性，我们尝试了多种模型，涵盖传统树模型、梯度提升树、注意力增强树模型以及深度表格模型。
-经过初步性能比较，最终选择随机森林、XGBoost、ABRF、LARF、TabTransformer 以及蒸馏 TabTransformer 六种模型作为主要分析对象。
-下面将依次阐述各模型的设计思想及其在本任务中的定位。
-
-随机森林是以决策树为基础的典型的集成学习方法，通过自助采样（Bootstrap）构建多个决策树，并基于其结果进行回归或分类。该方法具有较强的抗过拟合能力，能有效处理混合型特征（数值型和类别型），并且对缺失值不敏感，能直接估计特征重要性，因此在中小型表格数据任务中呗广泛用作基线模型。
-基于此，本文采用随机森林来考察其在样本量有限的硒纳米颗粒数据集上的稳健性及可解释性。
-
-
-XGBoost 是一种基于梯度提升树的集成学习框架，在模型构建过程中引入了二阶导数信息以及 L1、L2 正则化项，因此在表格数据任务中具有较高的预测性能。该方法通过串行迭代方式不断拟合残差，通常能够获得较高的模型精度，但同时对超参数设置较为敏感，需要通过合理调参降低过拟合风险。
-本文引入 XGBoost 模型，旨在分析梯度提升树方法在加入元素组成、稳定性、结合能等增强信息后，对硒纳米颗粒数据集预测性能的变化，并进一步比较含/不含 IC50 时模型表现的差异。
-
-ABRF 是在标准随机森林基础上加入了一个注意力网络来对各棵决策树的预测做动态加权处理：先训练普通的随机森林，再对每个样本收集所有树的预测值，接着用一个小型神经网络直接、自动地学习各棵树就该样本的权重，最后用各树预测值的加权和作为最终预测结果。因此其本质是为了用注意力机制合理地挖掘不同树、不同样本之间预测可靠性的差异。
-ABRF 是一种在标准随机森林基础上引入注意力机制的集成学习方法。该方法首先训练传统随机森林模型，并收集各决策树对样本的预测结果；随后利用小型神经网络学习不同决策树在不同样本上的权重分配；最终通过对各树预测结果进行加权求和得到模型输出。核心思想是在样本层面建模不同决策树预测贡献的差异，以提升模型的表达能力。
-本文引入 ABRF 模型旨在分析单层注意力机制对树模型预测性能的影响。
-
-
-LARF 在 ABRF 的基础上进一步引入了特征级注意力机制。在模型训练过程中，首先学习特征权重向量，对原始特征进行加权处理，以增强重要特征在决策树分裂过程中的作用；随后结合树级注意力机制，对不同决策树的预测结果进行动态加权，从而形成包含特征级与树级的双层注意力结构。该方法能够同时优化特征表示与树模型集成过程。
-本文引入 LARF 来分析更复杂的注意力机制对纳米硒数据集预测性能的影响。
-
-TabTransformer 是一种面向表格数据的深度学习模型，其核心思想是利用 Transformer 的注意力机制对类别特征进行编码，将其表示为嵌入向量，并与数值特征拼接后输入多层感知机进行预测。由于 Transformer 能够建模类别特征之间的高阶交互关系，因此该模型在包含多种类别变量的表格数据任务中具有一定优势。本文将 TabTransformer 作为深度表格模型的代表，用于评估深度学习方法在纳米毒性数据集上的预测性能，并与传统树模型进行比较。
-
-蒸馏 TabTransformer 则基于知识蒸馏方法，以完整的 TabTransformer 作为教师模型，对参数规模较小的学生模型进行训练。该方法通过降低嵌入维度及多层感知机隐藏层规模，实现模型轻量化，并在训练过程中同时利用教师模型输出的软标签与真实标签信息，以兼顾模型精度与计算效率。
-故本文引入该模型，旨在分析资源受限场景下轻量化深度表格模型的部署可行性及其性能表现。
-
-由于六种模型在大规模、多类型纳米颗粒基准数据集上已经进行了较为系统的比较，因此本文重点分析不同模型架构对异质纳米颗粒数据的适应能力。
-在纳米硒专用数据集上，由于样本量较小（383 条），本文主要选取随机森林、XGBoost 和 TabTransformer 三种代表性模型进行比较，并进一步分析基础特征与增强特征两种特征设置下的性能差异。其中，随机森林与 XGBoost 用于评估传统树模型的表现，TabTransformer 用于考察深度学习模型在小样本表格数据中的适用性。
-对于 ABRF、LARF 以及蒸馏 TabTransformer，由于其模型结构相对复杂、训练成本较高，因此仅在大规模基准数据集上进行评估，以兼顾实验复杂度、计算成本与结果分析的可读性。
-
-\paragraph{可视化特征效应与交互。}
-特征重要性分析能够确定对模型预测贡献较大的变量，但仅凭重要性排序难以说明特征与细胞存活率之间的关系形态，例如这种关系是近似线性、单调变化还是存在更复杂的非线性响应。参考 Masarkar 等人 \cite{masarkar2024} 的处理思路，本研究先对纳米硒数据集的样本组成、连续型变量和类别型变量进行可视化描述，以明确模型训练前的数据覆盖范围与潜在偏倚；在完成模型训练后，再结合特征重要性进一步考察单个特征效应与双特征交互关系。对于单特征效应，可通过部分依赖图（partial dependence plot, PDP）和个体条件期望图（individual conditional expectation, ICE）观察模型预测值随某一特征变化的整体趋势及样本间异质性；对于两个特征的联合影响，可进一步采用二维 PDP 等高线图展示其组合变化对预测细胞存活率或毒性类别的影响。
-
-在进行特征效应可视化之前，首先需要明确样本组成和变量分布。本研究数据集共包含 383 条有效记录（剔除粒径、Zeta 电位等关键理化性质缺失以及细胞存活率缺失的记录后），来源于 43 篇已发表文献，文献发表年份覆盖 2008--2022 年。清洗后的有效记录主要集中于 2018 年（157 条，占 41.0\%），其次为 2019 年（96 条，占 25.1\%）和 2012 年（44 条，占 11.5\%）。所有纳米硒颗粒的形貌均为球形，物种来源以人类细胞为主（371 条，占 96.9\%）。
-
-图~\ref{fig:senp-year-distribution} 显示了样本来源年份的集中程度，表~\ref{tab:senp_feature_statistics} 汇总了主要连续型特征的描述性统计量，并为后续可视化解释提供了基础。粒径的分布明显右偏（偏度 3.92），绝大多数颗粒集中在 30 nm 附近，极少数样本超过 200 nm，符合纳米硒常规粒径范围。水合粒径右偏程度较轻（偏度 1.69），其均值（105 nm）明显大于核心粒径均值（65 nm），这表明水化层以及可能存在的弱聚集效应。Zeta 电位分布接近对称（偏度 -0.08），范围从 $-60$ mV 到 $+36$ mV，其中负电位占主导，反映出多数表面修饰（如聚糖、PVP）带负电。
-
-\begin{figure}[H]
-  \centering
-  \begin{minipage}{0.48\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs xbar,
-        width=\linewidth,
-        height=5.1cm,
-        xmax=175,
-        xlabel={样本量},
-        symbolic y coords={2012,其他年份,2019,2018},
-        ytick=data,
-        y tick label style={font=\scriptsize},
-        title={\textbf{(A)} 来源年份频率}
-      ]
-        \addplot+[fill=acsblue, draw=none] coordinates {(44,2012) (86,其他年份) (96,2019) (157,2018)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.48\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs axis,
-        width=\linewidth,
-        height=5.1cm,
-        ymin=0,
-        ymax=105,
-        ylabel={累计占比（\%）},
-        symbolic x coords={2018,2019,其他年份,2012},
-        xtick=data,
-        x tick label style={rotate=35, anchor=east, font=\scriptsize},
-        ymajorgrids=true,
-        title={\textbf{(B)} 累计贡献}
-      ]
-        \addplot+[acsred, mark=square*, mark size=1.7pt] coordinates {(2018,41.0) (2019,66.1) (其他年份,88.6) (2012,100.0)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \caption{纳米硒数据集中文献来源年份的样本量分布与累计贡献。}
-  \label{fig:senp-year-distribution}
-\end{figure}
-
-浓度分布极端右偏（偏度 8.28），四分位距仅为 $0.52$--$10$ $\mu$g/mL，但最大值高达 $490$ $\mu$g/mL，提示少数实验采用极高剂量，可能对模型产生杠杆效应。暴露时间呈轻微左偏（-0.42），中位数 72 h，说明多数实验采用 24 h 或 72 h 的暴露方案。细胞存活率分布近似均匀（偏度 -0.17），均值与中位数均接近 50\%，意味着数据集正负样本较为平衡，有利于分类模型训练。
-
-为直观展示上述分布，我们进一步基于描述性统计绘制了连续型特征的可用样本量和偏度对照图（图~\ref{fig:senp-continuous-summary}）。该图不对分位数之外的个体观测分布进行外推，而是直接使用表~\ref{tab:senp_feature_statistics} 中的 $n$ 和偏度刻画数据覆盖度与分布偏斜程度。
-
-\begin{table}[H]
-  \centering
-  \caption{数据集连续型特征的描述性统计（各特征可用样本量见 $n$ 列）}
-  \label{tab:senp_feature_statistics}
-  \begin{tabular}{lccccccc}
-    \hline
-    特征 & $n$ & 均值 & 标准差 & 中位数 & Q1 & Q3 & 偏度 \\
-    \hline
-    粒径 (nm)            & 339 & 65.30  & 79.72  & 30.00  & 30.00  & 92.15   & 3.92  \\
-    水合粒径 (nm)        & 279 & 104.97 & 46.73  & 91.00  & 84.00  & 110.00  & 1.69  \\
-    Zeta 电位 (mV)       & 144 & $-5.19$ & 29.76  & $-7.50$ & $-29.10$ & 29.10 & $-0.08$ \\
-    暴露时间 (h)         & 363 & 55.21  & 26.14  & 72.00  & 24.00  & 72.00   & $-0.42$ \\
-    浓度 ($\mu$g/mL)     & 363 & 12.59  & 38.17  & 0.90   & 0.52   & 10.00   & 8.28  \\
-    细胞存活率 (\%)      & 371 & 49.43  & 28.50  & 50.00  & 41.00  & 68.00   & $-0.17$ \\
-    \hline
-  \end{tabular}
+\begin{table}[htbp]
+\centering
+\caption{三部分数据的分析范围与用途。记录数不等同于独立材料数或实验重复数。}
+\label{tab:data_scope}
+\small
+\begin{tabularx}{\linewidth}{lrrX}
+\toprule
+数据 & 记录数 & 分组范围 & 用途 \\
+\midrule
+通用纳米材料 & 3889 & 144 个文献组 & 通用基准与迁移预训练 \\
+历史 SeNPs & 434 & 24 个文献组 & 嵌套分组交叉验证与增量比较 \\
+新增 HUVEC 实验 & 351 & 9 种材料、27 条曲线 & 剂量—时间观测、材料比较与表观 \IC \\
+\bottomrule
+\end{tabularx}
 \end{table}
 
-\begin{figure}[H]
-  \centering
-  \begin{minipage}{0.49\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs ybar,
-        width=\linewidth,
-        height=5.8cm,
-        ymin=0,
-        ymax=405,
-        ylabel={可用样本量 $n$},
-        symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
-        xtick=data,
-        x tick label style={rotate=45, anchor=east, font=\scriptsize},
-        title={\textbf{(A)} 数据覆盖度}
-      ]
-        \addplot+[fill=acsblue, draw=none] coordinates {(粒径,339) (水合粒径,279) (Zeta电位,144) (暴露时间,363) (浓度,363) (细胞存活率,371)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.49\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs axis,
-        width=\linewidth,
-        height=5.8cm,
-        ymin=-1,
-        ymax=9.2,
-        ylabel={偏度},
-        symbolic x coords={粒径,水合粒径,Zeta电位,暴露时间,浓度,细胞存活率},
-        xtick=data,
-        x tick label style={rotate=45, anchor=east, font=\scriptsize},
-        title={\textbf{(B)} 分布偏斜}
-      ]
-        \addplot+[only marks, acsred, mark=square*, mark size=1.8pt] coordinates {(粒径,3.92) (水合粒径,1.69) (Zeta电位,-0.08) (暴露时间,-0.42) (浓度,8.28) (细胞存活率,-0.17)};
-        \addplot+[black!55, dashed, mark=none] coordinates {(粒径,0) (细胞存活率,0)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
+\subsection{输入特征与折内预处理}
 
-  \vspace{0.9em}
+预测目标为细胞存活率（\%）。基础配置包含 19 个候选字段，覆盖修饰信息、合成方法、表面电荷、细胞类型与组织、发表年份、粒径、Zeta 电位及其绝对值、暴露时间、浓度、相应的对数变换、细胞接种数，以及 Zeta 电位、接种数、修饰信息和表面电荷的缺失标志。字段名称与转换规则见补充材料，发表年份作为归档背景变量保留，其作用不能解释为材料性质的因果效应。
 
-  \begin{minipage}{0.62\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs axis,
-        width=\linewidth,
-        height=5.2cm,
-        xmin=110,
-        xmax=390,
-        ymin=-1,
-        ymax=9.2,
-        xlabel={可用样本量 $n$},
-        ylabel={偏度},
-        title={\textbf{(C)} 覆盖度--偏度诊断}
-      ]
-        \addplot+[
-          only marks,
-          mark=*,
-          mark size=1.9pt,
-          acsorange,
-          nodes near coords,
-          nodes near coords style={font=\tiny, anchor=west, xshift=1.5pt},
-          point meta=explicit symbolic
-        ] coordinates {
-          (339,3.92) [粒径]
-          (279,1.69) [水合粒径]
-          (144,-0.08) [Zeta电位]
-          (363,-0.42) [暴露时间]
-          (363,8.28) [浓度]
-          (371,-0.17) [细胞存活率]
-        };
-        \addplot+[black!55, dashed, mark=none] coordinates {(110,0) (390,0)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \caption{主要连续型特征的可用样本量与偏度分布。}
-  \label{fig:senp-continuous-summary}
-\end{figure}
+粒径按原始粒径、水中尺寸、培养介质中尺寸的顺序取第一个可用值，Zeta 电位优先采用水中报告值，再回退到培养介质中的报告值。粒径、时间和浓度采用 $\log(1+x)$ 变换，转换不依赖目标值。历史浓度直接使用归档字段的 $\mu$g/mL 数值，不在本轮重新推定或换算；新增实验的原始浓度尺度另行报告，两者不能直接等同。
 
-类别型特征的频率分布同样用于辅助判断模型可能学习到的主要数据模式（图~\ref{fig:senp-categorical-frequency}）。从目前所考察的类别型特征分布来看，数据集涉及 42 种细胞系，结肠癌细胞 HCT 116 出现频率最高（98 次，25.6\%），其次为肝癌细胞 HepG2（41 次，10.7\%）、黑色素瘤细胞 A375（23 次，6.0\%）和乳腺癌细胞 MCF-7（23 次，6.0\%），前 10 种细胞系合计覆盖 71.0\% 的样本。
-组织来源以结肠（28.7\%）、肝脏（16.7\%）和脑组织（8.9\%）为主。
+数值缺失值采用当前训练折的中位数填补，类别缺失值采用当前训练折的众数填补，再进行独热编码。对训练中未出现的类别，编码器忽略未知类别，当前训练折内完全缺失的字段不进入该折模型。以上处理均在内层或外层对应的训练部分拟合，验证部分只接受已拟合的转换，避免用验证数据估计插补值和类别结构。
 
-表面修饰类型共 43 种，其中聚糖修饰（PTR）占比最高（127 次，33.2\%），其后依次为聚糖蛋白复合物 PR（18 次，4.7\%）和 PAMAM+RGD+siRNA 复合修饰（15 次，3.9\%）。
-合成方法以化学还原法为主（352 次，占 91.9\%），毒性检测方法中最常见的是 MTT 法（206 次，53.8\%）。
+化学增强候选加入元素 Se 含量、稳定性时间、Se 3d 结合能和晶体信息字段，比较基础配置、逐个加入新增字段及联合加入全部字段。当前晶体信息变量记录的是晶体学字段是否有报告，不能当作统一测定的晶相类别。含实测 \IC 的配置单列为响应相关辅助分析，候选包括基础配置、基础加 \IC、单个化学字段及联合配置，不将该配置认定为新材料毒性初筛的主模型。修饰物类别和分子量缺少完整字段，因此当前基础配置也不能视为原计划中四项材料描述符的最小输入模型。
 
-\begin{figure}[H]
-  \centering
-  \begin{minipage}{0.49\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs xbar,
-        width=\linewidth,
-        height=5.8cm,
-        xmax=215,
-        xlabel={样本量},
-        symbolic y coords={其他细胞系,MCF-7,A375,HepG2,HCT 116},
-        ytick=data,
-        y tick label style={font=\scriptsize},
-        title={\textbf{(A)} 主要细胞系}
-      ]
-        \addplot+[fill=acsblue, draw=none] coordinates {(198,其他细胞系) (23,MCF-7) (23,A375) (41,HepG2) (98,HCT 116)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.49\linewidth}
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        acs axis,
-        width=\linewidth,
-        height=5.8cm,
-        ymin=0,
-        ymax=65,
-        ylabel={样本占比（\%）},
-        symbolic x coords={PTR,PR,PAMAM+RGD+siRNA,其他修饰},
-        xtick=data,
-        x tick label style={rotate=35, anchor=east, font=\tiny},
-        nodes near coords,
-        nodes near coords style={font=\tiny, yshift=1pt},
-        title={\textbf{(B)} 表面修饰类型}
-      ]
-        \addplot+[only marks, acsorange, mark=square*, mark size=2pt] coordinates {(PTR,33.2) (PR,4.7) (PAMAM+RGD+siRNA,3.9) (其他修饰,58.2)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{minipage}
-  \caption{主要细胞系与表面修饰类型的频率分布。}
-  \label{fig:senp-categorical-frequency}
-\end{figure}
+\subsection{模型训练与分组评价}
 
-因此，本研究的可视化分析并不只用于展示变量分布，而是与特征筛选和模型评价相结合：先通过统计图和表格检查样本覆盖范围、异常高剂量和类别集中度，再根据模型表现选择需要解释的关键特征，并在具备完整模型预测结果后利用 PDP、ICE 和双特征等高线图分析浓度、粒径、Zeta 电位、暴露时间、检测方法及材料化学增强特征等变量对细胞毒性预测的单独效应和交互效应。
+历史主分析采用随机森林（random forest，RF）\cite{breiman2001random}与 XGBoost\cite{chen2016xgboost}回归模型。外层采用 5 折文献分组交叉验证，内层在外层训练数据中采用 3 折文献分组验证，以内层各折平均绝对误差（mean absolute error，MAE）的平均值选择特征配置和参数。相同文献组不同时出现在对应训练与验证部分，全部 434 条记录各获得一次外层折外（out-of-fold，OOF）预测。
+
+RF 候选均使用 250 棵树，比较不限深度或最大深度为 10、最小叶节点样本数为 2 或 4 的三种组合。XGBoost 比较 150 或 250 轮、最大深度 2 或 3 的三种组合，学习率均为 0.05，行与列采样比例均为 0.9，$L_2$ 正则系数为 1，采用平方误差目标与直方图树方法。基础随机种子为 42，各外层折使用相应折编号偏移后的种子；完整候选表与逐折选择日志保留用于复核。
+
+汇总指标包括 MAE、均方根误差（root mean square error，RMSE）与决定系数 $R^2$，由全部 OOF 预测计算：
+\begin{align}
+\mathrm{MAE} &= \frac{1}{N}\sum_{i=1}^{N}|y_i-\hat y_i|,\\
+\mathrm{RMSE} &= \sqrt{\frac{1}{N}\sum_{i=1}^{N}(y_i-\hat y_i)^2},\\
+R^2 &= 1-\frac{\sum_{i=1}^{N}(y_i-\hat y_i)^2}{\sum_{i=1}^{N}(y_i-\bar y)^2}.
+\end{align}
+其中 $y_i$ 和 $\hat y_i$ 分别为存活率报告值与 OOF 预测值，$\bar y$ 为全部评价记录的平均存活率。MAE 与 RMSE 的单位为存活率百分点，$R^2$ 无量纲，训练集拟合指标不作为外层泛化结果。
+
+增量比较使用同一记录的配对绝对误差，定义 $d_i=|y_i-\hat y_{i,\mathrm{variant}}|-|y_i-\hat y_{i,\mathrm{baseline}}|$，负值表示新增配置误差下降。分别报告按样本等权汇总的 $\Delta\mathrm{MAE}$，以及先在每个文献组内平均 $d_i$、再对 24 个组等权平均的差值。配对不确定性采用文献组等权差值的 5000 次有放回 bootstrap，取 2.5\% 与 97.5\% 分位数为区间，随机种子为 42。区间与文献组等权估计量配套报告，不能直接视为按样本汇总差值的置信区间；区间整体低于 0 时才支持该比较下的稳定误差降低。
+
+通用基准使用固定 500 棵树或提升轮次的 5 折外层文献分组评价，不进行上述内层特征与参数搜索。General 到 SeNP 迁移也采用独立的固定 500 树预算，对比 SeNP-only、General zero-shot 和 General→SeNP 三种策略。RF 迁移保留 250 棵通用数据训练树，再添加 250 棵 SeNPs 训练树，原有树不重新优化；XGBoost 在 250 轮通用预训练后续训 250 轮。迁移预处理仅使用通用数据与当前 SeNPs 训练折，外层 SeNPs 验证记录不参与拟合，这一固定预算对照与嵌套主分析的基线数值分别报告。
+
+剂量—时间消融在相同历史记录与 5×3 嵌套分组评价下，比较基础配置与加入 $\log(1+C)\log(1+T)$ 的配置，其中 $C$ 与 $T$ 分别为归档浓度和时间。该实验检验显式交互项的预测增量，与新增湿实验中观察时间依赖性属于不同问题。
+
+\subsection{新增 HUVEC 实验数据与描述性分析}
+
+实验数据包括 CS、Glucose、LET、PAH、PEG、PEI、PVP、Sucrose 和 TW80 九种 SeNPs，细胞模型为人脐静脉内皮细胞（human umbilical vein endothelial cells，HUVEC）。每种材料覆盖 24、48、72 h，浓度报告值为 0、0.25、0.5、1、2、4、8、16、32、64、128、256 和 512，共 $9\times3\times13=351$ 个条件报告值。每种材料有一组固定报告粒径和 Zeta 电位，当前表格没有这些描述符的重复测定数据。
+
+原表浓度表头为“药物浓度（$\mu$m）”，单位的含义、是否按元素硒计量及换算基准尚未确认，因此本研究以“原始浓度尺度”报告横轴与表观 \IC，不将其改写为 $\mu$M 或 $\mu$g/mL。材料缩写沿用原始记录，除表中明确提供的名称外，不从缩写反推修饰物类别或分子量。\authorinput{核对浓度单位、元素硒计量基准，以及 CS、LET、PAH 等材料缩写的完整定义。}
+
+每个条件在归档表中只有一个报告值，表格未提供原始重复孔数量、独立实验次数或汇总方法，不能据此判断实验是否实际设置重复。本轮保留全部报告值，包括大于 100\% 的存活率，不裁剪、不插补，也不做额外对照归一化。曲线只连接报告点，不作平滑或单调拟合，图中不绘制标准差、标准误或置信区间，不对材料差异开展重复实验意义上的显著性检验。\authorinput{补充材料制备与表征方法、细胞来源及培养条件、接种密度、毒性检测方法和仪器、空白及对照设置、存活率计算式、技术重复和独立实验次数。}
+
+描述性比较统一采用最高报告浓度 512，分别列出 9 种材料在三个时间点的存活率，并对材料等权平均，以概括高浓度下的时间变化。材料排序限定在 HUVEC、72 h、报告浓度 512 的条件，粒径或 Zeta 电位与该浓度下存活率的探索性关联采用 Spearman 秩相关，并列值使用平均秩，每个时间点的样本单位为 9 种材料，不把 351 个条件报告值视为 351 个独立材料。
+
+\subsection{表观半数抑制浓度的估计}
+
+对每条材料—时间曲线按浓度排序，在正浓度报告点中查找存活率从高于 50\% 降到不高于 50\% 的相邻括区。设相邻点为 $(c_1,v_1)$ 与 $(c_2,v_2)$，在 $\log_{10}$ 浓度尺度线性插值：
+\begin{equation}
+\log_{10}\widehat c_{50}=\log_{10}c_1+
+\frac{50-v_1}{v_2-v_1}\bigl(\log_{10}c_2-\log_{10}c_1\bigr).
+\end{equation}
+零浓度对照不参与对数插值，但保留在曲线展示中。存在多个方向相反的 50\% 穿越时不强行给出唯一估计，正浓度范围内始终高于 50\% 的曲线记为 $>512$，表示测试范围内没有观测到该阈值，而非外推得到确定数值。估计结果称为表观 \IC，保留相邻点与穿越状态，不计算缺少原始重复数据条件下的实验置信区间，也不使用这些数值评价尚未归档的预测 \IC。

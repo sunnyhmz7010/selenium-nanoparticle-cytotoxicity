@@ -1,0 +1,12 @@
+\begin{tabular}{llrrr}
+\toprule
+模型 & 策略 & MAE（百分点） & RMSE（百分点） & $R^2$ \\
+\midrule
+RF & SeNP-only & 19.72 & 24.98 & 0.045 \\
+RF & General zero-shot & 23.72 & 30.96 & -0.467 \\
+RF & General→SeNP & 20.30 & 25.77 & -0.017 \\
+XGBoost & SeNP-only & 20.75 & 26.09 & -0.042 \\
+XGBoost & General zero-shot & 23.44 & 29.54 & -0.336 \\
+XGBoost & General→SeNP & 20.08 & 25.49 & 0.006 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,3 @@
+# 仅用于中文论文绘图及 PDF 几何审计，不改变 research 的模型训练依赖。
+matplotlib==3.11.2
+PyMuPDF==1.28.2
