@@ -1,5 +1,14 @@
 # V2 修改记录
 
+## 2026-10-12：恢复 PDF 构建发布流程
+
+- 原 `.github/workflows/main.yml` 在 PR #87 的目录清理中被删除，本次按用户要求恢复同名 **Build and Auto-Push to Output** 工作流。
+- 编译目录改为 `paper/v2/`，入口改为 `manuscript_zh.tex`；沿用 `actions/checkout@v4`、`xu-cheng/latex-action@v3` 和手动触发，使用 XeLaTeX 与 Biber 构建中文 V2。
+- 新增标准库打包脚本 `paper/scripts/package_pdf_output.py`，递归展开分节和表格，附带中文参考文献及引用图片，清理标题中的 LaTeX 换行和文件名非法字符。
+- 发布采用 `output` 分支的正常提交和推送，保留已有 PDF 和提交历史；并发构建排队执行。最新稿源仍提供 `main.tex`，构建步骤摘要提供发布分支链接。
+- 操作方式和 Overleaf 编译要求见 [论文材料与复现入口](paper-artifacts.md)。
+- 本地验证：原入口经 latexmk 自动调用 XeLaTeX、Biber 完整构建；发布包中的 `main.tex` 在独立临时目录同样编译成功，均为12页且逐页提取文本一致，参考文献和图片字节一致，最终 LaTeX 日志无警告。补充忽略 latexmk 生成的 `.xdv` 中间文件。
+
 ## 2026-10-12：中文全文修订
 
 - 修订依据快照：`d4056e6d79a1ed16d4968480151b927146354bfe`；工作分支：`codex/v2-zh-revision`。

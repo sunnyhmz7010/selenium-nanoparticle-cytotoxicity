@@ -1,0 +1,62 @@
+name: Build and Auto-Push to Output
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# output 是共同发布目标，排队执行，避免两个手动构建同时推送。
+concurrency:
+  group: manuscript-pdf-output
+  cancel-in-progress: false
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Chinese V2 Manuscript
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: paper/v2
+          root_file: manuscript_zh.tex
+          compiler: latexmk
+          args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
+
+      - name: Checkout Existing Output
+        uses: actions/checkout@v4
+        with:
+          ref: output
+          path: publish
+
+      - name: Package PDF and Sources
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          export TZ='Asia/Shanghai'
+          TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+          python3 paper/scripts/package_pdf_output.py paper/v2/manuscript_zh.tex publish "$TIMESTAMP"
+          echo "timestamp=$TIMESTAMP" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and Push PDFs and Sources
+        shell: bash
+        env:
+          TIMESTAMP: ${{ steps.package.outputs.timestamp }}
+        run: |
+          set -euo pipefail
+          git -C publish config user.name 'github-actions[bot]'
+          git -C publish config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C publish add -- .
+          git -C publish commit -m "自动构建：更新中文 V2 PDF 和稿源（$TIMESTAMP）"
+          git -C publish push origin HEAD:output
+          {
+            echo '### 中文 V2 PDF 已发布'
+            echo
+            echo "构建时间（北京时间）：$TIMESTAMP"
+            echo
+            echo "[查看 output 分支的 PDF 和配套稿源](https://github.com/$GITHUB_REPOSITORY/tree/output)"
+          } >> "$GITHUB_STEP_SUMMARY"

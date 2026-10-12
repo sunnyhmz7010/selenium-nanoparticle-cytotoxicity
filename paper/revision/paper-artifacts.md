@@ -62,4 +62,6 @@ python scripts/run_dose_time_interaction.py
 
 按用户确认，移除根目录 README、LICENSE、tests、网页及相关工作流、开发计划、旧版脚本、重复数据、旧205条分析及顶层旧模型/结果、旧版本清单。复现入口中的网页同步调用已一并移除。
 
+2026-10-12 按用户要求恢复 PDF 构建工作流 `.github/workflows/main.yml`，构建入口调整为中文 V2：`paper/v2/manuscript_zh.tex`。在 GitHub Actions 中选择 **Build and Auto-Push to Output → Run workflow → main** 即可构建。流程采用 XeLaTeX 与 Biber，成功后将带北京时间戳的 PDF、递归合并的 `main.tex`、`references_zh.bib` 及引用图片发布到 `output` 分支。该分支保留已有 PDF 和提交历史；根目录 `main.tex` 更新为最新中文稿，旧稿源可从历史提交恢复。下载配套稿源时需一并保留参考文献和 `figures/` 目录，Overleaf 的编译器选择 XeLaTeX。流程延续原来的手动触发方式，网页部署流程未恢复。
+
 V1 与 V2 英文仍保留历史383条数据及未完整复现的深度模型描述，不能因目录清理就认定这些旧段落得到新验证。V2 中文主分析已改为434条归档数据，并删除旧深度模型与分类指标的主文比较，详细取舍保留在中文修订记录中。
