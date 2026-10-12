@@ -392,4 +392,6 @@ xelatex -interaction=nonstopmode -halt-on-error manuscript_zh.tex
 
 最终编译与页面几何、编码和范围记录见 `v2-zh-qa/final-audit.json`。独立XLSX/CSV核验、IC50复算与篇幅记录见 `source-and-structure-verification.json`，模型核验见 `model-numeric-verification.json`，面板与碰撞记录分别为 `huvec-alignment.json`、`huvec-collision-audit.json`。
 
+推送前补充检查：将新增文件暂存后，完整空白检查发现 matplotlib 导出的 SVG 多行路径属性存在行尾空格。已清理现有 SVG，并在绘图脚本中加入相同的导出规范化；逐节点比较 XML 标签、属性、文字和路径数值，图形语义保持一致，脚本语法检查与全量 Git 差异检查通过，PNG/PDF 与论文正文不受影响。
+
 本轮完成的是可审阅的中文 V2 全文修订与证据核验，红色待核实信息仍需要原始实验记录支持；不将其称为已可直接投稿的完整实验方法稿。

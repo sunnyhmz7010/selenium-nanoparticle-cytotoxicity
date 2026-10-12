@@ -82,6 +82,11 @@ def main() -> int:
                                        require_panel_labels=True, strict=True)
     fig.savefig(out.with_suffix(".pdf"), metadata={"Title": "HUVEC dose-time observations", "Creator": "plot_huvec.py"})
     fig.savefig(out.with_suffix(".svg"))
+    # Matplotlib 的多行路径属性会留下行尾空格；仅规范空白，不改变图形数据。
+    svg_path = out.with_suffix(".svg")
+    svg_text = svg_path.read_text(encoding="utf-8")
+    svg_path.write_text("\n".join(line.rstrip() for line in svg_text.splitlines()) + "\n",
+                        encoding="utf-8", newline="\n")
     fig.savefig(out.with_suffix(".png"), dpi=600)
     plt.close(fig)
     print("Exported all 351 values in 27 curves; 9 panels aligned; no error bars or smoothing.")
