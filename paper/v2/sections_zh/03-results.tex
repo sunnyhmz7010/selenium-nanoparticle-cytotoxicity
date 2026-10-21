@@ -2,11 +2,14 @@
 
 \subsection{通用基准与历史 SeNPs 分组预测}
 
-通用数据的固定预算文献分组评价得到 RF 的 OOF MAE 为 21.71 个百分点、RMSE 为 28.46 个百分点、$R^2=0.150$，XGBoost 分别为 22.54 个百分点、29.72 个百分点和 0.073。该结果提供了当前通用输入与分组条件下的基准，不能与旧稿中随机划分的深度模型或分类指标合并为一次统一模型排名。
+% Word body block 54
+通用数据的固定预算文献分组评价得到 RF 的 OOF MAE 为 21.71 个百分点、RMSE 为 28.46个百分点、R2 = 0.150，XGBoost 分别为 22.54 个百分点、29.72 个百分点和 0.073。该结果提供了当前通用输入与分组条件下的基准，不能与旧稿中随机划分的深度模型或分类指标合并为一次统一模型排名。
 
-历史 SeNPs 的严格主分析中，基础 RF 的 OOF MAE 为 19.11 个百分点，XGBoost 为 19.49 个百分点，两者的 $R^2$ 均较低（表~\ref{tab:senp_main_results}）。化学增强没有降低按样本汇总的 MAE，RF 相对基础配置增加 0.180 个百分点，XGBoost 增加 0.030 个百分点；RF 的文献组等权差值为 +0.183，bootstrap 95\% 区间为 $[0.054,0.333]$，XGBoost 对应区间跨越 0。当前可用化学字段没有表现出稳定的预测收益，RF 的组等权结果还显示小幅误差增加。
+% Word body block 55
+历史 SeNPs 的严格主分析中，基础 RF 的 OOF MAE 为 19.11 个百分点，XGBoost 为 19.49个百分点，两者的 R2 均较低（表 2）。化学增强没有降低按样本汇总的 MAE，RF 相对基础配置增加 0.180 个百分点，XGBoost 增加 0.030 个百分点；RF 的文献组等权差值为 +0.183，bootstrap95\% 区间为 [0.054, 0.333]，XGBoost 对应区间跨越 0。当前可用化学字段没有表现出稳定的预测收益，RF 的组等权结果还显示小幅误差增加。
 
-\begin{table}[htbp]
+% Word body block 57: 表格逐单元格转写。
+\begin{table}[H]
 \centering
 \caption{434 条历史 SeNPs 记录的 5 折外层、3 折内层文献分组评价。指标由外层 OOF 预测计算，IC50 辅助配置单列。}
 \label{tab:senp_main_results}
@@ -14,40 +17,41 @@
 \input{tables/senp-performance}
 \end{table}
 
-IC50 辅助 XGBoost 的 MAE 数值最低，但该输入来自毒性响应，使用前提与基础模型不同。它相对基础模型的样本等权 MAE 降低 1.145 个百分点，文献组等权差值为 $-0.835$，95\% 区间为 $[-3.296,1.531]$，未显示稳定改善。所有配对比较的两个估计量与对应区间见补充表~\ref{tab:paired_comparisons}，不以最小单个误差值替代主模型的使用条件。
+% Word body block 59
+IC50 辅助 XGBoost 的 MAE 数值最低，但该输入来自毒性响应，使用前提与基础模型不同。它相对基础模型的样本等权 MAE 降低 1.145 个百分点，文献组等权差值为 \ensuremath{\mathord{-}}0.835，95\% 区间为[\ensuremath{\mathord{-}}3.296, 1.531]，未显示稳定改善。所有配对比较的两个估计量与对应区间见补充表 S1，不以最小单个误差值替代主模型的使用条件。
 
 \subsection{迁移与剂量—时间交互的预测增量}
 
-固定 500 树预算下，General zero-shot 在 SeNPs 上的误差高于 SeNP-only，迁移也没有形成稳定收益（表~\ref{tab:transfer_results}）。RF 迁移的样本等权 MAE 增加 0.577 个百分点，XGBoost 降低 0.669 个百分点，但对应的文献组等权差值区间分别为 $[-2.763,1.414]$ 与 $[-1.417,1.317]$，均跨越 0。这些结果限定于当前共同特征与树模型迁移方式，尚不足以认为通用数据能直接改善 SeNPs 的跨文献预测。
+% Word body block 61
+固定 500 树预算下，General zero-shot 在 SeNPs 上的误差高于 SeNP-only，迁移也没有形成稳定收益（表 3）。RF 迁移的样本等权 MAE 增加 0.577 个百分点，XGBoost 降低 0.669 个百分点，但对应的文献组等权差值区间分别为 [\ensuremath{\mathord{-}}2.763, 1.414] 与 [\ensuremath{\mathord{-}}1.417, 1.317]，均跨越 0。这些结果限定于当前共同特征与树模型迁移方式，尚不足以认为通用数据能直接改善 SeNPs 的跨文献预测。
 
-\begin{table}[htbp]
+% Word body block 63: 表格逐单元格转写。
+\begin{table}[H]
 \centering
-\caption{固定 500 树预算的 General 到 SeNP 迁移对照。该对照采用预先指定参数，与表~\ref{tab:senp_main_results} 的嵌套选择主分析分别解释。}
+\caption{固定 500 树预算的 General 到 SeNP 迁移对照。该对照采用预先指定参数，与表 2 的嵌套选择主分析分别解释。}
 \label{tab:transfer_results}
 \small
 \input{tables/transfer-performance}
 \end{table}
 
-加入显式剂量—时间交互后，RF 与 XGBoost 的样本等权 MAE 分别增加 0.392 和 0.605 个百分点，文献组等权区间均跨越 0（补充表~\ref{tab:paired_comparisons}）。显式交互项未提供稳定预测增量，该结果不排除真实实验中存在时间相关响应，也不等同于模型已准确学习新增实验的二维响应。
+% Word body block 65
+加入显式剂量—时间交互后，RF 与 XGBoost 的样本等权 MAE 分别增加 0.392 和 0.605 个百分点，文献组等权区间均跨越 0（补充表 S1）。显式交互项未提供稳定预测增量，该结果不排除真实实验中存在时间相关响应，也不等同于模型已准确学习新增实验的二维响应。
 
 \subsection{HUVEC 中的剂量—时间观测与材料差异}
 
-新增工作簿完整覆盖 9 种材料、3 个时间点和 13 个浓度水平，没有缺失字段或重复条件键，共形成 27 条曲线。存活率报告范围为 6.13\%—121.61\%，其中 60 个报告值高于 100\%，全部曲线都存在相邻浓度间的局部上升，因此保留原始报告点而不强制单调拟合（图~\ref{fig:huvec_dose_time}）。归档表中的零浓度报告值均为 100\%，其原始归一化与空白扣除流程仍需依据实验记录核实。
+% Word body block 68
+新增工作簿完整覆盖 9 种材料、3 个时间点和 13 个浓度水平，没有缺失字段或重复条件键，共形成 27 条曲线。存活率报告范围为 6.13\%—121.61\%，其中 60 个报告值高于 100\%，全部曲线都存在相邻浓度间的局部上升，因此保留原始报告点而不强制单调拟合（图 1）。归档表中的零浓度报告值均为 100\%，其原始归一化与空白扣除流程仍需依据实验记录核实。
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{figures/huvec-dose-time.png}
-\caption{9 种 SeNPs 在 HUVEC 中的剂量—时间报告曲线。a—i 依次为 CS、Glucose、LET、PAH、PEG、PEI、PVP、Sucrose 与 TW80，颜色、点形和线型区分 24、48、72 h。每条曲线包含 13 个报告点，横轴正浓度区采用以 2 为底的对数尺度，零点附近采用线性段以保留对照，浓度单位的含义与计量基准待核实。连线只连接报告点，灰色虚线表示 50\% 存活率；每个条件的重复次数与汇总方法未提供，图中不绘制误差条。}
-\label{fig:huvec_dose_time}
-\end{figure}
-
+% Word body block 69
 最高报告浓度 512 下，9 种材料的平均存活率在 24、48、72 h 分别为 59.81\%、39.07\% 和 26.38\%，24 h 至 72 h 下降 33.42 个百分点，九种材料在该浓度下均随时间延长而降低。该结果表明当前 HUVEC 观测具有高浓度下的时间依赖性，平均值描述的是不同材料的等权汇总，不是重复孔均值或实验误差估计。
 
-在 HUVEC、72 h、报告浓度 512 下，PAH-SeNPs 的存活率最低，为 7.26\%，Sucrose-SeNPs 最高，为 45.30\%（表~\ref{tab:huvec_materials}）。其余材料按存活率递增依次为 LET、Glucose、TW80、PVP、CS、PEG 和 PEI，这一排序只描述指定条件下的观测差异，不代表所有剂量与时间下的统一安全性排序。
+% Word body block 70
+在HUVEC、72h、报告浓度512下，PAH-SeNPs的存活率最低，为\nobreakspace{}7.26\%7.26\%，Sucrose-SeNPs最高，为\nobreakspace{}45.30\%45.30\%（表4）。其余材料按存活率递增依次为LET、Glucose、TW80、PVP、CS、PEG和PEI，这一排序只描述指定条件下的观测差异，不代表所有剂量与时间下的统一安全性排序。
 
-\begin{table}[htbp]
+% Word body block 72: 表格逐单元格转写。
+\begin{table}[H]
 \centering
-\caption{报告浓度 512 下的材料描述符与 HUVEC 存活率。按 72 h 存活率递增排列，每种材料的粒径和 Zeta 电位均为工作簿提供的固定报告值。}
+\caption{报告浓度 512 下的材料描述符与 HUVEC 存活率。按 72 h 存活率递增排列。}
 \label{tab:huvec_materials}
 \small
 \input{tables/huvec-high-dose}
@@ -55,9 +59,73 @@ IC50 辅助 XGBoost 的 MAE 数值最低，但该输入来自毒性响应，使�
 
 \subsection{表观 IC50 与描述符的探索性关联}
 
-27 条曲线中，19 条存在唯一的相邻正浓度 50\% 括区，可得到表观 \IC，另外 8 条在测试范围内始终高于 50\%，记为 $>512$。可插值曲线在 24、48、72 h 分别为 2、8、9 条，有限估计在原始浓度尺度上为 11.63—448.56；完整结果见补充表~\ref{tab:huvec_ic50}，相邻点和状态保留在源数据表中。
+% Word body block 75
+27 条曲线中，19 条存在唯一的相邻正浓度 50\% 括区，可得到表观 IC50 ，另外 8 条在测试范围内始终高于 50\%，记为 > 512。可插值曲线在 24、48、72 h 分别为 2、8、9 条，有限估计在原始浓度尺度上为 11.63—448.56；完整结果见补充表 S2，相邻点和状态保留在源数据表中。
 
-表观 \IC 与最高浓度下的存活率描述不同的曲线特征，两者的材料排序并不完全一致。72 h 时，LET-SeNPs 的表观 \IC 最低，为 11.63，PAH-SeNPs 为 25.00，但 PAH-SeNPs 在报告浓度 512 下的存活率更低。对材料进行比较需要先明确评价时间、浓度范围和采用的曲线指标，不能将一个高浓度点的排序直接推广为全部剂量区间的排序。
+% Word body block 76
+表观 IC50 与最高浓度下的存活率描述不同的曲线特征，两者的材料排序并不完全一致。72 h时，LET-SeNPs 的表观 IC50 最低，为 11.63，PAH-SeNPs 为 25.00，但 PAH-SeNPs 在报告浓度512 下的存活率更低。对材料进行比较需要先明确评价时间、浓度范围和采用的曲线指标，不能将一个高浓度点的排序直接推广为全部剂量区间的排序。
 
-在报告浓度 512 下，以 9 种材料为分析单位，粒径与 24、48、72 h 存活率的 Spearman 系数分别为 0.200、0.383 和 0.267，Zeta 电位对应值为 0.050、$-0.183$ 和 $-0.050$。这些描述性系数没有形成稳定的单变量关联证据，当前记录也不能区分粒径、电位、修饰化学及其他未测量因素的独立作用。新增实验尚未与事先封存的模型预测配对，因此这里不报告新材料预测的 MAE、RMSE、$R^2$、预测—实测排序相关或预测 \IC 误差。
-\FloatBarrier
+% Word body blocks 77–78: 嵌入图保持原始字节。
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/word-20261021/huvec-dose-time.png}
+\caption{9 种 SeNPs 在 HUVEC 中的剂量—时间报告曲线。a—i 依次为 CS、Glucose、LET、PAH、PEG、PEI、PVP、Sucrose 与 TW80。每个点为一个条件报告值，连线只连接报告点，虚线表示 50\% 存活率。浓度单位和计量基准待核实。}
+\label{fig:huvec_dose_time}
+\end{figure}
+
+% Word body block 79
+在报告浓度 512 下，以 9 种材料为分析单位，粒径与 24、48、72 h 存活率的 Spearman 系数分别为 0.200、0.383 和 0.267，Zeta 电位对应值为 0.050、\ensuremath{\mathord{-}}0.183 和 \ensuremath{\mathord{-}}0.050。这些描述性系数没有形成稳定的单变量关联证据，当前记录也不能区分粒径、电位、修饰化学及其他未测量因素的独立作用。本轮已依据解盲前封存的冻结预测文件完成 351 个条件的预测—实测配对评价，并对 72 h、报告浓度 512 下的材料排序进行比较。
+
+\subsection{冻结模型对新材料的存活率预测误差}
+
+% Word body block 81
+在351个材料—浓度—时间条件上，冻结模型预测与实验观测的总体 MAE 为 14.51 个存活率百分点，RMSE 为 20.14 个百分点，R\textsuperscript{2} 为 0.446，平均偏差为 +7.36 个百分点，表明模型在当前条件表中整体倾向于高估存活率（表 5，图 2）。分时间点分析显示，24 h 的 MAE 和 RMSE 分别为 9.98 和 14.26 个百分点，48 h 分别为 13.99 和 18.89 个百分点，72 h 分别为 19.57 和 25.62 个百分点。预测误差随暴露时间延长而增大，提示模型未能充分捕捉较长暴露时间下的存活率下降。
+
+% Word body block 82
+在报告浓度 512 下，实验平均存活率在 24、48、72 h 分别为 59.81\%、39.07\% 和 26.38\%，模型预测均值则为 56.64\%、55.52\% 和 55.38\%。模型预测均值随时间变化较小，与实验观测的下降幅度不一致。上述结论限定于当前 9 种材料、HUVEC 体系和当前浓度映射，不能直接推广到其他细胞类型或材料。
+
+% Word body block 84: 表格逐单元格转写。
+\begin{table}[H]
+\centering
+\caption{冻结模型在 351 个 HUVEC 条件上的预测—实测误差。各条件不是独立实验重复。}
+\label{tab:huvec_external_performance}
+\small
+\input{tables/huvec-external-performance}
+\end{table}
+
+% Word body block 86
+注：MAE、RMSE 的单位均为存活率百分点，均值单位为百分比。
+
+% Word body blocks 87–88: 嵌入图保持原始字节。
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/word-20261021/scatter-viability.png}
+\caption{冻结模型预测存活率与实验观测存活率的配对比较。虚线表示理想一致性线，颜色区分 24、48 和 72 h。}
+\label{fig:huvec_external_scatter}
+\end{figure}
+
+\subsection{预测与实验毒性排序的一致性}
+
+% Word body block 90
+如图 3 所示，在 HUVEC、72 h、报告浓度 512 的条件下，实验存活率从 PAH-SeNPs 的 7.26\% 到 Sucrose-SeNPs 的 45.30\%，跨度为 38.04 个百分点。相同条件下模型预测存活率集中在 53.54\% 至 57.24\% 之间，未能再现实验观测到的材料间差异。预测与实测排序的 Spearman 相关系数为 0.217，p = 0.576；Kendall \ensuremath{\tau} 为 0.167，p = 0.612。两项统计量均未显示可靠的排序一致性证据。由于分析单位为 9 种材料，结果应视为该指定条件下的描述性比较。
+
+% Word body blocks 91–92: 嵌入图保持原始字节。
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/word-20261021/rank-consistency.png}
+\caption{72 h、报告浓度 512 下九种 SeNPs 的实验与预测毒性排序。排名 1 表示存活率最低、表观毒性最高，排名 9 表示存活率最高。}
+\label{fig:huvec_external_rank}
+\end{figure}
+
+\subsection{粒径与 Zeta 电位的 SHAP 贡献}
+
+% Word body block 94
+图 4 的 SHAP Summary Plot 展示了冻结随机森林对粒径组和 Zeta 相关特征组的预测贡献。图中各点代表一个材料—浓度—时间预测条件，横坐标为对预测存活率的有符号贡献，颜色表示相应描述符取值的高低。Zeta 组的贡献分布范围较宽，粒径组也呈现随条件变化的正负贡献。该结果说明模型在不同预测条件下使用这些特征的方式并不相同，但 SHAP 贡献反映的是模型内部的预测分配，不能解释为粒径或 Zeta 电位对细胞毒性的因果效应。
+
+% Word body blocks 95–96: 嵌入图保持原始字节。
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/word-20261021/shap-summary.png}
+\caption{冻结随机森林模型中粒径与 Zeta 电位相关特征组的 SHAP Summary Plot。每个点为一个预测条件，不代表独立实验重复。}
+\label{fig:huvec_external_shap}
+\end{figure}

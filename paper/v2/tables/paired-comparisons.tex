@@ -1,14 +1,14 @@
 \begin{tabularx}{\linewidth}{lXrrr}
 \toprule
-模型 & 对照 & \shortstack{$\Delta$MAE\\样本等权} & \shortstack{$\Delta$MAE\\文献组等权} & \shortstack{文献组等权\\95\% 区间} \\
+模型 & 对照 & \ensuremath{\Delta}MAE 样本等权 & \ensuremath{\Delta}MAE 文献组等权 & 文献组等权 95\% 区间 \\
 \midrule
-RF & 化学增强 & +0.180 & +0.183 & $[0.054, 0.333]$ \\
-XGBoost & 化学增强 & +0.030 & -0.049 & $[-0.822, 0.668]$ \\
-RF & IC50 辅助 & -0.142 & -0.326 & $[-3.285, 2.542]$ \\
-XGBoost & IC50 辅助 & -1.145 & -0.835 & $[-3.296, 1.531]$ \\
-RF & 加入剂量—时间交互 & +0.392 & +0.415 & $[-0.072, 1.102]$ \\
-XGBoost & 加入剂量—时间交互 & +0.605 & +0.388 & $[-0.199, 1.016]$ \\
-RF & General→SeNP 迁移 & +0.577 & -0.535 & $[-2.763, 1.414]$ \\
-XGBoost & General→SeNP 迁移 & -0.669 & -0.054 & $[-1.417, 1.317]$ \\
+RF & 化学增强 & +0.180 & +0.183 & [0.054, 0.333] \\
+XGBoost & 化学增强 & +0.030 & \ensuremath{\mathord{-}}0.049 & [\ensuremath{\mathord{-}}0.822, 0.668] \\
+RF & IC50 辅助 & \ensuremath{\mathord{-}}0.142 & \ensuremath{\mathord{-}}0.326 & [\ensuremath{\mathord{-}}3.285, 2.542] \\
+XGBoost & IC50 辅助 & \ensuremath{\mathord{-}}1.145 & \ensuremath{\mathord{-}}0.835 & [\ensuremath{\mathord{-}}3.296, 1.531] \\
+RF & 加入剂量—时间交互 & +0.392 & +0.415 & [\ensuremath{\mathord{-}}0.072, 1.102] \\
+XGBoost & 加入剂量—时间交互 & +0.605 & +0.388 & [\ensuremath{\mathord{-}}0.199, 1.016] \\
+RF & General\ensuremath{\rightarrow}SeNP 迁移 & +0.577 & \ensuremath{\mathord{-}}0.535 & [\ensuremath{\mathord{-}}2.763, 1.414] \\
+XGBoost & General\ensuremath{\rightarrow}SeNP 迁移 & \ensuremath{\mathord{-}}0.669 & \ensuremath{\mathord{-}}0.054 & [\ensuremath{\mathord{-}}1.417, 1.317] \\
 \bottomrule
 \end{tabularx}

@@ -1,4 +1,4 @@
-% 中文 V2 独立入口；使用 XeLaTeX 和 Biber 编译。
+% 中文 V2 独立入口；正文按 2026-10-21 Word 原文同步，使用 XeLaTeX 编译。
 \documentclass[a4paper,11pt]{article}
 \usepackage[UTF8,fontset=fandol,heading=true]{ctex}
 \usepackage[margin=23mm]{geometry}
@@ -11,8 +11,6 @@
 \usepackage{float}
 \usepackage{placeins}
 \usepackage{xcolor}
-\usepackage[style=chem-acs,backend=biber,doi=true]{biblatex}
-\addbibresource{references_zh.bib}
 \usepackage[hidelinks]{hyperref}
 \usepackage{authblk}
 \setlength{\parindent}{2em}
@@ -45,7 +43,7 @@
 \begin{abstract}
 \input{sections_zh/00-abstract}
 \end{abstract}
-\noindent\textbf{关键词：}纳米硒；细胞毒性；文献分组验证；材料特征；剂量—时间响应
+\noindent\textbf{关键词：}纳米硒；细胞毒性；文献分组验证；前瞻盲法预测；HUVEC；剂量—时间响应
 
 \input{sections_zh/01-introduction}
 \input{sections_zh/02-methods}
@@ -53,7 +51,7 @@
 \input{sections_zh/03-discussion}
 \input{sections_zh/04-conclusion}
 \FloatBarrier
-\printbibliography[title={参考文献}]
+\input{sections_zh/06-references}
 \clearpage
 \input{sections_zh/05-supporting-information}
 \end{document}
