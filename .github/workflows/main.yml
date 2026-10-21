@@ -26,12 +26,6 @@ jobs:
           compiler: latexmk
           args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
 
-      - name: Checkout Existing Output
-        uses: actions/checkout@v4
-        with:
-          ref: output
-          path: publish
-
       - name: Package PDF and Sources
         id: package
         shell: bash
@@ -39,20 +33,26 @@ jobs:
           set -euo pipefail
           export TZ='Asia/Shanghai'
           TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+          # 沿用原发布约定：每次从空目录打包，不继承 output 的旧产物。
+          test ! -e publish
           python3 paper/scripts/package_pdf_output.py paper/v2/manuscript_zh.tex publish "$TIMESTAMP"
           echo "timestamp=$TIMESTAMP" >> "$GITHUB_OUTPUT"
 
       - name: Commit and Push PDFs and Sources
         shell: bash
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TIMESTAMP: ${{ steps.package.outputs.timestamp }}
         run: |
           set -euo pipefail
+          # 独立初始化仓库，使 output 只保留本次构建的一个根提交。
+          git -C publish init -b output
           git -C publish config user.name 'github-actions[bot]'
           git -C publish config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C publish remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git -C publish add -- .
-          git -C publish commit -m "自动构建：更新中文 V2 PDF 和稿源（$TIMESTAMP）"
-          git -C publish push origin HEAD:output
+          git -C publish commit -m "Auto-build: PDFs and sources updated at $TIMESTAMP"
+          git -C publish push origin output --force
           {
             echo '### 中文 V2 PDF 已发布'
             echo
