@@ -59,7 +59,7 @@ python scripts/run_dose_time_interaction.py
 
 每条件只有一个报告值，未提供重复孔或汇总方式；不能据此断言实验未做重复，也不能计算重复实验误差条。此前两份指导/状态文档中的“无重复”应按“未提供重复数据”理解。
 
-原始数据归档后，2026-10-12 中文修订已新增 `results/huvec_exploratory/`，包含材料比较、时间汇总、27条曲线的表观IC50与描述符相关性，入口为 `scripts/summarize_huvec_for_paper.py`。重新计算得到19条可插值曲线、8条未达到50%存活率，替代早期指导中的20/7口径。论文曲线及生成脚本位于 `paper/v2/figures/`，表格位于 `paper/v2/tables/`。这些是实验观测分析，仍没有新增材料的配对模型预测结果。
+原始数据归档后，2026-10-12 中文修订已新增 `results/huvec_exploratory/`，包含材料比较、时间汇总、27条曲线的表观IC50与描述符相关性，入口为 `scripts/summarize_huvec_for_paper.py`。重新计算得到19条可插值曲线、8条未达到50%存活率，替代早期指导中的20/7口径。论文图片直接位于 `paper/v2/figures/`，绘图脚本位于 `scripts/plot_huvec.py`，表格位于 `paper/v2/tables/`。这些是实验观测分析，仍没有新增材料的配对模型预测结果。
 
 ## 清理范围
 
