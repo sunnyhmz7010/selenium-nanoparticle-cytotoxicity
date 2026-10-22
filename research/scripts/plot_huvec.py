@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
 
-REPO = Path(__file__).resolve().parents[3]
+REPO = Path(__file__).resolve().parents[2]
 SOURCE = REPO / "research/data/prospective/experimental_huvec_dose_time.csv"
 MATERIALS = ("CS-SeNPs", "Glucose-SeNPs", "LET-SeNPs", "PAH-SeNPs", "PEG-SeNPs", "PEI-SeNPs", "PVP-SeNPs", "Sucrose-SeNPs", "TW80-SeNPs")
 STYLES = {24: ("#0072B2", "o", "-"), 48: ("#D55E00", "s", "--"), 72: ("#009E73", "^", "-.")}
@@ -75,8 +75,8 @@ def main() -> int:
     fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.54, 0.985), ncol=3,
                columnspacing=2.4, handlelength=2.2)
     fig.canvas.draw()
-    out = Path(__file__).resolve().parent / "huvec-dose-time"
-    qa = REPO / "paper/revision/v2-zh-qa"
+    out = REPO / "research/results/huvec_exploratory/figures/huvec-dose-time"
+    qa = out.parent
     qa.mkdir(parents=True, exist_ok=True)
     require_matplotlib_panel_alignment(fig, json_out=qa / "huvec-alignment.json",
                                        require_panel_labels=True, strict=True)

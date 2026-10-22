@@ -6,3 +6,4 @@ paper/revision/*.md text eol=lf
 research/data/prospective/*.csv text eol=lf
 research/data/prospective/*.json text eol=lf
 research/data/prospective/*.xlsx binary
+research/materials/** -text

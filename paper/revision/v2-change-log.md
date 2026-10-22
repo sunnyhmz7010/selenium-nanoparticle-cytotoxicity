@@ -2,6 +2,13 @@
 
 只看“什么部分改成了什么、为什么改”，请打开 [V2 中文论文变更对照表](V2中文论文变更对照表.md)。
 
+## 2026-10-22：实验材料集中到 research
+
+- 16 份独有原始材料移至 `research/materials/2026-10-21/`，保留原始字节；重复实验 Excel 仅保留已有的 `research/data/prospective/experimental_huvec_original.xlsx`。
+- 删除未引用的旧 `huvec-dose-time.png`、`huvec-dose-time.svg`，论文 `figures/` 仅保留当前实际引用的六张图片。
+- 绘图脚本和独立依赖移至 `research/scripts/plot_huvec.py`、`research/requirements-huvec-figures.txt`；生成图片及绘图审计均写入 research 的结果目录。
+- 论文正文、参考文献、六张在用图片、V1 与工作流保持原样。原始材料移动和去重后逐项核对 SHA-256。
+
 ## 2026-10-22：按 V1 中文模板整理 V2
 
 - 以 V1 的 `manuscript-zh.tex` 和五个中文分节为模板，保留原有注释，迁入现有 V2 标题、摘要、正文、图表与补充材料。清除 Word 段落编号注释，不新增 LaTeX 注释。
