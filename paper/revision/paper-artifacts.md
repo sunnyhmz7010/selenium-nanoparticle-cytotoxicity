@@ -8,8 +8,8 @@
 
 ## 论文与数据
 
-- `paper/v1/`：已确认的 V1 中英双语定稿，英文入口为 `manuscript.tex`，中文入口为 `manuscript-zh.tex`，共用完整 `references.bib` 和 Table S1 的 43 篇来源。
-- `paper/v2/`：当前仅保留中文修订源稿，可通过手动 Action 构建并发布到 `paper-output` 分支的 `v2/`。入口为 `manuscript_zh.tex`，沿用 V1 中文模板和原有注释；`sections_zh/` 按 V1 保留 `00`--`04` 五个分节，文献库统一为 `references.bib`，使用 XeLaTeX 与 Biber 编译。详细记录见[中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。`paper/revision/` 保存原始意见、修改记录与核验报告。
+- `paper/v1/`：已确认的 V1 中英双语定稿，英文入口为 `manuscript.tex`，中文入口为 `manuscript-zh.tex`，共用完整 `references.bib` 和 Table S1 的 43 篇来源。现有中英文 PDF、合成 TeX 与 Bib 原样归档于 `paper/v1/output/`，不再通过 Action 构建。
+- `paper/v2/`：当前仅保留中文修订源稿，可通过手动 Action 构建并发布到 `output` 分支根目录。入口为 `manuscript_zh.tex`，沿用 V1 中文模板和原有注释；`sections_zh/` 按 V1 保留 `00`--`04` 五个分节，文献库统一为 `references.bib`，使用 XeLaTeX 与 Biber 编译。详细记录见[中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。`paper/revision/` 保存原始意见、修改记录与核验报告。
 - `research/materials/2026-10-21/`：原始 Word、实验结果 CSV、预测封存记录、独立原图和 SHAP 附件。原始实验 Excel 与 `research/data/prospective/experimental_huvec_original.xlsx` 完全一致，仅保留后者一份。
 - `research/scripts/plot_huvec.py`：HUVEC 曲线绘图脚本，独立依赖为 `research/requirements-huvec-figures.txt`，按需输出到 `research/results/huvec_exploratory/figures/`。论文 `paper/v2/figures/` 仅保留当前实际引用的六张 Word 内嵌图。
 - `data/benchmark/d0en01240h1.xlsx`：通用数据原始工作簿。原中文命名副本与其 SHA256 相同，已去重。
@@ -65,19 +65,19 @@ python scripts/run_dose_time_interaction.py
 
 按用户确认，移除根目录 README、LICENSE、tests、网页及相关工作流、开发计划、旧版脚本、重复数据、旧205条分析及顶层旧模型/结果、旧版本清单。复现入口中的网页同步调用已一并移除。
 
-2026-10-22 将 `.github/workflows/main.yml` 恢复为手动构建 V1 中英双语稿。在 GitHub Actions 中选择 **Build and Publish V1 Bilingual Manuscripts → Run workflow → main**。两个入口分别使用 XeLaTeX 与 Biber 编译，正文及 Table S1 的嵌套 `\input` 递归合并后发布到 `paper-output` 分支的 `V1/`：
+V1 已定稿，移除其构建工作流 `.github/workflows/main.yml`。此前发布的五个文件原样归档在 main 分支的 `paper/v1/output/`，保留原有文件名和字节：
 
-- `Manuscript_EN_YYYYMMDD_HHMMSS.pdf`、`Manuscript_ZH_YYYYMMDD_HHMMSS.pdf`：本次构建的英文、中文 PDF，采用北京时间戳。
+- `Manuscript_EN_20261022_204322.pdf`、`Manuscript_ZH_20261022_204322.pdf`：英文、中文 PDF。
 - `Manuscript_EN.tex`、`Manuscript_ZH.tex`：各自可独立编译的单文件稿源。
 - `references.bib`：两版共用的完整参考文献库。
 
-V2 使用独立的 `.github/workflows/v2.yml`，在 GitHub Actions 中选择 **Build and Publish V2 Chinese Manuscript → Run workflow → main**。中文入口使用同样的 XeLaTeX 与 Biber 构建方式，正文及表格的嵌套 `\input` 递归合并后发布到 `paper-output` 分支的 `v2/`：
+当前仅保留 V2 中文稿的 `.github/workflows/v2.yml`。在 GitHub Actions 中选择 **Build and Publish V2 Chinese Manuscript → Run workflow → main**，使用 XeLaTeX 与 Biber 编译；正文及表格的嵌套 `\input` 递归合并后发布到 `output` 分支根目录：
 
 - `Manuscript_ZH_YYYYMMDD_HHMMSS.pdf`：本次构建的中文 PDF，采用北京时间戳。
 - `Manuscript_ZH.tex`：合并后的单文件稿源。
 - `references.bib`：当前 V2 使用的参考文献库。
 - `figures/`：稿源实际引用的六张图片，保留原文件名和字节。
 
-两个工作流共用发布并发组，依次更新各自目录。V1 每次只替换 `V1/`，V2 每次只替换 `v2/`，保留分支其他目录和已有提交历史；分支不存在时自动创建。下载对应目录的完整文件后，在 Overleaf 选择 XeLaTeX 即可编译；V2 需同时下载 `figures/`。旧打包脚本 `paper/scripts/package_pdf_output.py` 已移除，打包逻辑保留在各自 workflow 内的 Python 中。
+原 `paper-output` 分支改名为 `output`。每次发布清理该分支根目录中的旧产物，仅保留当前 V2 的文件和图片；使用正常提交和推送保留分支历史，分支不存在时自动创建。下载完整产物（含 `figures/`）后，在 Overleaf 选择 XeLaTeX 即可编译。V1 归档不再随构建更新；旧打包脚本 `paper/scripts/package_pdf_output.py` 已移除，打包逻辑保留在 V2 workflow 内的 Python 中。
 
 V1 双语定稿仍保留历史383条数据及未完整复现的深度模型描述，不能因目录清理就认定这些旧段落得到新验证。V2 中文主分析已改为434条归档数据，并删除旧深度模型与分类指标的主文比较，详细取舍保留在中文修订记录中。

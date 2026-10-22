@@ -13,6 +13,7 @@ paper/**/*.out
 paper/**/*.synctex.gz
 paper/**/*.toc
 paper/**/*.pdf
+!paper/v1/output/*.pdf
 paper/**/*.xdv
 paper/**/*.bcf
 paper/**/*.bbl

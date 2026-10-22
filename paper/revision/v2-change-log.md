@@ -2,6 +2,14 @@
 
 只看“什么部分改成了什么、为什么改”，请打开 [V2 中文论文变更对照表](V2中文论文变更对照表.md)。
 
+## 2026-10-22：V1 静态归档，V2 改为 output 根目录发布
+
+- 将现有 V1 中英文 PDF、合成 TeX 和 Bib 共五个文件，从 `paper-output/V1` 原样归档到 main 分支的 `paper/v1/output/`，逐项核对 Git blob 哈希。
+- 移除 V1 构建工作流 `.github/workflows/main.yml`，后续不再构建 V1；仅为归档目录放行 PDF 跟踪，其他编译中间产物仍忽略。
+- V2 仍通过 `.github/workflows/v2.yml` 手动构建，发布分支改为 `output`，PDF、合成 TeX、Bib 与六张配图直接位于该分支根目录及其 `figures/`。
+- 原 `paper-output` 分支改名为 `output`，每次清理根目录旧产物并正常提交，保留提交历史；论文正文和在用图片均未修改。
+- 下列记录保留各次操作时的状态，当前操作方式见文末。
+
 ## 2026-10-22：新增 V2 中文稿手动构建发布
 
 - 新增 `.github/workflows/v2.yml`，手动构建 `paper/v2/manuscript_zh.tex`，使用与 V1 相同的 XeLaTeX、Biber 和 `latexmk` 编译方式。
@@ -93,6 +101,6 @@
 
 ## 使用方式
 
-当前 V2 仅保留中文版。编译入口为 `../v2/manuscript_zh.tex`，正文位于 `../v2/sections_zh/` 的 `00`--`04` 五个分节，参考文献文件为 `../v2/references.bib`。编译时以 `paper/v2/` 为工作目录，依次运行 XeLaTeX、Biber、两次 XeLaTeX。也可在 GitHub Actions 中手动运行 **Build and Publish V2 Chinese Manuscript**，从 `paper-output/v2` 获取 PDF、合并后的 TeX、Bib 及 `figures/`；独立编译时下载该目录的完整文件。
+当前 V2 仅保留中文版。编译入口为 `../v2/manuscript_zh.tex`，正文位于 `../v2/sections_zh/` 的 `00`--`04` 五个分节，参考文献文件为 `../v2/references.bib`。编译时以 `paper/v2/` 为工作目录，依次运行 XeLaTeX、Biber、两次 XeLaTeX。也可在 GitHub Actions 中手动运行 **Build and Publish V2 Chinese Manuscript**，从 `output` 分支根目录获取 PDF、合并后的 TeX、Bib 及 `figures/`；独立编译时下载该目录的完整文件。
 
 现有 V2 正文、讨论、补充材料和七条文献均已迁入 V1 模板结构；图表与实验材料保持原有字节。

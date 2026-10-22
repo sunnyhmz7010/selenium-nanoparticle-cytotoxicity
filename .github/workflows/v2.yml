@@ -6,9 +6,8 @@ on:
 permissions:
   contents: write
 
-# 与 V1 共用发布分支，串行更新各自目录。
 concurrency:
-  group: paper-output
+  group: output
   cancel-in-progress: false
 
 jobs:
@@ -40,7 +39,7 @@ jobs:
           from pathlib import Path
 
           root = Path('paper/v2').resolve()
-          destination = Path('build-output/v2')
+          destination = Path('build-output')
           source = root / 'manuscript_zh.tex'
           timestamp = os.environ['TIMESTAMP']
           inputs = re.compile(r'\\input\{([^}]+)\}')
@@ -91,23 +90,23 @@ jobs:
           PY
           echo "timestamp=$TIMESTAMP" >> "$GITHUB_OUTPUT"
 
-      - name: Prepare Paper Output Branch
+      - name: Prepare Output Branch
         shell: bash
         run: |
           set -euo pipefail
           status=0
-          git ls-remote --exit-code --heads origin refs/heads/paper-output > "$RUNNER_TEMP/paper-output-ref" || status=$?
+          git ls-remote --exit-code --heads origin refs/heads/output > "$RUNNER_TEMP/output-ref" || status=$?
           if [ "$status" -eq 0 ]; then
-            git fetch --depth=1 origin refs/heads/paper-output:refs/remotes/origin/paper-output
-            git worktree add -b paper-output publish refs/remotes/origin/paper-output
+            git fetch --depth=1 origin refs/heads/output:refs/remotes/origin/output
+            git worktree add -b output publish refs/remotes/origin/output
           elif [ "$status" -eq 2 ]; then
             git worktree add --detach publish HEAD
-            git -C publish switch --orphan paper-output
+            git -C publish switch --orphan output
           else
             exit "$status"
           fi
 
-      - name: Replace V2 Outputs
+      - name: Replace Output Root
         shell: bash
         run: |
           set -euo pipefail
@@ -118,13 +117,18 @@ jobs:
           root = Path('publish').resolve()
           if not (root / '.git').exists():
               raise ValueError('发布目录不是 Git 工作区')
-          destination = root / 'v2'
-          destination.resolve().relative_to(root)
-          if destination.is_symlink():
-              raise ValueError('v2 发布目录不能是符号链接')
-          if destination.exists():
-              shutil.rmtree(destination)
-          shutil.copytree(Path('build-output/v2'), destination)
+          for path in root.iterdir():
+              if path.name == '.git':
+                  continue
+              if path.is_symlink():
+                  path.unlink()
+                  continue
+              path.resolve().relative_to(root)
+              if path.is_dir():
+                  shutil.rmtree(path)
+              else:
+                  path.unlink()
+          shutil.copytree(Path('build-output'), root, dirs_exist_ok=True)
           PY
 
       - name: Commit and Push V2 Outputs
@@ -135,15 +139,15 @@ jobs:
           set -euo pipefail
           git -C publish config user.name 'github-actions[bot]'
           git -C publish config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git -C publish add -- v2
+          git -C publish add --all
           if ! git -C publish diff --cached --quiet; then
             git -C publish commit -m "build(paper): 更新V2中文PDF和单文件稿源（$TIMESTAMP）"
           fi
-          git -C publish push origin HEAD:refs/heads/paper-output
+          git -C publish push origin HEAD:refs/heads/output
           {
             echo '### V2 中文稿已发布'
             echo
             echo "构建时间（北京时间）：$TIMESTAMP"
             echo
-            echo "[查看 V2 PDF、单文件稿源、Bib 和配图](https://github.com/$GITHUB_REPOSITORY/tree/paper-output/v2)"
+            echo "[查看 V2 PDF、单文件稿源、Bib 和配图](https://github.com/$GITHUB_REPOSITORY/tree/output)"
           } >> "$GITHUB_STEP_SUMMARY"
