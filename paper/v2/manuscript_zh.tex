@@ -1,57 +1,265 @@
-% 中文 V2 独立入口；正文按 2026-10-21 Word 原文同步，使用 XeLaTeX 编译。
-\documentclass[a4paper,11pt]{article}
-\usepackage[UTF8,fontset=fandol,heading=true]{ctex}
-\usepackage[margin=23mm]{geometry}
-\usepackage{setspace}
-\setstretch{1.25}
-\usepackage{amsmath,amssymb}
-\usepackage{graphicx}
-\usepackage{booktabs,tabularx,array}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{placeins}
-\usepackage{xcolor}
-\usepackage[hidelinks]{hyperref}
-\usepackage{authblk}
-\setlength{\parindent}{2em}
-\setlength{\parskip}{0.25em}
-\setlength{\emergencystretch}{2em}
-\captionsetup{font=small,labelfont=bf}
-% 图占据单独浮动页时从正文顶端排起，避免上方大块留白。
-\makeatletter
-\setlength{\@fptop}{0pt}
-\makeatother
-\ctexset{section={format=\Large\bfseries},subsection={format=\large\bfseries}}
-\newcommand{\authorinput}[1]{\textcolor{red!65!black}{\textbf{［待核实：#1］}}}
-\newcommand{\IC}{\ensuremath{\mathrm{IC}_{50}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This is a "template" model document for submission to the
+%% American Chemical Society (ACS).
+%%
+%% The guidance here contains information about how you may wish to
+%% modify it to match the requirements of various ACS journals. The
+%% ACS do *not* typeset accepted articles using LaTeX, so there is
+%% no specific class required.
+%%
+%% This template deliberately does *not* seek to reproduce
+%% the layout of the typeset journal: this is explicitly not
+%% required by the ACS for LaTeX submissions.
+%%
+%% Please report any issues with the template at
+%% https://github.com/josephwright/acs-template/issues
+%%
+%% Released under the Creative Commons 0 license
+%% https://creativecommons.org/public-domain/cc0/
+%% 
+%% Copyight (c) 2025 Joseph Wright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper]{article}
 
-% 沿用原稿的作者姓名、顺序和单位，不推定本轮小组分工对应的作者贡献。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Font setup - delete if you are using LuaLaTeX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{ctex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Adjust the margins and allow for line spacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{margin = 1in}
+\usepackage{setspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Reference support
+%%
+%% The recommended method for producing the reference section is
+%% to use biblatex. If you wish to use a classical BibTeX
+%% approach, this is easiest to achieve using the achemso package.
+%% In that case, you should remove the biblatex lines.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% You can adjust the printing of DOI, article title, etc. using
+% package options, e.g. "doi = true"; see the biblatex manual for
+% details of adjusting the number of authors printed, e.g.
+% "maxnames = 15" to print no more than 15 authors.
+\usepackage[style = chem-acs]{biblatex}
+\addbibresource{references.bib}
+% If you are using classical BibTeX, remove the above lines and 
+% uncomment:
+%\usepackage{achemso}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Graphic inclusion and scheme and chart support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{float}
+% 补充表跨页排版及历史稿 Unicode 字符兼容；均使用现有 TeX Live 宏包。
+\usepackage{array,longtable,booktabs,newunicodechar}
+\newunicodechar{–}{\textendash}
+\newunicodechar{—}{\textemdash}
+\newunicodechar{‐}{-}
+\newunicodechar{ń}{\'{n}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat = 1.18}
+\definecolor{acsblue}{RGB}{72,116,176}
+\definecolor{acsred}{RGB}{196,78,82}
+\definecolor{acsorange}{RGB}{221,132,82}
+\definecolor{acsgray}{RGB}{88,89,91}
+\definecolor{acsplotbg}{RGB}{239,241,247}
+\pgfplotsset{
+  acs axis/.style={
+    axis background/.style={fill=acsplotbg},
+    axis line style={draw=acsgray, line width=0.45pt},
+    tick style={draw=acsgray, line width=0.4pt},
+    tick label style={font=\footnotesize},
+    label style={font=\small},
+    title style={font=\small\bfseries},
+    grid=both,
+    major grid style={draw=white, line width=0.55pt},
+    minor grid style={draw=white, line width=0.3pt},
+    minor tick num=1,
+    scaled ticks=false,
+    legend style={draw=none, fill=none, font=\footnotesize},
+    every axis plot/.append style={line width=0.85pt}
+  },
+  acs xbar/.style={
+    acs axis,
+    xbar,
+    xmin=0,
+    width=0.88\linewidth,
+    height=6.1cm,
+    bar width=8pt,
+    enlarge y limits=0.16,
+    nodes near coords,
+    nodes near coords align={horizontal},
+    nodes near coords style={font=\scriptsize, xshift=1.2pt}
+  },
+  acs ybar/.style={
+    acs axis,
+    ybar,
+    width=0.92\linewidth,
+    height=6.1cm,
+    bar width=11pt,
+    enlarge x limits=0.08,
+    nodes near coords,
+    nodes near coords align={vertical},
+    nodes near coords style={font=\scriptsize, yshift=1pt}
+  }
+}
+\newfloat{scheme}{htbp}{los}
+\floatname{scheme}{Scheme}
+\floatname{chart}{Chart}
+\newfloat{graph}{htbp}{loh}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Common support packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amssymb,tabularx,caption,placeins}
+\usepackage{chemformula} % Formulas using \ch{}
+% or
+\usepackage[version = 4]{mhchem} % Formulas using \ce{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Many journals require that sections are unnumbered: this 
+%% is activated here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place any additional macros here.  Please use \newcommand* where
+%% possible, and avoid layout-changing macros (which are not used
+%% when typesetting).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Author and title data:
+%% the authblk package is currently the simplest way to provide this
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{authblk}
+\usepackage[hidelinks]{hyperref}
 \author[1]{Xinge Xia}
 \author[1]{Fan Wu}
+\affil[1]{College of Cyber Security, Jinan University, Guangzhou, China}
 \author[2]{Xianyou Duan}
+\affil[2]{College of Chemistry and Materials Science, Jinan University, Guangzhou, China}
 \author[1]{Hongyi Chen}
 \author[1]{Bingwen Feng*}
-\affil[1]{College of Cyber Security, Jinan University, Guangzhou, China}
-\affil[2]{College of Chemistry and Materials Science, Jinan University, Guangzhou, China}
-\renewcommand{\Authfont}{\normalsize}
-\renewcommand{\Affilfont}{\small}
+
 \title{纳米硒细胞毒性预测的严格分组评估\\[0.3em]与 HUVEC 剂量—时间实验}
+% Use the \date command for email address(s) of corresponding authors
 \date{中文 V2 修订稿\quad 2026 年 10 月 12 日\\\small * 通讯作者：bingwfeng@gmail.com}
 
 \begin{document}
-\maketitle
-\begin{abstract}
-\input{sections_zh/00-abstract}
-\end{abstract}
-\noindent\textbf{关键词：}纳米硒；细胞毒性；文献分组验证；前瞻盲法预测；HUVEC；剂量—时间响应
 
+\maketitle
+
+\begin{abstract}
+  \input{sections_zh/00-abstract}
+\end{abstract}
+
+\section*{Keywords}
+
+纳米硒；细胞毒性；文献分组验证；前瞻盲法预测；HUVEC；剂量—时间响应
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start the main part of the manuscript here.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{sections_zh/01-introduction}
 \input{sections_zh/02-methods}
 \input{sections_zh/03-results}
-\input{sections_zh/03-discussion}
 \input{sections_zh/04-conclusion}
-\FloatBarrier
-\input{sections_zh/06-references}
+
 \clearpage
-\input{sections_zh/05-supporting-information}
+\section*{补充材料}
+\begingroup
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\subsection{输入特征与参数候选}
+
+基础配置的 19 个字段依次为：修饰/官能团信息、合成方法、表面电荷、细胞类型、细胞组织、发表年份、最终粒径、最终 Zeta 电位、Zeta 绝对值、暴露时间、历史浓度、log(1 + 粒径)、log(1 + 时间)、log(1 + 浓度)、接种细胞数，以及 Zeta、细胞数、修饰信息和表面电荷的四个缺失标志。化学候选为 Se 含量、稳定性时间、Se 3d 结合能和晶体学报告状态，IC50 配置额外考虑历史实测 IC50 。晶体学报告状态使用原晶体学字段是否非空构造，不是测定晶相的替代值。
+
+RF 候选（树数、最大深度、叶节点最小样本数）为（250、不限、2）、（250、10、2）和（250、不限、4）；XGBoost 候选（轮次、最大深度、学习率）为（150、2、0.05）、（250、2、0.05）和（250、3、0.05）。固定预算通用与迁移对照使用 500 树预算，RF 的最小叶节点样本数为 2，XGBoost 的最大深度为 3、学习率为 0.05，其余固定参数与方法部分一致。
+
+\subsection{完整配对增量结果}
+
+表 S1 同时列出样本等权差值与文献组等权差值，区间对应后者。基础嵌套分析中归档的逐样本 bootstrap 指标区间属于另一不确定性口径，本稿不将它们写成文献组区间，也不将通用基准中的组等权区间直接附到样本等权性能数值上。
+
+\begin{table}[H]
+\centering
+\caption{各配置相对对应基线的配对 MAE 差值，单位为存活率百分点。负值表示误差下降，区间来自 24 个文献组等权差值的 5000 次 bootstrap。}
+\label{tab:paired_comparisons}
+\small
+\input{tables/paired-comparisons}
+\end{table}
+
+\subsection{27 条曲线的表观 IC50}
+
+表 S2 覆盖全部九种材料与三个时间点，不删除测试范围内未达到阈值的曲线。所有有限值均为对数浓度相邻点插值，单位沿用待核实的原始浓度尺度，显示两位小数仅用于一致排版，不表示相应的测量精度；> 512 只记录阈值未检出。该表不包含模型预测 IC50 或预测—实测误差。
+
+\begin{table}[H]
+\centering
+\caption{HUVEC 材料—时间曲线的表观 IC50，采用原始浓度尺度。重复次数与汇总方法待核实。}
+\label{tab:huvec_ic50}
+\small
+\input{tables/huvec-apparent-ic50}
+\end{table}
+
+\subsection{新增实验源数据的使用规则}
+
+新增实验原始报告字段为材料名称、粒径（nm）、Zeta 电位（mV）、细胞类型、浓度报告值、时间（h）和存活率（\%）351 条记录完整覆盖所有材料—时间—浓度组合，保留零浓度对照、60个大于 100\% 的存活率报告值与局部非单调响应，不做删点、额外归一化或浓度换算。材料比较表、时间汇总表、表观 IC50 的相邻括区与描述符相关系数均由归档 CSV 重新生成，原始工作簿与 CSV 的一致性以归档哈希及逐值核验为依据。
+
+既有随机划分复现用于追溯历史报告，包含不同预处理和全量拟合指标，不进入本稿的主模型排名。原计划的修饰类别—分子量信息层级、可靠配方分组、完整材料表征与模型前瞻盲测，按当前归档可支持的范围记录，不将未生成的指标或未提供的数据补写为已完成结果。
+
+\FloatBarrier
+\section*{内部核验附录：暂不纳入正式正文的图件}
+
+以下两张图随本轮材料一并保存，供作者核查，不应作为已验证的正式论文结果图直接投稿。IAE 热图的积分定义和完整计算脚本尚未核实。IC50 配对散点图中的预测 IC50 数值与逐条件预测曲线不一致：27 条预测曲线的最低预测存活率均高于 50\%，因此不能从当前预测曲线直接插值得到图中所示的有限模型 IC50。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/word-20261021/iae-heatmap.png}
+\caption*{内部核验附图 A. 任务 24 的 IAE 热图。暂不纳入正式正文，待核对积分横轴、零浓度处理、积分区间和数值积分方法后再决定。}
+\label{fig:huvec_internal_iae}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figures/word-20261021/ic50-pairing.png}
+\caption*{内部核验附图 B. 预测 IC50 与实验 IC50 配对散点图。暂不纳入正式正文。预测曲线未跨越 50\% 存活率阈值，图中有限预测 IC50 及其配对误差目前缺少与曲线一致的可复现依据。}
+\label{fig:huvec_internal_ic50}
+\end{figure}
+
+\subsection*{提交前仍需核验的事项}
+
+核对实验浓度单位、元素硒计量基准及从报告浓度到模型输入浓度的换算方法。
+
+补齐细胞来源、培养条件、检测方法、对照设置、归一化公式、技术重复和独立实验次数。
+
+为 IAE 热图提供可复现的公式和计算脚本，并从预测—实测曲线重新计算。
+
+移除或重新计算任务 26 中无法由预测曲线识别的 pred\_ic50、log\_error 及任何相关 R\textsuperscript{2}。
+
+任务 30 的 SHAP 说明提到 shap\_code\_snippet.py，但当前附件中未提供该脚本正文。正式投稿前应随补充材料提供代码或稳定的代码存档入口。
+
+\endgroup
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% If you are using classical BibTeX rather than biblatex,
+%% remove the \printbibliography[title={参考文献}] and uncomment the \bibliography one
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printbibliography[title={参考文献}]
+%\bibliography{acs-template.bib}
+
 \end{document}

@@ -9,7 +9,7 @@
 ## 论文与数据
 
 - `paper/v1/`：已确认的 V1 中英双语定稿，英文入口为 `manuscript.tex`，中文入口为 `manuscript-zh.tex`，共用完整 `references.bib` 和 Table S1 的 43 篇来源。
-- `paper/v2/`：当前仅保留中文修订源稿，不参与自动构建或发布。入口 `manuscript_zh.tex`、正文目录 `sections_zh/` 和参考文献文件 `references_zh.bib` 均保留原名。详细记录见[中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。`paper/revision/` 保存原始意见、修改记录与核验报告。
+- `paper/v2/`：当前仅保留中文修订源稿，不参与自动构建或发布。入口为 `manuscript_zh.tex`，沿用 V1 中文模板和原有注释；`sections_zh/` 按 V1 保留 `00`--`04` 五个分节，文献库统一为 `references.bib`，使用 XeLaTeX 与 Biber 编译。详细记录见[中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。`paper/revision/` 保存原始意见、修改记录与核验报告。
 - `data/benchmark/d0en01240h1.xlsx`：通用数据原始工作簿。原中文命名副本与其 SHA256 相同，已去重。
 - `data/senp/纳米硒毒性预测验证集数据集.xlsx`：434条严格分析所用原始工作簿。
 - `data/reproduction/`：历史复现中的纳入、排除记录及审计信息。
