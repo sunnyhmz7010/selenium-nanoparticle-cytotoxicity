@@ -194,7 +194,31 @@ thank \ldots''.
 \begingroup
 \setcounter{table}{0}
 \renewcommand{\thetable}{S\arabic{table}}
-\input{tables/table-s1-zh}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{r >{\raggedright\arraybackslash}p{0.21\linewidth} >{\raggedright\arraybackslash}p{0.66\linewidth}}
+\caption{纳米硒专用数据集的来源文献（43 篇，2008--2022 年）。}\label{tab:source-publications}\\
+\toprule
+序号 & 来源文献 & 文献题名与 DOI \\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{表 S1（续）} \\
+\toprule
+序号 & 来源文献 & 文献题名与 DOI \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{续下页} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\input{tables/table-s1-rows}
+\end{longtable}
+\noindent \textit{注：}逐文献记录数尚待根据原始 383 条数据核实。书目信息由中英文共享的参考文献库提供。
+
 \endgroup
 \clearpage
 
