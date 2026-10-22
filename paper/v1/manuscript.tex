@@ -56,6 +56,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}
 \usepackage{float}
+% 补充表跨页排版及历史稿 Unicode 字符兼容；均使用现有 TeX Live 宏包。
+\usepackage{array,longtable,booktabs,newunicodechar}
+\newunicodechar{–}{\textendash}
+\newunicodechar{—}{\textemdash}
+\newunicodechar{‐}{-}
+\newunicodechar{ń}{\'{n}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+
 %% --- pgfplots/ACS plot styles, ported from legacy preamble ---
 \usepackage{xcolor}
 \usepackage{pgfplots}
@@ -179,18 +190,14 @@ immediately after the keyswords (if required).
 Please use ``The authors thank \ldots'' rather than ``The authors would like to
 thank \ldots''.
 
-\section*{Supporting information}
-
-A listing of the contents of each file supplied as Supporting Information
-should be included. For instructions on what should be included in the
-Supporting Information as well as how to prepare this material for
-publications, refer to the journal's Instructions for Authors.
-
-The following files are available free of charge.
-\begin{itemize}
-  \item Filename-1: brief description
-  \item Filename-2: brief description
-\end{itemize}
+\clearpage
+\section*{Supporting Information}
+\begingroup
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\input{tables/table-s1-en}
+\endgroup
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If you are using classical BibTeX rather than biblatex,
