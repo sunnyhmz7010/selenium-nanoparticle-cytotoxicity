@@ -8,7 +8,8 @@
 
 ## 论文与数据
 
-- 根目录 `paper/v1/`：保留的初稿；`paper/v2/`：独立工作版本，2026-10-12 已完成基于新增实验数据的中文全文修订，英文仍为初稿；`paper/revision/`：原始意见、修改记录与核验报告。中文入口为 `paper/v2/manuscript_zh.tex`，详细记录见 [中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。中文入口采用独立参考文献库，原中英文入口及初稿保持可追溯。
+- `paper/v1/`：已确认的 V1 中英双语定稿，英文入口为 `manuscript.tex`，中文入口为 `manuscript-zh.tex`，共用完整 `references.bib` 和 Table S1 的 43 篇来源。
+- `paper/v2/`：保留 main 上的修订源文件，不参与自动构建或发布。中文入口为 `paper/v2/manuscript_zh.tex`，使用独立参考文献库，详细记录见[中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。`paper/revision/` 保存原始意见、修改记录与核验报告。
 - `data/benchmark/d0en01240h1.xlsx`：通用数据原始工作簿。原中文命名副本与其 SHA256 相同，已去重。
 - `data/senp/纳米硒毒性预测验证集数据集.xlsx`：434条严格分析所用原始工作簿。
 - `data/reproduction/`：历史复现中的纳入、排除记录及审计信息。
@@ -62,6 +63,12 @@ python scripts/run_dose_time_interaction.py
 
 按用户确认，移除根目录 README、LICENSE、tests、网页及相关工作流、开发计划、旧版脚本、重复数据、旧205条分析及顶层旧模型/结果、旧版本清单。复现入口中的网页同步调用已一并移除。
 
-PDF 构建工作流为 `.github/workflows/main.yml`，编译入口为中文 V2：`paper/v2/manuscript_zh.tex`。在 GitHub Actions 中选择 **Build and Auto-Push to Output → Run workflow → main** 即可构建，Overleaf 的编译器选择 XeLaTeX。成功后将带北京时间戳的 PDF、递归合并的 `main.tex` 及实际引用的参考文献和图片发布到 `output` 分支；下载稿源时需保留这些依赖的相对路径。2026-10-21 恢复 9 月 8 日的覆盖发布约定：每次从空目录建立一个独立根提交，强制替换 `output`，只保留当次构建产物，不累积旧 PDF、旧依赖或分支提交历史。10 月 12 日加入的普通提交发布方式已由这一规则替代。
+2026-10-22 将 `.github/workflows/main.yml` 恢复为手动构建 V1 中英双语稿。在 GitHub Actions 中选择 **Build and Publish V1 Bilingual Manuscripts → Run workflow → main**。两个入口分别使用 XeLaTeX 与 Biber 编译，正文及 Table S1 的嵌套 `\input` 递归合并后发布到 `paper-output` 分支的 `V1/`：
 
-V1 与 V2 英文仍保留历史383条数据及未完整复现的深度模型描述，不能因目录清理就认定这些旧段落得到新验证。V2 中文主分析已改为434条归档数据，并删除旧深度模型与分类指标的主文比较，详细取舍保留在中文修订记录中。
+- `Manuscript_EN_YYYYMMDD_HHMMSS.pdf`、`Manuscript_ZH_YYYYMMDD_HHMMSS.pdf`：本次构建的英文、中文 PDF，采用北京时间戳。
+- `Manuscript_EN.tex`、`Manuscript_ZH.tex`：各自可独立编译的单文件稿源。
+- `references.bib`：两版共用的完整参考文献库。
+
+每次只替换 `V1/` 的发布内容，保留 `paper-output` 分支的其他目录和已有提交历史；分支不存在时自动创建。下载对应 TeX 和 Bib 后，在 Overleaf 选择 XeLaTeX 即可编译。V2 只保留 main 分支的源文件，不再通过 Action 构建或发布；旧 V2 打包脚本 `paper/scripts/package_pdf_output.py` 已移除，双语打包逻辑恢复为 workflow 内的 Python。
+
+V1 双语定稿及 V2 英文仍保留历史383条数据及未完整复现的深度模型描述，不能因目录清理就认定这些旧段落得到新验证。V2 中文主分析已改为434条归档数据，并删除旧深度模型与分类指标的主文比较，详细取舍保留在中文修订记录中。
