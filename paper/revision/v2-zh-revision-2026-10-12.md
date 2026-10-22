@@ -31,7 +31,7 @@
 | `paper/v2/sections_zh/04-conclusion.tex` | 结论 |
 | `paper/v2/sections_zh/05-supporting-information.tex` | 本轮新增的补充材料 |
 | `paper/v2/references_zh.bib` | 中文稿使用的 7 项参考文献，独立于英文库 |
-| `paper/v2/figures/huvec-dose-time.*` | 完整实验曲线的 PNG、SVG 与 PDF |
+| `research/results/huvec_exploratory/figures/huvec-dose-time.*` | 按需生成的完整实验曲线 PNG、SVG 与 PDF；当前论文使用 Word 内嵌图，不保留这组旧图片 |
 | `paper/v2/tables/` | 从归档数据生成的论文表格 |
 | `paper/revision/v2-zh-qa/` | 数据、模型指标、图形和结构核验记录 |
 
@@ -336,7 +336,7 @@ PDF 为本地编译产物 `paper/v2/manuscript_zh.pdf`。仓库原有 `.gitignor
 
 ### 10.3 实验曲线
 
-`paper/v2/figures/plot_huvec.py` 使用 Python/matplotlib，生成 180×145 mm 的九面板图。三个时间使用颜色、点形和线型共同编码，0 浓度保留在 symlog 的线性段，正浓度区用 log2，全部351个报告值参与绘制。图中没有误差条、拟合带或模拟重复数据，灰线只标记50%阈值。
+`research/scripts/plot_huvec.py` 使用 Python/matplotlib，生成 180×145 mm 的九面板图。三个时间使用颜色、点形和线型共同编码，0 浓度保留在 symlog 的线性段，正浓度区用 log2，全部351个报告值参与绘制。图中没有误差条、拟合带或模拟重复数据，灰线只标记50%阈值。
 
 PNG 为600 dpi，SVG/PDF保留可编辑文字。源文件审计无 FAIL，两个 WARN 已核对：没有 TIFF 是本轮选择 PNG 预览与矢量导出的结果，尚未指定期刊的最终栅格上传要求；宽度的静态审计把 `180/25.4` 误识别为英寸，实际 PDF 为180 mm，已核对导出尺寸。最终 PDF 字号审计最小7 pt，面板对齐与碰撞检查均 PASS，碰撞检查为0 FAIL/0 WARN；还已逐面板查看原图，数据点、图例、坐标和文字均可辨。
 
@@ -349,12 +349,12 @@ PNG 为600 dpi，SVG/PDF保留可编辑文字。源文件审计无 FAIL，两个
 .\.venv\Scripts\python.exe research/scripts/build_v2_model_tables.py
 ```
 
-数据分析脚本使用标准库；本地核验实际使用 Codex 提供的 Python 3.12.14 路径。绘图依赖经用户明确授权，仅安装在本工作区 `.venv/`，版本为 matplotlib 3.11.2 与 PyMuPDF 1.28.2，独立清单位于 `paper/v2/figures/requirements.txt`，没有修改项目研究训练依赖列表或全局环境。
+数据分析脚本使用标准库；本地核验实际使用 Codex 提供的 Python 3.12.14 路径。绘图依赖经用户明确授权，仅安装在本工作区 `.venv/`，版本为 matplotlib 3.11.2 与 PyMuPDF 1.28.2，独立清单位于 `research/requirements-huvec-figures.txt`，没有修改项目研究训练依赖列表或全局环境。
 
 绘图命令：
 
 ```powershell
-.\.venv\Scripts\python.exe paper/v2/figures/plot_huvec.py --qa-scripts <nature-figure技能的scripts目录>
+.\.venv\Scripts\python.exe research/scripts/plot_huvec.py --qa-scripts <nature-figure技能的scripts目录>
 ```
 
 `--qa-scripts` 用于导出前的面板几何审计，不参与数据计算，不在论文正文中暴露本地技能路径。后续环境需要已有 matplotlib；安装命令仅作为复现说明，本轮安装已获得明确授权。
