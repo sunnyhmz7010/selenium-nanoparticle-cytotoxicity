@@ -1,0 +1,12 @@
+\begin{tabular}{llrrr}
+\toprule
+模型 & 特征配置 & MAE（百分点） & RMSE（百分点） & R\textsuperscript{2} \\
+\midrule
+RF & 基础 & 19.11 & 24.12 & 0.109 \\
+XGBoost & 基础 & 19.49 & 23.97 & 0.120 \\
+RF & 化学增强，不含 IC50 & 19.29 & 24.25 & 0.099 \\
+XGBoost & 化学增强，不含 IC50 & 19.52 & 23.87 & 0.128 \\
+RF & IC50 辅助 & 18.97 & 24.13 & 0.109 \\
+XGBoost & IC50 辅助 & 18.35 & 23.25 & 0.172 \\
+\bottomrule
+\end{tabular}
