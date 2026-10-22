@@ -65,13 +65,13 @@ python scripts/run_dose_time_interaction.py
 
 按用户确认，移除根目录 README、LICENSE、tests、网页及相关工作流、开发计划、旧版脚本、重复数据、旧205条分析及顶层旧模型/结果、旧版本清单。复现入口中的网页同步调用已一并移除。
 
-V1 已定稿，移除其构建工作流 `.github/workflows/main.yml`。此前发布的五个文件原样归档在 main 分支的 `paper/v1/output/`，保留原有文件名和字节：
+V1 已定稿，不再通过 Action 构建。此前发布的五个文件原样归档在 main 分支的 `paper/v1/output/`，保留原有文件名和字节：
 
 - `Manuscript_EN_20261022_204322.pdf`、`Manuscript_ZH_20261022_204322.pdf`：英文、中文 PDF。
 - `Manuscript_EN.tex`、`Manuscript_ZH.tex`：各自可独立编译的单文件稿源。
 - `references.bib`：两版共用的完整参考文献库。
 
-当前仅保留 V2 中文稿的 `.github/workflows/v2.yml`。在 GitHub Actions 中选择 **Build and Publish V2 Chinese Manuscript → Run workflow → main**，使用 XeLaTeX 与 Biber 编译；正文及表格的嵌套 `\input` 递归合并后发布到 `output` 分支根目录：
+当前仅保留原路径 `.github/workflows/main.yml` 作为 V2 中文稿的构建工作流。在 GitHub Actions 中选择 **Build and Publish V2 Chinese Manuscript → Run workflow → main**，使用 XeLaTeX 与 Biber 编译；正文及表格的嵌套 `\input` 递归合并后发布到 `output` 分支根目录：
 
 - `Manuscript_ZH_YYYYMMDD_HHMMSS.pdf`：本次构建的中文 PDF，采用北京时间戳。
 - `Manuscript_ZH.tex`：合并后的单文件稿源。

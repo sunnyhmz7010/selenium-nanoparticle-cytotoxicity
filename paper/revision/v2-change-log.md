@@ -2,6 +2,11 @@
 
 只看“什么部分改成了什么、为什么改”，请打开 [V2 中文论文变更对照表](V2中文论文变更对照表.md)。
 
+## 2026-10-22：沿用 main.yml，仅构建 V2
+
+- 将 V2 工作流原样改回 `.github/workflows/main.yml`，不再保留单独的 `v2.yml`。
+- 仅构建 V2 中文稿并发布到 `output` 分支根目录；V1 归档及全部构建发布逻辑保持不变。
+
 ## 2026-10-22：V1 静态归档，V2 改为 output 根目录发布
 
 - 将现有 V1 中英文 PDF、合成 TeX 和 Bib 共五个文件，从 `paper-output/V1` 原样归档到 main 分支的 `paper/v1/output/`，逐项核对 Git blob 哈希。
