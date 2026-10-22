@@ -9,7 +9,7 @@
 ## 论文与数据
 
 - `paper/v1/`：已确认的 V1 中英双语定稿，英文入口为 `manuscript.tex`，中文入口为 `manuscript-zh.tex`，共用完整 `references.bib` 和 Table S1 的 43 篇来源。
-- `paper/v2/`：当前仅保留中文修订源稿，不参与自动构建或发布。入口为 `manuscript_zh.tex`，沿用 V1 中文模板和原有注释；`sections_zh/` 按 V1 保留 `00`--`04` 五个分节，文献库统一为 `references.bib`，使用 XeLaTeX 与 Biber 编译。详细记录见[中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。`paper/revision/` 保存原始意见、修改记录与核验报告。
+- `paper/v2/`：当前仅保留中文修订源稿，可通过手动 Action 构建并发布到 `paper-output` 分支的 `v2/`。入口为 `manuscript_zh.tex`，沿用 V1 中文模板和原有注释；`sections_zh/` 按 V1 保留 `00`--`04` 五个分节，文献库统一为 `references.bib`，使用 XeLaTeX 与 Biber 编译。详细记录见[中文 V2 全文修订记录](v2-zh-revision-2026-10-12.md)。`paper/revision/` 保存原始意见、修改记录与核验报告。
 - `research/materials/2026-10-21/`：原始 Word、实验结果 CSV、预测封存记录、独立原图和 SHAP 附件。原始实验 Excel 与 `research/data/prospective/experimental_huvec_original.xlsx` 完全一致，仅保留后者一份。
 - `research/scripts/plot_huvec.py`：HUVEC 曲线绘图脚本，独立依赖为 `research/requirements-huvec-figures.txt`，按需输出到 `research/results/huvec_exploratory/figures/`。论文 `paper/v2/figures/` 仅保留当前实际引用的六张 Word 内嵌图。
 - `data/benchmark/d0en01240h1.xlsx`：通用数据原始工作簿。原中文命名副本与其 SHA256 相同，已去重。
@@ -71,6 +71,13 @@ python scripts/run_dose_time_interaction.py
 - `Manuscript_EN.tex`、`Manuscript_ZH.tex`：各自可独立编译的单文件稿源。
 - `references.bib`：两版共用的完整参考文献库。
 
-每次只替换 `V1/` 的发布内容，保留 `paper-output` 分支的其他目录和已有提交历史；分支不存在时自动创建。下载对应 TeX 和 Bib 后，在 Overleaf 选择 XeLaTeX 即可编译。V2 只保留 main 分支的源文件，不再通过 Action 构建或发布；旧 V2 打包脚本 `paper/scripts/package_pdf_output.py` 已移除，双语打包逻辑恢复为 workflow 内的 Python。
+V2 使用独立的 `.github/workflows/v2.yml`，在 GitHub Actions 中选择 **Build and Publish V2 Chinese Manuscript → Run workflow → main**。中文入口使用同样的 XeLaTeX 与 Biber 构建方式，正文及表格的嵌套 `\input` 递归合并后发布到 `paper-output` 分支的 `v2/`：
 
-V1 双语定稿及 V2 英文仍保留历史383条数据及未完整复现的深度模型描述，不能因目录清理就认定这些旧段落得到新验证。V2 中文主分析已改为434条归档数据，并删除旧深度模型与分类指标的主文比较，详细取舍保留在中文修订记录中。
+- `Manuscript_ZH_YYYYMMDD_HHMMSS.pdf`：本次构建的中文 PDF，采用北京时间戳。
+- `Manuscript_ZH.tex`：合并后的单文件稿源。
+- `references.bib`：当前 V2 使用的参考文献库。
+- `figures/`：稿源实际引用的六张图片，保留原文件名和字节。
+
+两个工作流共用发布并发组，依次更新各自目录。V1 每次只替换 `V1/`，V2 每次只替换 `v2/`，保留分支其他目录和已有提交历史；分支不存在时自动创建。下载对应目录的完整文件后，在 Overleaf 选择 XeLaTeX 即可编译；V2 需同时下载 `figures/`。旧打包脚本 `paper/scripts/package_pdf_output.py` 已移除，打包逻辑保留在各自 workflow 内的 Python 中。
+
+V1 双语定稿仍保留历史383条数据及未完整复现的深度模型描述，不能因目录清理就认定这些旧段落得到新验证。V2 中文主分析已改为434条归档数据，并删除旧深度模型与分类指标的主文比较，详细取舍保留在中文修订记录中。

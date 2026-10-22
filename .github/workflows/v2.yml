@@ -1,0 +1,149 @@
+name: Build and Publish V2 Chinese Manuscript
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# 与 V1 共用发布分支，串行更新各自目录。
+concurrency:
+  group: paper-output
+  cancel-in-progress: false
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Chinese V2 Manuscript
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: paper/v2
+          root_file: manuscript_zh.tex
+          compiler: latexmk
+          args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
+
+      - name: Package V2 PDF and Single-File Source
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          export TZ='Asia/Shanghai'
+          export TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+          python3 - <<'PY'
+          import os
+          import re
+          import shutil
+          from pathlib import Path
+
+          root = Path('paper/v2').resolve()
+          destination = Path('build-output/v2')
+          source = root / 'manuscript_zh.tex'
+          timestamp = os.environ['TIMESTAMP']
+          inputs = re.compile(r'\\input\{([^}]+)\}')
+          graphics = re.compile(r'\\includegraphics(?:\[[^\]]*\])?\s*\{([^}]+)\}')
+
+          def split_comment(line):
+              for match in re.finditer('%', line):
+                  prefix = line[:match.start()]
+                  if (len(prefix) - len(prefix.rstrip('\\'))) % 2 == 0:
+                      return line[:match.start()], line[match.start():]
+              return line, ''
+
+          def expand(path, parents=()):
+              path = path.resolve()
+              path.relative_to(root)
+              if path in parents:
+                  raise ValueError(f'循环 input 引用：{path}')
+
+              def replace(match):
+                  included = root / match.group(1)
+                  if not included.suffix:
+                      included = included.with_suffix('.tex')
+                  return expand(included, parents + (path,))
+
+              lines = []
+              for line in path.read_text(encoding='utf-8').splitlines(keepends=True):
+                  active, comment = split_comment(line)
+                  lines.append(inputs.sub(replace, active) + comment)
+              return ''.join(lines)
+
+          merged = expand(source)
+          active = ''.join(split_comment(line)[0] for line in merged.splitlines(keepends=True))
+          assets = sorted({(root / match.group(1)).resolve() for match in graphics.finditer(active)})
+          for asset in assets:
+              asset.relative_to(root)
+          for path in [source.with_suffix('.pdf'), root / 'references.bib', *assets]:
+              if not path.is_file():
+                  raise FileNotFoundError(f'缺少发布文件：{path}')
+
+          destination.mkdir(parents=True, exist_ok=False)
+          (destination / 'Manuscript_ZH.tex').write_text(merged, encoding='utf-8', newline='\n')
+          shutil.copy2(source.with_suffix('.pdf'), destination / f'Manuscript_ZH_{timestamp}.pdf')
+          shutil.copy2(root / 'references.bib', destination / 'references.bib')
+          for asset in assets:
+              target = destination / asset.relative_to(root)
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(asset, target)
+          PY
+          echo "timestamp=$TIMESTAMP" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare Paper Output Branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=0
+          git ls-remote --exit-code --heads origin refs/heads/paper-output > "$RUNNER_TEMP/paper-output-ref" || status=$?
+          if [ "$status" -eq 0 ]; then
+            git fetch --depth=1 origin refs/heads/paper-output:refs/remotes/origin/paper-output
+            git worktree add -b paper-output publish refs/remotes/origin/paper-output
+          elif [ "$status" -eq 2 ]; then
+            git worktree add --detach publish HEAD
+            git -C publish switch --orphan paper-output
+          else
+            exit "$status"
+          fi
+
+      - name: Replace V2 Outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import shutil
+          from pathlib import Path
+
+          root = Path('publish').resolve()
+          if not (root / '.git').exists():
+              raise ValueError('发布目录不是 Git 工作区')
+          destination = root / 'v2'
+          destination.resolve().relative_to(root)
+          if destination.is_symlink():
+              raise ValueError('v2 发布目录不能是符号链接')
+          if destination.exists():
+              shutil.rmtree(destination)
+          shutil.copytree(Path('build-output/v2'), destination)
+          PY
+
+      - name: Commit and Push V2 Outputs
+        shell: bash
+        env:
+          TIMESTAMP: ${{ steps.package.outputs.timestamp }}
+        run: |
+          set -euo pipefail
+          git -C publish config user.name 'github-actions[bot]'
+          git -C publish config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C publish add -- v2
+          if ! git -C publish diff --cached --quiet; then
+            git -C publish commit -m "build(paper): 更新V2中文PDF和单文件稿源（$TIMESTAMP）"
+          fi
+          git -C publish push origin HEAD:refs/heads/paper-output
+          {
+            echo '### V2 中文稿已发布'
+            echo
+            echo "构建时间（北京时间）：$TIMESTAMP"
+            echo
+            echo "[查看 V2 PDF、单文件稿源、Bib 和配图](https://github.com/$GITHUB_REPOSITORY/tree/paper-output/v2)"
+          } >> "$GITHUB_STEP_SUMMARY"
