@@ -2,6 +2,14 @@
 
 只看“什么部分改成了什么、为什么改”，请打开 [V2 中文论文变更对照表](V2中文论文变更对照表.md)。
 
+## 2026-10-22：新增 V2 中文稿手动构建发布
+
+- 新增 `.github/workflows/v2.yml`，手动构建 `paper/v2/manuscript_zh.tex`，使用与 V1 相同的 XeLaTeX、Biber 和 `latexmk` 编译方式。
+- 发布到 `paper-output` 分支的 `v2/`，包含带北京时间戳的中文 PDF、合并后的 `Manuscript_ZH.tex`、`references.bib` 及六张实际引用的图片。
+- 仅替换 `v2/`，保留 V1 产物及分支提交历史；与 V1 使用同一并发组，避免同时更新发布分支。
+- 本地验证首次发布、重复发布、旧 V2 产物清理、V1 保留及缺失图片时构建失败；打包后的稿源在独立目录使用 XeLaTeX、Biber 完整编译，生成 18 页 PDF 和七条参考文献，无未定义引用、缺字及溢出警告。
+- 论文源文件、参考文献、图片和 V1 工作流均未修改。
+
 ## 2026-10-22：实验材料集中到 research
 
 - 16 份独有原始材料移至 `research/materials/2026-10-21/`，保留原始字节；重复实验 Excel 仅保留已有的 `research/data/prospective/experimental_huvec_original.xlsx`。
@@ -85,6 +93,6 @@
 
 ## 使用方式
 
-当前 V2 仅保留中文版。编译入口为 `../v2/manuscript_zh.tex`，正文位于 `../v2/sections_zh/` 的 `00`--`04` 五个分节，参考文献文件为 `../v2/references.bib`。编译时以 `paper/v2/` 为工作目录，依次运行 XeLaTeX、Biber、两次 XeLaTeX。V2 不参与 GitHub Actions 构建和发布。
+当前 V2 仅保留中文版。编译入口为 `../v2/manuscript_zh.tex`，正文位于 `../v2/sections_zh/` 的 `00`--`04` 五个分节，参考文献文件为 `../v2/references.bib`。编译时以 `paper/v2/` 为工作目录，依次运行 XeLaTeX、Biber、两次 XeLaTeX。也可在 GitHub Actions 中手动运行 **Build and Publish V2 Chinese Manuscript**，从 `paper-output/v2` 获取 PDF、合并后的 TeX、Bib 及 `figures/`；独立编译时下载该目录的完整文件。
 
 现有 V2 正文、讨论、补充材料和七条文献均已迁入 V1 模板结构；图表与实验材料保持原有字节。
