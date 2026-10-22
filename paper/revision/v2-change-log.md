@@ -2,6 +2,13 @@
 
 只看“什么部分改成了什么、为什么改”，请打开 [V2 中文论文变更对照表](V2中文论文变更对照表.md)。
 
+## 2026-10-22：按 V1 中文模板整理 V2
+
+- 以 V1 的 `manuscript-zh.tex` 和五个中文分节为模板，保留原有注释，迁入现有 V2 标题、摘要、正文、图表与补充材料。清除 Word 段落编号注释，不新增 LaTeX 注释。
+- 讨论并入 `03-results.tex` 的“结果与讨论”，补充材料直接写入主文件；删除多余的讨论、补充材料和手写参考文献分节。
+- `references_zh.bib` 改名为 `references.bib`，七条书目原样保留；正文手写引用编号改用 Bib 引用，恢复 V1 的文献生成方式。
+- 迁移前后均完成本地编译；迁移后使用 XeLaTeX、Biber、两次 XeLaTeX 生成 18 页 PDF，七条参考文献正常，无未定义引用、缺字及溢出警告，并检查全部页面布局。V1 与工作流未修改。
+
 ## 2026-10-22：V2 暂仅保留中文版
 
 - 删除英文入口 `paper/v2/manuscript.tex`、英文分节目录 `paper/v2/sections/` 的 5 个文件，以及英文参考文献文件 `paper/v2/references.bib`。
@@ -71,6 +78,6 @@
 
 ## 使用方式
 
-当前 V2 仅保留中文版。编译入口为 `../v2/manuscript_zh.tex`，正文位于 `../v2/sections_zh/`，参考文献文件保留 `../v2/references_zh.bib` 命名。编译时以 `paper/v2/` 为工作目录，使用 XeLaTeX。V2 不参与 GitHub Actions 构建和发布。
+当前 V2 仅保留中文版。编译入口为 `../v2/manuscript_zh.tex`，正文位于 `../v2/sections_zh/` 的 `00`--`04` 五个分节，参考文献文件为 `../v2/references.bib`。编译时以 `paper/v2/` 为工作目录，依次运行 XeLaTeX、Biber、两次 XeLaTeX。V2 不参与 GitHub Actions 构建和发布。
 
-此次仅移除英文稿文件；中文主文件、分节、参考文献、图表和实验材料均保持原有字节。
+现有 V2 正文、讨论、补充材料和七条文献均已迁入 V1 模板结构；图表与实验材料保持原有字节。
