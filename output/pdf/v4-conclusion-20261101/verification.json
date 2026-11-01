@@ -1,0 +1,157 @@
+{
+  "v4_commit": "38abd29c1d5916f01a1d4e7d3de30d26cd45c7a5",
+  "conclusion_commit": "333b8211337aa33d1b4b9c4b019aba3bcbf81505",
+  "v4_source_files_verified": 21,
+  "matching_local_files_reused": 18,
+  "remote_v4_files_loaded": 3,
+  "changed_files_relative_to_v4": [
+    "paper/v3/sections_zh/01-introduction.tex",
+    "paper/v3/sections_zh/04-conclusion.tex"
+  ],
+  "protected_existing_files": 1066,
+  "original_workspace_files_unchanged": 1066,
+  "original_branch_head_and_index_unchanged": true,
+  "latex_environments_balanced": true,
+  "conclusion_heading_count": 1,
+  "expanded_tex_files": 14,
+  "unique_labels": 22,
+  "all_source_cross_references_resolved": true,
+  "bibliography_entries_resolved": 68,
+  "undefined_references": 0,
+  "missing_characters": 0,
+  "overfull_boxes": 0,
+  "remaining_typesetting_messages": [
+    "LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <10.53937> not available",
+    "Underfull \\hbox (badness 10000) in alignment at lines 203--208",
+    "Underfull \\hbox (badness 10000) in alignment at lines 208--213",
+    "Underfull \\hbox (badness 10000) in alignment at lines 213--216",
+    "Underfull \\hbox (badness 10000) in alignment at lines 216--218",
+    "Underfull \\hbox (badness 10000) in alignment at lines 218--220",
+    "LaTeX Font Warning: Size substitutions with differences"
+  ],
+  "biber_errors_or_warnings": 0,
+  "compile_sequence": [
+    "XeLaTeX",
+    "Biber 2.21",
+    "XeLaTeX",
+    "XeLaTeX"
+  ],
+  "biber_execution": "现有 Biber 在沙箱外运行；未安装或升级依赖",
+  "pdf_pages": 40,
+  "pdf_sha256": "73523b9b398e6f0fd00af09ea9899ce6db8ecacef24c33c5241e291d9f272490",
+  "out_of_page_text_blocks": [],
+  "key_pages": {
+    "基于上述问题": [
+      2
+    ],
+    "材料合成与浓度计量": [
+      12
+    ],
+    "细胞培养、暴露": [
+      13
+    ],
+    "本文围绕纳米硒细胞毒性预测": [
+      25
+    ],
+    "References": [
+      34
+    ],
+    "参考文献": [
+      30
+    ]
+  },
+  "contact_sheets": [
+    "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\work\\v4-conclusion-integration-20261101\\qa\\contact-01-12.png",
+    "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\work\\v4-conclusion-integration-20261101\\qa\\contact-13-24.png",
+    "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\work\\v4-conclusion-integration-20261101\\qa\\contact-25-36.png",
+    "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\work\\v4-conclusion-integration-20261101\\qa\\contact-37-40.png"
+  ],
+  "visual_review_complete": true,
+  "visually_reviewed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "detail_review_pages": [
+    2,
+    12,
+    13,
+    25
+  ],
+  "visual_findings": "全页联系图与引言、实验方法、结论放大图检查通过；未发现裁切、重叠或重复结论标题。",
+  "editorial_scope": "保留 V4 与结论分支原文，仅修复列表闭合和重复标题；原稿模板占位及待核实文字保持不变。",
+  "source_sha256": {
+    "figures/huvec-dose-time.png": "dd03b056497c274d3dc751c0fe5c236b725d6565e05f7662bc1cec7660260845",
+    "figures/iae-heatmap.png": "01f578d126a13fcae25dfed020f82e04dfbf39236ca76e316ef774c980dd9c3e",
+    "figures/ic50-pairing.png": "07899c26d3072f8b713d58313b1e2fddc4d938576d4d7a7d67bad78413341702",
+    "figures/rank-consistency.png": "084e0c7de146fdf260503d2ea66db0fb67c546aa502eac87454517f0d2b45431",
+    "figures/scatter-viability.png": "71ef957efeadcc8456d1dd29fce4d10316bf99b835c4fb882f7a1739903955a1",
+    "figures/shap-summary.png": "2468fc28fe4c757202b6e62f307915d891a06b3b859e55618302436f047894fe",
+    "manuscript_zh.tex": "64f5c2df1480872c93543afdaf6ee8b420de4929112492437173436a5fb3b812",
+    "references.bib": "5b4eba9d2fe3c601318f62882825efbb22cf773236734f5270d0111e1246771b",
+    "sections_zh/00-abstract.tex": "125b7ded5afd9f53e5e734726e9e78acf5b9ad09acbf1a9972151ab4eeaa08d7",
+    "sections_zh/01-introduction.tex": "d522fc125b6cda0edd383eaf5ef544078d12853f8d02fcc79e7fbfec792ca6ab",
+    "sections_zh/02-methods.tex": "96fa3559efd3a2b46febcbb3c8c1c9366b820bf6bdea13255b7e86b7fe9e575e",
+    "sections_zh/03-results.tex": "4516366aadbe7ce0df3291691232f526856f4dc9c982704065fbddfe1b59785d",
+    "sections_zh/04-conclusion.tex": "f27ffd634727e7800a25b0d4a456a65dc62c3ebe8cf795182f2e987e39d4eb49",
+    "tables/data-scope.tex": "c955a6591defabd6bf502744d96c2d2f51ff7f86725b71b969509d802cc2ccbf",
+    "tables/huvec-apparent-ic50.tex": "1b96d4717a217a5c2985e330748dc3f42700cae918bc9c99c3834334c43589df",
+    "tables/huvec-external-performance.tex": "2130125f1cbbacc97c1b09090c60c8d3f07cd4b071e3c464c50409ea454b32af",
+    "tables/huvec-high-dose.tex": "a64e79c6f818eb93ae204fdbd04b4dfefb1d5f11b4aa24cdd84c6603e26dff54",
+    "tables/paired-comparisons.tex": "ad9c6d32b569292302a0b9548a6e25085454e21cce25475d25574c44b4c9a495",
+    "tables/senp-performance.tex": "e3231d580dfa3eb74097b1a40096dc4e4d533d25f42c03a046b7276d8f28e14d",
+    "tables/table-s1-rows.tex": "a299122a5c760b160851f37ea81d372624b2b683f6a165c1f73dfc60fb6f4142",
+    "tables/transfer-performance.tex": "d8a75ec3c307003c83f05692dae7abbc241b3fff74c88bf7ed67f7ed4d237629"
+  },
+  "delivered_artifacts": {
+    "纳米硒论文_V4结论整合稿.pdf": {
+      "bytes": 1791598,
+      "sha256": "73523b9b398e6f0fd00af09ea9899ce6db8ecacef24c33c5241e291d9f272490"
+    },
+    "LaTeX完整稿源.zip": {
+      "bytes": 1276397,
+      "sha256": "629e08ac524c6f30623790424d8affabc0195e43a76e37f528089423d1240d8f"
+    },
+    "V4增量修改.patch": {
+      "bytes": 6458,
+      "sha256": "c03934e6e8241e87661c711e0894b54218fb77c7bd360584eb703e76bb7ab001"
+    }
+  }
+}

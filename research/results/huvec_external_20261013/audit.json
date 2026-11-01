@@ -1,0 +1,126 @@
+{
+  "run_started_at": "2026-10-13T15:16:39.404013+08:00",
+  "timezone": "Asia/Shanghai",
+  "source_csv_sha256": "c7cb5dba4db2bb2b337d3f514d873f98b392f05e7144efc51f49edacfe5a5b67",
+  "source_xlsx_sha256": "74a2daceb5c99134532d64596ebb0a58b6fd2d3a771a8060da2f76ba8259714d",
+  "rows": 351,
+  "curves": 27,
+  "concentration_unit": "ug/mL",
+  "original_header": "药物浓度（μm）",
+  "unit_confirmation_basis": "user_confirmation_in_chat",
+  "experimental_ic50_status_counts": {
+    "not_reached": 8,
+    "interpolated": 19
+  },
+  "replicate_status": "每条件一个报告值；原始重复孔数量和汇总方式未提供",
+  "validation_design": "retrospective_external_inference; experimental_outcomes_already_available",
+  "model": "models/improved_434/baseline_random_forest.joblib",
+  "model_sha256": "d0268e0831da09faf8f86a59300415410610195f1905aac9afc063095215ce50",
+  "training_rows": 434,
+  "training_groups": 24,
+  "model_selection_basis": "baseline Random Forest selected from historical validation, without new experimental targets",
+  "features": [
+    "Coat/Functional Group",
+    "Synthesis_Method",
+    "Surface_Charge",
+    "Cell_Type",
+    "Cell_Tissue",
+    "Year",
+    "size_final",
+    "zeta_final",
+    "abs_zeta",
+    "Time (hr)",
+    "Concentration (ug/ml)",
+    "log_size",
+    "log_time",
+    "log_concentration",
+    "No_of_Cells (cells/well)",
+    "zeta_missing",
+    "cell_count_missing",
+    "coat_missing",
+    "surface_charge_missing"
+  ],
+  "transformed_feature_count": 116,
+  "training": "none; existing model and preprocessor reused",
+  "dose_conversion_to_ug_ml_factor": 1.0,
+  "dose_conversion_formula": "identity",
+  "missing_input_imputations_from_frozen_model": {
+    "Year": 2016.0,
+    "No_of_Cells (cells/well)": 10000.0,
+    "Synthesis_Method": "Chemical reduction"
+  },
+  "unknown_categories_encoded_as_all_zero": {
+    "Coat/Functional Group": [
+      "Glucose",
+      "LET",
+      "PAH",
+      "PEI",
+      "Sucrose",
+      "TW80"
+    ],
+    "Synthesis_Method": [],
+    "Surface_Charge": [],
+    "Cell_Type": [],
+    "Cell_Tissue": []
+  },
+  "feature_mapping": {
+    "coating_label": "material name without -SeNPs; CS -> Chitosan (CS); LET kept unexpanded",
+    "cell_tissue": "HUVEC -> Vascular endothelium, matching historical HUVEC labels",
+    "surface_charge": "sign of reported zeta potential; Positive/Negative/Neutral",
+    "particle_size": "reported size used as size_final; measurement method/medium not supplied",
+    "zeta": "reported zeta used as zeta_final; measurement medium not supplied"
+  },
+  "modifier_category": "absent; coating labels are not Modifier Category",
+  "molecular_weight": "absent; not imputed, fabricated or attributed",
+  "model_ic50_status_counts": {
+    "not_reached": 27
+  },
+  "predictions_min_max": [
+    53.73865273403068,
+    99.80829790653792
+  ],
+  "prediction_clipping_or_monotonic_adjustment": "none; zero-concentration predictions not forced to 100",
+  "shap": {
+    "explainer": "TreeExplainer",
+    "feature_perturbation": "tree_path_dependent",
+    "model_output": "raw",
+    "background": "training path counts saved inside frozen trees",
+    "approximate": false,
+    "base_value": 69.61040571428572,
+    "additivity_max_abs_residual": 1.4210854715202004e-13,
+    "additivity_tolerance": 1e-06,
+    "aggregation": "signed sum across derived features and one-hot levels; all encoded columns retained",
+    "documentation": "https://shap.readthedocs.io/en/latest/generated/shap.TreeExplainer.html"
+  },
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "shap": "0.53.0",
+    "matplotlib": "3.11.2"
+  },
+  "run_finished_at": "2026-10-13T15:16:45.291524+08:00",
+  "outputs_sha256": {
+    "experimental_data.csv": "c7cb5dba4db2bb2b337d3f514d873f98b392f05e7144efc51f49edacfe5a5b67",
+    "experimental_ic50.csv": "ca2054dab1e7e8c00aa1dfd3013d348e1f60a08c405520735bc80047eebee356",
+    "figures/shap_particle_size.alignment.json": "5216a66cc3e3199a2795c8e43e757dbd22ac06e6e93853550b720092ada128be",
+    "figures/shap_particle_size.pdf": "a93b7a0611f754a3fbdc3aa7745ff2ed690b1dacca670f5296498398c41e33bf",
+    "figures/shap_particle_size.png": "9913cc1f550513d99b2304429c6b0ca438bf570bc6c8dab77129eb04d5e6e52d",
+    "figures/shap_particle_size.svg": "11817a3c035b575cc69734c5409b86232c879c7623136bc30b8005b1773a8fad",
+    "figures/shap_zeta_potential.alignment.json": "5216a66cc3e3199a2795c8e43e757dbd22ac06e6e93853550b720092ada128be",
+    "figures/shap_zeta_potential.pdf": "7f1527c5d5dc1c7a974495cd7628f63efd511611d5673f37017b089c7bc9220f",
+    "figures/shap_zeta_potential.png": "5a2c7c57ff93a5aaae138a0b86467dae5364b4d401166e32abc78a628d727f8d",
+    "figures/shap_zeta_potential.svg": "a18e3d684a76b901fbcac42919e8bbe04cb71339872fa6bb461d06826a3d1014",
+    "model_ic50.csv": "20bbb9ea4eb06e49688c746a3ec72c438e16217bc23829f217fed34b27254347",
+    "model_inputs.csv": "119ddc9529c055dc703b8bf575d51484d26636496664ac68cda0d2f64ad4e142",
+    "model_predictions.csv": "b20a0032aeba70438ab2ad397a916be5b1d935f7800036beaa0ebc5d6af55339",
+    "shap_additivity_check.csv": "3e10cbba61b050dd9cd541f905bcb69b641f2d6ae5334a83768c7368120a68c4",
+    "shap_encoded_values.csv": "11d13ef6a6deb27361ba9f699f57529f875a97563bee1379e8cb3ef77d24eca7",
+    "shap_feature_groups.json": "cd7f3ed88ef81b1d15f2196799e07ba5651903791fa4ce6e71c25451e727d9b4",
+    "shap_grouped_values.csv": "60764810f3fe49e69a7e2d6c5d249af5b1f17d482cd3c8f049e3cf46be25177c",
+    "toxicity_ranking_72h_512.csv": "b7dd3da39644d2ec4a8d9497402b8612eda24981315b7c0ebf22c74c8b86bca5",
+    "transformed_inputs.csv": "e98fd6a6d234ee3373e37a7c140fab4021f7e04cfdc5f50a651779edda2390f5"
+  }
+}

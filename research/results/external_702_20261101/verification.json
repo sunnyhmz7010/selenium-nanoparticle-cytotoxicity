@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "rows": 702,
+  "curves": 54,
+  "unique_condition_keys": true,
+  "complete_factorial_coverage": true,
+  "source_hash_unchanged": true,
+  "model_hash_unchanged": true,
+  "input_independent_of_response": true,
+  "model_reload_agrees": true,
+  "shap_additivity": true,
+  "unit_and_cell_count_checked": true,
+  "old_huvec_values_unchanged": true
+}

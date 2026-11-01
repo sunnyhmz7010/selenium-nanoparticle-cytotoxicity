@@ -1,0 +1,2060 @@
+{
+  "checkedOn": "2026-10-22",
+  "timezone": "Asia/Shanghai",
+  "repository": "sunnyhmz7010/selenium-nanoparticle-cytotoxicity",
+  "targetCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+  "restoredDirectory": "paper/v1/initial-draft-2e4b970",
+  "sourceFiles": [
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/manuscript.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "manuscript.tex",
+      "gitBlob": "5be23c14829a97740bb8e6a5e9faf6e83d5c5bbe",
+      "sha256": "f5d0b8b3331b28abad11f30ddeccd5290d7a9feef46d10b65e121a8a5e0f0ffa",
+      "bytes": 8195,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/references.bib",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "references.bib",
+      "gitBlob": "8ed181acc10d741ca9360a385ee51b1bd2417381",
+      "sha256": "3c027d42fbc71a3c4b030e26266d5b6ed919fe3c868be659efc6a58897eda636",
+      "bytes": 27608,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections/00-abstract.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections/00-abstract.tex",
+      "gitBlob": "2d549bfd5c63b82c536a3d65b5118e4251cb36d2",
+      "sha256": "4abeb768af795991f5440ddb2741a7174e71e32d5b5b82ddcde86ed02719132a",
+      "bytes": 3211,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections/01-introduction.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections/01-introduction.tex",
+      "gitBlob": "353064dc681db67d93cf7dc05ffba55581d55fb5",
+      "sha256": "7250afdca7b69ccce402c0a52580aea604ece1029b1305aebf5e7619ca4fa7f6",
+      "bytes": 6368,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections/02-methods.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections/02-methods.tex",
+      "gitBlob": "6194852fb973625dbae1843cad84e4ca8871c4a0",
+      "sha256": "c9935cddee60015ce947bb029604a709b0dff2100390100d0376ac216f4e32f7",
+      "bytes": 35148,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections/03-results.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections/03-results.tex",
+      "gitBlob": "f834506443488fde1421989e5ab138f9aed64238",
+      "sha256": "d545a54fc7da5addc888b361976198df95992402a717d436a67a9a6f8891b39c",
+      "bytes": 13518,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections/04-conclusion.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections/04-conclusion.tex",
+      "gitBlob": "a7e90fd3e3060fcfecc4557a8b035b326da3ce76",
+      "sha256": "04d8ea8e5f340524ec6ec2a65f946f6f297f1b9676f2760d2144395c0017d120",
+      "bytes": 4037,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections_zh/00-abstract.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections_zh/00-abstract.tex",
+      "gitBlob": "2ef06791f6df229e3655cdd3bb6baae5588186b4",
+      "sha256": "f3e0968b22f1150e94f7f1a2f5cf0e9f1c0d742bc08ba7b45f2a17c5872e6075",
+      "bytes": 2088,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections_zh/01-introduction.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections_zh/01-introduction.tex",
+      "gitBlob": "af94d84fc029466bc56d0d92ac023d5b5685d709",
+      "sha256": "71b8b2e07b6d2c3556fd4f441abb1808177d27abf79cbb92282cdd0045231e3f",
+      "bytes": 4715,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections_zh/02-methods.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections_zh/02-methods.tex",
+      "gitBlob": "0a9c7e23385f60d42fb1de233508e96f32a31b21",
+      "sha256": "88e378c65354cca223cb79e76356b602b8f9e6fed6545c25403f47b452f8ce26",
+      "bytes": 30701,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections_zh/03-results.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections_zh/03-results.tex",
+      "gitBlob": "675dd834db3a81d77d84ec8d1f04e77054ec728a",
+      "sha256": "ad2980fc2a7bfbe6492f7e844c7072a301df763afcd47181465df98c30ed487a",
+      "bytes": 9557,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/sections_zh/04-conclusion.tex",
+      "sourceCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+      "sourcePath": "sections_zh/04-conclusion.tex",
+      "gitBlob": "42562237435c7cc96d097a870b9fa5623f2f6342",
+      "sha256": "9cbaaf1ba1b47b6cad5ecaa79c18af9a9201ee22aa5e417013bdd2b8ddca57b8",
+      "bytes": 2962,
+      "verified": true
+    },
+    {
+      "restoredPath": "paper/v1/initial-draft-2e4b970/manuscript-zh.tex",
+      "sourceCommit": "7a3aeb6c8b690b4974414b00427f88cae69f5522",
+      "alsoIdenticalAtCommit": "d0e26df529be95a76e406d3b3d14c343540202b7",
+      "sourcePath": "main_zh.tex",
+      "change": "filename only",
+      "gitBlob": "8bc238717260a312d9884f0528340307ffb5249c",
+      "sha256": "4af7d267884895b46f6ed812ac525b8c7e16020e627c6cbee4a0605ac9fdeff7",
+      "bytes": 7992,
+      "verified": true
+    }
+  ],
+  "chineseSourceComparison": [
+    {
+      "path": "main_zh.tex",
+      "bytes": 7992,
+      "sha1_blob": "8bc238717260a312d9884f0528340307ffb5249c",
+      "d0e26df_sha": "8bc238717260a312d9884f0528340307ffb5249c",
+      "target_sha": null,
+      "equal_d0e26df": true,
+      "equal_target": false
+    },
+    {
+      "path": "references.bib",
+      "bytes": 27608,
+      "sha1_blob": "8ed181acc10d741ca9360a385ee51b1bd2417381",
+      "d0e26df_sha": "8ed181acc10d741ca9360a385ee51b1bd2417381",
+      "target_sha": "8ed181acc10d741ca9360a385ee51b1bd2417381",
+      "equal_d0e26df": true,
+      "equal_target": true
+    },
+    {
+      "path": "sections_zh/00-abstract.tex",
+      "bytes": 2088,
+      "sha1_blob": "2ef06791f6df229e3655cdd3bb6baae5588186b4",
+      "d0e26df_sha": "2ef06791f6df229e3655cdd3bb6baae5588186b4",
+      "target_sha": "2ef06791f6df229e3655cdd3bb6baae5588186b4",
+      "equal_d0e26df": true,
+      "equal_target": true
+    },
+    {
+      "path": "sections_zh/01-introduction.tex",
+      "bytes": 4715,
+      "sha1_blob": "af94d84fc029466bc56d0d92ac023d5b5685d709",
+      "d0e26df_sha": "af94d84fc029466bc56d0d92ac023d5b5685d709",
+      "target_sha": "af94d84fc029466bc56d0d92ac023d5b5685d709",
+      "equal_d0e26df": true,
+      "equal_target": true
+    },
+    {
+      "path": "sections_zh/02-methods.tex",
+      "bytes": 30701,
+      "sha1_blob": "0a9c7e23385f60d42fb1de233508e96f32a31b21",
+      "d0e26df_sha": "0a9c7e23385f60d42fb1de233508e96f32a31b21",
+      "target_sha": "0a9c7e23385f60d42fb1de233508e96f32a31b21",
+      "equal_d0e26df": true,
+      "equal_target": true
+    },
+    {
+      "path": "sections_zh/03-results.tex",
+      "bytes": 9557,
+      "sha1_blob": "675dd834db3a81d77d84ec8d1f04e77054ec728a",
+      "d0e26df_sha": "675dd834db3a81d77d84ec8d1f04e77054ec728a",
+      "target_sha": "675dd834db3a81d77d84ec8d1f04e77054ec728a",
+      "equal_d0e26df": true,
+      "equal_target": true
+    },
+    {
+      "path": "sections_zh/04-conclusion.tex",
+      "bytes": 2962,
+      "sha1_blob": "42562237435c7cc96d097a870b9fa5623f2f6342",
+      "d0e26df_sha": "42562237435c7cc96d097a870b9fa5623f2f6342",
+      "target_sha": "42562237435c7cc96d097a870b9fa5623f2f6342",
+      "equal_d0e26df": true,
+      "equal_target": true
+    }
+  ],
+  "citationAudit": {
+    "targetCommit": "2e4b970e35893faf950c03ca11720c0c0e97087e",
+    "method": "Static source audit. Strip unescaped TeX percent comments and comment environments; recursively resolve uncommented input/include; collect cite-family commands and nocite; inspect bibliography directives. This is not a TeX compilation.",
+    "bibliographyEntryCount": 66,
+    "bibEntries": [
+      {
+        "key": "masarkar2024",
+        "type": "article",
+        "file": "references.bib",
+        "line": 1
+      },
+      {
+        "key": "hosnedlova2018nanoselenium",
+        "type": "article",
+        "file": "references.bib",
+        "line": 12
+      },
+      {
+        "key": "bisht2022senps",
+        "type": "article",
+        "file": "references.bib",
+        "line": 22
+      },
+      {
+        "key": "sowmya2024nanoselenium",
+        "type": "article",
+        "file": "references.bib",
+        "line": 33
+      },
+      {
+        "key": "karthik2024senps",
+        "type": "article",
+        "file": "references.bib",
+        "line": 43
+      },
+      {
+        "key": "wang2020prooxidation",
+        "type": "article",
+        "file": "references.bib",
+        "line": 53
+      },
+      {
+        "key": "ji2025rosml",
+        "type": "article",
+        "file": "references.bib",
+        "line": 63
+      },
+      {
+        "key": "ahmadi2024toxicity",
+        "type": "article",
+        "file": "references.bib",
+        "line": 74
+      },
+      {
+        "key": "roy2023tio2",
+        "type": "article",
+        "file": "references.bib",
+        "line": 84
+      },
+      {
+        "key": "zhang2023qsar",
+        "type": "article",
+        "file": "references.bib",
+        "line": 94
+      },
+      {
+        "key": "sang2022mlcytotoxicity",
+        "type": "article",
+        "file": "references.bib",
+        "line": 104
+      },
+      {
+        "key": "zhang2023senpsbio",
+        "type": "article",
+        "file": "references.bib",
+        "line": 115
+      },
+      {
+        "key": "ji2023astragalus",
+        "type": "article",
+        "file": "references.bib",
+        "line": 125
+      },
+      {
+        "key": "lunkov2023chitosan",
+        "type": "article",
+        "file": "references.bib",
+        "line": 136
+      },
+      {
+        "key": "hosni2025mlnp",
+        "type": "article",
+        "file": "references.bib",
+        "line": 147
+      },
+      {
+        "key": "shirokii2023quantitative",
+        "type": "article",
+        "file": "references.bib",
+        "line": 157
+      },
+      {
+        "key": "yildirim2025rheumatoid",
+        "type": "article",
+        "file": "references.bib",
+        "line": 168
+      },
+      {
+        "key": "chen_selenium_2008",
+        "type": "article",
+        "file": "references.bib",
+        "line": 176
+      },
+      {
+        "key": "li_reversal_2011",
+        "type": "article",
+        "file": "references.bib",
+        "line": 188
+      },
+      {
+        "key": "zheng_sialic_2011",
+        "type": "article",
+        "file": "references.bib",
+        "line": 200
+      },
+      {
+        "key": "liu_selenium_2012",
+        "type": "article",
+        "file": "references.bib",
+        "line": 212
+      },
+      {
+        "key": "wu_surface_2012",
+        "type": "article",
+        "file": "references.bib",
+        "line": 224
+      },
+      {
+        "key": "chen_surface_2012",
+        "type": "article",
+        "file": "references.bib",
+        "line": 235
+      },
+      {
+        "key": "yu_positive_2012",
+        "type": "article",
+        "file": "references.bib",
+        "line": 245
+      },
+      {
+        "key": "chen_peg-nanolized_2012",
+        "type": "article",
+        "file": "references.bib",
+        "line": 257
+      },
+      {
+        "key": "pi_pathway_2013",
+        "type": "article",
+        "file": "references.bib",
+        "line": 267
+      },
+      {
+        "key": "wu_induction_2013",
+        "type": "article",
+        "file": "references.bib",
+        "line": 279
+      },
+      {
+        "key": "feng_differential_2014",
+        "type": "article",
+        "file": "references.bib",
+        "line": 291
+      },
+      {
+        "key": "huang_selective_2013",
+        "type": "article",
+        "file": "references.bib",
+        "line": 302
+      },
+      {
+        "key": "li_functionalized_2013",
+        "type": "article",
+        "file": "references.bib",
+        "line": 314
+      },
+      {
+        "key": "zhang_enhancement_2013",
+        "type": "article",
+        "file": "references.bib",
+        "line": 325
+      },
+      {
+        "key": "jiang_gracilaria_2014",
+        "type": "article",
+        "file": "references.bib",
+        "line": 337
+      },
+      {
+        "key": "yu_ph-responsive_2014",
+        "type": "article",
+        "file": "references.bib",
+        "line": 349
+      },
+      {
+        "key": "zeng_construction_2015",
+        "type": "article",
+        "file": "references.bib",
+        "line": 360
+      },
+      {
+        "key": "liu_sequentially_2016",
+        "type": "article",
+        "file": "references.bib",
+        "line": 371
+      },
+      {
+        "key": "liu_facile_2016",
+        "type": "article",
+        "file": "references.bib",
+        "line": 383
+      },
+      {
+        "key": "yu_x-ray-responsive_2016",
+        "type": "article",
+        "file": "references.bib",
+        "line": 395
+      },
+      {
+        "key": "fu_rgd_2016",
+        "type": "article",
+        "file": "references.bib",
+        "line": 406
+      },
+      {
+        "key": "fang_targeting_2017",
+        "type": "article",
+        "file": "references.bib",
+        "line": 418
+      },
+      {
+        "key": "chen_efficient_2018",
+        "type": "article",
+        "file": "references.bib",
+        "line": 429
+      },
+      {
+        "key": "fang_dualtargeted_2018",
+        "type": "article",
+        "file": "references.bib",
+        "line": 441
+      },
+      {
+        "key": "huang_autophagy_2018",
+        "type": "article",
+        "file": "references.bib",
+        "line": 453
+      },
+      {
+        "key": "liu_highly_2018",
+        "type": "article",
+        "file": "references.bib",
+        "line": 464
+      },
+      {
+        "key": "wang_regulating_2016",
+        "type": "article",
+        "file": "references.bib",
+        "line": 475
+      },
+      {
+        "key": "hu_selenium_2019",
+        "type": "article",
+        "file": "references.bib",
+        "line": 486
+      },
+      {
+        "key": "zeng_potentiation_2019",
+        "type": "article",
+        "file": "references.bib",
+        "line": 497
+      },
+      {
+        "key": "huang_dual-targeting_2019",
+        "type": "article",
+        "file": "references.bib",
+        "line": 509
+      },
+      {
+        "key": "huang_highly_2019",
+        "type": "article",
+        "file": "references.bib",
+        "line": 520
+      },
+      {
+        "key": "zhang_systematic_2019",
+        "type": "article",
+        "file": "references.bib",
+        "line": 532
+      },
+      {
+        "key": "zheng_thermosensitive_2019",
+        "type": "article",
+        "file": "references.bib",
+        "line": 543
+      },
+      {
+        "key": "huang_chiralitydriven_2020",
+        "type": "article",
+        "file": "references.bib",
+        "line": 554
+      },
+      {
+        "key": "yang_lentinan-functionalized_2020",
+        "type": "article",
+        "file": "references.bib",
+        "line": 566
+      },
+      {
+        "key": "liu_rapid_2021",
+        "type": "article",
+        "file": "references.bib",
+        "line": 577
+      },
+      {
+        "key": "an_functionalized_2021",
+        "type": "article",
+        "file": "references.bib",
+        "line": 588
+      },
+      {
+        "key": "song_translational_2021",
+        "type": "article",
+        "file": "references.bib",
+        "line": 599
+      },
+      {
+        "key": "yang_atherosclerotic_2022",
+        "type": "article",
+        "file": "references.bib",
+        "line": 611
+      },
+      {
+        "key": "yang_functionalized_2021",
+        "type": "article",
+        "file": "references.bib",
+        "line": 622
+      },
+      {
+        "key": "liang_translational_2022",
+        "type": "article",
+        "file": "references.bib",
+        "line": 633
+      },
+      {
+        "key": "liu_specific_2022",
+        "type": "article",
+        "file": "references.bib",
+        "line": 644
+      },
+      {
+        "key": "du_highly_2022",
+        "type": "article",
+        "file": "references.bib",
+        "line": 655
+      },
+      {
+        "key": "breiman2001random",
+        "type": "article",
+        "file": "references.bib",
+        "line": 667
+      },
+      {
+        "key": "chen2016xgboost",
+        "type": "inproceedings",
+        "file": "references.bib",
+        "line": 677
+      },
+      {
+        "key": "gromov2022attention",
+        "type": "article",
+        "file": "references.bib",
+        "line": 685
+      },
+      {
+        "key": "gromov2022larf",
+        "type": "article",
+        "file": "references.bib",
+        "line": 694
+      },
+      {
+        "key": "huang2020tabtransformer",
+        "type": "article",
+        "file": "references.bib",
+        "line": 701
+      },
+      {
+        "key": "hinton2015distilling",
+        "type": "article",
+        "file": "references.bib",
+        "line": 708
+      }
+    ],
+    "english": {
+      "entry": "manuscript.tex",
+      "files": [
+        "manuscript.tex",
+        "sections/00-abstract.tex",
+        "sections/01-introduction.tex",
+        "sections/02-methods.tex",
+        "sections/03-results.tex",
+        "sections/04-conclusion.tex"
+      ],
+      "inputEdges": [
+        {
+          "file": "manuscript.tex",
+          "line": 156,
+          "command": "input",
+          "target": "sections/00-abstract.tex"
+        },
+        {
+          "file": "manuscript.tex",
+          "line": 172,
+          "command": "input",
+          "target": "sections/01-introduction.tex"
+        },
+        {
+          "file": "manuscript.tex",
+          "line": 173,
+          "command": "input",
+          "target": "sections/02-methods.tex"
+        },
+        {
+          "file": "manuscript.tex",
+          "line": 174,
+          "command": "input",
+          "target": "sections/03-results.tex"
+        },
+        {
+          "file": "manuscript.tex",
+          "line": 175,
+          "command": "input",
+          "target": "sections/04-conclusion.tex"
+        }
+      ],
+      "citations": [
+        {
+          "file": "sections/00-abstract.tex",
+          "line": 1,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 3,
+          "command": "cite",
+          "keys": [
+            "hosnedlova2018nanoselenium",
+            "bisht2022senps",
+            "sowmya2024nanoselenium",
+            "karthik2024senps"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 3,
+          "command": "cite",
+          "keys": [
+            "wang2020prooxidation"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 3,
+          "command": "cite",
+          "keys": [
+            "hosnedlova2018nanoselenium"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "ji2025rosml"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "ahmadi2024toxicity"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "roy2023tio2"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "zhang2023qsar"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "sang2022mlcytotoxicity"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "zhang2023senpsbio"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "wang2020prooxidation"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "zhang2023senpsbio",
+            "ji2023astragalus"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "lunkov2023chitosan"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "hosni2025mlnp"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "shirokii2023quantitative"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "hosni2025mlnp"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "yildirim2025rheumatoid"
+          ]
+        },
+        {
+          "file": "sections/02-methods.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/02-methods.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/02-methods.tex",
+          "line": 77,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/02-methods.tex",
+          "line": 94,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/02-methods.tex",
+          "line": 122,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/02-methods.tex",
+          "line": 146,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "breiman2001random"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "chen2016xgboost"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "gromov2022attention"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "gromov2022larf"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "huang2020tabtransformer"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "hinton2015distilling"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "line": 95,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        }
+      ],
+      "nocites": [],
+      "bibliographyCommands": [
+        {
+          "file": "manuscript.tex",
+          "line": 49,
+          "text": "\\addbibresource{references.bib}"
+        },
+        {
+          "file": "manuscript.tex",
+          "line": 199,
+          "text": "\\printbibliography"
+        }
+      ],
+      "uniqueCitedKeyCount": 23,
+      "citationCommandCount": 31,
+      "citationKeyOccurrences": 35,
+      "citedKeys": [
+        "ahmadi2024toxicity",
+        "bisht2022senps",
+        "breiman2001random",
+        "chen2016xgboost",
+        "gromov2022attention",
+        "gromov2022larf",
+        "hinton2015distilling",
+        "hosnedlova2018nanoselenium",
+        "hosni2025mlnp",
+        "huang2020tabtransformer",
+        "ji2023astragalus",
+        "ji2025rosml",
+        "karthik2024senps",
+        "lunkov2023chitosan",
+        "masarkar2024",
+        "roy2023tio2",
+        "sang2022mlcytotoxicity",
+        "shirokii2023quantitative",
+        "sowmya2024nanoselenium",
+        "wang2020prooxidation",
+        "yildirim2025rheumatoid",
+        "zhang2023qsar",
+        "zhang2023senpsbio"
+      ],
+      "uncitedEntries": [
+        {
+          "key": "chen_selenium_2008",
+          "type": "article",
+          "file": "references.bib",
+          "line": 176
+        },
+        {
+          "key": "li_reversal_2011",
+          "type": "article",
+          "file": "references.bib",
+          "line": 188
+        },
+        {
+          "key": "zheng_sialic_2011",
+          "type": "article",
+          "file": "references.bib",
+          "line": 200
+        },
+        {
+          "key": "liu_selenium_2012",
+          "type": "article",
+          "file": "references.bib",
+          "line": 212
+        },
+        {
+          "key": "wu_surface_2012",
+          "type": "article",
+          "file": "references.bib",
+          "line": 224
+        },
+        {
+          "key": "chen_surface_2012",
+          "type": "article",
+          "file": "references.bib",
+          "line": 235
+        },
+        {
+          "key": "yu_positive_2012",
+          "type": "article",
+          "file": "references.bib",
+          "line": 245
+        },
+        {
+          "key": "chen_peg-nanolized_2012",
+          "type": "article",
+          "file": "references.bib",
+          "line": 257
+        },
+        {
+          "key": "pi_pathway_2013",
+          "type": "article",
+          "file": "references.bib",
+          "line": 267
+        },
+        {
+          "key": "wu_induction_2013",
+          "type": "article",
+          "file": "references.bib",
+          "line": 279
+        },
+        {
+          "key": "feng_differential_2014",
+          "type": "article",
+          "file": "references.bib",
+          "line": 291
+        },
+        {
+          "key": "huang_selective_2013",
+          "type": "article",
+          "file": "references.bib",
+          "line": 302
+        },
+        {
+          "key": "li_functionalized_2013",
+          "type": "article",
+          "file": "references.bib",
+          "line": 314
+        },
+        {
+          "key": "zhang_enhancement_2013",
+          "type": "article",
+          "file": "references.bib",
+          "line": 325
+        },
+        {
+          "key": "jiang_gracilaria_2014",
+          "type": "article",
+          "file": "references.bib",
+          "line": 337
+        },
+        {
+          "key": "yu_ph-responsive_2014",
+          "type": "article",
+          "file": "references.bib",
+          "line": 349
+        },
+        {
+          "key": "zeng_construction_2015",
+          "type": "article",
+          "file": "references.bib",
+          "line": 360
+        },
+        {
+          "key": "liu_sequentially_2016",
+          "type": "article",
+          "file": "references.bib",
+          "line": 371
+        },
+        {
+          "key": "liu_facile_2016",
+          "type": "article",
+          "file": "references.bib",
+          "line": 383
+        },
+        {
+          "key": "yu_x-ray-responsive_2016",
+          "type": "article",
+          "file": "references.bib",
+          "line": 395
+        },
+        {
+          "key": "fu_rgd_2016",
+          "type": "article",
+          "file": "references.bib",
+          "line": 406
+        },
+        {
+          "key": "fang_targeting_2017",
+          "type": "article",
+          "file": "references.bib",
+          "line": 418
+        },
+        {
+          "key": "chen_efficient_2018",
+          "type": "article",
+          "file": "references.bib",
+          "line": 429
+        },
+        {
+          "key": "fang_dualtargeted_2018",
+          "type": "article",
+          "file": "references.bib",
+          "line": 441
+        },
+        {
+          "key": "huang_autophagy_2018",
+          "type": "article",
+          "file": "references.bib",
+          "line": 453
+        },
+        {
+          "key": "liu_highly_2018",
+          "type": "article",
+          "file": "references.bib",
+          "line": 464
+        },
+        {
+          "key": "wang_regulating_2016",
+          "type": "article",
+          "file": "references.bib",
+          "line": 475
+        },
+        {
+          "key": "hu_selenium_2019",
+          "type": "article",
+          "file": "references.bib",
+          "line": 486
+        },
+        {
+          "key": "zeng_potentiation_2019",
+          "type": "article",
+          "file": "references.bib",
+          "line": 497
+        },
+        {
+          "key": "huang_dual-targeting_2019",
+          "type": "article",
+          "file": "references.bib",
+          "line": 509
+        },
+        {
+          "key": "huang_highly_2019",
+          "type": "article",
+          "file": "references.bib",
+          "line": 520
+        },
+        {
+          "key": "zhang_systematic_2019",
+          "type": "article",
+          "file": "references.bib",
+          "line": 532
+        },
+        {
+          "key": "zheng_thermosensitive_2019",
+          "type": "article",
+          "file": "references.bib",
+          "line": 543
+        },
+        {
+          "key": "huang_chiralitydriven_2020",
+          "type": "article",
+          "file": "references.bib",
+          "line": 554
+        },
+        {
+          "key": "yang_lentinan-functionalized_2020",
+          "type": "article",
+          "file": "references.bib",
+          "line": 566
+        },
+        {
+          "key": "liu_rapid_2021",
+          "type": "article",
+          "file": "references.bib",
+          "line": 577
+        },
+        {
+          "key": "an_functionalized_2021",
+          "type": "article",
+          "file": "references.bib",
+          "line": 588
+        },
+        {
+          "key": "song_translational_2021",
+          "type": "article",
+          "file": "references.bib",
+          "line": 599
+        },
+        {
+          "key": "yang_atherosclerotic_2022",
+          "type": "article",
+          "file": "references.bib",
+          "line": 611
+        },
+        {
+          "key": "yang_functionalized_2021",
+          "type": "article",
+          "file": "references.bib",
+          "line": 622
+        },
+        {
+          "key": "liang_translational_2022",
+          "type": "article",
+          "file": "references.bib",
+          "line": 633
+        },
+        {
+          "key": "liu_specific_2022",
+          "type": "article",
+          "file": "references.bib",
+          "line": 644
+        },
+        {
+          "key": "du_highly_2022",
+          "type": "article",
+          "file": "references.bib",
+          "line": 655
+        }
+      ],
+      "undefinedCitedKeys": [],
+      "duplicateBibKeys": [],
+      "perFile": [
+        {
+          "file": "manuscript.tex",
+          "citeCommands": 0,
+          "uniqueCitedKeys": []
+        },
+        {
+          "file": "sections/00-abstract.tex",
+          "citeCommands": 1,
+          "uniqueCitedKeys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/01-introduction.tex",
+          "citeCommands": 16,
+          "uniqueCitedKeys": [
+            "ahmadi2024toxicity",
+            "bisht2022senps",
+            "hosnedlova2018nanoselenium",
+            "hosni2025mlnp",
+            "ji2023astragalus",
+            "ji2025rosml",
+            "karthik2024senps",
+            "lunkov2023chitosan",
+            "roy2023tio2",
+            "sang2022mlcytotoxicity",
+            "shirokii2023quantitative",
+            "sowmya2024nanoselenium",
+            "wang2020prooxidation",
+            "yildirim2025rheumatoid",
+            "zhang2023qsar",
+            "zhang2023senpsbio"
+          ]
+        },
+        {
+          "file": "sections/02-methods.tex",
+          "citeCommands": 6,
+          "uniqueCitedKeys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/03-results.tex",
+          "citeCommands": 8,
+          "uniqueCitedKeys": [
+            "breiman2001random",
+            "chen2016xgboost",
+            "gromov2022attention",
+            "gromov2022larf",
+            "hinton2015distilling",
+            "huang2020tabtransformer",
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections/04-conclusion.tex",
+          "citeCommands": 0,
+          "uniqueCitedKeys": []
+        }
+      ]
+    },
+    "chinese": {
+      "entry": null,
+      "files": [
+        "sections_zh/00-abstract.tex",
+        "sections_zh/01-introduction.tex",
+        "sections_zh/02-methods.tex",
+        "sections_zh/03-results.tex",
+        "sections_zh/04-conclusion.tex"
+      ],
+      "inputEdges": [],
+      "citations": [
+        {
+          "file": "sections_zh/00-abstract.tex",
+          "line": 1,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 3,
+          "command": "cite",
+          "keys": [
+            "hosnedlova2018nanoselenium",
+            "bisht2022senps",
+            "sowmya2024nanoselenium",
+            "karthik2024senps"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 3,
+          "command": "cite",
+          "keys": [
+            "wang2020prooxidation"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 3,
+          "command": "cite",
+          "keys": [
+            "hosnedlova2018nanoselenium"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "ji2025rosml"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "ahmadi2024toxicity"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "roy2023tio2"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "zhang2023qsar"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "sang2022mlcytotoxicity"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "zhang2023senpsbio"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "wang2020prooxidation"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "zhang2023senpsbio",
+            "ji2023astragalus"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 7,
+          "command": "cite",
+          "keys": [
+            "lunkov2023chitosan"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "hosni2025mlnp"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "shirokii2023quantitative"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 9,
+          "command": "cite",
+          "keys": [
+            "hosni2025mlnp"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "line": 10,
+          "command": "cite",
+          "keys": [
+            "yildirim2025rheumatoid"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "line": 8,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "line": 14,
+          "command": "cite",
+          "keys": [
+            "chen_selenium_2008",
+            "li_reversal_2011",
+            "zheng_sialic_2011",
+            "liu_selenium_2012",
+            "wu_surface_2012",
+            "chen_surface_2012",
+            "yu_positive_2012",
+            "chen_peg-nanolized_2012",
+            "pi_pathway_2013",
+            "wu_induction_2013",
+            "feng_differential_2014",
+            "huang_selective_2013",
+            "li_functionalized_2013",
+            "zhang_enhancement_2013",
+            "jiang_gracilaria_2014",
+            "yu_ph-responsive_2014",
+            "zeng_construction_2015",
+            "liu_sequentially_2016",
+            "liu_facile_2016",
+            "yu_x-ray-responsive_2016",
+            "fu_rgd_2016",
+            "fang_targeting_2017",
+            "chen_efficient_2018",
+            "fang_dualtargeted_2018",
+            "huang_autophagy_2018",
+            "liu_highly_2018",
+            "wang_regulating_2016",
+            "hu_selenium_2019",
+            "zeng_potentiation_2019",
+            "huang_dual-targeting_2019",
+            "huang_highly_2019",
+            "zhang_systematic_2019",
+            "zheng_thermosensitive_2019",
+            "huang_chiralitydriven_2020",
+            "yang_lentinan-functionalized_2020",
+            "liu_rapid_2021",
+            "an_functionalized_2021",
+            "song_translational_2021",
+            "yang_atherosclerotic_2022",
+            "yang_functionalized_2021",
+            "liang_translational_2022",
+            "liu_specific_2022",
+            "du_highly_2022"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "line": 23,
+          "command": "cite",
+          "keys": [
+            "chen_selenium_2008",
+            "li_reversal_2011",
+            "zheng_sialic_2011",
+            "liu_selenium_2012",
+            "wu_surface_2012",
+            "chen_surface_2012",
+            "yu_positive_2012",
+            "chen_peg-nanolized_2012",
+            "pi_pathway_2013",
+            "wu_induction_2013",
+            "feng_differential_2014",
+            "huang_selective_2013",
+            "li_functionalized_2013",
+            "zhang_enhancement_2013",
+            "jiang_gracilaria_2014",
+            "yu_ph-responsive_2014",
+            "zeng_construction_2015",
+            "liu_sequentially_2016",
+            "liu_facile_2016",
+            "yu_x-ray-responsive_2016",
+            "fu_rgd_2016",
+            "fang_targeting_2017",
+            "chen_efficient_2018",
+            "fang_dualtargeted_2018",
+            "huang_autophagy_2018",
+            "liu_highly_2018",
+            "wang_regulating_2016",
+            "hu_selenium_2019",
+            "zeng_potentiation_2019",
+            "huang_dual-targeting_2019",
+            "huang_highly_2019",
+            "zhang_systematic_2019",
+            "zheng_thermosensitive_2019",
+            "huang_chiralitydriven_2020",
+            "yang_lentinan-functionalized_2020",
+            "liu_rapid_2021",
+            "an_functionalized_2021",
+            "song_translational_2021",
+            "yang_atherosclerotic_2022",
+            "yang_functionalized_2021",
+            "liang_translational_2022",
+            "liu_specific_2022",
+            "du_highly_2022"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "line": 31,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "line": 101,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "line": 129,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "line": 191,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "breiman2001random"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "chen2016xgboost"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "gromov2022attention"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "gromov2022larf"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "huang2020tabtransformer"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "hinton2015distilling"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 4,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "line": 90,
+          "command": "cite",
+          "keys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/04-conclusion.tex",
+          "line": 5,
+          "command": "cite",
+          "keys": [
+            "chen_selenium_2008",
+            "li_reversal_2011",
+            "zheng_sialic_2011",
+            "liu_selenium_2012",
+            "wu_surface_2012",
+            "chen_surface_2012",
+            "yu_positive_2012",
+            "chen_peg-nanolized_2012",
+            "pi_pathway_2013",
+            "wu_induction_2013",
+            "feng_differential_2014",
+            "huang_selective_2013",
+            "li_functionalized_2013",
+            "zhang_enhancement_2013",
+            "jiang_gracilaria_2014",
+            "yu_ph-responsive_2014",
+            "zeng_construction_2015",
+            "liu_sequentially_2016",
+            "liu_facile_2016",
+            "yu_x-ray-responsive_2016",
+            "fu_rgd_2016",
+            "fang_targeting_2017",
+            "chen_efficient_2018",
+            "fang_dualtargeted_2018",
+            "huang_autophagy_2018",
+            "liu_highly_2018",
+            "wang_regulating_2016",
+            "hu_selenium_2019",
+            "zeng_potentiation_2019",
+            "huang_dual-targeting_2019",
+            "huang_highly_2019",
+            "zhang_systematic_2019",
+            "zheng_thermosensitive_2019",
+            "huang_chiralitydriven_2020",
+            "yang_lentinan-functionalized_2020",
+            "liu_rapid_2021",
+            "an_functionalized_2021",
+            "song_translational_2021",
+            "yang_atherosclerotic_2022",
+            "yang_functionalized_2021",
+            "liang_translational_2022",
+            "liu_specific_2022",
+            "du_highly_2022"
+          ]
+        }
+      ],
+      "nocites": [],
+      "bibliographyCommands": [],
+      "uniqueCitedKeyCount": 66,
+      "citationCommandCount": 33,
+      "citationKeyOccurrences": 163,
+      "citedKeys": [
+        "ahmadi2024toxicity",
+        "an_functionalized_2021",
+        "bisht2022senps",
+        "breiman2001random",
+        "chen2016xgboost",
+        "chen_efficient_2018",
+        "chen_peg-nanolized_2012",
+        "chen_selenium_2008",
+        "chen_surface_2012",
+        "du_highly_2022",
+        "fang_dualtargeted_2018",
+        "fang_targeting_2017",
+        "feng_differential_2014",
+        "fu_rgd_2016",
+        "gromov2022attention",
+        "gromov2022larf",
+        "hinton2015distilling",
+        "hosnedlova2018nanoselenium",
+        "hosni2025mlnp",
+        "hu_selenium_2019",
+        "huang2020tabtransformer",
+        "huang_autophagy_2018",
+        "huang_chiralitydriven_2020",
+        "huang_dual-targeting_2019",
+        "huang_highly_2019",
+        "huang_selective_2013",
+        "ji2023astragalus",
+        "ji2025rosml",
+        "jiang_gracilaria_2014",
+        "karthik2024senps",
+        "li_functionalized_2013",
+        "li_reversal_2011",
+        "liang_translational_2022",
+        "liu_facile_2016",
+        "liu_highly_2018",
+        "liu_rapid_2021",
+        "liu_selenium_2012",
+        "liu_sequentially_2016",
+        "liu_specific_2022",
+        "lunkov2023chitosan",
+        "masarkar2024",
+        "pi_pathway_2013",
+        "roy2023tio2",
+        "sang2022mlcytotoxicity",
+        "shirokii2023quantitative",
+        "song_translational_2021",
+        "sowmya2024nanoselenium",
+        "wang2020prooxidation",
+        "wang_regulating_2016",
+        "wu_induction_2013",
+        "wu_surface_2012",
+        "yang_atherosclerotic_2022",
+        "yang_functionalized_2021",
+        "yang_lentinan-functionalized_2020",
+        "yildirim2025rheumatoid",
+        "yu_ph-responsive_2014",
+        "yu_positive_2012",
+        "yu_x-ray-responsive_2016",
+        "zeng_construction_2015",
+        "zeng_potentiation_2019",
+        "zhang2023qsar",
+        "zhang2023senpsbio",
+        "zhang_enhancement_2013",
+        "zhang_systematic_2019",
+        "zheng_sialic_2011",
+        "zheng_thermosensitive_2019"
+      ],
+      "uncitedEntries": [],
+      "undefinedCitedKeys": [],
+      "duplicateBibKeys": [],
+      "perFile": [
+        {
+          "file": "sections_zh/00-abstract.tex",
+          "citeCommands": 1,
+          "uniqueCitedKeys": [
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/01-introduction.tex",
+          "citeCommands": 16,
+          "uniqueCitedKeys": [
+            "ahmadi2024toxicity",
+            "bisht2022senps",
+            "hosnedlova2018nanoselenium",
+            "hosni2025mlnp",
+            "ji2023astragalus",
+            "ji2025rosml",
+            "karthik2024senps",
+            "lunkov2023chitosan",
+            "roy2023tio2",
+            "sang2022mlcytotoxicity",
+            "shirokii2023quantitative",
+            "sowmya2024nanoselenium",
+            "wang2020prooxidation",
+            "yildirim2025rheumatoid",
+            "zhang2023qsar",
+            "zhang2023senpsbio"
+          ]
+        },
+        {
+          "file": "sections_zh/02-methods.tex",
+          "citeCommands": 7,
+          "uniqueCitedKeys": [
+            "an_functionalized_2021",
+            "chen_efficient_2018",
+            "chen_peg-nanolized_2012",
+            "chen_selenium_2008",
+            "chen_surface_2012",
+            "du_highly_2022",
+            "fang_dualtargeted_2018",
+            "fang_targeting_2017",
+            "feng_differential_2014",
+            "fu_rgd_2016",
+            "hu_selenium_2019",
+            "huang_autophagy_2018",
+            "huang_chiralitydriven_2020",
+            "huang_dual-targeting_2019",
+            "huang_highly_2019",
+            "huang_selective_2013",
+            "jiang_gracilaria_2014",
+            "li_functionalized_2013",
+            "li_reversal_2011",
+            "liang_translational_2022",
+            "liu_facile_2016",
+            "liu_highly_2018",
+            "liu_rapid_2021",
+            "liu_selenium_2012",
+            "liu_sequentially_2016",
+            "liu_specific_2022",
+            "masarkar2024",
+            "pi_pathway_2013",
+            "song_translational_2021",
+            "wang_regulating_2016",
+            "wu_induction_2013",
+            "wu_surface_2012",
+            "yang_atherosclerotic_2022",
+            "yang_functionalized_2021",
+            "yang_lentinan-functionalized_2020",
+            "yu_ph-responsive_2014",
+            "yu_positive_2012",
+            "yu_x-ray-responsive_2016",
+            "zeng_construction_2015",
+            "zeng_potentiation_2019",
+            "zhang_enhancement_2013",
+            "zhang_systematic_2019",
+            "zheng_sialic_2011",
+            "zheng_thermosensitive_2019"
+          ]
+        },
+        {
+          "file": "sections_zh/03-results.tex",
+          "citeCommands": 8,
+          "uniqueCitedKeys": [
+            "breiman2001random",
+            "chen2016xgboost",
+            "gromov2022attention",
+            "gromov2022larf",
+            "hinton2015distilling",
+            "huang2020tabtransformer",
+            "masarkar2024"
+          ]
+        },
+        {
+          "file": "sections_zh/04-conclusion.tex",
+          "citeCommands": 1,
+          "uniqueCitedKeys": [
+            "an_functionalized_2021",
+            "chen_efficient_2018",
+            "chen_peg-nanolized_2012",
+            "chen_selenium_2008",
+            "chen_surface_2012",
+            "du_highly_2022",
+            "fang_dualtargeted_2018",
+            "fang_targeting_2017",
+            "feng_differential_2014",
+            "fu_rgd_2016",
+            "hu_selenium_2019",
+            "huang_autophagy_2018",
+            "huang_chiralitydriven_2020",
+            "huang_dual-targeting_2019",
+            "huang_highly_2019",
+            "huang_selective_2013",
+            "jiang_gracilaria_2014",
+            "li_functionalized_2013",
+            "li_reversal_2011",
+            "liang_translational_2022",
+            "liu_facile_2016",
+            "liu_highly_2018",
+            "liu_rapid_2021",
+            "liu_selenium_2012",
+            "liu_sequentially_2016",
+            "liu_specific_2022",
+            "pi_pathway_2013",
+            "song_translational_2021",
+            "wang_regulating_2016",
+            "wu_induction_2013",
+            "wu_surface_2012",
+            "yang_atherosclerotic_2022",
+            "yang_functionalized_2021",
+            "yang_lentinan-functionalized_2020",
+            "yu_ph-responsive_2014",
+            "yu_positive_2012",
+            "yu_x-ray-responsive_2016",
+            "zeng_construction_2015",
+            "zeng_potentiation_2019",
+            "zhang_enhancement_2013",
+            "zhang_systematic_2019",
+            "zheng_sialic_2011",
+            "zheng_thermosensitive_2019"
+          ]
+        }
+      ]
+    },
+    "chineseOnlyCitedKeys": [
+      "an_functionalized_2021",
+      "chen_efficient_2018",
+      "chen_peg-nanolized_2012",
+      "chen_selenium_2008",
+      "chen_surface_2012",
+      "du_highly_2022",
+      "fang_dualtargeted_2018",
+      "fang_targeting_2017",
+      "feng_differential_2014",
+      "fu_rgd_2016",
+      "hu_selenium_2019",
+      "huang_autophagy_2018",
+      "huang_chiralitydriven_2020",
+      "huang_dual-targeting_2019",
+      "huang_highly_2019",
+      "huang_selective_2013",
+      "jiang_gracilaria_2014",
+      "li_functionalized_2013",
+      "li_reversal_2011",
+      "liang_translational_2022",
+      "liu_facile_2016",
+      "liu_highly_2018",
+      "liu_rapid_2021",
+      "liu_selenium_2012",
+      "liu_sequentially_2016",
+      "liu_specific_2022",
+      "pi_pathway_2013",
+      "song_translational_2021",
+      "wang_regulating_2016",
+      "wu_induction_2013",
+      "wu_surface_2012",
+      "yang_atherosclerotic_2022",
+      "yang_functionalized_2021",
+      "yang_lentinan-functionalized_2020",
+      "yu_ph-responsive_2014",
+      "yu_positive_2012",
+      "yu_x-ray-responsive_2016",
+      "zeng_construction_2015",
+      "zeng_potentiation_2019",
+      "zhang_enhancement_2013",
+      "zhang_systematic_2019",
+      "zheng_sialic_2011",
+      "zheng_thermosensitive_2019"
+    ],
+    "englishOnlyCitedKeys": [],
+    "assumptions": [
+      "No conditional citation/include directives or custom citation macros are present in the audited sources.",
+      "The target git tree contains no supplementary source or supporting-information files beyond template placeholders. A textual promise of Table S1 does not include those publications in the compiled bibliography."
+    ]
+  },
+  "localBuilds": [
+    {
+      "entry": "manuscript.tex",
+      "compiler": "XeLaTeX / TeX Live 2026",
+      "bibliographyProcessor": "Biber 2.21",
+      "sequence": [
+        "xelatex",
+        "biber",
+        "xelatex",
+        "xelatex"
+      ],
+      "status": "success with original font/layout warnings",
+      "pages": 16,
+      "bcfUniqueCitations": 23,
+      "bblEntries": 23,
+      "bcfAndBblEqualStaticAudit": true,
+      "unresolvedCitationWarnings": false,
+      "missingGlyphWarningOccurrences": 27,
+      "pdfPath": "work/initial-draft-audit-20261022/build/manuscript/manuscript.pdf",
+      "pdfSha256": "f83a4641f8f160d49de0c0b68a93189ed0e75df7b0c59460df35a1b1e08f054c",
+      "logPath": "work/initial-draft-audit-20261022/build/manuscript/manuscript.log"
+    },
+    {
+      "entry": "manuscript-zh.tex",
+      "compiler": "XeLaTeX / TeX Live 2026",
+      "bibliographyProcessor": "Biber 2.21",
+      "sequence": [
+        "xelatex",
+        "biber",
+        "xelatex",
+        "xelatex"
+      ],
+      "status": "success with original font/layout warnings",
+      "pages": 20,
+      "bcfUniqueCitations": 66,
+      "bblEntries": 66,
+      "bcfAndBblEqualStaticAudit": true,
+      "unresolvedCitationWarnings": false,
+      "missingGlyphWarningOccurrences": 7,
+      "pdfPath": "work/initial-draft-audit-20261022/build/manuscript-zh/manuscript-zh.pdf",
+      "pdfSha256": "5cf0a54d14e05e1fe2cece25bd168b08ef529eef4c4a2aca913109b77e7aa2c6",
+      "logPath": "work/initial-draft-audit-20261022/build/manuscript-zh/manuscript-zh.log"
+    }
+  ],
+  "codexBuiltInCompilerAttempt": {
+    "entry": "manuscript.tex",
+    "status": "compile-failed",
+    "reason": "Compilation timed out",
+    "replacedBy": "successful native TeX Live build without source edits"
+  },
+  "originalV1Files": [
+    {
+      "path": "paper/v1/manuscript.tex",
+      "beforeSha256": "f5d0b8b3331b28abad11f30ddeccd5290d7a9feef46d10b65e121a8a5e0f0ffa",
+      "afterSha256": "f5d0b8b3331b28abad11f30ddeccd5290d7a9feef46d10b65e121a8a5e0f0ffa",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/references.bib",
+      "beforeSha256": "3c027d42fbc71a3c4b030e26266d5b6ed919fe3c868be659efc6a58897eda636",
+      "afterSha256": "3c027d42fbc71a3c4b030e26266d5b6ed919fe3c868be659efc6a58897eda636",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections/00-abstract.tex",
+      "beforeSha256": "3f016532e6c4e95a8e60311afab48a18ce7e42170beaf491a20244c652cdb219",
+      "afterSha256": "3f016532e6c4e95a8e60311afab48a18ce7e42170beaf491a20244c652cdb219",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections/01-introduction.tex",
+      "beforeSha256": "7250afdca7b69ccce402c0a52580aea604ece1029b1305aebf5e7619ca4fa7f6",
+      "afterSha256": "7250afdca7b69ccce402c0a52580aea604ece1029b1305aebf5e7619ca4fa7f6",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections/02-methods.tex",
+      "beforeSha256": "9f51f6b12478b1fd5dcf51af4c0d3ffcfb7a03aabf13c63de101f1b2765b6ae0",
+      "afterSha256": "9f51f6b12478b1fd5dcf51af4c0d3ffcfb7a03aabf13c63de101f1b2765b6ae0",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections/03-results.tex",
+      "beforeSha256": "2aac2e64d9775f210ed9530d9b205bf320e974088b7b4f0c1938502108bf229c",
+      "afterSha256": "2aac2e64d9775f210ed9530d9b205bf320e974088b7b4f0c1938502108bf229c",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections/04-conclusion.tex",
+      "beforeSha256": "9f58b8988eb8e26fe92ad6f353763a0bb1aa4db42b36eeef5efb45d8c3de1bd3",
+      "afterSha256": "9f58b8988eb8e26fe92ad6f353763a0bb1aa4db42b36eeef5efb45d8c3de1bd3",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections_zh/00-abstract.tex",
+      "beforeSha256": "bcc495f143dbb27d00c61c568f62fdf07e4ad951a42c4b3431acfd75d2849091",
+      "afterSha256": "bcc495f143dbb27d00c61c568f62fdf07e4ad951a42c4b3431acfd75d2849091",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections_zh/01-introduction.tex",
+      "beforeSha256": "71b8b2e07b6d2c3556fd4f441abb1808177d27abf79cbb92282cdd0045231e3f",
+      "afterSha256": "71b8b2e07b6d2c3556fd4f441abb1808177d27abf79cbb92282cdd0045231e3f",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections_zh/02-methods.tex",
+      "beforeSha256": "71579215dea2ec4b862fc31ae527cc96a4138f05ee0aed919496f5533d342685",
+      "afterSha256": "71579215dea2ec4b862fc31ae527cc96a4138f05ee0aed919496f5533d342685",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections_zh/03-results.tex",
+      "beforeSha256": "2589283d7cecccbd76fbc0a1d7a55828ae405ca82cde6531648890689b1bd542",
+      "afterSha256": "2589283d7cecccbd76fbc0a1d7a55828ae405ca82cde6531648890689b1bd542",
+      "unchanged": true
+    },
+    {
+      "path": "paper/v1/sections_zh/04-conclusion.tex",
+      "beforeSha256": "0b801dc9207654309ff3bcb8f8cb9c5e674b74373f1c9e0e026a42db2eb6e0ee",
+      "afterSha256": "0b801dc9207654309ff3bcb8f8cb9c5e674b74373f1c9e0e026a42db2eb6e0ee",
+      "unchanged": true
+    }
+  ],
+  "existingTrackedFilesModified": false,
+  "committed": false,
+  "pushed": false
+}

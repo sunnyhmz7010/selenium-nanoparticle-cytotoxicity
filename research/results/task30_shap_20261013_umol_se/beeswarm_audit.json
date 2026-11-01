@@ -1,0 +1,43 @@
+{
+  "conditions": 351,
+  "materials": 9,
+  "plotted_feature_groups": [
+    "Particle size",
+    "Zeta potential"
+  ],
+  "plotted_groups_of_total": "2 of 11 groups; specifically requested material descriptors",
+  "group_columns": {
+    "Particle size": [
+      "numeric__size_final",
+      "numeric__log_size"
+    ],
+    "Zeta potential": [
+      "numeric__zeta_final",
+      "numeric__abs_zeta",
+      "numeric__zeta_missing"
+    ]
+  },
+  "all_encoded_features_for_additivity": 116,
+  "model_sha256": "d0268e0831da09faf8f86a59300415410610195f1905aac9afc063095215ce50",
+  "source_grouped_shap_sha256": "fee744d50281fb3ee4e75632edef94f97a33ab795e8b40d03f7111043d217af0",
+  "source_experiment_sha256": "2e63fffd5eb2f6fc30fbd793b6cac4891fe087a2258ee641599ef255cc63d187",
+  "snippet_sha256": "033ee781c4c9081611976a86dfda0d2b573e15298241b1aabdfeebf1e5fa9932",
+  "max_recomputed_shap_difference": 0.0,
+  "max_additivity_error": 1.1368683772161603e-13,
+  "bee_layout_seed": 42,
+  "horizontal_values": "unchanged signed SHAP contributions",
+  "color": "row-specific descriptor values, blue low and red high",
+  "uncertainty": "none; deterministic model explanation, not independent experimental replicates",
+  "all_rows_used": true,
+  "concentration_basis": "umol/L Se; model input uses converted ug/mL",
+  "plot_api": "shap.plots.beeswarm; shap 0.53.0",
+  "documentation": "https://shap.readthedocs.io/en/latest/generated/shap.plots.beeswarm.html",
+  "rendered_qa": {
+    "collision_verdict": "PASS",
+    "minimum_text_pt": 7,
+    "width_mm": 179.99999491373697,
+    "visual_review": "Both descriptor rows, color bar, caption and axes are readable; no clipping",
+    "alignment": "single plot area; color bar excluded as auxiliary",
+    "source_warnings_reviewed": "300 dpi PNG is a preview; PDF/SVG are vector; 180 mm width verified despite static regex warning"
+  }
+}

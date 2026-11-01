@@ -1,0 +1,10 @@
+held_material,training_materials,training_curves,test_curves,training_full_conditions,test_full_conditions,permitted_target_anchors,test_positive_queries
+CS-SeNPs,Glucose-SeNPs;LET-SeNPs;PAH-SeNPs;PEG-SeNPs;PEI-SeNPs;PVP-SeNPs;Sucrose-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+Glucose-SeNPs,CS-SeNPs;LET-SeNPs;PAH-SeNPs;PEG-SeNPs;PEI-SeNPs;PVP-SeNPs;Sucrose-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+LET-SeNPs,CS-SeNPs;Glucose-SeNPs;PAH-SeNPs;PEG-SeNPs;PEI-SeNPs;PVP-SeNPs;Sucrose-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+PAH-SeNPs,CS-SeNPs;Glucose-SeNPs;LET-SeNPs;PEG-SeNPs;PEI-SeNPs;PVP-SeNPs;Sucrose-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+PEG-SeNPs,CS-SeNPs;Glucose-SeNPs;LET-SeNPs;PAH-SeNPs;PEI-SeNPs;PVP-SeNPs;Sucrose-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+PEI-SeNPs,CS-SeNPs;Glucose-SeNPs;LET-SeNPs;PAH-SeNPs;PEG-SeNPs;PVP-SeNPs;Sucrose-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+PVP-SeNPs,CS-SeNPs;Glucose-SeNPs;LET-SeNPs;PAH-SeNPs;PEG-SeNPs;PEI-SeNPs;Sucrose-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+Sucrose-SeNPs,CS-SeNPs;Glucose-SeNPs;LET-SeNPs;PAH-SeNPs;PEG-SeNPs;PEI-SeNPs;PVP-SeNPs;TW80-SeNPs,48,6,624,78,24,48
+TW80-SeNPs,CS-SeNPs;Glucose-SeNPs;LET-SeNPs;PAH-SeNPs;PEG-SeNPs;PEI-SeNPs;PVP-SeNPs;Sucrose-SeNPs,48,6,624,78,24,48

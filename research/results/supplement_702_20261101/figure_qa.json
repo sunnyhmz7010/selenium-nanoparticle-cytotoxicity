@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "backend": "Python/matplotlib",
+  "figures": [
+    {
+      "figure": "budget_matched_queries",
+      "font_audit": "PASS",
+      "collision_audit": "PASS",
+      "visual_review": "axes, labels, uncertainty, legends and complete panels reviewed; PCA legend moved to vacant lower-right area"
+    },
+    {
+      "figure": "fixed_curve_examples",
+      "font_audit": "PASS",
+      "collision_audit": "PASS",
+      "visual_review": "axes, labels, uncertainty, legends and complete panels reviewed; PCA legend moved to vacant lower-right area"
+    },
+    {
+      "figure": "method_comparison",
+      "font_audit": "PASS",
+      "collision_audit": "PASS",
+      "visual_review": "axes, labels, uncertainty, legends and complete panels reviewed; PCA legend moved to vacant lower-right area"
+    },
+    {
+      "figure": "weighted_response_pca",
+      "font_audit": "PASS",
+      "collision_audit": "PASS",
+      "visual_review": "axes, labels, uncertainty, legends and complete panels reviewed; PCA legend moved to vacant lower-right area"
+    }
+  ],
+  "source_preflight": {
+    "ready": true,
+    "strict": false,
+    "counts": {
+      "PASS": 16,
+      "WARN": 5,
+      "FAIL": 0
+    }
+  },
+  "warnings_reviewed": [
+    "300dpi PNG is preview; vector PDF/SVG are authoritative",
+    "random sampling is material bootstrap, not fake observations",
+    "180mm width verified from PDF; log concentration inputs positive"
+  ]
+}
