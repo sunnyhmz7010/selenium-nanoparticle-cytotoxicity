@@ -148,7 +148,7 @@ HUVEC组织沿用历史标签Vascular endothelium。H9C2在历史模型中是未
 
 
 def update_table(out):
-    archive=ROOT.parent/'work/output-publish-restore/paper/revision/improvement-recommendations-status.md'
+    archive=ROOT.parent/'paper/revision/archive/improvement-recommendations-status-20261012.md'
     suggestions={}
     for line in archive.read_text(encoding='utf-8').splitlines():
         columns=[c.strip() for c in line.split('|')]
@@ -194,7 +194,7 @@ def update_table(out):
     table=['# 论文修改建议实施与实验结果对照表（更新于2026-11-01）','',
            '本表取代旧恢复目录中的状态表，保留其36项建议编号。当前依据是最新《实验数据(3).xlsx》：9种SeNP、HUVEC/H9C2、24/48/72 h、13浓度，共702个条件和54条曲线。历史434条/24文献组结果未重训。', '',
            '**“已完成分析”不表示达到预期性能，也不表示原湿实验方案全部完成。** 本次为已有响应数据的回顾性外部评价；每条件一条报告值，实际重复次数和汇总方式未知。接种数量已由用户确认。H9C2为冻结模型未知类别，组织缺失被历史默认Liver填充，其数值属于条件性结果，另有映射敏感性分析。','',
-           f'[最新分析报告](../../research/results/{out.name}/README.md) · [数值核验](../../research/results/{out.name}/verification.json) · [旧表存档](../../work/output-publish-restore/paper/revision/improvement-recommendations-status.md)','',
+           f'[最新分析报告](../../research/results/{out.name}/README.md) · [数值核验](../../research/results/{out.name}/verification.json) · [旧表存档](archive/improvement-recommendations-status-20261012.md)','',
            '| 序号 | 原建议 | 当前状态 | 已完成内容/结果 | 仍需补什么 | 证据 |',
            '|---:|---|---|---|---|---|']
     flat=[]

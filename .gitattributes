@@ -12,4 +12,3 @@ research/results/** -text
 research/deliverables/** -text
 research/scripts/*.py text eol=lf
 research/tests/*.py text eol=lf
-work/output-publish-restore/paper/revision/** -text

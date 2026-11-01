@@ -81,7 +81,7 @@
 
 最终 PDF：
 
-- [英文同步稿](../../output/pdf/v1-synchronized-en.pdf)
-- [中文同步稿](../../output/pdf/v1-synchronized-zh.pdf)
+- [英文同步稿](archive/output/pdf/v1-synchronized-en.pdf)
+- [中文同步稿](archive/output/pdf/v1-synchronized-zh.pdf)
 
 已有正文部分长行及中文字号替代告警保留；新增补充表没有裁切、重叠或缺行，字体缺字与未定义引用已清零。PDF 与核验记录均在本地，未提交或推送远程。
