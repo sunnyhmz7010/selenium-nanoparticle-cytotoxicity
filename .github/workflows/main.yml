@@ -1,4 +1,4 @@
-name: Build and Publish V2 Chinese Manuscript
+name: Build and Publish V3 Chinese Manuscript
 
 on:
   workflow_dispatch:
@@ -17,10 +17,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build Chinese V2 Manuscript
+      - name: Build Chinese V3 Manuscript
         uses: xu-cheng/latex-action@v3
         with:
-          working_directory: paper/v2
+          working_directory: paper/v3
           root_file: manuscript_zh.tex
           compiler: latexmk
           args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
