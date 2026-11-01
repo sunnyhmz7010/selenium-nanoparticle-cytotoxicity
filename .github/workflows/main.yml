@@ -25,7 +25,7 @@ jobs:
           compiler: latexmk
           args: "-xelatex -file-line-error -halt-on-error -interaction=nonstopmode"
 
-      - name: Package V2 PDF and Single-File Source
+      - name: Package V3 PDF and Single-File Source
         id: package
         shell: bash
         run: |
@@ -38,7 +38,7 @@ jobs:
           import shutil
           from pathlib import Path
 
-          root = Path('paper/v2').resolve()
+          root = Path('paper/v3').resolve()
           destination = Path('build-output')
           source = root / 'manuscript_zh.tex'
           timestamp = os.environ['TIMESTAMP']
@@ -90,7 +90,7 @@ jobs:
           PY
           echo "timestamp=$TIMESTAMP" >> "$GITHUB_OUTPUT"
 
-      - name: Commit and Push V2 Outputs
+      - name: Commit and Push V3 Outputs
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -106,13 +106,13 @@ jobs:
           git -C publish config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git -C publish add --all
           if ! git -C publish diff --cached --quiet; then
-            git -C publish commit -m "build(paper): 更新V2中文PDF和单文件稿源（$TIMESTAMP）"
+            git -C publish commit -m "build(paper): 更新V3中文PDF和单文件稿源（$TIMESTAMP）"
           fi
           git -C publish push --force origin HEAD:refs/heads/output
           {
-            echo '### V2 中文稿已发布'
+            echo '### V3 中文稿已发布'
             echo
             echo "构建时间（北京时间）：$TIMESTAMP"
             echo
-            echo "[查看 V2 PDF、单文件稿源、Bib 和配图](https://github.com/$GITHUB_REPOSITORY/tree/output)"
+            echo "[查看 V3 PDF、单文件稿源、Bib 和配图](https://github.com/$GITHUB_REPOSITORY/tree/output)"
           } >> "$GITHUB_STEP_SUMMARY"
