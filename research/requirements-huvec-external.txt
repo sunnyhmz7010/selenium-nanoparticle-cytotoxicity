@@ -1,0 +1,9 @@
+# 本次冻结模型推理与 SHAP 计算使用的直接依赖；Python 3.12.14。
+numpy==2.5.4
+pandas==2.3.3
+scikit-learn==1.9.1
+joblib==1.6.0
+shap==0.53.0
+matplotlib==3.11.2
+openpyxl==3.1.5
+pymupdf==1.28.2

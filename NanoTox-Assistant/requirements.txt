@@ -1,0 +1,7 @@
+# Python 3.12；版本与冻结模型和本次验证环境一致。
+numpy==2.5.4
+pandas==2.3.3
+scikit-learn==1.9.1
+joblib==1.6.0
+shap==0.53.0
+scipy==1.18.1

@@ -1,0 +1,10 @@
+target,reference,cell_type,time_h,n_conditions,materials,mae_difference,ci_low,ci_high
+self_only_rf,frozen_historical_rf,ALL,ALL,702,9,-1.3171689636612232,-3.1126776163808243,0.7212224290220739
+self_only_rf,frozen_historical_rf,H9C2,ALL,351,9,-0.37950126580772564,-1.2660522224165862,0.3923039727549079
+self_only_rf,frozen_historical_rf,HUVEC,ALL,351,9,-2.254836661514721,-5.3887830099652225,1.3101499938224426
+historical_plus_residual_rf,frozen_historical_rf,ALL,ALL,702,9,-1.166809597981676,-3.1120989658693388,1.0662879503207907
+historical_plus_residual_rf,frozen_historical_rf,H9C2,ALL,351,9,-0.33315595201793863,-1.1459961635648008,0.459349831685927
+historical_plus_residual_rf,frozen_historical_rf,HUVEC,ALL,351,9,-2.000463243945413,-5.463260211745265,1.9612464186968235
+historical_plus_residual_rf,self_only_rf,ALL,ALL,702,9,0.1503593656795471,-0.24738299995125182,0.5782863961300513
+historical_plus_residual_rf,self_only_rf,H9C2,ALL,351,9,0.046345313789786964,-0.3554719021890386,0.44345194021791884
+historical_plus_residual_rf,self_only_rf,HUVEC,ALL,351,9,0.25437341756930726,-0.23023065970991008,0.8101441472852815

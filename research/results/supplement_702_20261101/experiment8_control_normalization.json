@@ -1,0 +1,8 @@
+{
+  "controls": 54,
+  "reported_control_values": [
+    100.0
+  ],
+  "maximum_raw_vs_control_normalized_change": 0.0,
+  "note": "all report controls are 100%; renormalizing these aggregated values is identity and cannot recover missing well-level absorbance"
+}

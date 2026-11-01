@@ -1,0 +1,9 @@
+number,experiment,finding,evidence,status
+1,固定四点多方法比较,PCHIP 5.655；线性5.711，配对区间跨0,experiment1_metrics.csv,已完成现有数据计算
+2,RF先验曲率融合,材料留出全局/分体系权重未获稳定增益,experiment2_metrics.csv,已完成现有数据计算
+3,2—6点预算消融,相同查询下2→4改善、4→6增益有限,experiment3_matched_paired_comparisons.csv,已完成现有数据计算
+4,锚点策略优化与自适应,共同查询下未稳定优于原固定方案,experiment4_metrics.csv,已完成现有数据计算
+5,按材料留一的零样本与四点辅助,9折各624训练/78留出；四点辅助另报,experiment5_zero_shot_metrics.csv,已完成现有数据计算
+6,剂量—时间联合重建,二维RBF/GP及其他材料残差模板均未稳定提升,experiment6_metrics.csv,已完成现有数据计算
+7,响应形态与性质关联,54曲线形态、加权PCA及描述性相关已完成,experiment7_curve_shapes.csv,已完成现有数据计算
+8,稳定性和敏感性,材料删组、轴/编码/归一化敏感性及配对区间已完成,experiment8_tissue_sensitivity.csv,已完成现有数据计算

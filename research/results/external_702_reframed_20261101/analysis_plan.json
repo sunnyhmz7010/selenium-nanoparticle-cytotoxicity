@@ -1,0 +1,56 @@
+{
+  "recorded_at": "2026-11-01T10:54:13.624262+08:00",
+  "scope": "9 materials x 2 experimental cell systems x 3 times x 13 concentrations; existing 702 records only",
+  "scope_change_after_viewing_data": true,
+  "prior_responses_already_available": true,
+  "primary_auc": "trapezoidal mean viability fraction over log10 positive doses 0.25..512 umol/L Se",
+  "secondary_auc": "trapezoidal mean viability fraction over linear doses 0..512 umol/L Se",
+  "calibration_points": [
+    0.25,
+    4.0,
+    64.0,
+    512.0
+  ],
+  "test_points": [
+    0.5,
+    1.0,
+    2.0,
+    8.0,
+    16.0,
+    32.0,
+    128.0,
+    256.0
+  ],
+  "control_dose": 0,
+  "control_usage": "reported separately; excluded from calibration and eight-point test metrics",
+  "calibration": "one unweighted mean observed-minus-frozen-predicted offset per material-cell-time curve",
+  "comparison": "same eight test doses, frozen RF vs RF+offset vs four-anchor-only log10 interpolation",
+  "test_outcomes_used_to_fit": false,
+  "dose_or_method_search": "none; fixed from user-approved plan before this new computation",
+  "endpoint_coverage": "concentration interpolation only; includes lowest and highest dose as calibration anchors",
+  "calibration_is_not_new_material_or_new_time_generalization": true,
+  "no_clipping_no_monotonic_adjustment": true,
+  "no_retraining": true,
+  "bootstrap": {
+    "resamples": 2000,
+    "seed": 20261102,
+    "unit": "material, retaining both cells/all times/test doses"
+  },
+  "source_directory": "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\research\\results\\external_702_20261101_confirmed",
+  "source_manifest_sha256": "919ec23ef20e719f6920b45fdf33473d28cea19860de9296718a68ca0ef17211",
+  "source_prediction_sha256": "b8ff89b90421714ef9909cac3d01e919b671de34e313aa1cf989e0f99bcc86ec",
+  "script_sha256": "1fc29aeadee1b64b47687e73c96e90effeedd5295f35f934c95e9ca55594c241",
+  "removed_from_scope": [
+    "24-dose wet experiments",
+    "additional chemical characterization",
+    "new prospective blinded experiments",
+    "4+20 few-shot",
+    "mechanistic causality",
+    "new model training on 702 records"
+  ],
+  "software": {
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "scipy": "1.18.1"
+  }
+}

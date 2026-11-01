@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "numerical_and_split_checks": 2358,
+  "source_hash_unchanged": true,
+  "frozen_model_hash_unchanged": true,
+  "held_out_method_responds_only_to_permitted_anchors": true,
+  "lomo_weights_and_method_selection_rebuilt": true,
+  "anchor_selection_rebuilt_without_target_queries": true,
+  "zero_shot_fold_models_reloaded": true,
+  "held_material_coating_absent_from_fold_encoder": true,
+  "matched_query_protocols_checked": true,
+  "notes": "exploratory existing-data evaluation; material bootstrap intervals condition on saved outer-fold predictions"
+}

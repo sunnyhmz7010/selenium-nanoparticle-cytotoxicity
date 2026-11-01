@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "rows": 702,
+  "curves": 54,
+  "unique_condition_keys": true,
+  "complete_factorial_coverage": true,
+  "source_hash_unchanged": true,
+  "model_hash_unchanged": true,
+  "input_independent_of_response": true,
+  "model_reload_agrees": true,
+  "shap_additivity": true,
+  "unit_and_cell_count_checked": true,
+  "old_huvec_values_unchanged": true,
+  "independent_check_count": 225,
+  "ic50_interpolation_checked": true,
+  "iae_independent_quadrature_checked": true,
+  "ranking_and_metrics_checked": true
+}

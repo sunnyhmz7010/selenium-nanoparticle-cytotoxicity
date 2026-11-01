@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "experiment_rows": 351,
+  "prediction_rows": 351,
+  "curves": 27,
+  "experimental_finite_ic50": 19,
+  "experimental_censored_ic50": 8,
+  "model_ic50_status_counts": {
+    "not_reached": 27
+  },
+  "ranked_materials": 9,
+  "concentration_unit": "umol/L",
+  "molar_basis": "Se",
+  "maximum_reported_dose": 512.0,
+  "maximum_model_dose_ug_ml": 40.433152,
+  "max_original_workbook_numeric_delta": 0.0,
+  "max_reloaded_prediction_delta": 0.0,
+  "max_readback_shap_additivity_delta": 1.1368683772161603e-13,
+  "csv_encoding": "UTF-8 without BOM; LF",
+  "figures": [
+    {
+      "figure": "shap_particle_size",
+      "width_mm": 179.99999491373697,
+      "minimum_text_pt": 7.0,
+      "collision_verdict": "PASS",
+      "alignment": "single panel; not applicable",
+      "visual_review": "all points preserved; axes and labels readable; no clipping"
+    },
+    {
+      "figure": "shap_zeta_potential",
+      "width_mm": 179.99999491373697,
+      "minimum_text_pt": 7.0,
+      "collision_verdict": "PASS",
+      "alignment": "single panel; not applicable",
+      "visual_review": "all points preserved; axes and labels readable; no clipping"
+    }
+  ],
+  "static_figure_preflight": {
+    "fail": 0,
+    "warnings_reviewed": [
+      "PNG is a 300 dpi preview; editable PDF/SVG are authoritative",
+      "180 mm physical PDF width independently measured; static width regex misread 180/25.4",
+      "dropna used only to list unknown categories; no prediction or SHAP rows excluded"
+    ]
+  }
+}

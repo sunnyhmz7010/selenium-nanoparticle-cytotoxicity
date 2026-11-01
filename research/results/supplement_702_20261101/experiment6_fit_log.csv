@@ -1,0 +1,19 @@
+nanoparticle,cell_type,observed_anchors,warnings
+CS-SeNPs,H9C2,12,The optimal value found for dimension 1 of parameter k1__k2__length_scale is close to the specified upper bound 10.0. Increasing the bound and calling fit again may find a better value.
+CS-SeNPs,HUVEC,12,
+Glucose-SeNPs,H9C2,12,
+Glucose-SeNPs,HUVEC,12,
+LET-SeNPs,H9C2,12,
+LET-SeNPs,HUVEC,12,
+PAH-SeNPs,H9C2,12,
+PAH-SeNPs,HUVEC,12,
+PEG-SeNPs,H9C2,12,
+PEG-SeNPs,HUVEC,12,The optimal value found for dimension 0 of parameter k2__noise_level is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.
+PEI-SeNPs,H9C2,12,The optimal value found for dimension 0 of parameter k1__k2__length_scale is close to the specified lower bound 0.05. Decreasing the bound and calling fit again may find a better value.
+PEI-SeNPs,HUVEC,12,The optimal value found for dimension 0 of parameter k1__k2__length_scale is close to the specified lower bound 0.05. Decreasing the bound and calling fit again may find a better value. | The optimal value found for dimension 1 of parameter k1__k2__length_scale is close to the specified upper bound 10.0. Increasing the bound and calling fit again may find a better value.
+PVP-SeNPs,H9C2,12,
+PVP-SeNPs,HUVEC,12,
+Sucrose-SeNPs,H9C2,12,
+Sucrose-SeNPs,HUVEC,12,The optimal value found for dimension 0 of parameter k1__k2__length_scale is close to the specified lower bound 0.05. Decreasing the bound and calling fit again may find a better value. | The optimal value found for dimension 0 of parameter k2__noise_level is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.
+TW80-SeNPs,H9C2,12,The optimal value found for dimension 0 of parameter k2__noise_level is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.
+TW80-SeNPs,HUVEC,12,The optimal value found for dimension 0 of parameter k2__noise_level is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "numerical_checks": 990,
+  "source_prediction_hash_verified": true,
+  "disjoint_anchor_test_control_keys": true,
+  "all_54_curves_have_4_anchors_and_8_test_doses": true,
+  "heldout_response_mutation_leaves_calibration_unchanged": true,
+  "auc_checked_by_independent_quadrature": true,
+  "auc_metrics_independently_verified": true,
+  "heldout_iae_independently_verified": true,
+  "anchor_interpolation_checked_by_natural_logs_and_brackets": true,
+  "material_bootstrap_intervals_independently_rebuilt": true,
+  "no_response_clipping": true,
+  "source_model_not_retrained": true
+}

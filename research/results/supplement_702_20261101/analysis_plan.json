@@ -1,0 +1,123 @@
+{
+  "recorded_at": "2026-11-01T12:06:32.937394+08:00",
+  "exploratory_after_previous_results": true,
+  "source_directory": "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\research\\results\\external_702_20261101_confirmed",
+  "source_sha256": "b8ff89b90421714ef9909cac3d01e919b671de34e313aa1cf989e0f99bcc86ec",
+  "script_sha256": "3c1fcd643a682e36b8fe9580460166027602f94fc65fb8162c8722a4f6c28948",
+  "fixed_anchors": [
+    0.25,
+    4.0,
+    64.0,
+    512.0
+  ],
+  "dose_grid": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0,
+    16.0,
+    32.0,
+    64.0,
+    128.0,
+    256.0,
+    512.0
+  ],
+  "zero_control_excluded_from_curve_reconstruction": true,
+  "methods": [
+    "loglinear",
+    "pchip",
+    "natural_spline",
+    "akima",
+    "gp",
+    "4pl_or_loglinear",
+    "4pl",
+    "frozen_rf",
+    "rf_offset"
+  ],
+  "spline_boundary": "natural",
+  "akima": "akima",
+  "gp": "C(1,.001..1000)*RBF(length=1,.05..10)+White(.01,1e-5..1), normalize_y=True; likelihood fit on allowed anchors only",
+  "four_pl": "bottom+amplitude/(1+10**(hill*(log10c-mid))); three anchor-only starts; bounds [-20,.01,minlog-2,.05]..[150,200,maxlog+2,8]; numerical failures reported, explicit loglinear fallback",
+  "lambda_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "lambda_selection": "minimum training-material MAE, ties prefer smaller lambda; outer held material excluded",
+  "baseline_selection": "training-material MAE among fixed complete-coverage candidates, tie in listed order",
+  "outer_split": "9 leave-one-material-out folds; both cell systems/all times/doses of target material held together",
+  "zero_shot_models": "frozen historical RF; self-only clone RF; frozen historical RF+clone RF fitted to training-material residuals; 250 trees and fixed original parameters",
+  "anchor_strategies": {
+    "fixed": [
+      0,
+      4,
+      8,
+      11
+    ],
+    "equal_log": [
+      0,
+      4,
+      7,
+      11
+    ],
+    "low_dense": [
+      0,
+      1,
+      3,
+      11
+    ],
+    "high_dense": [
+      0,
+      8,
+      10,
+      11
+    ]
+  },
+  "anchor_optimization": "two endpoint anchors plus 2 of 10 interior positions (45 sets), selected using 8 other materials; loglinear objective",
+  "matched_anchor_query_indices": [
+    2,
+    5,
+    6,
+    9
+  ],
+  "matched_anchor_search": "15 admissible endpoint-containing anchor sets exclude four fixed query concentrations",
+  "adaptive_rule": "endpoint anchors then midpoint in remaining interval maximizing absolute observed endpoint drop times log-width; only opened anchors accessed",
+  "budget_k": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "budget_indices": "equal log grid rounding for varying tests; nested endpoints,+4,+8,+3,+9 for common queries",
+  "budget_common_query_indices": [
+    1,
+    2,
+    5,
+    6,
+    7,
+    10
+  ],
+  "dose_time_methods": "2D thin-plate RBF smoothing=0; 2D GP likelihood fit only 12 observed anchors; other-material mean interpolation-residual template",
+  "shape_analysis": "weighted discrete-grid PCA on 12 positive-dose responses; 3 descriptive KMeans clusters, seed=42; no cluster inferential tests",
+  "sensitivity": "leave-one-material metric stability; raw versus source-control-normalized responses; primary log/secondary linear AUC; frozen H9C2 unknown tissue scenario",
+  "clipping": "none for reported observations or predictions; 4PL parameter constraints are model assumptions, not data clipping",
+  "bootstrap": {
+    "repetitions": 2000,
+    "unit": "material",
+    "interval": "exploratory percentile, no biological replicate inference"
+  },
+  "figure_backend": "Python/matplotlib; PDF/SVG/PNG; no AI image generation",
+  "software": {
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2"
+  }
+}
