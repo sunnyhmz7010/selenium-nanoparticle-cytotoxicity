@@ -49,10 +49,10 @@ def main():
                    kendall_tau=float(tau.statistic),kendall_p=float(tau.pvalue),
                    high_dose_prediction_range=[float(high.predicted_viability_percent.min()),float(high.predicted_viability_percent.max())])
     write_json(OUTPUT/'paired_evaluation.json', summary)
-    lines = [r'\begin{tabular}{lrrrrr}',r'\toprule',r'时间 & 条件数 & MAE & RMSE & 实测均值 & 预测均值 \\',r'\midrule']
+    lines = [r'\begin{tabular}{lrrrrr}',r'\toprule',r'时间 & n & MAE & RMSE & 预测均值 & 实测均值 \\',r'\midrule']
     for r in metrics:
         label = '总体' if r['time_h']=='ALL' else f"{r['time_h']} h"
-        lines.append(f"{label} & {r['n']} & {r['mae']:.2f} & {r['rmse']:.2f} & {r['observed_mean']:.2f} & {r['predicted_mean']:.2f}"+r' \\')
+        lines.append(f"{label} & {r['n']} & {r['mae']:.2f} & {r['rmse']:.2f} & {r['predicted_mean']:.2f} & {r['observed_mean']:.2f}"+r' \\')
     lines += [r'\bottomrule',r'\end{tabular}']
     for version in ('v2','v3'):
         (ROOT.parent/f'paper/{version}/tables/huvec-external-performance.tex').write_text('\n'.join(lines)+'\n',encoding='utf-8',newline='\n')
