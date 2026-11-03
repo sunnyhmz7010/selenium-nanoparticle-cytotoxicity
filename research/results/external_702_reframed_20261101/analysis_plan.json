@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-11-01T10:54:13.624262+08:00",
+  "recorded_at": "2026-11-03T21:20:19.349893+08:00",
   "scope": "9 materials x 2 experimental cell systems x 3 times x 13 concentrations; existing 702 records only",
   "scope_change_after_viewing_data": true,
   "prior_responses_already_available": true,
@@ -37,8 +37,8 @@
     "unit": "material, retaining both cells/all times/test doses"
   },
   "source_directory": "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\research\\results\\external_702_20261101_confirmed",
-  "source_manifest_sha256": "919ec23ef20e719f6920b45fdf33473d28cea19860de9296718a68ca0ef17211",
-  "source_prediction_sha256": "b8ff89b90421714ef9909cac3d01e919b671de34e313aa1cf989e0f99bcc86ec",
+  "source_manifest_sha256": "ceaa0970547fc10c40685875576f3cf89f391b4f385128e986c4105ca568e402",
+  "source_prediction_sha256": "c9b5e6c0a3d845ef5ec78009fffa21efe3c1136a259b8ad7758b9ed3384c3dff",
   "script_sha256": "1fc29aeadee1b64b47687e73c96e90effeedd5295f35f934c95e9ca55594c241",
   "removed_from_scope": [
     "24-dose wet experiments",

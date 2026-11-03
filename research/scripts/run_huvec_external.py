@@ -70,6 +70,22 @@ def read_experiments() -> tuple[list[dict], dict]:
         if not all(math.isfinite(float(row[k])) for k in ("size_nm", "zeta_mV", "time_h", "concentration_reported", "viability_percent")):
             raise ValueError("实验字段存在非有限值")
     rows.sort(key=lambda r: (r["nanoparticle"], int(r["time_h"]), float(r["concentration_reported"])))
+    # 旧351条工作簿未含密度；从最终702条源表补入，并核对共同测量字段。
+    final_source = ROOT / "results/external_702_20261101_confirmed/source_experiments.xlsx"
+    import openpyxl
+    workbook = openpyxl.load_workbook(final_source, read_only=True, data_only=True)
+    source_rows = list(workbook["Sheet1"].values)
+    assert source_rows[0][4] == "接种密度"
+    lookup = {(r[0], int(r[6]), float(r[5])): r for r in source_rows[1:] if r[3] == "HUVEC"}
+    workbook.close()
+    assert len(lookup) == 351
+    for row in rows:
+        final = lookup[(row["nanoparticle"], int(row["time_h"]), float(row["concentration_reported"]))]
+        assert all(math.isclose(float(row[c]), float(final[i]), abs_tol=1e-12) for c, i in (("size_nm",1),("zeta_mV",2),("viability_percent",7)))
+        assert final[4] == "2300/孔"
+        row.update(seeding_density_reported=final[4], cells_per_well=2300)
+    audit.update(density_source=final_source.relative_to(ROOT).as_posix(), density_source_sha256=digest(final_source),
+                 density_correction_date="2026-11-03", cells_per_well=2300)
     return rows, audit
 
 
@@ -111,7 +127,8 @@ def build_inputs(rows: list[dict], scale: float, features: list[str]):
         size, zeta = float(row["size_nm"]), float(row["zeta_mV"])
         concentration, time = float(row["concentration_reported"]) * scale, int(row["time_h"])
         coat = row["nanoparticle"].removesuffix("-SeNPs")
-        # 未提供的合成路线、年份和接种数量保持缺失，由已冻结预处理器处理。
+        # 最终表已提供接种数量；未提供的合成路线和年份沿用冻结插补器。
+        cells = float(row["cells_per_well"]) if "cells_per_well" in row else np.nan
         records.append({
             "Coat/Functional Group": COAT_LABELS.get(coat, coat),
             "Synthesis_Method": np.nan,
@@ -120,7 +137,7 @@ def build_inputs(rows: list[dict], scale: float, features: list[str]):
             "Year": np.nan, "size_final": size, "zeta_final": zeta, "abs_zeta": abs(zeta),
             "Time (hr)": time, "Concentration (ug/ml)": concentration,
             "log_size": np.log1p(size), "log_time": np.log1p(time), "log_concentration": np.log1p(concentration),
-            "No_of_Cells (cells/well)": np.nan, "zeta_missing": 0, "cell_count_missing": 1,
+            "No_of_Cells (cells/well)": cells, "zeta_missing": 0, "cell_count_missing": int(np.isnan(cells)),
             "coat_missing": 0, "surface_charge_missing": 0,
         })
     frame = pd.DataFrame(records)[features]
@@ -218,6 +235,8 @@ def main() -> int:
         "experimental_ic50_status_counts": dict(Counter(r["status"] for r in experimental_ic50)),
         "replicate_status": source_audit["replicate_status"],
         "validation_design": "retrospective_external_inference; experimental_outcomes_already_available",
+        "density_source": source_audit["density_source"], "density_source_sha256": source_audit["density_source_sha256"],
+        "density_correction_date": source_audit["density_correction_date"], "cells_per_well": source_audit["cells_per_well"],
     }
     if args.experiments_only:
         write_json(output / "audit.json", audit)

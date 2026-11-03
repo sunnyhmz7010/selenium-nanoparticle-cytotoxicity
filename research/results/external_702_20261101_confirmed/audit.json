@@ -1,7 +1,7 @@
 {
-  "run_time": "2026-11-01T10:47:34.835367+08:00",
-  "source": "D:\\xwechat_files\\wxid_mcit9monl47p22_de92\\msg\\file\\2026-10\\实验数据(3).xlsx",
-  "source_sha256": "859e849fe32e417fda9338c9cd8b8f0d5ba869a71c1807fab8c65e579e6ee868",
+  "run_time": "2026-11-03T21:19:06.846949+08:00",
+  "source": "D:\\xwechat_files\\wxid_mcit9monl47p22_de92\\msg\\file\\2026-11\\实验数据(1).xlsx",
+  "source_sha256": "2915943684743d587b1c397c834da2a59fb41e7032847825291a1cbca941e774",
   "model": "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\research\\models\\improved_434\\baseline_random_forest.joblib",
   "model_sha256": "d0268e0831da09faf8f86a59300415410610195f1905aac9afc063095215ce50",
   "rows": 702,
@@ -50,7 +50,20 @@
     "Cell_Tissue": "Liver"
   },
   "cell_tissue_mapping": "HUVEC: historical Vascular endothelium; H9C2: missing, frozen mode imputation",
-  "density_mapping": "23万/孔 -> 230000; 30万/孔 -> 300000 cells/well; user confirmed in chat on 2026-11-01",
+  "density_mapping": [
+    {
+      "cell_type": "H9C2",
+      "seeding_density_reported": "3000/孔",
+      "cells_per_well": 3000.0
+    },
+    {
+      "cell_type": "HUVEC",
+      "seeding_density_reported": "2300/孔",
+      "cells_per_well": 2300.0
+    }
+  ],
+  "previous_density_source": "results\\external_702_20261101\\source_experiments.xlsx",
+  "previous_density_source_sha256": "859e849fe32e417fda9338c9cd8b8f0d5ba869a71c1807fab8c65e579e6ee868",
   "replicate_status": "one reported value per condition; raw replicates/aggregation unknown",
   "bootstrap": "2000 material-cluster resamples; 9 materials; descriptive sampling uncertainty, not replicate precision",
   "software": {
@@ -89,7 +102,7 @@
       "count": 8
     }
   ],
-  "max_shap_residual": 1.4210854715202004e-13,
+  "max_shap_residual": 1.7053025658242404e-13,
   "max_reloaded_prediction_delta": 0.0,
   "unknown_modifier_category_and_mw": true,
   "old_huvec_values_unchanged": true

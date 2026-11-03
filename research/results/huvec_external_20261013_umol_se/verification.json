@@ -14,8 +14,10 @@
   "maximum_reported_dose": 512.0,
   "maximum_model_dose_ug_ml": 40.433152,
   "max_original_workbook_numeric_delta": 0.0,
+  "final_density_source_hash_checked": true,
+  "cells_per_well": 2300,
   "max_reloaded_prediction_delta": 0.0,
-  "max_readback_shap_additivity_delta": 1.1368683772161603e-13,
+  "max_readback_shap_additivity_delta": 1.5631940186722204e-13,
   "csv_encoding": "UTF-8 without BOM; LF",
   "figures": [
     {

@@ -104,6 +104,14 @@ def main():
     assert list(ranking["toxicity_rank"]) == list(range(1, 10))
 
     inputs = pd.read_csv(output / "model_inputs.csv", float_precision="round_trip")
+    final_source = ROOT / audit['density_source']
+    assert sha(final_source) == audit['density_source_sha256']
+    final_book = openpyxl.load_workbook(final_source, read_only=True, data_only=True)
+    final_rows = [r for r in list(final_book['Sheet1'].values)[1:] if r[3] == 'HUVEC']
+    final_book.close()
+    assert len(final_rows) == 351 and all(r[4] == '2300/孔' for r in final_rows)
+    assert experiments.cells_per_well.eq(2300).all()
+    assert inputs['No_of_Cells (cells/well)'].eq(2300).all() and inputs.cell_count_missing.eq(0).all()
     # 单独验证单位与 log 特征：不能只验证“读回值等于误用单位时的模型值”。
     if audit["concentration_unit"] == "umol/L":
         assert audit["molar_concentration_basis"] == "Se"
@@ -153,6 +161,7 @@ def main():
         "concentration_unit": audit["concentration_unit"], "molar_basis": audit["molar_concentration_basis"],
         "maximum_reported_dose": float(predictions["concentration_reported"].max()), "maximum_model_dose_ug_ml": float(converted.max()),
         "max_original_workbook_numeric_delta": max_workbook_delta,
+        "final_density_source_hash_checked": True, "cells_per_well": 2300,
         "max_reloaded_prediction_delta": float(prediction_delta), "max_readback_shap_additivity_delta": float(additive_delta),
         "csv_encoding": "UTF-8 without BOM; LF", "figures": figure_results,
         "static_figure_preflight": {"fail": 0, "warnings_reviewed": ["PNG is a 300 dpi preview; editable PDF/SVG are authoritative", "180 mm physical PDF width independently measured; static width regex misread 180/25.4", "dropna used only to list unknown categories; no prediction or SHAP rows excluded"]},

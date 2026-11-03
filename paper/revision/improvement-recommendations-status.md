@@ -1,6 +1,6 @@
 # 论文实验与分析对照表（按现有数据调整后的研究范围）
 
-范围调整记录：2026-11-01（数据已查看后）。用户确认新增实验数据仅此一份，现有9材料×2体系×3时间×13浓度=702条件、54曲线构成本研究全部外部实验数据。调整后研究主线为历史文献建模→双体系剂量—时间响应→冻结模型外部评价→少量测点回顾性模拟。
+范围调整记录：2026-11-01（数据已查看后）；密度更正与重算：2026-11-03。最终源表HUVEC为2300/孔、H9C2为3000/孔，现有9材料×2体系×3时间×13浓度=702条件、54曲线构成本研究全部外部实验数据。调整后研究主线为历史文献建模→双体系剂量—时间响应→冻结模型外部评价→少量测点回顾性模拟。
 
 状态定义：“现有分析已完成”指调整后范围内的分析与结果已交付，包括阴性结果与不可计算的阈值指标；“现有数据可补算”只标识尚未完成的可执行计算；“经方案调整移出范围”不代表原任务已经完成。重复次数、方法、汇总方式和缺失字段作为报告边界，不再挂为本轮待完成实验。
 
@@ -29,7 +29,7 @@
 | 19 | 24个浓度采用对数间隔并覆盖完整毒性区间 | 评价实际0–512 μM浓度范围 | 现有分析已完成 | 不强求曲线穿越50%；以nAUC覆盖全部曲线 | [结果](../../research/results/external_702_reframed_20261101/auc_curve_values_54.csv) |
 | 20 | 用三个时间点验证dose×time二维响应面 | 18个材料—体系剂量时间网格的描述性评价 | 现有分析已完成 | 比较时间变化；H9C2综合AUC非严格单调；不做重复显著性 | [结果](../../research/results/external_702_reframed_20261101/auc_descriptive_summary.csv) |
 | 21 | 先冻结模型，再测新材料毒性 | 取消对已有实验追补事前盲法的要求 | 经方案调整移出范围 | 保留实际模型冻结、源数据和分析时间记录 | [结果](../../research/results/external_702_reframed_20261101/analysis_plan.json) |
-| 22 | Phase X：Prospective Zero-Shot Validation | 冻结模型的回顾性外部评价 | 现有分析已完成 | 702条件MAE11.686/R²0.503，不称前瞻盲测 | [结果](../../research/results/external_702_reframed_20261101/README.md) |
+| 22 | Phase X：Prospective Zero-Shot Validation | 冻结模型的回顾性外部评价 | 现有分析已完成 | 702条件MAE11.239/R²0.486，不称前瞻盲测 | [结果](../../research/results/external_702_reframed_20261101/README.md) |
 | 23 | 报告MAE、RMSE、R²和95%区间 | MAE、RMSE、R²与材料组区间 | 现有分析已完成 | 校准在同一432检验条件上公平比较 | [结果](../../research/results/external_702_reframed_20261101/fewshot_metrics.csv) |
 | 24 | Phase XI：验证54条Dose-Response Curve并计算IAE | 54曲线IAE与归一化AUC | 现有分析已完成 | 主要log正浓度nAUC R²0.084；线性轴结果完整保留 | [结果](../../research/results/external_702_reframed_20261101/auc_prediction_metrics.csv) |
 | 25 | Phase XII：不把真实IC50作为主模型输入，应从预测曲线估算IC50 | 不使用实测IC50输入，报告预测阈值状态 | 现有分析已完成 | 冻结模型54曲线均>512，不外推有限数值 | [结果](../../research/results/external_702_reframed_20261101/README.md) |
@@ -42,10 +42,10 @@
 | 32 | 比较Without与With dose-time interaction | 保留显式dose-time交互消融 | 现有分析已完成 | 没有稳定改善为有效结果 | [历史结果](../../research/results/dose_time_interaction/summary.json) |
 | 33 | 比较Random CV与Publication-grouped CV | 不新增同口径随机/分组受控对照 | 经方案调整移出范围 | 历史两种口径保留，不能将差异全归因于拆分 | [结果](../../research/results/external_702_reframed_20261101/README.md) |
 | 34 | 将Historical Validation与Prospective Validation分开 | 历史验证、冻结外部评价、校准模拟三者分列 | 现有分析已完成 | 702全条件与432检验条件成绩不能直接混比 | [结果](../../research/results/external_702_reframed_20261101/README.md) |
-| 35 | Few-shot：每条24点曲线用4点校准并预测剩余20点 | 四点校准、八个正浓度点检验 | 现有分析已完成 | 偏移MAE11.714→10.303；简单锚点插值5.711，RF未获额外优势 | [结果](../../research/results/external_702_reframed_20261101/paired_mae_comparisons.csv) |
+| 35 | Few-shot：每条24点曲线用4点校准并预测剩余20点 | 四点校准、八个正浓度点检验 | 现有分析已完成 | 偏移MAE11.828→10.364；简单锚点插值5.711，RF未获额外优势 | [结果](../../research/results/external_702_reframed_20261101/paired_mae_comparisons.csv) |
 | 36 | 按General→Transfer→Minimal→消融→历史→前瞻的证据链重排论文 | 按调整后证据链交付报告与V3结论草稿 | 现有分析已完成 | 本轮完成分析写作；正式V3全文重排不属于本轮范围 | [结果](../../research/results/external_702_reframed_20261101/conclusion_for_v3.md) |
 
-原冻结评价未用自测响应训练；本次补充另列材料留出训练。未以四点响应为输入后的0.854 R²替代冻结模型外部0.503 R²。54曲线、432检验条件来自9种材料，重复实验数未知；材料bootstrap不能代替生物学重复。
+原冻结评价未用自测响应训练；本次补充另列材料留出训练。未以四点响应为输入后的插值R²替代冻结模型外部0.486 R²。54曲线、432检验条件来自9种材料，重复实验数未知；材料bootstrap不能代替生物学重复。
 
 ## 2026-11-01：八项补充计算实验
 

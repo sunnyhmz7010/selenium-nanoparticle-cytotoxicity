@@ -83,23 +83,25 @@ def main():
     rows=['| 细胞 | 条件数 | MAE（百分点） | MAE 95%区间 | RMSE | R² |', '|---|---:|---:|---|---:|---:|']
     for r in metrics.loc[metrics.time_h.eq('ALL')].to_dict('records'):
         rows.append(f"| {r['cell_type']} | {r['n']} | {r['mae']:.3f} | [{r['mae_ci_low']:.3f}, {r['mae_ci_high']:.3f}] | {r['rmse']:.3f} | {r['r2']:.3f} |")
-    text='''# 最新702条实验数据分析（2026-11-01）
+    rank72 = ranks.loc[ranks.time_h.eq(72)].set_index('cell_type')
+    density = '、'.join(f"{r['cell_type']} {r['cells_per_well']:g}" for r in audit['density_mapping'])
+    text=f'''# 最新702条实验数据分析（密度更正于2026-11-03）
 
-来源：`实验数据(3).xlsx`，原文件逐字节归档为 [source_experiments.xlsx](source_experiments.xlsx)。
+来源：`{Path(audit['source']).name}`，原文件逐字节归档为 [source_experiments.xlsx](source_experiments.xlsx)。
 本次9材料×2细胞×3时间×13浓度=702条件、54曲线，无条件重复或空字段。原351条HUVEC的粒径、Zeta、存活率未改变。历史434条训练数据未改动。
 
 ## 模型与输入
 
 沿用历史434条/24文献组的基础Random Forest及冻结预处理器；没有重训、调参、校准或按新响应选择模型。只评估这个预先选定的主模型，不使用含IC50的辅助模型冒充低信息预测。
 浓度按源表明确的元素Se μM，乘0.078971转成μg/mL，512 μM对应40.433152 μg/mL；log浓度也由换算值生成。
-接种密度按源表与用户2026-11-01确认：HUVEC 230000、H9C2 300000 cells/well，缺失标志均为0。这与旧版填入10000的预测不同，新版取代旧版的该批预测。
+接种密度按最终源表与用户2026-11-03更正：{density} cells/well，缺失标志均为0。旧记录把接种数量放大100倍，已撤回；本版预测、SHAP及下游评价均按更正后的输入重新计算。
 
 HUVEC组织沿用历史标签Vascular endothelium。H9C2在历史模型中是未知细胞类别，编码为全零；源表未提供组织，主分析保持缺失，由冻结预处理器填入Liver。这个Liver是模型默认值，不是H9C2真实组织，H9C2指标仅为该缺失字段策略下的条件性结果。另提供“组织作为未知类别全零编码”的敏感性分析，不按表现择优。
 缺失年份、合成路线仍由冻结插补器处理。Glucose、LET、PAH、PEI、Sucrose、TW80修饰名称为未知类别，CS沿用Chitosan (CS)，PEG/PVP原样匹配。具体编码、默认值、版本和哈希见 [audit.json](audit.json)。
 
 ## 外部预测误差
 
-'''+ '\n'.join(rows)+'''
+'''+ '\n'.join(rows)+f'''
 
 95%区间为固定模型下2000次材料整组bootstrap百分位区间（seed=20261101）。每次保留抽中材料的全部细胞/时间/浓度，仅有9材料；它描述材料组成抽样的不确定性，不代表生物学重复、批间重复性或模型训练不确定性。所有702条件保留，未截断超过100%的实测存活率，未强迫0浓度预测为100%。分细胞、时间结果见 [prediction_metrics.csv](prediction_metrics.csv)。
 
@@ -108,7 +110,7 @@ HUVEC组织沿用历史标签Vascular endothelium。H9C2在历史模型中是未
 - [54条曲线误差与IAE](curve_metrics_54.csv)：同时报告线性浓度轴与正浓度log10轴的积分绝对误差及轴宽归一化值。采用实测和预测在对应轴上分段线性连接，对残差过零段拆分精确积分；0浓度保留在线性轴，log10轴仅0.25–512 μM。IAE单位分别为百分点·μM和百分点·log10(μM)。这不是原24浓度设计。
 - [实验侧IC50](experimental_ic50.csv)：HUVEC 19条可插值、8条>512；H9C2 5条可插值、22条>512；合计24条可插值、30条>512。
 - [模型侧IC50](model_ic50.csv)：54条全部>512 μM。普通有限数值配对为0，所以[IC50配对表](ic50_pairs.csv)保留删失状态，log误差和R²不可计算；不把>512替换成512。
-- [排序明细](toxicity_rankings_512.csv)与[排序一致性](ranking_agreement.csv)：按512 μM、每种细胞各时间的9材料比较，存活率越低毒性排名越靠前。均采用平均秩处理并列，Kendall为tau-b。72 h时HUVEC Spearman=0.217、Kendall=0.167；H9C2为0.167、0.111，最高时间点的排序一致性较弱。
+- [排序明细](toxicity_rankings_512.csv)与[排序一致性](ranking_agreement.csv)：按512 μM、每种细胞各时间的9材料比较，存活率越低毒性排名越靠前。均采用平均秩处理并列，Kendall为tau-b。72 h时HUVEC Spearman={rank72.loc['HUVEC','spearman_rho']:.3f}、Kendall={rank72.loc['HUVEC','kendall_tau_b']:.3f}；H9C2为{rank72.loc['H9C2','spearman_rho']:.3f}、{rank72.loc['H9C2','kendall_tau_b']:.3f}，最高时间点的排序一致性较弱。
 - [高浓度时间汇总](high_dose_time_summary.csv)：512 μM下HUVEC平均实测存活率24/48/72 h为59.805/39.071/26.383%；H9C2为64.673/59.618/52.316%。这些是9材料的描述性均值，不是独立重复均值。另见[逐材料时间变化](observed_time_changes.csv)及[对应细胞条件差值](observed_cell_comparison.csv)。两种细胞接种密度同时不同，不能将差值解释为纯细胞类型因果效应。
 - [粒径/Zeta相关性](property_associations_512.csv)：按细胞和时间分别以9种材料为单位，仅报告描述性Spearman，不报告未获实验重复支持的显著性。
 - [SHAP汇总](shap_summary.csv)、[条件级SHAP](shap_grouped_values.csv)、[全部编码特征SHAP](shap_encoded_values.csv)：精确TreeExplainer，tree_path_dependent/raw，以冻结树训练路径为背景。派生特征和one-hot贡献作有符号加和，完整保留702条。SHAP描述模型归因，不证明机理；缺失修饰物类别与分子量不能补造SHAP。
@@ -119,7 +121,7 @@ HUVEC组织沿用历史标签Vascular endothelium。H9C2在历史模型中是未
     sensitivity=read('tissue_mapping_sensitivity.csv')
     h=sensitivity.loc[sensitivity.cell_type.eq('H9C2')].iloc[0]
     change=read('huvec_prediction_version_comparison.csv').prediction_change_new_minus_old
-    text+=f"H9C2组织改用未知类别全零编码时，MAE={h.mae:.3f}、R²={h.r2:.3f}，单条件预测最大变化{h.max_prediction_change:.3f}个百分点。见[tissue_mapping_sensitivity.csv](tissue_mapping_sensitivity.csv)。此情景不等于提供了真实心脏组织信息。\n\nHUVEC原实验值未变化，但加入真实接种数量后，相对旧版预测的平均变化为{change.mean():.3f}个百分点，最大绝对变化{abs(change).max():.3f}。见[版本配对](huvec_prediction_version_comparison.csv)。这属于输入信息修正，不能写成新增湿实验导致模型训练改善。\n"
+    text+=f"H9C2组织改用未知类别全零编码时，MAE={h.mae:.3f}、R²={h.r2:.3f}，单条件预测最大变化{h.max_prediction_change:.3f}个百分点。见[tissue_mapping_sensitivity.csv](tissue_mapping_sensitivity.csv)。此情景不等于提供了真实心脏组织信息。\n\nHUVEC原实验值未变化，接种数量从旧记录230000更正为2300/孔后，相对旧密度情景的预测平均变化为{change.mean():.3f}个百分点，最大绝对变化{abs(change).max():.3f}。见[版本配对](huvec_prediction_version_comparison.csv)，旧密度情景从保留的历史源表重建。这属于输入信息修正，不能写成新增湿实验导致模型训练改善。\n"
     text+='''
 ## 尚需实验或资料
 
@@ -135,7 +137,7 @@ HUVEC组织沿用历史标签Vascular endothelium。H9C2在历史模型中是未
 在仓库根目录，使用已有`.venv`环境，输出目录须不存在或为空：
 
 ```powershell
-.venv/Scripts/python.exe research/scripts/run_external_702.py --source "D:/xwechat_files/wxid_mcit9monl47p22_de92/msg/file/2026-10/实验数据(3).xlsx" --output research/results/external_702_new_run
+.venv/Scripts/python.exe research/scripts/run_external_702.py --source research/results/external_702_20261101_confirmed/source_experiments.xlsx --output research/results/external_702_new_run
 .venv/Scripts/python.exe research/scripts/report_external_702.py research/results/external_702_new_run
 ```
 
@@ -188,8 +190,12 @@ def update_table(out):
 34|已完成当前数据分离|历史OOF与702条件回顾性外部评价分别保存|外部结果不称实验前盲法验证|README.md
 35|原设计未完成|没有把13浓度改称24浓度或用外部全量调参|原4+20设计需24浓度；4+9是另一方案，需另定|README.md
 36|分析证据与表已更新，论文未重排|本表和独立分析报告已更新|论文正文结构/图表写入尚未执行；不是缺湿实验|README.md'''
-    table=['# 论文修改建议实施与实验结果对照表（更新于2026-11-01）','',
-           '本表取代旧恢复目录中的状态表，保留其36项建议编号。当前依据是最新《实验数据(3).xlsx》：9种SeNP、HUVEC/H9C2、24/48/72 h、13浓度，共702个条件和54条曲线。历史434条/24文献组结果未重训。', '',
+    current = pd.read_csv(out/'prediction_metrics.csv').set_index(['cell_type','time_h']).loc[('ALL','ALL')]
+    ranking = pd.read_csv(out/'ranking_agreement.csv').query('time_h == 72').set_index('cell_type')
+    updates=updates.replace('整体MAE11.686、RMSE16.303、R²0.503',f'整体MAE{current.mae:.3f}、RMSE{current.rmse:.3f}、R²{current.r2:.3f}')
+    updates=updates.replace('72h HUVECρ0.217/τ0.167；H9C2ρ0.167/τ0.111',f"72h HUVECρ{ranking.loc['HUVEC','spearman_rho']:.3f}/τ{ranking.loc['HUVEC','kendall_tau_b']:.3f}；H9C2ρ{ranking.loc['H9C2','spearman_rho']:.3f}/τ{ranking.loc['H9C2','kendall_tau_b']:.3f}")
+    table=['# 论文修改建议实施与实验结果对照表（密度更正于2026-11-03）','',
+           '本表取代旧恢复目录中的状态表，保留其36项建议编号。当前依据是最终《实验数据(1).xlsx》：9种SeNP、HUVEC/H9C2、24/48/72 h、13浓度，共702个条件和54条曲线。HUVEC 2300/孔、H9C2 3000/孔。历史434条/24文献组结果未重训。', '',
            '**“已完成分析”不表示达到预期性能，也不表示原湿实验方案全部完成。** 本次为已有响应数据的回顾性外部评价；每条件一条报告值，实际重复次数和汇总方式未知。接种数量已由用户确认。H9C2为冻结模型未知类别，组织缺失被历史默认Liver填充，其数值属于条件性结果，另有映射敏感性分析。','',
            f'[最新分析报告](../../research/results/{out.name}/README.md) · [数值核验](../../research/results/{out.name}/verification.json) · [历史对照数据](../../research/results/external_702_20261101_confirmed/experiment_status_36.csv)','',
            '| 序号 | 原建议 | 当前状态 | 已完成内容/结果 | 仍需补什么 | 证据 |',

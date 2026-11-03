@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-03",
+  "backend": "Python/matplotlib",
+  "figures": [
+    {
+      "figure": "shap_summary_beeswarm",
+      "font_exit_code": 0,
+      "collision_exit_code": 0,
+      "collision_verdict": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "visual_review": "全部面板与完整图已检查；数据点、图例、轴标签与阈值/删失标记可读；确定性模型归因不绘制生物重复误差条。",
+  "exclusions": "四张HUVEC图使用351条子集、27曲线或预定72h/512uM的9材料；补充重建排除0浓度，原始对照保留。",
+  "source_preflight_warnings_reviewed": [
+    "PNG为300dpi预览，PDF/SVG为矢量输出",
+    "180mm实际宽度已核对",
+    "log轴数据均为正，bootstrap只重采样真实材料，不生成观测"
+  ]
+}

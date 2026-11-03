@@ -70,7 +70,8 @@ class InputTests(unittest.TestCase):
         without_response = [{k: v for k, v in r.items() if k != "viability_percent"} for r in rows]
         pd.testing.assert_frame_equal(initial, build_inputs(without_response, 1.0, BASELINE_FEATURES))
         self.assertTrue(initial["Year"].isna().all())
-        self.assertTrue(initial["No_of_Cells (cells/well)"].isna().all())
+        self.assertTrue(initial["No_of_Cells (cells/well)"].eq(2300).all())
+        self.assertTrue(initial["cell_count_missing"].eq(0).all())
         self.assertTrue(initial["Synthesis_Method"].isna().all())
 
     def test_response_related_feature_is_rejected(self):

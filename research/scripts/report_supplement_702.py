@@ -28,6 +28,14 @@ def main():
     five=select(read('experiment5_zero_shot_metrics.csv'));six=select(read('experiment6_metrics.csv'))
     validation=json.loads((out/'verification.json').read_text(encoding='utf-8'))
     assert validation['status']=='PASS'
+    fusion=two.set_index('method')
+    selections=read('experiment2_selection_log.csv')
+    global_choices=selections.loc[selections.selection.eq('global_lambda'),'chosen'].value_counts().sort_index()
+    fusion_delta=read('experiment2_paired_comparisons.csv').query("cell_type == 'ALL' and target == 'prior_lomo_global' and reference == 'loglinear'").iloc[0]
+    zero=five.loc[five.dose_scope.eq('all_13')].set_index('method')
+    zero_comparisons=read('experiment5_paired_comparisons.csv').query("cell_type == 'ALL'").set_index(['target','reference'])
+    self_delta=zero_comparisons.loc[('self_only_rf','frozen_historical_rf')]
+    residual_delta=zero_comparisons.loc[('historical_plus_residual_rf','self_only_rf')]
     report='''# 纳米硒702条数据的八项补充计算实验
 
 ## 核心结果
@@ -66,9 +74,9 @@ def main():
 
 '''
     report+=table(two,['method','mae','rmse','r2'],['方案','MAE','RMSE','R²'])
-    report+='''
+    report+=f'''
 
-全局λ选择在5折为0、4折为0.25；分体系选择也只选0或0.25，说明大权重RF曲率没有得到训练材料支持。外层全局融合MAE=5.799、分体系融合5.744，均未优于线性插值5.711或PCHIP5.655。全局融合相对线性插值差值+0.088，材料区间[0.021, 0.175]。按材料选择的基线为8折PCHIP、1折线性插值，外层MAE=5.734。
+全局λ选择为{'、'.join(f'{value}（{count}折）' for value,count in global_choices.items())}；分体系选择也只选0或0.25，说明大权重RF曲率没有得到训练材料支持。外层全局融合MAE={fusion.loc['prior_lomo_global','mae']:.3f}、分体系融合{fusion.loc['prior_lomo_cell','mae']:.3f}，均未优于线性插值{fusion.loc['loglinear','mae']:.3f}或PCHIP{fusion.loc['pchip','mae']:.3f}。全局融合相对线性插值差值{fusion_delta.mae_difference:+.3f}，材料区间[{fusion_delta.ci_low:.3f}, {fusion_delta.ci_high:.3f}]。按材料选择的基线为8折PCHIP、1折线性插值，外层MAE={fusion.loc['baseline_lomo_selected','mae']:.3f}。
 
 完整正浓度网格nAUC另行保留为“锚点条件下的重建面积”指标，包含已测锚点，不能当作全新曲线的独立外部预测。现有融合不具备同时改善主要MAE和曲线指标的稳定证据。
 
@@ -110,9 +118,9 @@ A任务用冻结历史RF、自测RF、冻结历史RF＋自测残差RF比较。�
 
 '''
     report+=table(five,['dose_scope','method','n','mae','rmse','r2'],['浓度范围','模型','条件数','MAE','RMSE','R²'])
-    report+='''
+    report+=f'''
 
-全702条件下自测RF的MAE最低（10.369），但R²为0.469，低于冻结历史模型0.503；其相对冻结模型MAE差区间[−3.113, 0.721]跨0。历史＋残差RF相对自测RF差值+0.150，区间[−0.247, 0.578]跨0。没有建立稳定的历史知识增量，不能只选择MAE改善而忽略RMSE/R²变化。正浓度648条件结果也完整报告，避免对照值影响解释。
+全702条件下自测RF的MAE最低（{zero.loc['self_only_rf','mae']:.3f}），但R²为{zero.loc['self_only_rf','r2']:.3f}，低于冻结历史模型{zero.loc['frozen_historical_rf','r2']:.3f}；其相对冻结模型MAE差区间[{self_delta.ci_low:.3f}, {self_delta.ci_high:.3f}]跨0。历史＋残差RF相对自测RF差值{residual_delta.mae_difference:+.3f}，区间[{residual_delta.ci_low:.3f}, {residual_delta.ci_high:.3f}]跨0。没有建立稳定的历史知识增量，不能只选择MAE改善而忽略RMSE/R²变化。正浓度648条件结果也完整报告，避免对照值影响解释。
 
 证据：[材料折分配](lomo_fold_assignments.csv)、[A任务外层预测](experiment5_zero_shot_predictions.csv)、[分层误差](experiment5_zero_shot_metrics.csv)、[配对比较](experiment5_paired_comparisons.csv)、[预处理警告](experiment5_fit_warnings.csv)。
 

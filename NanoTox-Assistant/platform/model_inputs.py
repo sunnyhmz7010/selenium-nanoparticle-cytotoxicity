@@ -14,7 +14,8 @@ def build_inputs(rows: list[dict], scale: float, features: list[str]):
         size, zeta = float(row["size_nm"]), float(row["zeta_mV"])
         concentration, time = float(row["concentration_reported"]) * scale, int(row["time_h"])
         coat = row["nanoparticle"].removesuffix("-SeNPs")
-        # 未提供的合成路线、年份和接种数量保持缺失，由已冻结预处理器处理。
+        # 本工作台对应HUVEC实验，最终源表接种密度为2300/孔。
+        cells = float(row.get("cells_per_well", 2300))
         records.append({
             "Coat/Functional Group": COAT_LABELS.get(coat, coat),
             "Synthesis_Method": np.nan,
@@ -23,7 +24,7 @@ def build_inputs(rows: list[dict], scale: float, features: list[str]):
             "Year": np.nan, "size_final": size, "zeta_final": zeta, "abs_zeta": abs(zeta),
             "Time (hr)": time, "Concentration (ug/ml)": concentration,
             "log_size": np.log1p(size), "log_time": np.log1p(time), "log_concentration": np.log1p(concentration),
-            "No_of_Cells (cells/well)": np.nan, "zeta_missing": 0, "cell_count_missing": 1,
+            "No_of_Cells (cells/well)": cells, "zeta_missing": 0, "cell_count_missing": int(np.isnan(cells)),
             "coat_missing": 0, "surface_charge_missing": 0,
         })
     frame = pd.DataFrame(records)[features]

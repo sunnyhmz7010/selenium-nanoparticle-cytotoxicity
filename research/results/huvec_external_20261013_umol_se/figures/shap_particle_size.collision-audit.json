@@ -1,12 +1,12 @@
 {
-  "pdf": "research\\results\\huvec_external_20261013_umol_se\\figures\\shap_particle_size.pdf",
+  "pdf": "C:\\Users\\Sunny\\Documents\\ChatGPT\\selenium-nanoparticle-cytotoxicity\\research\\results\\huvec_external_20261013_umol_se\\figures\\shap_particle_size.pdf",
   "auditable": true,
   "verdict": "PASS",
   "page_count": 1,
-  "visible_text_box_count": 21,
-  "text_trace_count": 24,
-  "stroke_path_count": 19,
-  "filled_region_count": 369,
+  "visible_text_box_count": 20,
+  "text_trace_count": 23,
+  "stroke_path_count": 18,
+  "filled_region_count": 368,
   "image_region_count": 0,
   "summary": {
     "fail": 0,

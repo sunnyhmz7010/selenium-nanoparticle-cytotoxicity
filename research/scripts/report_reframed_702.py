@@ -141,7 +141,16 @@ def reports(out, plan, source):
     all_delta = changes.loc[changes.cell_type.eq('ALL')&changes.time_h.eq('ALL')&changes.target.eq('rf_offset_4pt')&changes.reference.eq('frozen_rf')].iloc[0]
     method_names = {'frozen_rf':'冻结RF','rf_offset_4pt':'冻结RF＋四点偏移','anchor_log_interpolation':'仅四锚点对数插值'}
     primary_auc = read('auc_prediction_metrics.csv').query("axis == 'log10_positive' and time_h == 'ALL'")
-    report = '''# 现有702条数据的研究范围调整与分析结论
+    full = pd.read_csv(source/'prediction_metrics.csv').set_index(['cell_type','time_h'])
+    sensitivity = pd.read_csv(source/'tissue_mapping_sensitivity.csv').set_index('cell_type')
+    rank72 = pd.read_csv(source/'ranking_agreement.csv').query('time_h == 72').set_index('cell_type')
+    auc_lookup = primary_auc.set_index('cell_type')
+    delta_lookup = changes.loc[changes.time_h.eq('ALL')&changes.target.eq('rf_offset_4pt')&changes.reference.eq('frozen_rf')].set_index('cell_type')
+    versus_interpolation = changes.loc[changes.cell_type.eq('ALL')&changes.time_h.eq('ALL')&changes.target.eq('rf_offset_4pt')&changes.reference.eq('anchor_log_interpolation')].iloc[0]
+    interval_status = '不跨0' if all_delta.material_bootstrap_ci_high < 0 else '跨0'
+    report = f'''# 现有702条数据的研究范围调整与分析结论
+
+2026-11-03按最终源表更正接种密度并重算全部预测与评价。研究范围与原固定锚点保持原定义。
 
 ## 研究问题与范围调整记录
 
@@ -164,11 +173,11 @@ def reports(out, plan, source):
 
 ## 1. 冻结模型的外部表现
 
-沿用基础Random Forest，未用这批702条数据更新树、编码器或插补器。全条件MAE=11.686、RMSE=16.303个百分点、R²=0.503；HUVEC MAE=14.857、R²=0.478，H9C2 MAE=8.516、R²=0.530。HUVEC在24/48/72 h的MAE分别为9.885/14.124/20.561个百分点，长时间预测仍存在更大偏差。
+沿用基础Random Forest，未用这批702条数据更新树、编码器或插补器。全条件MAE={full.loc[('ALL','ALL'),'mae']:.3f}、RMSE={full.loc[('ALL','ALL'),'rmse']:.3f}个百分点、R²={full.loc[('ALL','ALL'),'r2']:.3f}；HUVEC MAE={full.loc[('HUVEC','ALL'),'mae']:.3f}、R²={full.loc[('HUVEC','ALL'),'r2']:.3f}，H9C2 MAE={full.loc[('H9C2','ALL'),'mae']:.3f}、R²={full.loc[('H9C2','ALL'),'r2']:.3f}。HUVEC在24/48/72 h的MAE分别为{'/'.join(f"{full.loc[('HUVEC',str(t)),'mae']:.3f}" for t in (24,48,72))}个百分点，长时间预测仍存在更大偏差。
 
 这些数值来自[已核验冻结评价](../external_702_20261101_confirmed/README.md)，保留其[误差](../external_702_20261101_confirmed/prediction_metrics.csv)、[54条曲线IAE](../external_702_20261101_confirmed/curve_metrics_54.csv)、[时间变化](../external_702_20261101_confirmed/observed_time_changes.csv)和[模型SHAP](../external_702_20261101_confirmed/shap_summary.csv)。
 
-H9C2是历史编码器的未知类别，源表没有组织字段，主分析由冻结插补器将组织填为Liver。Liver是模型默认值，绝非实验细胞的真实组织描述。旧评价提供未知组织编码的敏感性分析，H9C2 MAE由8.516变为8.892，说明该数值属于特定缺失字段策略下的条件性表现。两种细胞的接种数量分别为230000和300000/孔，均已确认；响应差异描述为两种实验体系差异，不单独归因于细胞类型。
+H9C2是历史编码器的未知类别，源表没有组织字段，主分析由冻结插补器将组织填为Liver。Liver是模型默认值，绝非实验细胞的真实组织描述。未知组织编码的敏感性分析使H9C2 MAE由{full.loc[('H9C2','ALL'),'mae']:.3f}变为{sensitivity.loc['H9C2','mae']:.3f}，说明该数值属于特定缺失字段策略下的条件性表现。最终源表中HUVEC为2300/孔，H9C2为3000/孔；响应差异描述为两种实验体系差异，不单独归因于细胞类型。
 
 ## 2. 覆盖全部54条曲线的nAUC
 
@@ -183,8 +192,8 @@ H9C2是历史编码器的未知类别，源表没有组织字段，主分析由�
 '''
     for r in primary_auc.itertuples():
         report += f'| {r.cell_type} | {r.n} | {r.mae:.3f} | {r.rmse:.3f} | {r.r2:.3f} |\n'
-    report += '''
-逐条件R²约0.50并不意味着整曲线综合响应能被同样准确地预测。主要nAUC在54曲线上的R²只有0.084，HUVEC为−0.042，表明曲线综合反应的区分仍有限。线性轴结果也完整保留，避免隐藏轴定义对结论的影响。
+    report += f'''
+逐条件R²={full.loc[('ALL','ALL'),'r2']:.3f}并不意味着整曲线综合响应能被同样准确地预测。主要nAUC在54曲线上的R²为{auc_lookup.loc['ALL','r2']:.3f}，HUVEC为{auc_lookup.loc['HUVEC','r2']:.3f}，表明曲线综合反应的区分仍有限。线性轴结果也完整保留，避免隐藏轴定义对结论的影响。
 
 主要nAUC实测均值：HUVEC在24/48/72 h分别为0.825/0.746/0.726，H9C2为0.843/0.826/0.830。H9C2在整个正浓度区间的时间变化并非严格单调，不能仅凭最高浓度的下降概括全部剂量范围。nAUC材料排序也随体系、时间和积分轴变化，不给出跨条件的统一毒性序列。
 
@@ -202,11 +211,11 @@ H9C2是历史编码器的未知类别，源表没有组织字段，主分析由�
     for r in selection.itertuples():
         report += f'| {r.cell_type} | {method_names[r.method]} | {r.n} | {r.mae:.3f} | {r.rmse:.3f} | {r.r2:.3f} |\n'
     report += f'''
-总体偏移校准的MAE由11.714降至10.303，点估计降低{all_delta.relative_mae_reduction*100:.2f}%；配对差值为{all_delta.mae_delta:.3f}个百分点，材料组bootstrap 95%区间为[{all_delta.material_bootstrap_ci_low:.3f}, {all_delta.material_bootstrap_ci_high:.3f}]，跨0。54条曲线中{summary['curves_improved_vs_frozen']}条的MAE下降，这些曲线不等于独立实验重复。
+总体偏移校准的MAE由{lookup.loc[('ALL','frozen_rf'),'mae']:.3f}降至{lookup.loc[('ALL','rf_offset_4pt'),'mae']:.3f}，点估计降低{all_delta.relative_mae_reduction*100:.2f}%；配对差值为{all_delta.mae_delta:.3f}个百分点，材料组bootstrap 95%区间为[{all_delta.material_bootstrap_ci_low:.3f}, {all_delta.material_bootstrap_ci_high:.3f}]，{interval_status}。54条曲线中{summary['curves_improved_vs_frozen']}条的MAE下降，这些曲线不等于独立实验重复。
 
-HUVEC校准MAE由15.174降至12.703，配对差值−2.471，区间[−4.193, −1.017]；H9C2由8.254降至7.903，差值−0.351，区间[−1.462, 1.382]。改善具有实验体系差异，不能概括为普遍稳定增益。
+HUVEC校准MAE由{lookup.loc[('HUVEC','frozen_rf'),'mae']:.3f}降至{lookup.loc[('HUVEC','rf_offset_4pt'),'mae']:.3f}，配对差值{delta_lookup.loc['HUVEC','mae_delta']:.3f}，区间[{delta_lookup.loc['HUVEC','material_bootstrap_ci_low']:.3f}, {delta_lookup.loc['HUVEC','material_bootstrap_ci_high']:.3f}]；H9C2由{lookup.loc[('H9C2','frozen_rf'),'mae']:.3f}变为{lookup.loc[('H9C2','rf_offset_4pt'),'mae']:.3f}，差值{delta_lookup.loc['H9C2','mae_delta']:.3f}，区间[{delta_lookup.loc['H9C2','material_bootstrap_ci_low']:.3f}, {delta_lookup.loc['H9C2','material_bootstrap_ci_high']:.3f}]。改善具有实验体系差异，不能概括为普遍稳定增益。
 
-仅四锚点对数插值的总体MAE为5.711、R²为0.854，优于冻结RF和四点偏移RF。偏移RF相对直接插值的MAE差为+4.592个百分点，区间[2.898, 6.849]。因此可以说固定四点提供了同曲线补全信息，不能据此说历史模型贡献了额外优势，也不能将0.854写成零样本外部预测性能。
+仅四锚点对数插值的总体MAE为{lookup.loc[('ALL','anchor_log_interpolation'),'mae']:.3f}、R²为{lookup.loc[('ALL','anchor_log_interpolation'),'r2']:.3f}，优于冻结RF和四点偏移RF。偏移RF相对直接插值的MAE差为{versus_interpolation.mae_delta:+.3f}个百分点，区间[{versus_interpolation.material_bootstrap_ci_low:.3f}, {versus_interpolation.material_bootstrap_ci_high:.3f}]。因此可以说固定四点提供了同曲线补全信息，不能据此说历史模型贡献了额外优势，也不能将插值成绩写成零样本外部预测性能。
 
 所有区间均为2000次按9材料整组重采样的百分位区间（seed=20261102），每次保留对应材料的两体系、三时间及全部检验点。区间描述这9材料组成下的抽样变化，不代替未知生物重复、批间差异或模型训练不确定性。总体与分体系比较为探索性描述，未设置多重检验显著性结论。
 
@@ -218,23 +227,23 @@ HUVEC校准MAE由15.174降至12.703，配对差值−2.471，区间[−4.193, �
 
 IC50不再是本研究必须输出有限数值的主终点。实验侧24条可插值、30条>512 μM；冻结模型54条全部>512，普通有限配对为0。保留[阈值与删失结果](../external_702_20261101_confirmed/ic50_pairs.csv)，不将>512记为512，不外推精确IC50，不用四个拟合锚点评价后的“全曲线IC50”冒充独立检验。
 
-72 h、512 μM的冻结预测—实测Spearman为HUVEC 0.217、H9C2 0.167。固定高浓度排名和nAUC排名回答不同问题，不能互相替代。粒径、Zeta、修饰名称在材料间共同变化；已有[探索性关联](../external_702_20261101_confirmed/property_associations_512.csv)和SHAP只用于描述响应与模型行为，不作因果机制结论。
+72 h、512 μM的冻结预测—实测Spearman为HUVEC {rank72.loc['HUVEC','spearman_rho']:.3f}、H9C2 {rank72.loc['H9C2','spearman_rho']:.3f}。固定高浓度排名和nAUC排名回答不同问题，不能互相替代。粒径、Zeta、修饰名称在材料间共同变化；已有[探索性关联](../external_702_20261101_confirmed/property_associations_512.csv)和SHAP只用于描述响应与模型行为，不作因果机制结论。
 
 历史434条文献分组建模、化学增强、迁移与交互的阴性对照继续保留。没有将新增702条并回训练集，也没有开展新模型训练，因此不存在本轮按材料留出的新训练成绩可报告。
 
 ## 5. 可用于V3的结论草稿
 
 '''
-    conclusion = '''本研究将历史文献建模与双细胞实验体系的剂量—时间响应相结合，在9种纳米硒材料、两种实验体系、三个时间和13个浓度构成的702个条件上评价冻结随机森林的适用范围。模型不使用实测IC50作为输入，总体存活率预测MAE为11.69个百分点、R²为0.503，但对较长暴露时间、材料间差异和综合曲线响应的再现仍有限，54条曲线的主要归一化AUC预测R²为0.084。该结果说明，逐条件的总体预测表现不能替代材料比较和整曲线评价。
+    conclusion = f'''本研究将历史文献建模与双细胞实验体系的剂量—时间响应相结合，在9种纳米硒材料、两种实验体系、三个时间和13个浓度构成的702个条件上评价冻结随机森林的适用范围。模型不使用实测IC50作为输入，总体存活率预测MAE为{full.loc[('ALL','ALL'),'mae']:.2f}个百分点、R²为{full.loc[('ALL','ALL'),'r2']:.3f}，但对较长暴露时间、材料间差异和综合曲线响应的再现仍有限，54条曲线的主要归一化AUC预测R²为{auc_lookup.loc['ALL','r2']:.3f}。该结果说明，逐条件的总体预测表现不能替代材料比较和整曲线评价。
 
-在固定四个正浓度实测点后，对其余八个正浓度点的回顾性检验中，单一偏移校准将RF的总体MAE由11.71降至10.30个百分点，但总体材料组重采样区间跨0，且改善在两种体系间不同。仅使用相同四锚点的对数浓度插值达到MAE 5.71个百分点，优于偏移校准RF，提示少量同曲线实测信息有助于浓度内插，但当前历史模型未显示超越简单插值的附加价值。
+在固定四个正浓度实测点后，对其余八个正浓度点的回顾性检验中，单一偏移校准将RF的总体MAE由{lookup.loc[('ALL','frozen_rf'),'mae']:.2f}降至{lookup.loc[('ALL','rf_offset_4pt'),'mae']:.2f}个百分点，总体材料组重采样区间{interval_status}，但改善在两种体系间不同。仅使用相同四锚点的对数浓度插值达到MAE {lookup.loc[('ALL','anchor_log_interpolation'),'mae']:.2f}个百分点，优于偏移校准RF，提示少量同曲线实测信息有助于浓度内插，但当前历史模型未显示超越简单插值的附加价值。
 
 本研究据此明确了基础模型在现有实验范围内的预测边界，以及少量实测点用于曲线补全的条件性价值。相关结论限于已测材料、体系和浓度区间，不构成新材料安全性判定、可靠的跨体系泛化或实验前盲法验证。归一化AUC作为全曲线终点，IC50作为阈值与删失信息补充；缺失化学表征和实验重复资料限制机制与重复性解释，但不再作为调整后研究方案的待完成目标。'''
     report += conclusion+'\n'
     report += '''
 ## 6. 证据、复现与核验
 
-主张—证据对应：冻结模型有部分预测能力见原702条件误差；整曲线区分有限见nAUC误差；单一偏移校准总体增益不稳定见配对材料bootstrap；历史模型未优于简单锚点插值见同一432检验条件的公平比较。所有结果均保留，不依据结果更换主轴、锚点或模型。
+主张—证据对应：冻结模型有部分预测能力见702条件误差；整曲线区分有限见nAUC误差；偏移校准的总体改善与体系差异见配对材料bootstrap；历史模型未优于简单锚点插值见同一432检验条件的公平比较。所有结果均保留，不依据结果更换主轴、锚点或模型。
 
 方法上将检验响应排除在偏移拟合之外，符合[scikit-learn关于数据泄漏的原则](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage)。这里使用材料整组bootstrap，不是LeaveOneGroupOut重训练；[分组验证文档](https://scikit-learn.org/stable/modules/cross_validation.html#leave-one-group-out)仅作为未来若另行开发模型时的分组原则。本研究没有新增训练。用户提供的Assay Guidance Manual链接本次因访问验证未能读取，不将其作为已核实的nAUC定义依据；以上面积定义为本研究明确固定的数学指标。
 
@@ -291,9 +300,13 @@ def write_scope_table(out):
 34|现有分析已完成|历史验证、冻结外部评价、校准模拟三者分列|702全条件与432检验条件成绩不能直接混比|README.md
 35|现有分析已完成|四点校准、八个正浓度点检验|偏移MAE11.714→10.303；简单锚点插值5.711，RF未获额外优势|paired_mae_comparisons.csv
 36|现有分析已完成|按调整后证据链交付报告与V3结论草稿|本轮完成分析写作；正式V3全文重排不属于本轮范围|conclusion_for_v3.md'''
+    metrics = pd.read_csv(out/'fewshot_metrics.csv').query("cell_type == 'ALL' and time_h == 'ALL'").set_index('method')
+    full = pd.read_csv(ROOT/'results/external_702_20261101_confirmed/prediction_metrics.csv').query("cell_type == 'ALL' and time_h == 'ALL'").iloc[0]
+    updates = updates.replace('偏移MAE11.714→10.303',f"偏移MAE{metrics.loc['frozen_rf','mae']:.3f}→{metrics.loc['rf_offset_4pt','mae']:.3f}")
+    updates = updates.replace('702条件MAE11.686/R²0.503',f'702条件MAE{full.mae:.3f}/R²{full.r2:.3f}')
     rows = []
     table = ['# 论文实验与分析对照表（按现有数据调整后的研究范围）','',
-        '范围调整记录：2026-11-01（数据已查看后）。用户确认新增实验数据仅此一份，现有9材料×2体系×3时间×13浓度=702条件、54曲线构成本研究全部外部实验数据。调整后研究主线为历史文献建模→双体系剂量—时间响应→冻结模型外部评价→少量测点回顾性模拟。','',
+        '范围调整记录：2026-11-01（数据已查看后）；密度更正与重算：2026-11-03。最终源表HUVEC为2300/孔、H9C2为3000/孔，现有9材料×2体系×3时间×13浓度=702条件、54曲线构成本研究全部外部实验数据。调整后研究主线为历史文献建模→双体系剂量—时间响应→冻结模型外部评价→少量测点回顾性模拟。','',
         '状态定义：“现有分析已完成”指调整后范围内的分析与结果已交付，包括阴性结果与不可计算的阈值指标；“现有数据可补算”只标识尚未完成的可执行计算；“经方案调整移出范围”不代表原任务已经完成。重复次数、方法、汇总方式和缺失字段作为报告边界，不再挂为本轮待完成实验。','',
         f'[调整后完整分析](../../research/results/{out.name}/README.md) · [范围调整前对照表](../../research/results/{out.name}/experiment_status_before_scope_change.md) · [计算前固定方案](../../research/results/{out.name}/analysis_plan.json)','',
         '| 原序号 | 原方案条目 | 调整后目标/处理 | 当前状态 | 结果或边界 | 证据 |',
@@ -307,7 +320,7 @@ def write_scope_table(out):
         else: link = f'[结果](../../research/results/{out.name}/{evidence})'
         table.append(f'| {number} | {suggestions[number]} | {target} | {status} | {result} | {link} |')
         rows.append(dict(number=number,original_recommendation=suggestions[number],revised_target=target,status=status,result_or_boundary=result,evidence=evidence))
-    table += ['', '本次没有按新702条训练新模型，也没有以四点响应为输入后的0.854 R²替代冻结模型外部0.503 R²。54曲线、432检验条件来自9种材料，重复实验数未知；材料bootstrap不能代替生物学重复。','']
+    table += ['', f'本次没有按新702条训练新模型，也没有以四点响应为输入后的插值R²替代冻结模型外部{full.r2:.3f} R²。54曲线、432检验条件来自9种材料，重复实验数未知；材料bootstrap不能代替生物学重复。','']
     destination = ROOT.parent/'paper/revision/improvement-recommendations-status.md'
     destination.write_text('\n'.join(table),encoding='utf-8',newline='\n')
     pd.DataFrame(rows).to_csv(out/'experiment_status_reframed_36.csv',index=False,encoding='utf-8',lineterminator='\n')

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "paper_builds": [
+    {
+      "version": "v2",
+      "pages": 18,
+      "pdf_sha256": "d10639aaf25aa38ab43029d750989d64b88caa939b76cc47a34dfa4b67e5c9de",
+      "full_compile_exit_code": 0,
+      "corrected_density_and_metrics_present": true
+    },
+    {
+      "version": "v3",
+      "pages": 40,
+      "pdf_sha256": "fa218d8155f95a6b7dbb13de32a33011b3d2fd8e74e87d19e80864f4fcbeebae",
+      "full_compile_exit_code": 0,
+      "corrected_density_and_metrics_present": true
+    }
+  ],
+  "huvec_zip_sha256": "02e780858746975cd22fb74c1c7199525d3a16bcea30bf8674ff14ee43fbe3a7",
+  "platform_manifest_verified": true,
+  "archive_final_source_and_prediction_verified": true
+}

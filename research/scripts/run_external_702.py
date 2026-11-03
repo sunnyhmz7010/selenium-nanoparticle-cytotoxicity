@@ -60,10 +60,10 @@ def main():
         if not any(v is not None for v in r):
             continue
         assert all(v is not None for v in r), index
-        match = re.fullmatch(r'(\d+(?:\.\d+)?)万/孔', r[4])
+        match = re.fullmatch(r'(\d+(?:\.\d+)?)(万)?/孔', r[4])
         assert match, r[4]
         records.append(dict(nanoparticle=r[0], size_nm=r[1], zeta_mV=r[2], cell_type=r[3],
-                            seeding_density_reported=r[4], cells_per_well=float(match[1])*10000,
+                            seeding_density_reported=r[4], cells_per_well=float(match[1])*(10000 if match[2] else 1),
                             concentration_reported=r[5], time_h=r[6], viability_percent=r[7],
                             concentration_unit='umol/L', source_excel_row=index))
     workbook.close()
@@ -109,7 +109,17 @@ def main():
         sensitivity.append(dict(cell_type=cell,scenario='unreported_tissue_encoded_unknown',**scores(varied),
                                 max_prediction_change=float(max(abs(alt_prediction[mask]-prediction[mask])))))
     save(output,'tissue_mapping_sensitivity.csv',pd.DataFrame(sensitivity))
-    old_prediction=pd.read_csv(ROOT/'results/huvec_external_20261013_umol_se/model_predictions.csv')
+    # 用保留的旧源表重建旧密度情景，不依赖会随本次修正更新的HUVEC预测副本。
+    previous_source = ROOT/'results/external_702_20261101/source_experiments.xlsx'
+    previous_book = openpyxl.load_workbook(previous_source, read_only=True, data_only=True)
+    previous_densities = {r[3]: float(re.fullmatch(r'(\d+(?:\.\d+)?)万/孔', r[4])[1])*10000
+                          for r in list(previous_book['Sheet1'].values)[1:] if any(v is not None for v in r)}
+    previous_book.close()
+    previous_frame = frame.copy()
+    previous_frame['No_of_Cells (cells/well)'] = data.cell_type.map(previous_densities)
+    old_prediction = data[KEYS].copy()
+    old_prediction['predicted_viability_percent'] = pipeline.predict(previous_frame)
+    old_prediction = old_prediction.loc[old_prediction.cell_type.eq('HUVEC')]
     old_comparison=paired.loc[paired.cell_type.eq('HUVEC')].merge(
         old_prediction[['nanoparticle','time_h','concentration_reported','predicted_viability_percent']],
         on=['nanoparticle','time_h','concentration_reported'],suffixes=('_new','_old'),validate='one_to_one')
@@ -216,7 +226,7 @@ def main():
     cat=pre.named_transformers_['categorical']
     unknown={n:sorted(set(frame[n].dropna())-set(c)) for n,c in zip(cat.feature_names_in_,cat.named_steps['onehot'].categories_)}
     imputation={n:str(v) for n,v in zip(cat.feature_names_in_,cat.named_steps['imputer'].statistics_) if frame[n].isna().any()}
-    old=pd.read_csv(ROOT/'results/huvec_external_20261013_umol_se/experimental_data.csv')
+    old=pd.read_csv(ROOT/'data/prospective/experimental_huvec_dose_time.csv')
     old_pair=old.merge(data,on=KEYS,suffixes=('_old','_new'),validate='one_to_one')
     assert len(old_pair)==351
     for col in ('size_nm','zeta_mV','viability_percent'):
@@ -235,7 +245,8 @@ def main():
                validation='retrospective_external_evaluation; no retraining, tuning, calibration or prospective blinding',
                unknown_categories=unknown,categorical_imputations=imputation,
                cell_tissue_mapping='HUVEC: historical Vascular endothelium; H9C2: missing, frozen mode imputation',
-               density_mapping='23万/孔 -> 230000; 30万/孔 -> 300000 cells/well; user confirmed in chat on 2026-11-01',
+               density_mapping=data[['cell_type','seeding_density_reported','cells_per_well']].drop_duplicates().to_dict('records'),
+               previous_density_source=str(previous_source.relative_to(ROOT)), previous_density_source_sha256=digest(previous_source),
                replicate_status='one reported value per condition; raw replicates/aggregation unknown',
                bootstrap='2000 material-cluster resamples; 9 materials; descriptive sampling uncertainty, not replicate precision',
                software={p:importlib.metadata.version(p) for p in ('numpy','pandas','scipy','scikit-learn','shap','joblib','openpyxl')},

@@ -20,7 +20,7 @@ number,original_recommendation,revised_target,status,result_or_boundary,evidence
 19,24个浓度采用对数间隔并覆盖完整毒性区间,评价实际0–512 μM浓度范围,现有分析已完成,不强求曲线穿越50%；以nAUC覆盖全部曲线,auc_curve_values_54.csv
 20,用三个时间点验证dose×time二维响应面,18个材料—体系剂量时间网格的描述性评价,现有分析已完成,比较时间变化；H9C2综合AUC非严格单调；不做重复显著性,auc_descriptive_summary.csv
 21,先冻结模型，再测新材料毒性,取消对已有实验追补事前盲法的要求,经方案调整移出范围,保留实际模型冻结、源数据和分析时间记录,analysis_plan.json
-22,Phase X：Prospective Zero-Shot Validation,冻结模型的回顾性外部评价,现有分析已完成,702条件MAE11.686/R²0.503，不称前瞻盲测,README.md
+22,Phase X：Prospective Zero-Shot Validation,冻结模型的回顾性外部评价,现有分析已完成,702条件MAE11.239/R²0.486，不称前瞻盲测,README.md
 23,报告MAE、RMSE、R²和95%区间,MAE、RMSE、R²与材料组区间,现有分析已完成,校准在同一432检验条件上公平比较,fewshot_metrics.csv
 24,Phase XI：验证54条Dose-Response Curve并计算IAE,54曲线IAE与归一化AUC,现有分析已完成,主要log正浓度nAUC R²0.084；线性轴结果完整保留,auc_prediction_metrics.csv
 25,Phase XII：不把真实IC50作为主模型输入，应从预测曲线估算IC50,不使用实测IC50输入，报告预测阈值状态,现有分析已完成,冻结模型54曲线均>512，不外推有限数值,README.md
@@ -33,5 +33,5 @@ number,original_recommendation,revised_target,status,result_or_boundary,evidence
 32,比较Without与With dose-time interaction,保留显式dose-time交互消融,现有分析已完成,没有稳定改善为有效结果,historical
 33,比较Random CV与Publication-grouped CV,不新增同口径随机/分组受控对照,经方案调整移出范围,历史两种口径保留，不能将差异全归因于拆分,README.md
 34,将Historical Validation与Prospective Validation分开,历史验证、冻结外部评价、校准模拟三者分列,现有分析已完成,702全条件与432检验条件成绩不能直接混比,README.md
-35,Few-shot：每条24点曲线用4点校准并预测剩余20点,四点校准、八个正浓度点检验,现有分析已完成,偏移MAE11.714→10.303；简单锚点插值5.711，RF未获额外优势,paired_mae_comparisons.csv
+35,Few-shot：每条24点曲线用4点校准并预测剩余20点,四点校准、八个正浓度点检验,现有分析已完成,偏移MAE11.828→10.364；简单锚点插值5.711，RF未获额外优势,paired_mae_comparisons.csv
 36,按General→Transfer→Minimal→消融→历史→前瞻的证据链重排论文,按调整后证据链交付报告与V3结论草稿,现有分析已完成,本轮完成分析写作；正式V3全文重排不属于本轮范围,conclusion_for_v3.md
